@@ -1,0 +1,890 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		62E1728DBD1FDF0F5E5C6998 /* Pods_WolfFX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4DDAFBC92A8DE3EBEC85F92 /* Pods_WolfFX.framework */; };
+		8145C8A32405DD5700414AE2 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C8A22405DD5700414AE2 /* Protocols.swift */; };
+		8145C8A52405DD8300414AE2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C8A42405DD8300414AE2 /* Design.swift */; };
+		816C17CB24050A0F00B1551A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C17CA24050A0F00B1551A /* AppDelegate.swift */; };
+		816C17CD24050A0F00B1551A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C17CC24050A0F00B1551A /* SceneDelegate.swift */; };
+		816C17CF24050A0F00B1551A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C17CE24050A0F00B1551A /* ContentView.swift */; };
+		816C17D124050A1100B1551A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 816C17D024050A1100B1551A /* Assets.xcassets */; };
+		816C17D424050A1100B1551A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 816C17D324050A1100B1551A /* Preview Assets.xcassets */; };
+		816C17D724050A1100B1551A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816C17D524050A1100B1551A /* LaunchScreen.storyboard */; };
+		816C17E224050A1100B1551A /* WolfFXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C17E124050A1100B1551A /* WolfFXTests.swift */; };
+		816C17ED24050A1100B1551A /* WolfFXUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C17EC24050A1100B1551A /* WolfFXUITests.swift */; };
+		816C17FD24050ACD00B1551A /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C17FC24050ACD00B1551A /* TabbarView.swift */; };
+		816C17FF24050AE900B1551A /* TabbarConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C17FE24050AE900B1551A /* TabbarConfigurator.swift */; };
+		816C180324055D0D00B1551A /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816C180224055D0D00B1551A /* Home.storyboard */; };
+		816C180524055D2900B1551A /* Billing Data.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816C180424055D2900B1551A /* Billing Data.storyboard */; };
+		816C180724055D4900B1551A /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816C180624055D4900B1551A /* Wallet.storyboard */; };
+		816C180924055D6F00B1551A /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816C180824055D6F00B1551A /* Settings.storyboard */; };
+		816C180C24055D9D00B1551A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C180B24055D9D00B1551A /* HomeViewController.swift */; };
+		816C180F24055F6C00B1551A /* BillingDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C180E24055F6C00B1551A /* BillingDataViewController.swift */; };
+		816C1812240560AD00B1551A /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C1811240560AD00B1551A /* WalletViewController.swift */; };
+		816C18152405623A00B1551A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C18142405623A00B1551A /* SettingsViewController.swift */; };
+		816C181824056BAE00B1551A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C181724056BAD00B1551A /* R.generated.swift */; };
+		816F67EA240857F50016AA95 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F67E9240857F50016AA95 /* LoginViewController.swift */; };
+		816F67ED2408585A0016AA95 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816F67EC2408585A0016AA95 /* Login.storyboard */; };
+		816F67EF240860390016AA95 /* dummyhome.png in Resources */ = {isa = PBXBuildFile; fileRef = 816F67EE240860380016AA95 /* dummyhome.png */; };
+		EE1C659B0C94D7015423A68C /* Pods_WolfFXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5C99F36564DA7BA05FD685 /* Pods_WolfFXTests.framework */; };
+		F7A9E9C1FC3FC31A410DBD4F /* Pods_WolfFXUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B49A895A9ABBD490771AC7 /* Pods_WolfFXUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		816C17DE24050A1100B1551A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 816C17BF24050A0F00B1551A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 816C17C624050A0F00B1551A;
+			remoteInfo = WolfFX;
+		};
+		816C17E924050A1100B1551A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 816C17BF24050A0F00B1551A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 816C17C624050A0F00B1551A;
+			remoteInfo = WolfFX;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1A5C99F36564DA7BA05FD685 /* Pods_WolfFXTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WolfFXTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ACB8CB61A332577F58487E0 /* Pods-WolfFX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFX.debug.xcconfig"; path = "Target Support Files/Pods-WolfFX/Pods-WolfFX.debug.xcconfig"; sourceTree = "<group>"; };
+		41D97FDD5FE16F1EE497F444 /* Pods-WolfFXUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFXUITests.debug.xcconfig"; path = "Target Support Files/Pods-WolfFXUITests/Pods-WolfFXUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		45270D39D6F5BF4446F2567D /* Pods-WolfFXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFXTests.release.xcconfig"; path = "Target Support Files/Pods-WolfFXTests/Pods-WolfFXTests.release.xcconfig"; sourceTree = "<group>"; };
+		55B49A895A9ABBD490771AC7 /* Pods_WolfFXUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WolfFXUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CC906AF2777012B78946D39 /* Pods-WolfFXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFXTests.debug.xcconfig"; path = "Target Support Files/Pods-WolfFXTests/Pods-WolfFXTests.debug.xcconfig"; sourceTree = "<group>"; };
+		811E060A07A0606C5423FA73 /* Pods-WolfFX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFX.release.xcconfig"; path = "Target Support Files/Pods-WolfFX/Pods-WolfFX.release.xcconfig"; sourceTree = "<group>"; };
+		8145C8A22405DD5700414AE2 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		8145C8A42405DD8300414AE2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
+		816C17C724050A0F00B1551A /* WolfFX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WolfFX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		816C17CA24050A0F00B1551A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		816C17CC24050A0F00B1551A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		816C17CE24050A0F00B1551A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		816C17D024050A1100B1551A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		816C17D324050A1100B1551A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		816C17D624050A1100B1551A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		816C17D824050A1100B1551A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		816C17DD24050A1100B1551A /* WolfFXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WolfFXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		816C17E124050A1100B1551A /* WolfFXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WolfFXTests.swift; sourceTree = "<group>"; };
+		816C17E324050A1100B1551A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		816C17E824050A1100B1551A /* WolfFXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WolfFXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		816C17EC24050A1100B1551A /* WolfFXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WolfFXUITests.swift; sourceTree = "<group>"; };
+		816C17EE24050A1100B1551A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		816C17FC24050ACD00B1551A /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
+		816C17FE24050AE900B1551A /* TabbarConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarConfigurator.swift; sourceTree = "<group>"; };
+		816C180224055D0D00B1551A /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		816C180424055D2900B1551A /* Billing Data.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Billing Data.storyboard"; sourceTree = "<group>"; };
+		816C180624055D4900B1551A /* Wallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
+		816C180824055D6F00B1551A /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		816C180B24055D9D00B1551A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		816C180E24055F6C00B1551A /* BillingDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingDataViewController.swift; sourceTree = "<group>"; };
+		816C1811240560AD00B1551A /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		816C18142405623A00B1551A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		816C181724056BAD00B1551A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = WolfFX/R.generated.swift; sourceTree = "<group>"; };
+		816F67E9240857F50016AA95 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		816F67EC2408585A0016AA95 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		816F67EE240860380016AA95 /* dummyhome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dummyhome.png; sourceTree = "<group>"; };
+		93A4C600226894C900513681 /* Pods-WolfFXUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFXUITests.release.xcconfig"; path = "Target Support Files/Pods-WolfFXUITests/Pods-WolfFXUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F4DDAFBC92A8DE3EBEC85F92 /* Pods_WolfFX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WolfFX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		816C17C424050A0F00B1551A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62E1728DBD1FDF0F5E5C6998 /* Pods_WolfFX.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		816C17DA24050A1100B1551A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE1C659B0C94D7015423A68C /* Pods_WolfFXTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		816C17E524050A1100B1551A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7A9E9C1FC3FC31A410DBD4F /* Pods_WolfFXUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		527B9D4EA629194F260CF0AE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3ACB8CB61A332577F58487E0 /* Pods-WolfFX.debug.xcconfig */,
+				811E060A07A0606C5423FA73 /* Pods-WolfFX.release.xcconfig */,
+				6CC906AF2777012B78946D39 /* Pods-WolfFXTests.debug.xcconfig */,
+				45270D39D6F5BF4446F2567D /* Pods-WolfFXTests.release.xcconfig */,
+				41D97FDD5FE16F1EE497F444 /* Pods-WolfFXUITests.debug.xcconfig */,
+				93A4C600226894C900513681 /* Pods-WolfFXUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8145C8A12405DD2F00414AE2 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				8145C8A22405DD5700414AE2 /* Protocols.swift */,
+				8145C8A42405DD8300414AE2 /* Design.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		816C17BE24050A0F00B1551A = {
+			isa = PBXGroup;
+			children = (
+				816C181724056BAD00B1551A /* R.generated.swift */,
+				816C17C924050A0F00B1551A /* WolfFX */,
+				816C17E024050A1100B1551A /* WolfFXTests */,
+				816C17EB24050A1100B1551A /* WolfFXUITests */,
+				816C17C824050A0F00B1551A /* Products */,
+				527B9D4EA629194F260CF0AE /* Pods */,
+				B5B38560DD3AC51588305943 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		816C17C824050A0F00B1551A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				816C17C724050A0F00B1551A /* WolfFX.app */,
+				816C17DD24050A1100B1551A /* WolfFXTests.xctest */,
+				816C17E824050A1100B1551A /* WolfFXUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		816C17C924050A0F00B1551A /* WolfFX */ = {
+			isa = PBXGroup;
+			children = (
+				816F67EE240860380016AA95 /* dummyhome.png */,
+				8145C8A12405DD2F00414AE2 /* Misc */,
+				816C180124055CC600B1551A /* Storyboards */,
+				816C17FA24050AA900B1551A /* Modules */,
+				816C17CA24050A0F00B1551A /* AppDelegate.swift */,
+				816C17CC24050A0F00B1551A /* SceneDelegate.swift */,
+				816C17CE24050A0F00B1551A /* ContentView.swift */,
+				816C17D024050A1100B1551A /* Assets.xcassets */,
+				816C17D524050A1100B1551A /* LaunchScreen.storyboard */,
+				816C17D824050A1100B1551A /* Info.plist */,
+				816C17D224050A1100B1551A /* Preview Content */,
+			);
+			path = WolfFX;
+			sourceTree = "<group>";
+		};
+		816C17D224050A1100B1551A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				816C17D324050A1100B1551A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		816C17E024050A1100B1551A /* WolfFXTests */ = {
+			isa = PBXGroup;
+			children = (
+				816C17E124050A1100B1551A /* WolfFXTests.swift */,
+				816C17E324050A1100B1551A /* Info.plist */,
+			);
+			path = WolfFXTests;
+			sourceTree = "<group>";
+		};
+		816C17EB24050A1100B1551A /* WolfFXUITests */ = {
+			isa = PBXGroup;
+			children = (
+				816C17EC24050A1100B1551A /* WolfFXUITests.swift */,
+				816C17EE24050A1100B1551A /* Info.plist */,
+			);
+			path = WolfFXUITests;
+			sourceTree = "<group>";
+		};
+		816C17FA24050AA900B1551A /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				816F67EB240858010016AA95 /* Login */,
+				816C18132405620500B1551A /* Settings */,
+				816C18102405607300B1551A /* Wallet */,
+				816C180D24055F4900B1551A /* BillingData */,
+				816C180A24055D7A00B1551A /* Home */,
+				816C17FB24050AB400B1551A /* Tabbar */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		816C17FB24050AB400B1551A /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				816C17FC24050ACD00B1551A /* TabbarView.swift */,
+				816C17FE24050AE900B1551A /* TabbarConfigurator.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		816C180124055CC600B1551A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				816C180224055D0D00B1551A /* Home.storyboard */,
+				816C180424055D2900B1551A /* Billing Data.storyboard */,
+				816C180624055D4900B1551A /* Wallet.storyboard */,
+				816C180824055D6F00B1551A /* Settings.storyboard */,
+				816F67EC2408585A0016AA95 /* Login.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		816C180A24055D7A00B1551A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				816C180B24055D9D00B1551A /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		816C180D24055F4900B1551A /* BillingData */ = {
+			isa = PBXGroup;
+			children = (
+				816C180E24055F6C00B1551A /* BillingDataViewController.swift */,
+			);
+			path = BillingData;
+			sourceTree = "<group>";
+		};
+		816C18102405607300B1551A /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				816C1811240560AD00B1551A /* WalletViewController.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		816C18132405620500B1551A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				816C18142405623A00B1551A /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		816F67EB240858010016AA95 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				816F67E9240857F50016AA95 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B5B38560DD3AC51588305943 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4DDAFBC92A8DE3EBEC85F92 /* Pods_WolfFX.framework */,
+				1A5C99F36564DA7BA05FD685 /* Pods_WolfFXTests.framework */,
+				55B49A895A9ABBD490771AC7 /* Pods_WolfFXUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		816C17C624050A0F00B1551A /* WolfFX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 816C17F124050A1100B1551A /* Build configuration list for PBXNativeTarget "WolfFX" */;
+			buildPhases = (
+				24445190C3AEF0040C48899A /* [CP] Check Pods Manifest.lock */,
+				816C18162405643400B1551A /* R swift */,
+				816C17C324050A0F00B1551A /* Sources */,
+				816C17C424050A0F00B1551A /* Frameworks */,
+				816C17C524050A0F00B1551A /* Resources */,
+				0F1BE9ABC44CA45D7B1EAB77 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WolfFX;
+			productName = WolfFX;
+			productReference = 816C17C724050A0F00B1551A /* WolfFX.app */;
+			productType = "com.apple.product-type.application";
+		};
+		816C17DC24050A1100B1551A /* WolfFXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 816C17F424050A1100B1551A /* Build configuration list for PBXNativeTarget "WolfFXTests" */;
+			buildPhases = (
+				35C1F3D4741A09E020FB4F5E /* [CP] Check Pods Manifest.lock */,
+				816C17D924050A1100B1551A /* Sources */,
+				816C17DA24050A1100B1551A /* Frameworks */,
+				816C17DB24050A1100B1551A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				816C17DF24050A1100B1551A /* PBXTargetDependency */,
+			);
+			name = WolfFXTests;
+			productName = WolfFXTests;
+			productReference = 816C17DD24050A1100B1551A /* WolfFXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		816C17E724050A1100B1551A /* WolfFXUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 816C17F724050A1100B1551A /* Build configuration list for PBXNativeTarget "WolfFXUITests" */;
+			buildPhases = (
+				C544AEFFEC9EB8EBE17D2D31 /* [CP] Check Pods Manifest.lock */,
+				816C17E424050A1100B1551A /* Sources */,
+				816C17E524050A1100B1551A /* Frameworks */,
+				816C17E624050A1100B1551A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				816C17EA24050A1100B1551A /* PBXTargetDependency */,
+			);
+			name = WolfFXUITests;
+			productName = WolfFXUITests;
+			productReference = 816C17E824050A1100B1551A /* WolfFXUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		816C17BF24050A0F00B1551A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Елена Острожинская";
+				TargetAttributes = {
+					816C17C624050A0F00B1551A = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					816C17DC24050A1100B1551A = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 816C17C624050A0F00B1551A;
+					};
+					816C17E724050A1100B1551A = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 816C17C624050A0F00B1551A;
+					};
+				};
+			};
+			buildConfigurationList = 816C17C224050A0F00B1551A /* Build configuration list for PBXProject "WolfFX" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 816C17BE24050A0F00B1551A;
+			productRefGroup = 816C17C824050A0F00B1551A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				816C17C624050A0F00B1551A /* WolfFX */,
+				816C17DC24050A1100B1551A /* WolfFXTests */,
+				816C17E724050A1100B1551A /* WolfFXUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		816C17C524050A0F00B1551A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				816C180524055D2900B1551A /* Billing Data.storyboard in Resources */,
+				816C17D724050A1100B1551A /* LaunchScreen.storyboard in Resources */,
+				816F67ED2408585A0016AA95 /* Login.storyboard in Resources */,
+				816C17D424050A1100B1551A /* Preview Assets.xcassets in Resources */,
+				816C17D124050A1100B1551A /* Assets.xcassets in Resources */,
+				816C180324055D0D00B1551A /* Home.storyboard in Resources */,
+				816C180724055D4900B1551A /* Wallet.storyboard in Resources */,
+				816C180924055D6F00B1551A /* Settings.storyboard in Resources */,
+				816F67EF240860390016AA95 /* dummyhome.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		816C17DB24050A1100B1551A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		816C17E624050A1100B1551A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F1BE9ABC44CA45D7B1EAB77 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WolfFX/Pods-WolfFX-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WolfFX/Pods-WolfFX-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WolfFX/Pods-WolfFX-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		24445190C3AEF0040C48899A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WolfFX-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		35C1F3D4741A09E020FB4F5E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WolfFXTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		816C18162405643400B1551A /* R swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "R swift";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate --disable-input-output-files-validation \"$SRCROOT/WolfFX/R.generated.swift\"\n";
+		};
+		C544AEFFEC9EB8EBE17D2D31 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WolfFXUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		816C17C324050A0F00B1551A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				816C17CB24050A0F00B1551A /* AppDelegate.swift in Sources */,
+				816C17CD24050A0F00B1551A /* SceneDelegate.swift in Sources */,
+				816F67EA240857F50016AA95 /* LoginViewController.swift in Sources */,
+				816C17FD24050ACD00B1551A /* TabbarView.swift in Sources */,
+				8145C8A52405DD8300414AE2 /* Design.swift in Sources */,
+				8145C8A32405DD5700414AE2 /* Protocols.swift in Sources */,
+				816C17CF24050A0F00B1551A /* ContentView.swift in Sources */,
+				816C180F24055F6C00B1551A /* BillingDataViewController.swift in Sources */,
+				816C1812240560AD00B1551A /* WalletViewController.swift in Sources */,
+				816C17FF24050AE900B1551A /* TabbarConfigurator.swift in Sources */,
+				816C181824056BAE00B1551A /* R.generated.swift in Sources */,
+				816C180C24055D9D00B1551A /* HomeViewController.swift in Sources */,
+				816C18152405623A00B1551A /* SettingsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		816C17D924050A1100B1551A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				816C17E224050A1100B1551A /* WolfFXTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		816C17E424050A1100B1551A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				816C17ED24050A1100B1551A /* WolfFXUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		816C17DF24050A1100B1551A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 816C17C624050A0F00B1551A /* WolfFX */;
+			targetProxy = 816C17DE24050A1100B1551A /* PBXContainerItemProxy */;
+		};
+		816C17EA24050A1100B1551A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 816C17C624050A0F00B1551A /* WolfFX */;
+			targetProxy = 816C17E924050A1100B1551A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		816C17D524050A1100B1551A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				816C17D624050A1100B1551A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		816C17EF24050A1100B1551A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		816C17F024050A1100B1551A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		816C17F224050A1100B1551A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3ACB8CB61A332577F58487E0 /* Pods-WolfFX.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"WolfFX/Preview Content\"";
+				DEVELOPMENT_TEAM = Q9DJ3245Y9;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = WolfFX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Ostrozhynska.WolfFX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		816C17F324050A1100B1551A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 811E060A07A0606C5423FA73 /* Pods-WolfFX.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"WolfFX/Preview Content\"";
+				DEVELOPMENT_TEAM = Q9DJ3245Y9;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = WolfFX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Ostrozhynska.WolfFX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		816C17F524050A1100B1551A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CC906AF2777012B78946D39 /* Pods-WolfFXTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q9DJ3245Y9;
+				INFOPLIST_FILE = WolfFXTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Ostrozhynska.WolfFXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WolfFX.app/WolfFX";
+			};
+			name = Debug;
+		};
+		816C17F624050A1100B1551A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45270D39D6F5BF4446F2567D /* Pods-WolfFXTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q9DJ3245Y9;
+				INFOPLIST_FILE = WolfFXTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Ostrozhynska.WolfFXTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WolfFX.app/WolfFX";
+			};
+			name = Release;
+		};
+		816C17F824050A1100B1551A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41D97FDD5FE16F1EE497F444 /* Pods-WolfFXUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q9DJ3245Y9;
+				INFOPLIST_FILE = WolfFXUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Ostrozhynska.WolfFXUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WolfFX;
+			};
+			name = Debug;
+		};
+		816C17F924050A1100B1551A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93A4C600226894C900513681 /* Pods-WolfFXUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q9DJ3245Y9;
+				INFOPLIST_FILE = WolfFXUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Ostrozhynska.WolfFXUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WolfFX;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		816C17C224050A0F00B1551A /* Build configuration list for PBXProject "WolfFX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				816C17EF24050A1100B1551A /* Debug */,
+				816C17F024050A1100B1551A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		816C17F124050A1100B1551A /* Build configuration list for PBXNativeTarget "WolfFX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				816C17F224050A1100B1551A /* Debug */,
+				816C17F324050A1100B1551A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		816C17F424050A1100B1551A /* Build configuration list for PBXNativeTarget "WolfFXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				816C17F524050A1100B1551A /* Debug */,
+				816C17F624050A1100B1551A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		816C17F724050A1100B1551A /* Build configuration list for PBXNativeTarget "WolfFXUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				816C17F824050A1100B1551A /* Debug */,
+				816C17F924050A1100B1551A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 816C17BF24050A0F00B1551A /* Project object */;
+}

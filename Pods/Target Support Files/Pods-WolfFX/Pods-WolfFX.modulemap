@@ -1,0 +1,6 @@
+framework module Pods_WolfFX {
+  umbrella header "Pods-WolfFX-umbrella.h"
+
+  export *
+  module * { export * }
+}
