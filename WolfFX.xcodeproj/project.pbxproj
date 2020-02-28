@@ -32,6 +32,10 @@
 		816F67EA240857F50016AA95 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F67E9240857F50016AA95 /* LoginViewController.swift */; };
 		816F67ED2408585A0016AA95 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816F67EC2408585A0016AA95 /* Login.storyboard */; };
 		816F67EF240860390016AA95 /* dummyhome.png in Resources */ = {isa = PBXBuildFile; fileRef = 816F67EE240860380016AA95 /* dummyhome.png */; };
+		81D882582409D4F30030C78B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D882572409D4F30030C78B /* Network.swift */; };
+		81D8825A2409D6AA0030C78B /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D882592409D6AA0030C78B /* Endpoints.swift */; };
+		81D8825D2409D8880030C78B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D8825C2409D8880030C78B /* User.swift */; };
+		81D8825F2409D9070030C78B /* WolfError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D8825E2409D9070030C78B /* WolfError.swift */; };
 		EE1C659B0C94D7015423A68C /* Pods_WolfFXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5C99F36564DA7BA05FD685 /* Pods_WolfFXTests.framework */; };
 		F7A9E9C1FC3FC31A410DBD4F /* Pods_WolfFXUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B49A895A9ABBD490771AC7 /* Pods_WolfFXUITests.framework */; };
 /* End PBXBuildFile section */
@@ -91,6 +95,10 @@
 		816F67E9240857F50016AA95 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		816F67EC2408585A0016AA95 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		816F67EE240860380016AA95 /* dummyhome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dummyhome.png; sourceTree = "<group>"; };
+		81D882572409D4F30030C78B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		81D882592409D6AA0030C78B /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
+		81D8825C2409D8880030C78B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		81D8825E2409D9070030C78B /* WolfError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WolfError.swift; sourceTree = "<group>"; };
 		93A4C600226894C900513681 /* Pods-WolfFXUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFXUITests.release.xcconfig"; path = "Target Support Files/Pods-WolfFXUITests/Pods-WolfFXUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F4DDAFBC92A8DE3EBEC85F92 /* Pods_WolfFX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WolfFX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -141,6 +149,7 @@
 			children = (
 				8145C8A22405DD5700414AE2 /* Protocols.swift */,
 				8145C8A42405DD8300414AE2 /* Design.swift */,
+				81D8825E2409D9070030C78B /* WolfError.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -173,8 +182,10 @@
 			children = (
 				816F67EE240860380016AA95 /* dummyhome.png */,
 				8145C8A12405DD2F00414AE2 /* Misc */,
+				81D8825B2409D8650030C78B /* Models */,
 				816C180124055CC600B1551A /* Storyboards */,
 				816C17FA24050AA900B1551A /* Modules */,
+				81D882562409D4C60030C78B /* Services */,
 				816C17CA24050A0F00B1551A /* AppDelegate.swift */,
 				816C17CC24050A0F00B1551A /* SceneDelegate.swift */,
 				816C17CE24050A0F00B1551A /* ContentView.swift */,
@@ -284,6 +295,23 @@
 				816F67E9240857F50016AA95 /* LoginViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		81D882562409D4C60030C78B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				81D882572409D4F30030C78B /* Network.swift */,
+				81D882592409D6AA0030C78B /* Endpoints.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		81D8825B2409D8650030C78B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				81D8825C2409D8880030C78B /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B5B38560DD3AC51588305943 /* Frameworks */ = {
@@ -546,6 +574,9 @@
 				816C17CD24050A0F00B1551A /* SceneDelegate.swift in Sources */,
 				816F67EA240857F50016AA95 /* LoginViewController.swift in Sources */,
 				816C17FD24050ACD00B1551A /* TabbarView.swift in Sources */,
+				81D8825D2409D8880030C78B /* User.swift in Sources */,
+				81D8825A2409D6AA0030C78B /* Endpoints.swift in Sources */,
+				81D8825F2409D9070030C78B /* WolfError.swift in Sources */,
 				8145C8A52405DD8300414AE2 /* Design.swift in Sources */,
 				8145C8A32405DD5700414AE2 /* Protocols.swift in Sources */,
 				816C17CF24050A0F00B1551A /* ContentView.swift in Sources */,
@@ -554,6 +585,7 @@
 				816C17FF24050AE900B1551A /* TabbarConfigurator.swift in Sources */,
 				816C181824056BAE00B1551A /* R.generated.swift in Sources */,
 				816C180C24055D9D00B1551A /* HomeViewController.swift in Sources */,
+				81D882582409D4F30030C78B /* Network.swift in Sources */,
 				816C18152405623A00B1551A /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
