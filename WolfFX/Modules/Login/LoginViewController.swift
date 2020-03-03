@@ -12,6 +12,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var emailTextfield: UITextField!
+    @IBOutlet weak var passwordTextfield: UITextField!
     
     var showTabbarCallback: (() -> Void)?
     
@@ -32,7 +34,11 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginAction(_ sender: Any) {
-        
+        let loginPresenter = LoginPresenter.init(view: self)
+       
+        if let login = emailTextfield.text, let password = passwordTextfield.text {
+            loginPresenter.signIn(email: login, password: password)
+        }
     }
     
     @IBAction func close(_ sender: UIButton) {

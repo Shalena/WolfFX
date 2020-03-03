@@ -22,7 +22,7 @@ enum Endpoint {
     var path: String {
     switch self {
         case .login:
-        return "pathTologin"
+        return "/mt1/login"
         }
     }
         
@@ -36,7 +36,7 @@ enum Endpoint {
     var parameters: Parameters? {
     switch self {
         case .login (let email, let password):
-        return ["email": email,
+        return ["username": email,
              "password": password]
         }
     }

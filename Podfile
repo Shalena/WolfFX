@@ -11,7 +11,7 @@ target 'WolfFX' do
         pod 'Locksmith'
         pod 'Swinject'
         pod 'ReSwift'
-	pod 'Charts'
+        pod 'Charts'
 
   # Pods for HomeSolutionsCustomer
 
