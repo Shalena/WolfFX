@@ -41,6 +41,12 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func signUpAction(_ sender: Any) {
+        if let signUpController = R.storyboard.login.signupViewController() {
+        show(signUpController, sender: self)
+        }
+    }
+    
     @IBAction func close(_ sender: UIButton) {
           self.removeFromParent()
           self.view.removeFromSuperview()

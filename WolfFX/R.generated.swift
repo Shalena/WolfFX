@@ -224,15 +224,21 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let loginViewController = StoryboardViewControllerResource<LoginViewController>(identifier: "LoginViewController")
       let name = "Login"
+      let signupViewController = StoryboardViewControllerResource<SignupViewController>(identifier: "SignupViewController")
       
       func loginViewController(_: Void = ()) -> LoginViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: loginViewController)
+      }
+      
+      func signupViewController(_: Void = ()) -> SignupViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: signupViewController)
       }
       
       static func validate() throws {
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.login().loginViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'loginViewController' could not be loaded from storyboard 'Login' as 'LoginViewController'.") }
+        if _R.storyboard.login().signupViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'signupViewController' could not be loaded from storyboard 'Login' as 'SignupViewController'.") }
       }
       
       fileprivate init() {}
