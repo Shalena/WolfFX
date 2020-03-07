@@ -9,7 +9,6 @@
 import Foundation
 
 class LoginRouter: BaseRouter, LoginTransitions {
-   
     func userLoggedIn(user: User) {
        
     }

@@ -8,8 +8,9 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, ViewControllerDesign {
-    
+class HomeViewController: UIViewController, ViewControllerDesign, HomeViewProtocol {
+    var presenter: HomeEvents?
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = true
@@ -19,18 +20,6 @@ class HomeViewController: UIViewController, ViewControllerDesign {
     }
     
     private func setupLoginOverlay() {
-        let loginConfigurator = LoginConfigurator()
-        
-        if let loginController = R.storyboard.login.loginViewController() {
-            let showTabbarCallback: ShowTabbarCallback = {
-                self.tabBarController?.tabBar.isHidden = false
-            }
-            let assembler = Assembler()
-            loginConfigurator.configure(viewController: loginController, with: assembler, callBack: showTabbarCallback)
-            loginController.willMove(toParent: self)
-            view.addSubview(loginController.view)
-            self.addChild(loginController)
-            loginController.didMove(toParent: self)
-        }
+        presenter?.setupLoginOverlay()
     }
 }

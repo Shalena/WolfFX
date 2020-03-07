@@ -38,5 +38,19 @@ protocol LoginEvents {
 }
 
 protocol LoginTransitions {
-      func userLoggedIn(user: User)
+    func userLoggedIn(user: User)
+}
+
+// Home Screen
+
+protocol HomeViewProtocol {
+    var presenter: HomeEvents? {get set}
+}
+
+protocol HomeEvents {
+    func setupLoginOverlay()
+}
+
+protocol HomeTransitions {
+     func setupLoginOverlay()
 }

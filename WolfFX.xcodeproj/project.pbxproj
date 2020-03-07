@@ -39,6 +39,9 @@
 		81A4B3562413A3CF004A02CB /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B3552413A3CF004A02CB /* LoginConfigurator.swift */; };
 		81A4B35A2413A4BC004A02CB /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B3592413A4BC004A02CB /* LoginRouter.swift */; };
 		81A4B35C2413A527004A02CB /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B35B2413A527004A02CB /* BaseRouter.swift */; };
+		81A4B35E2413ADDC004A02CB /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B35D2413ADDC004A02CB /* HomePresenter.swift */; };
+		81A4B3602413BCA5004A02CB /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B35F2413BCA5004A02CB /* HomeRouter.swift */; };
+		81A4B3622413BCC5004A02CB /* HomeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B3612413BCC5004A02CB /* HomeConfigurator.swift */; };
 		81D882582409D4F30030C78B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D882572409D4F30030C78B /* Network.swift */; };
 		81D8825A2409D6AA0030C78B /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D882592409D6AA0030C78B /* Endpoints.swift */; };
 		81D8825D2409D8880030C78B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D8825C2409D8880030C78B /* User.swift */; };
@@ -109,6 +112,9 @@
 		81A4B3552413A3CF004A02CB /* LoginConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfigurator.swift; sourceTree = "<group>"; };
 		81A4B3592413A4BC004A02CB /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		81A4B35B2413A527004A02CB /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		81A4B35D2413ADDC004A02CB /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		81A4B35F2413BCA5004A02CB /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		81A4B3612413BCC5004A02CB /* HomeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeConfigurator.swift; sourceTree = "<group>"; };
 		81D882572409D4F30030C78B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		81D882592409D6AA0030C78B /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		81D8825C2409D8880030C78B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -277,6 +283,9 @@
 			isa = PBXGroup;
 			children = (
 				816C180B24055D9D00B1551A /* HomeViewController.swift */,
+				81A4B35D2413ADDC004A02CB /* HomePresenter.swift */,
+				81A4B35F2413BCA5004A02CB /* HomeRouter.swift */,
+				81A4B3612413BCC5004A02CB /* HomeConfigurator.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -612,15 +621,18 @@
 				81A4B35A2413A4BC004A02CB /* LoginRouter.swift in Sources */,
 				81A4B35024105D98004A02CB /* SignupViewController.swift in Sources */,
 				8145C8A32405DD5700414AE2 /* Protocols.swift in Sources */,
+				81A4B35E2413ADDC004A02CB /* HomePresenter.swift in Sources */,
 				816C17CF24050A0F00B1551A /* ContentView.swift in Sources */,
 				816C180F24055F6C00B1551A /* BillingDataViewController.swift in Sources */,
 				816C1812240560AD00B1551A /* WalletViewController.swift in Sources */,
 				8184269E240D534200713BF5 /* LoginPresenter.swift in Sources */,
 				81A4B354241129FC004A02CB /* Repository.swift in Sources */,
+				81A4B3602413BCA5004A02CB /* HomeRouter.swift in Sources */,
 				816C17FF24050AE900B1551A /* TabbarConfigurator.swift in Sources */,
 				816C181824056BAE00B1551A /* R.generated.swift in Sources */,
 				816C180C24055D9D00B1551A /* HomeViewController.swift in Sources */,
 				81A4B352241129DB004A02CB /*  Assembler.swift in Sources */,
+				81A4B3622413BCC5004A02CB /* HomeConfigurator.swift in Sources */,
 				81D882582409D4F30030C78B /* Network.swift in Sources */,
 				816C18152405623A00B1551A /* SettingsViewController.swift in Sources */,
 			);

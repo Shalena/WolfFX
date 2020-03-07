@@ -15,6 +15,8 @@ class TabbarConfigurator {
     
     func configure(tabBar: TabbarView, with selectedIndex: Int, assembler: Assembler) {
         if let homeController = R.storyboard.home.homeViewController() {
+            let homeConfigurator = HomeConfigurator()
+            homeConfigurator.configure(viewController: homeController, with: assembler)
             let homeNavigationController = UINavigationController(rootViewController: homeController)
             homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: R.image.homeTab()?.withTintColor(UIColor.darkGray, renderingMode: .alwaysOriginal), selectedImage: R.image.homeTab())
             navControllers.append(homeNavigationController)
