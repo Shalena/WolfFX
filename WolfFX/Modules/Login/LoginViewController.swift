@@ -8,14 +8,15 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, LoginViewProtocol {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     
-    var showTabbarCallback: (() -> Void)?
+    var presenter: LoginEvents?
+    var callback: ShowTabbarCallback?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +35,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginAction(_ sender: Any) {
-        let loginPresenter = LoginPresenter.init(view: self)
-       
         if let login = emailTextfield.text, let password = passwordTextfield.text {
-            loginPresenter.signIn(email: login, password: password)
+            presenter?.signIn(email: login, password: password)
         }
     }
     
@@ -50,6 +49,6 @@ class LoginViewController: UIViewController {
     @IBAction func close(_ sender: UIButton) {
           self.removeFromParent()
           self.view.removeFromSuperview()
-          showTabbarCallback?()
+          callback?()
       }
 }

@@ -19,13 +19,17 @@ class HomeViewController: UIViewController, ViewControllerDesign {
     }
     
     private func setupLoginOverlay() {
+        let loginConfigurator = LoginConfigurator()
+        
         if let loginController = R.storyboard.login.loginViewController() {
-            loginController.showTabbarCallback = {
+            let showTabbarCallback: ShowTabbarCallback = {
                 self.tabBarController?.tabBar.isHidden = false
             }
+            let assembler = Assembler()
+            loginConfigurator.configure(viewController: loginController, with: assembler, callBack: showTabbarCallback)
             loginController.willMove(toParent: self)
             view.addSubview(loginController.view)
-            self.addChild(loginController)   
+            self.addChild(loginController)
             loginController.didMove(toParent: self)
         }
     }

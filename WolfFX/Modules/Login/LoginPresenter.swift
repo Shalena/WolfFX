@@ -9,26 +9,25 @@
 import Foundation
 import UIKit
 
-class LoginPresenter {
-    var networkManager = NetwokManager()
-    var view: UIViewController?
+class LoginPresenter: LoginEvents {
+    var view: LoginViewProtocol?
+    var router: LoginTransitions?
+    var networkManager: NetworkAccess
     
-    init(view: UIViewController) {
-        self.view = view        
+    init (with networkManager: NetworkAccess) {
+        self.networkManager = networkManager
     }
     
-     func signIn(email: String, password: String) {
-  
-       networkManager.login(email: email, password: password, success: { (user: User?) in
-                  if let customer = user {
+    func signIn(email: String, password: String) {
+    networkManager.login(email: email, password: password, success: { (user: User?) in
+                  if let currentUser = user {
                      
                   } else {
                       fatalError()
                   }
               }, failure: { [weak self] error in
                   if let error = error {
-                    let alert = UIAlertController.init(title: "Error", message: error.errorDescription, preferredStyle: .alert)
-                    self?.view?.show(alert, sender: self?.view)
+                    self?.view?.showErrorAlertWith(error: error)
                   }
               })
         

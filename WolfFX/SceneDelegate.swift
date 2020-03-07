@@ -19,7 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             let tabBar = TabbarView()
             let tabBarConfigurator = TabbarConfigurator()
-            tabBarConfigurator.configure(tabBar: tabBar, with: 0)
+            let assembler = Assembler()
+            assembler.initFlow()
+            tabBarConfigurator.configure(tabBar: tabBar, with: 0, assembler: assembler)
             window.rootViewController = tabBar
             self.window = window
             window.makeKeyAndVisible()
