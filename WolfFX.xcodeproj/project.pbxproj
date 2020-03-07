@@ -34,6 +34,8 @@
 		816F67EF240860390016AA95 /* dummyhome.png in Resources */ = {isa = PBXBuildFile; fileRef = 816F67EE240860380016AA95 /* dummyhome.png */; };
 		8184269E240D534200713BF5 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184269D240D534200713BF5 /* LoginPresenter.swift */; };
 		81A4B35024105D98004A02CB /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B34F24105D98004A02CB /* SignupViewController.swift */; };
+		81A4B352241129DB004A02CB /*  Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B351241129DB004A02CB /*  Assembler.swift */; };
+		81A4B354241129FC004A02CB /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B353241129FC004A02CB /* Repository.swift */; };
 		81D882582409D4F30030C78B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D882572409D4F30030C78B /* Network.swift */; };
 		81D8825A2409D6AA0030C78B /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D882592409D6AA0030C78B /* Endpoints.swift */; };
 		81D8825D2409D8880030C78B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D8825C2409D8880030C78B /* User.swift */; };
@@ -99,6 +101,8 @@
 		816F67EE240860380016AA95 /* dummyhome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dummyhome.png; sourceTree = "<group>"; };
 		8184269D240D534200713BF5 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		81A4B34F24105D98004A02CB /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		81A4B351241129DB004A02CB /*  Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Assembler.swift"; sourceTree = "<group>"; };
+		81A4B353241129FC004A02CB /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		81D882572409D4F30030C78B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		81D882592409D6AA0030C78B /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		81D8825C2409D8880030C78B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -316,6 +320,8 @@
 			children = (
 				81D882572409D4F30030C78B /* Network.swift */,
 				81D882592409D6AA0030C78B /* Endpoints.swift */,
+				81A4B351241129DB004A02CB /*  Assembler.swift */,
+				81A4B353241129FC004A02CB /* Repository.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -598,9 +604,11 @@
 				816C180F24055F6C00B1551A /* BillingDataViewController.swift in Sources */,
 				816C1812240560AD00B1551A /* WalletViewController.swift in Sources */,
 				8184269E240D534200713BF5 /* LoginPresenter.swift in Sources */,
+				81A4B354241129FC004A02CB /* Repository.swift in Sources */,
 				816C17FF24050AE900B1551A /* TabbarConfigurator.swift in Sources */,
 				816C181824056BAE00B1551A /* R.generated.swift in Sources */,
 				816C180C24055D9D00B1551A /* HomeViewController.swift in Sources */,
+				81A4B352241129DB004A02CB /*  Assembler.swift in Sources */,
 				81D882582409D4F30030C78B /* Network.swift in Sources */,
 				816C18152405623A00B1551A /* SettingsViewController.swift in Sources */,
 			);
