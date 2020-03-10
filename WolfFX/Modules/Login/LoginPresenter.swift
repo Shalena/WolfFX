@@ -19,17 +19,14 @@ class LoginPresenter: LoginEvents {
     }
     
     func signIn(email: String, password: String) {
-    networkManager.login(email: email, password: password, success: { (user: User?) in
-                  if let currentUser = user {
-                     
-                  } else {
-                      fatalError()
-                  }
-              }, failure: { [weak self] error in
-                  if let error = error {
-                    self?.view?.showErrorAlertWith(error: error)
-                  }
-              })
-        
+        networkManager.login(email: email, password: password, success: { (successfully: Bool) in
+            if successfully {
+                
+            }
+        }, failure: { [weak self] error in
+            if let error = error {
+              self?.view?.showErrorAlertWith(error: error)
+            }
+        })
     }
 }
