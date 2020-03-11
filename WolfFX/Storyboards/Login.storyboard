@@ -250,7 +250,7 @@
                                                             <constraint firstAttribute="height" constant="40" id="xi9-kj-N5s"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NTW-cY-8kd">
                                                         <rect key="frame" x="30" y="502.5" width="338" height="40"/>
@@ -284,13 +284,14 @@
                                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZA-Yx-ALT">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZA-Yx-ALT" customClass="CheckboxButton" customModule="WolfFX" customModuleProvider="target">
                                                         <rect key="frame" x="30" y="562.5" width="30" height="30"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="30" id="Lth-az-2f3"/>
                                                             <constraint firstAttribute="width" secondItem="CZA-Yx-ALT" secondAttribute="height" multiplier="1:1" id="vJE-0r-kY9"/>
                                                         </constraints>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click here to accept our Client Agreement" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gs9-dT-TyJ">
                                                         <rect key="frame" x="80" y="562.5" width="288" height="30"/>
@@ -402,6 +403,14 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="1500"/>
+                    <connections>
+                        <outlet property="confirmPasswordTextfield" destination="TRZ-n8-P2t" id="Pw1-E7-TDB"/>
+                        <outlet property="currencyTextField" destination="NTW-cY-8kd" id="aQU-sh-x8d"/>
+                        <outlet property="emailTextField" destination="f95-wC-cWi" id="Qdz-e9-ij2"/>
+                        <outlet property="firstnameTextfield" destination="2Dy-Qu-vcS" id="Bne-hM-cgW"/>
+                        <outlet property="passwordTextfield" destination="2tD-Rz-IJ0" id="37r-PQ-9iq"/>
+                        <outlet property="saveButton" destination="45D-5u-dRn" id="pSD-FC-BvN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DhP-oe-rJz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -30,7 +30,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 8 images.
+  /// This `R.image` struct is generated, and contains static references to 10 images.
   struct image {
     /// Image `arrow-right`.
     static let arrowRight = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow-right")
@@ -44,8 +44,12 @@ struct R: Rswift.Validatable {
     static let envelope = Rswift.ImageResource(bundle: R.hostingBundle, name: "envelope")
     /// Image `homeTab`.
     static let homeTab = Rswift.ImageResource(bundle: R.hostingBundle, name: "homeTab")
+    /// Image `selectedCheckBox`.
+    static let selectedCheckBox = Rswift.ImageResource(bundle: R.hostingBundle, name: "selectedCheckBox")
     /// Image `settings`.
     static let settings = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings")
+    /// Image `unselectedCheckBox`.
+    static let unselectedCheckBox = Rswift.ImageResource(bundle: R.hostingBundle, name: "unselectedCheckBox")
     /// Image `walletTab`.
     static let walletTab = Rswift.ImageResource(bundle: R.hostingBundle, name: "walletTab")
     
@@ -79,9 +83,19 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.homeTab, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "selectedCheckBox", bundle: ..., traitCollection: ...)`
+    static func selectedCheckBox(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.selectedCheckBox, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "settings", bundle: ..., traitCollection: ...)`
     static func settings(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.settings, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "unselectedCheckBox", bundle: ..., traitCollection: ...)`
+    static func unselectedCheckBox(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.unselectedCheckBox, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "walletTab", bundle: ..., traitCollection: ...)`

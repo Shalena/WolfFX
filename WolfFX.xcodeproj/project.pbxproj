@@ -11,6 +11,7 @@
 		811ED6C024191A120002F559 /* SignupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6BF24191A120002F559 /* SignupPresenter.swift */; };
 		811ED6C2241921880002F559 /* SignupConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C1241921880002F559 /* SignupConfigurator.swift */; };
 		811ED6C4241926410002F559 /* SignupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C3241926410002F559 /* SignupRouter.swift */; };
+		811ED6C7241935530002F559 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C6241935530002F559 /* CheckboxButton.swift */; };
 		8145C8A32405DD5700414AE2 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C8A22405DD5700414AE2 /* Protocols.swift */; };
 		8145C8A52405DD8300414AE2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C8A42405DD8300414AE2 /* Design.swift */; };
 		816C17CB24050A0F00B1551A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C17CA24050A0F00B1551A /* AppDelegate.swift */; };
@@ -81,6 +82,7 @@
 		811ED6BF24191A120002F559 /* SignupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPresenter.swift; sourceTree = "<group>"; };
 		811ED6C1241921880002F559 /* SignupConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupConfigurator.swift; sourceTree = "<group>"; };
 		811ED6C3241926410002F559 /* SignupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRouter.swift; sourceTree = "<group>"; };
+		811ED6C6241935530002F559 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 		8145C8A22405DD5700414AE2 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		8145C8A42405DD8300414AE2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		816C17C724050A0F00B1551A /* WolfFX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WolfFX.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +172,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		811ED6C5241933C80002F559 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				811ED6C6241935530002F559 /* CheckboxButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8145C8A12405DD2F00414AE2 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +217,7 @@
 		816C17C924050A0F00B1551A /* WolfFX */ = {
 			isa = PBXGroup;
 			children = (
+				811ED6C5241933C80002F559 /* Views */,
 				816F67EE240860380016AA95 /* dummyhome.png */,
 				8145C8A12405DD2F00414AE2 /* Misc */,
 				81D8825B2409D8650030C78B /* Models */,
@@ -636,6 +647,7 @@
 				816C180F24055F6C00B1551A /* BillingDataViewController.swift in Sources */,
 				816C1812240560AD00B1551A /* WalletViewController.swift in Sources */,
 				8184269E240D534200713BF5 /* LoginPresenter.swift in Sources */,
+				811ED6C7241935530002F559 /* CheckboxButton.swift in Sources */,
 				81A4B354241129FC004A02CB /* Repository.swift in Sources */,
 				81A4B3602413BCA5004A02CB /* HomeRouter.swift in Sources */,
 				816C17FF24050AE900B1551A /* TabbarConfigurator.swift in Sources */,
