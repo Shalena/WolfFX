@@ -41,6 +41,23 @@ protocol LoginTransitions {
     func userLoggedIn(user: User)
 }
 
+// Signup Screen
+
+protocol SignupViewProtocol: ShowErrorCapable {
+    var presenter: SignupEvents? {get set}
+}
+
+protocol SignupEvents {
+    func signup(firstname: String,
+                currency: String,
+                emails: [String],
+                password: String,
+                tenantId: String)
+}
+
+protocol SignupTransitions {
+    func userCreated(user: User)
+}
 // Home Screen
 
 protocol HomeViewProtocol {

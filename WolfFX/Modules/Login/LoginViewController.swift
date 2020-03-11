@@ -42,7 +42,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     
     @IBAction func signUpAction(_ sender: Any) {
         if let signUpController = R.storyboard.login.signupViewController() {
-        show(signUpController, sender: self)
+            navigationController?.pushViewController(signUpController, animated: true)
         }
     }
     

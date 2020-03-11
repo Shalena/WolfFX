@@ -8,7 +8,8 @@
 
 import UIKit
 
-class SignupViewController: UIViewController {
+class SignupViewController: UIViewController, SignupViewProtocol {
+    var presenter: SignupEvents?
     
     override func viewDidLoad() {
         super.viewDidLoad()
