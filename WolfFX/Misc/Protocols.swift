@@ -50,12 +50,7 @@ protocol SignupViewProtocol: ShowErrorCapable {
 }
 
 protocol SignupEvents {
-    func signup(firstname: String,
-                currency: String,
-                emails: [String],
-                password: String,
-                tenantId: String,
-                username: String)
+     func registerUserWith(form: RegistrationForm)
 }
 
 protocol SignupTransitions {

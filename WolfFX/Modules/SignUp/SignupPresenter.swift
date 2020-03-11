@@ -8,6 +8,16 @@
 
 import Foundation
 
+struct RegistrationForm {
+    var firstName: String?
+    var email: String?
+    var emails: [String]?
+    var password: String?
+    var isTerms: Bool
+    var currency: String?
+    var tenantId: String?
+}
+
 class SignupPresenter: SignupEvents {
     var view: SignupViewProtocol?
     var router: SignupTransitions?
@@ -17,8 +27,11 @@ class SignupPresenter: SignupEvents {
         self.networkManager = networkManager
     }
     
-    func signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String) {
-        networkManager.signup(firstname: firstname, currency: currency, emails: emails, password: password, tenantId: tenantId, username: username, success: { (successfully: Bool) in
+    
+    func registerUserWith(form: RegistrationForm) {
+        if validatedSuccessfully(form: form) {
+    
+            networkManager.signup(firstname: form.firstName ?? "", currency: form.currency ?? "", emails: form.emails ?? [String](), password: form.password ?? "", tenantId: form.tenantId ?? "", username: form.email ?? "", success: { (successfully: Bool) in
                     if successfully {
                         // start websocket
                     }
@@ -27,5 +40,29 @@ class SignupPresenter: SignupEvents {
                       self?.view?.showErrorAlertWith(error: error)
                     }
                 })
+        }
+    }
+    
+    func validatedSuccessfully(form: RegistrationForm) -> Bool {
+        let registrationValidation = Validation()
+        let fieldsResponse = registrationValidation.validate(fields: (FieldsValidationType.firstName, form.firstName ?? ""),
+                                                                      (FieldsValidationType.email, form.email ?? ""),
+                                                                      (FieldsValidationType.password, form.password ?? ""))
+        switch fieldsResponse {
+        case .success:
+            break
+        case .failure(_, let message):
+            view?.showErrorAlertWith(error: WolfError(description: message.rawValue))
+            return false
+        }
+        let checkBoxResponse = registrationValidation.validate(checkboxes: (type: CheckboxesValidationType.termsSelected, inputValue: form.isTerms))
+        switch checkBoxResponse {
+        case .success:
+            break
+        case .failure(_, let message):
+            view?.showErrorAlertWith(error: WolfError(description: message.rawValue))
+            return false
+        }
+        return true
     }
 }

@@ -413,6 +413,7 @@
                         <outlet property="firstnameTextfield" destination="2Dy-Qu-vcS" id="Bne-hM-cgW"/>
                         <outlet property="passwordTextfield" destination="2tD-Rz-IJ0" id="37r-PQ-9iq"/>
                         <outlet property="saveButton" destination="45D-5u-dRn" id="pSD-FC-BvN"/>
+                        <outlet property="termsButton" destination="CZA-Yx-ALT" id="3VV-OD-JS6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DhP-oe-rJz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

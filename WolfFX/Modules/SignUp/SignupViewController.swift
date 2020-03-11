@@ -14,13 +14,10 @@ class SignupViewController: UIViewController, SignupViewProtocol {
     
     @IBOutlet weak var firstnameTextfield: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var currencyTextField: UITextField!
-    
     @IBOutlet weak var confirmPasswordTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
-    
-    
+    @IBOutlet weak var termsButton: CheckboxButton!
     @IBOutlet weak var saveButton: UIButton!
     
     
@@ -40,7 +37,7 @@ class SignupViewController: UIViewController, SignupViewProtocol {
     
     func setupDesign() {
         let image = R.image.billingTab()?.withRenderingMode(.alwaysOriginal)
-        let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: "didBarButtonbBackTapped")
+        let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: Selector("didBarButtonbBackTapped"))
         navigationItem.leftBarButtonItem = barButtonItem
         saveButton.layer.cornerRadius = 5
         saveButton.layer.cornerRadius = 5
@@ -53,8 +50,17 @@ class SignupViewController: UIViewController, SignupViewProtocol {
     }
    
     @IBAction func saveButtonTapped(_ sender: Any) {
-        if let firstName = firstnameTextfield.text, let email = emailTextField.text, let currency = currencyTextField.text, let password = passwordTextfield.text {
-            presenter?.signup(firstname: firstName, currency: "EUR", emails: [email], password: password, tenantId: "00000000-0000-0000-0000-000000000000", username: email)}
+        let firstName = firstnameTextfield.text
+        let email = emailTextField.text
+        let password = passwordTextfield.text
+        let registrationForm = RegistrationForm(firstName: firstName,
+                                                    email: email,
+                                                    emails: [(email ?? "")] ?? [String](),
+                                                    password: password,
+                                                    isTerms: termsButton.isSelected,
+                                                    currency: "EUR",
+                                                    tenantId: "00000000-0000-0000-0000-000000000000")
+        presenter?.registerUserWith(form: registrationForm)
     }
 }
 
