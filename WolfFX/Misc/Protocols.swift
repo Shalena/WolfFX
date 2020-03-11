@@ -35,10 +35,12 @@ protocol LoginViewProtocol: ShowErrorCapable {
 
 protocol LoginEvents {
     func signIn(email: String, password: String)
+    func signUpPressed()
 }
 
 protocol LoginTransitions {
     func userLoggedIn(user: User)
+    func signUpPressed()
 }
 
 // Signup Screen
@@ -52,7 +54,8 @@ protocol SignupEvents {
                 currency: String,
                 emails: [String],
                 password: String,
-                tenantId: String)
+                tenantId: String,
+                username: String)
 }
 
 protocol SignupTransitions {

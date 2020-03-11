@@ -12,5 +12,12 @@ class LoginRouter: BaseRouter, LoginTransitions {
     func userLoggedIn(user: User) {
        
     }
-
+    
+    func signUpPressed () {
+        if let signUpController = R.storyboard.login.signupViewController() {
+            let configurator = SignupConfigurator()
+            configurator.configure(viewController: signUpController, with: assembler)
+            sourceController.navigationController?.pushViewController(signUpController, animated: true)
+        }
+    }
 }

@@ -17,18 +17,15 @@ class SignupPresenter: SignupEvents {
         self.networkManager = networkManager
     }
     
-    func signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String) {
-           
+    func signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String) {
+        networkManager.signup(firstname: firstname, currency: currency, emails: emails, password: password, tenantId: tenantId, username: username, success: { (successfully: Bool) in
+                    if successfully {
+                        // start websocket
+                    }
+                }, failure: { [weak self] error in
+                    if let error = error {
+                      self?.view?.showErrorAlertWith(error: error)
+                    }
+                })
     }
-//    func signIn(email: String, password: String) {
-//        networkManager.login(email: email, password: password, success: { (successfully: Bool) in
-//            if successfully {
-//                
-//            }
-//        }, failure: { [weak self] error in
-//            if let error = error {
-//              self?.view?.showErrorAlertWith(error: error)
-//            }
-//        })
-//    }
 }

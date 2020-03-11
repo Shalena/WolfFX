@@ -308,6 +308,9 @@
                                                         <state key="normal" title="Save">
                                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="saveButtonTapped:" destination="DQa-Xb-ZJP" eventType="touchUpInside" id="tqt-pH-mqz"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>

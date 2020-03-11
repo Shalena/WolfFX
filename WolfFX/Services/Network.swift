@@ -12,14 +12,23 @@ typealias JSON = [String : Any]
 
 enum BaseUrl: String {
     case prod = "https://wolffxwarrior.com"
-    case stage = "https://stage"
+    case stage = "https://staging.cuboidlogic.com"
 }
 
 protocol NetworkAccess {
   func login(email: String, password: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
+  func signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
 }
 
 class NetwokManager: NetworkAccess {
+    func signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)  {
+        performRequestSuccessfully(endpoint: Endpoint.signup(firstname: firstname, currency: currency, emails: emails, password: password, tenantId: tenantId, username: username), success: { (successfully: Bool) in
+            success (successfully)
+        }, failure: { error in
+            failure (error)
+        })
+    }
+    
     func login(email: String, password: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void) {
         performRequestSuccessfully(endpoint: Endpoint.login(email: email, password: password), success: { (successfully: Bool) in
             success (successfully)
@@ -40,7 +49,7 @@ class NetwokManager: NetworkAccess {
  }()
     
     lazy var baseUrl: String = {
-        return BaseUrl.prod.rawValue
+        return BaseUrl.stage.rawValue
     }()
     
     func performRequestSuccessfully(endpoint: Endpoint, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void) {

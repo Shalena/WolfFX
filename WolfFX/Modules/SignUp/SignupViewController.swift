@@ -39,12 +39,23 @@ class SignupViewController: UIViewController, SignupViewProtocol {
     }
     
     func setupDesign() {
-          saveButton.layer.cornerRadius = 5
-          saveButton.layer.cornerRadius = 5
-          saveButton.layer.borderWidth = 2
-          saveButton.layer.borderColor = UIColor.gray.cgColor
+        let image = R.image.billingTab()?.withRenderingMode(.alwaysOriginal)
+        let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: "didBarButtonbBackTapped")
+        navigationItem.leftBarButtonItem = barButtonItem
+        saveButton.layer.cornerRadius = 5
+        saveButton.layer.cornerRadius = 5
+        saveButton.layer.borderWidth = 2
+        saveButton.layer.borderColor = UIColor.gray.cgColor
       }
-      
+    
+    @objc func didBarButtonbBackTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+   
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        if let firstName = firstnameTextfield.text, let email = emailTextField.text, let currency = currencyTextField.text, let password = passwordTextfield.text {
+            presenter?.signup(firstname: firstName, currency: "EUR", emails: [email], password: password, tenantId: "00000000-0000-0000-0000-000000000000", username: email)}
+    }
 }
 
 extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource {
