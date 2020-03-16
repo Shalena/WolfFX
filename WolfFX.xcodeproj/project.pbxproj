@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		62E1728DBD1FDF0F5E5C6998 /* Pods_WolfFX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4DDAFBC92A8DE3EBEC85F92 /* Pods_WolfFX.framework */; };
+		81066A3C241FBA6700CA8829 /* WSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81066A3B241FBA6700CA8829 /* WSManager.swift */; };
 		811ED6C024191A120002F559 /* SignupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6BF24191A120002F559 /* SignupPresenter.swift */; };
 		811ED6C2241921880002F559 /* SignupConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C1241921880002F559 /* SignupConfigurator.swift */; };
 		811ED6C4241926410002F559 /* SignupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C3241926410002F559 /* SignupRouter.swift */; };
@@ -79,6 +80,7 @@
 		45270D39D6F5BF4446F2567D /* Pods-WolfFXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFXTests.release.xcconfig"; path = "Target Support Files/Pods-WolfFXTests/Pods-WolfFXTests.release.xcconfig"; sourceTree = "<group>"; };
 		55B49A895A9ABBD490771AC7 /* Pods_WolfFXUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WolfFXUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CC906AF2777012B78946D39 /* Pods-WolfFXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFXTests.debug.xcconfig"; path = "Target Support Files/Pods-WolfFXTests/Pods-WolfFXTests.debug.xcconfig"; sourceTree = "<group>"; };
+		81066A3B241FBA6700CA8829 /* WSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSManager.swift; sourceTree = "<group>"; };
 		811E060A07A0606C5423FA73 /* Pods-WolfFX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFX.release.xcconfig"; path = "Target Support Files/Pods-WolfFX/Pods-WolfFX.release.xcconfig"; sourceTree = "<group>"; };
 		811ED6BF24191A120002F559 /* SignupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPresenter.swift; sourceTree = "<group>"; };
 		811ED6C1241921880002F559 /* SignupConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupConfigurator.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				81D882592409D6AA0030C78B /* Endpoints.swift */,
 				81A4B351241129DB004A02CB /*  Assembler.swift */,
 				81A4B353241129FC004A02CB /* Repository.swift */,
+				81066A3B241FBA6700CA8829 /* WSManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				816C17FD24050ACD00B1551A /* TabbarView.swift in Sources */,
 				81D8825D2409D8880030C78B /* User.swift in Sources */,
 				811ED6C024191A120002F559 /* SignupPresenter.swift in Sources */,
+				81066A3C241FBA6700CA8829 /* WSManager.swift in Sources */,
 				81D8825A2409D6AA0030C78B /* Endpoints.swift in Sources */,
 				81A4B35C2413A527004A02CB /* BaseRouter.swift in Sources */,
 				81D8825F2409D9070030C78B /* WolfError.swift in Sources */,
