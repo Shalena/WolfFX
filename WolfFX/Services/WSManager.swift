@@ -14,7 +14,7 @@ class WSManager {
     
     private var dataArray = [String]()
     
-    let webSocketTask = URLSession(configuration: .default).webSocketTask(with: URL(string: "wss://staging.cuboidlogic.com:8100/mt1/eventbus")!)
+    let webSocketTask = URLSession(configuration: .default).webSocketTask(with: URL(string: "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket")!)
 
     public func connectToWebSocket() {
         webSocketTask.resume()
@@ -22,7 +22,7 @@ class WSManager {
     }
     
     public func subscribeBtcUsd() {
-        let message = URLSessionWebSocketTask.Message.string("client.trade.brokerName")
+        let message = URLSessionWebSocketTask.Message.string("client.trade.userInfo")
         webSocketTask.send(message) { error in
             if let error = error {
                 print("WebSocket couldn’t send message because: \(error)")
@@ -31,7 +31,7 @@ class WSManager {
     }
 
     public func unSubscribeBtcUsd() {
-           let message = URLSessionWebSocketTask.Message.string("client.trade.brokerName")
+           let message = URLSessionWebSocketTask.Message.string("client.trade.userInfo")
            webSocketTask.send(message) { error in
                if let error = error {
                    print("WebSocket couldn’t send message because: \(error)")
@@ -50,6 +50,7 @@ class WSManager {
                 print(text)
                 case .data(let data):
                 print("Received data: \(data)")
+    //            let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any]
               @unknown default:
                 debugPrint("Unknown message")
               }
