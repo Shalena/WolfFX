@@ -41,7 +41,6 @@ class LoginPresenter: LoginEvents, WebSocketDelegate {
         let url = URL(string: "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket")!
         var request = URLRequest(url: url)
         let json: [String: Any] = [:]
-    //    let json: [String: Any] = ["type":"send", "address":"client.trade.userInfo"]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         request.httpBody = jsonData
         socket = WebSocket(request: request, certPinner: nil, compressionHandler:nil)
@@ -50,18 +49,53 @@ class LoginPresenter: LoginEvents, WebSocketDelegate {
     }
     
     func didReceive(event: WebSocketEvent, client: WebSocket) {
-//        socket?.write(string: "client.trade.userInfo", completion: {
-//            
-//        })
+        checkResponse(event: event)
     }
     
-    private func getData() {
-         WSManager.shared.receiveData() { [weak self] (data) in
-                        
-         }
-     }
+    private func checkResponse(event: WebSocketEvent) {
+        switch event {
+        case .connected(let responseJson):
+            print(responseJson)
+            let userInfoJson: [String: Any] = ["address":"client.trade.userInfo"]
+            if let string = jsonToString(json: userInfoJson) {
+                socket?.write(string: string, completion: {
+                    
+                })
+            }
+//            if let userInfoData = try? JSONSerialization.data(withJSONObject: userInfoJson) {
+//               // socket?.write(data: userInfoData)
+//                socket?.write(ping: userInfoData)
+//            }
+//            
+        case .error(let error):
+            print(error)
+            if let description = error?.localizedDescription {
+                print(description)
+                let wolfError = WolfError.init(description: description)
+                view?.showErrorAlertWith(error: wolfError)
+                
+            }
+        case .cancelled:
+            print(event)
+        default:
+            return
+        }
+    }
     
     func signUpPressed () {
         router?.signUpPressed ()
     }
+    
+    func jsonToString(json: JSON) -> String? {
+        do {
+            let data1 =  try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted) // first of all convert json to the data
+            let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
+            return (convertedString) // <-- here is ur string
+
+        } catch let myJSONError {
+            print(myJSONError)
+        }
+        return nil
+    }
+
 }
