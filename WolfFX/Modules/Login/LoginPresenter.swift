@@ -7,25 +7,23 @@
 //
 
 import Foundation
-import Starscream
 
-class LoginPresenter: LoginEvents, WebSocketDelegate {
-    
-    
+class LoginPresenter: LoginEvents {
     var view: LoginViewProtocol?
     var router: LoginTransitions?
     var networkManager: NetworkAccess
-    var webSocketTask: URLSessionWebSocketTask?
-    var socket: WebSocket?
+    var websocketManager: WebsocketAccess
     
-    init (with networkManager: NetworkAccess) {
+    init (with networkManager: NetworkAccess, websocketManager: WebsocketAccess) {
         self.networkManager = networkManager
+        self.websocketManager = websocketManager
     }
     
     func signIn(email: String, password: String) {
                 networkManager.login(email: email, password: password, success: { (successfully: Bool) in
                     if successfully {
-                        self.startWebsocket()
+                        self.websocketManager.connect()
+                        self.websocketManager.getUserInfo()
                     }
                 }, failure: { [weak self] error in
                     if let error = error {
@@ -34,80 +32,7 @@ class LoginPresenter: LoginEvents, WebSocketDelegate {
                 })
     }
     
-    func startWebsocket() {
-              WSManager.shared.connectToWebSocket()
-              WSManager.shared.subscribeBtcUsd()
-              self.getData()
-//        let url = URL(string: "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket")!
-//        var request = URLRequest(url: url)
-//        let json: [String: Any] = [:]
-//        let jsonData = try? JSONSerialization.data(withJSONObject: json)
-//        request.httpBody = jsonData
-//        socket = WebSocket(request: request, certPinner: nil, compressionHandler:nil)
-//        socket?.delegate = self
-//        socket?.connect()
-    }
-    
-         private func getData() {
-         //получаем данные
-              WSManager.shared.receiveData() { [weak self] (data) in
-               guard let self = self else { return }
-               guard let data = data else { return }
-    
-   
-              }
-          }
-
-    func didReceive(event: WebSocketEvent, client: WebSocket) {
-        checkResponse(event: event)
-    }
-    
-    private func checkResponse(event: WebSocketEvent) {
-        switch event {
-        case .connected(let responseJson):
-            print(responseJson)
-         
-            let userInfoJson: [String: Any] = ["type":"send", "address":"client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress":""]
-            print(userInfoJson)
-            if let string = jsonToString(json: userInfoJson) {
-                socket?.write(string: string, completion: {
-                    
-                })
-            }
-//            if let userInfoData = try? JSONSerialization.data(withJSONObject: userInfoJson) {
-//               // socket?.write(data: userInfoData)
-//                socket?.write(ping: userInfoData)
-//            }
-//            
-        case .error(let error):
-            print(error)
-            if let description = error?.localizedDescription {
-                print(description)
-                let wolfError = WolfError.init(description: description)
-                view?.showErrorAlertWith(error: wolfError)
-                
-            }
-        case .cancelled:
-            print(event)
-        default:
-            return
-        }
-    }
-    
     func signUpPressed () {
         router?.signUpPressed ()
     }
-    
-    func jsonToString(json: JSON) -> String? {
-        do {
-            let data1 =  try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted) // first of all convert json to the data
-            let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
-            return (convertedString) // <-- here is ur string
-
-        } catch let myJSONError {
-            print(myJSONError)
-        }
-        return nil
-    }
-
 }

@@ -8,43 +8,36 @@
 
 import Foundation
 
-class WSManager {
-    public static let shared = WSManager() 
-    private init(){}
-    
-    private var dataArray = [String]()
-    
-    let webSocketTask = URLSession(configuration: .default).webSocketTask(with: URL(string: "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket")!)
+protocol WebsocketAccess {
+    func connect()
+    func getUserInfo()
+}
 
-    public func connectToWebSocket() {
-        webSocketTask.resume()
-        self.receiveData() { _ in }
+let baseUrlString = "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket"
+let userInfoJson: [String: Any] = ["type":"send", "address":"client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress":""]
+
+class WSManager: WebsocketAccess {
+    var webSocketTask: URLSessionWebSocketTask?
+    
+    func connect() {
+        if let baseUrl = URL(string: baseUrlString) {
+            webSocketTask = URLSession(configuration: .default).webSocketTask(with: baseUrl)
+            webSocketTask?.resume()
+            self.receiveData()
+        }
     }
     
-    public func subscribeBtcUsd() {
-
-        let userInfoJson: [String: Any] = ["type":"send", "address":"client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress":""]
-        print(userInfoJson)
-        guard let string = jsonToString(json: userInfoJson) else {return}
-        let message = URLSessionWebSocketTask.Message.string(string)
-        webSocketTask.send(message) { error in
+    func send(messageString: String) {
+        let messageTask = URLSessionWebSocketTask.Message.string(messageString)
+        webSocketTask?.send(messageTask) { error in
             if let error = error {
                 print("WebSocket couldn’t send message because: \(error)")
             }
         }
     }
 
-    public func unSubscribeBtcUsd() {
-           let message = URLSessionWebSocketTask.Message.string("client.trade.userInfo")
-           webSocketTask.send(message) { error in
-               if let error = error {
-                   print("WebSocket couldn’t send message because: \(error)")
-               }
-           }
-       }
-    
-    func receiveData(completion: @escaping ([String]?) -> Void) {
-      webSocketTask.receive { result in
+    func receiveData() {
+      webSocketTask?.receive { result in
         switch result {
             case .failure(let error):
               print("Error in receiving message: \(error)")
@@ -55,14 +48,20 @@ class WSManager {
                 case .data(let data):
                     if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
                         print(json)
+                     
                     }
               @unknown default:
                 debugPrint("Unknown message")
               }
-              self.receiveData() {_ in }
         }
       }
-        completion(self.dataArray)
+
+    }
+    
+    func getUserInfo() {
+        if let messageString = jsonToString(json: userInfoJson) {
+            send(messageString: messageString)
+        }
     }
     
     func jsonToString(json: JSON) -> String? {

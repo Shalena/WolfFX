@@ -41,7 +41,7 @@
 		816F67EF240860390016AA95 /* dummyhome.png in Resources */ = {isa = PBXBuildFile; fileRef = 816F67EE240860380016AA95 /* dummyhome.png */; };
 		8184269E240D534200713BF5 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184269D240D534200713BF5 /* LoginPresenter.swift */; };
 		81A4B35024105D98004A02CB /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B34F24105D98004A02CB /* SignupViewController.swift */; };
-		81A4B352241129DB004A02CB /*  Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B351241129DB004A02CB /*  Assembler.swift */; };
+		81A4B352241129DB004A02CB /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B351241129DB004A02CB /* Assembler.swift */; };
 		81A4B354241129FC004A02CB /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B353241129FC004A02CB /* Repository.swift */; };
 		81A4B3562413A3CF004A02CB /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B3552413A3CF004A02CB /* LoginConfigurator.swift */; };
 		81A4B35A2413A4BC004A02CB /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B3592413A4BC004A02CB /* LoginRouter.swift */; };
@@ -121,7 +121,7 @@
 		816F67EE240860380016AA95 /* dummyhome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dummyhome.png; sourceTree = "<group>"; };
 		8184269D240D534200713BF5 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		81A4B34F24105D98004A02CB /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
-		81A4B351241129DB004A02CB /*  Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Assembler.swift"; sourceTree = "<group>"; };
+		81A4B351241129DB004A02CB /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		81A4B353241129FC004A02CB /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		81A4B3552413A3CF004A02CB /* LoginConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfigurator.swift; sourceTree = "<group>"; };
 		81A4B3592413A4BC004A02CB /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
@@ -366,7 +366,7 @@
 			children = (
 				81D882572409D4F30030C78B /* Network.swift */,
 				81D882592409D6AA0030C78B /* Endpoints.swift */,
-				81A4B351241129DB004A02CB /*  Assembler.swift */,
+				81A4B351241129DB004A02CB /* Assembler.swift */,
 				81A4B353241129FC004A02CB /* Repository.swift */,
 				81066A3B241FBA6700CA8829 /* WSManager.swift */,
 			);
@@ -667,7 +667,7 @@
 				811ED6C2241921880002F559 /* SignupConfigurator.swift in Sources */,
 				811ED6C4241926410002F559 /* SignupRouter.swift in Sources */,
 				816C180C24055D9D00B1551A /* HomeViewController.swift in Sources */,
-				81A4B352241129DB004A02CB /*  Assembler.swift in Sources */,
+				81A4B352241129DB004A02CB /* Assembler.swift in Sources */,
 				81A4B3622413BCC5004A02CB /* HomeConfigurator.swift in Sources */,
 				81D882582409D4F30030C78B /* Network.swift in Sources */,
 				816C18152405623A00B1551A /* SettingsViewController.swift in Sources */,

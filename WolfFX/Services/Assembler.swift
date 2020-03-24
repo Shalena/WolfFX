@@ -14,6 +14,7 @@ class Assembler {
     
     func initFlow() {
         register(NetworkAccess.self, name: nil) { _ in NetwokManager()}
+        register(WebsocketAccess.self, name: nil) { _ in WSManager()}
         let repository = Repository()
         register(IsFirstLaunchProtocol.self, name: nil) { _ in repository}
         register(UserAccessProtocol.self, name: nil) { _ in repository }
