@@ -22,7 +22,11 @@ class WSManager {
     }
     
     public func subscribeBtcUsd() {
-        let message = URLSessionWebSocketTask.Message.string("client.trade.userInfo")
+
+        let userInfoJson: [String: Any] = ["type":"send", "address":"client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress":""]
+        print(userInfoJson)
+        guard let string = jsonToString(json: userInfoJson) else {return}
+        let message = URLSessionWebSocketTask.Message.string(string)
         webSocketTask.send(message) { error in
             if let error = error {
                 print("WebSocket couldn’t send message because: \(error)")
@@ -49,8 +53,9 @@ class WSManager {
               case .string(let text):
                 print(text)
                 case .data(let data):
-                print("Received data: \(data)")
-    //            let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any]
+                    if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
+                        print(json)
+                    }
               @unknown default:
                 debugPrint("Unknown message")
               }
@@ -59,4 +64,17 @@ class WSManager {
       }
         completion(self.dataArray)
     }
+    
+    func jsonToString(json: JSON) -> String? {
+        do {
+            let data1 =  try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted) // first of all convert json to the data
+            let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
+            return (convertedString) // <-- here is ur string
+
+        } catch let myJSONError {
+            print(myJSONError)
+        }
+        return nil
+    }
+
 }

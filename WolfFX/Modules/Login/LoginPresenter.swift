@@ -35,19 +35,29 @@ class LoginPresenter: LoginEvents, WebSocketDelegate {
     }
     
     func startWebsocket() {
- //             WSManager.shared.connectToWebSocket()
- //             WSManager.shared.subscribeBtcUsd()
- //             self.getData()
-        let url = URL(string: "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket")!
-        var request = URLRequest(url: url)
-        let json: [String: Any] = [:]
-        let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        request.httpBody = jsonData
-        socket = WebSocket(request: request, certPinner: nil, compressionHandler:nil)
-        socket?.delegate = self
-        socket?.connect()
+              WSManager.shared.connectToWebSocket()
+              WSManager.shared.subscribeBtcUsd()
+              self.getData()
+//        let url = URL(string: "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket")!
+//        var request = URLRequest(url: url)
+//        let json: [String: Any] = [:]
+//        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+//        request.httpBody = jsonData
+//        socket = WebSocket(request: request, certPinner: nil, compressionHandler:nil)
+//        socket?.delegate = self
+//        socket?.connect()
     }
     
+         private func getData() {
+         //получаем данные
+              WSManager.shared.receiveData() { [weak self] (data) in
+               guard let self = self else { return }
+               guard let data = data else { return }
+    
+   
+              }
+          }
+
     func didReceive(event: WebSocketEvent, client: WebSocket) {
         checkResponse(event: event)
     }
@@ -56,7 +66,9 @@ class LoginPresenter: LoginEvents, WebSocketDelegate {
         switch event {
         case .connected(let responseJson):
             print(responseJson)
-            let userInfoJson: [String: Any] = ["address":"client.trade.userInfo"]
+         
+            let userInfoJson: [String: Any] = ["type":"send", "address":"client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress":""]
+            print(userInfoJson)
             if let string = jsonToString(json: userInfoJson) {
                 socket?.write(string: string, completion: {
                     
