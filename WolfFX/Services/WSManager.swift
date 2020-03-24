@@ -55,7 +55,6 @@ class WSManager: WebsocketAccess {
               }
         }
       }
-
     }
     
     func getUserInfo() {

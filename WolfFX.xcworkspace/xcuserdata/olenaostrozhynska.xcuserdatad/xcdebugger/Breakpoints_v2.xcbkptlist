@@ -36,5 +36,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25E1E4AA-4276-4FCE-A973-16FED837E569"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WolfFX/Services/WSManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "receiveData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "25E1E4AA-4276-4FCE-A973-16FED837E569 - cb17202dfafa1c3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WolfFX.WSManager.receiveData() -&gt; ()"
+                  moduleName = "WolfFX"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olenaostrozhynska/Projects/WolfFX/WolfFX/Services/WSManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "41">
+               </Location>
+               <Location
+                  uuid = "25E1E4AA-4276-4FCE-A973-16FED837E569 - 49ab32468ae52331"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;(extension in Foundation):__C.NSURLSessionWebSocketTask.Message, Swift.Error&gt;) -&gt; () in WolfFX.WSManager.receiveData() -&gt; ()"
+                  moduleName = "WolfFX"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olenaostrozhynska/Projects/WolfFX/WolfFX/Services/WSManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "211">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

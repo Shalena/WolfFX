@@ -22,18 +22,19 @@ class SignupPresenter: SignupEvents {
     var view: SignupViewProtocol?
     var router: SignupTransitions?
     var networkManager: NetworkAccess
+    var websocketManager: WebsocketAccess
     
-    init (with networkManager: NetworkAccess) {
+    init (with networkManager: NetworkAccess, websocketManager: WebsocketAccess) {
         self.networkManager = networkManager
+        self.websocketManager = websocketManager
     }
-    
     
     func registerUserWith(form: RegistrationForm) {
         if validatedSuccessfully(form: form) {
-    
             networkManager.signup(firstname: form.firstName ?? "", currency: form.currency ?? "", emails: form.emails ?? [String](), password: form.password ?? "", tenantId: form.tenantId ?? "", username: form.email ?? "", success: { (successfully: Bool) in
                     if successfully {
-                        // start websocket
+                        self.websocketManager.connect()
+                        self.websocketManager.getUserInfo()
                     }
                 }, failure: { [weak self] error in
                     if let error = error {

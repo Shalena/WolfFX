@@ -12,7 +12,8 @@ import Swinject
 class SignupConfigurator {
     func configure(viewController: SignupViewController, with assembler: Assembler) {
         let networkManager = assembler.resolveForced(NetworkAccess.self)
-        let presenter = SignupPresenter(with: networkManager)
+        let websocketManager = assembler.resolveForced(WebsocketAccess.self)
+        let presenter = SignupPresenter(with: networkManager, websocketManager: websocketManager)
         let router = SignupRouter(with: viewController, assembler: assembler)
         router.sourceController = viewController
         presenter.router = router
