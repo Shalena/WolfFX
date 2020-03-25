@@ -12,8 +12,7 @@ target 'WolfFX' do
         pod 'Swinject'
         pod 'ReSwift'
         pod 'Charts'
-        pod 'Starscream'
-
+       
   # Pods for HomeSolutionsCustomer
 
   target 'WolfFXTests' do

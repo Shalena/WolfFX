@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReSwift
 
 enum VertxResponseKeys: String {
     case profile = "profile"
@@ -23,12 +24,17 @@ let userInfoJson: [String: Any] = ["type":"send", "address":"client.trade.userIn
 
 class WSManager: WebsocketAccess {
     var webSocketTask: URLSessionWebSocketTask?
+    var store: Store<AppState>?
     
     lazy var decoder: JSONDecoder = {
            let decoder = JSONDecoder()
            decoder.keyDecodingStrategy = .convertFromSnakeCase
            return decoder
     }()
+    
+    init (with store: Store<AppState>) {
+        self.store = store
+    }
     
     func connect() {
         if let baseUrl = URL(string: baseUrlString) {
@@ -85,9 +91,10 @@ class WSManager: WebsocketAccess {
                         if let userjson = bodyDictionary[VertxResponseKeys.profile.rawValue] as? JSON {
                             let userjsonstring = jsonToString(json: userjson)
                             if let jsonData = userjsonstring?.data(using: .utf8){
-                                let user = try? JSONDecoder().decode(User.self, from: jsonData)
-                                print(user)
-                                
+                                if let user = try? JSONDecoder().decode(User.self, from: jsonData) {
+                                    print(user)
+                                    store?.dispatch(SignInAction.signIn(user: user))
+                                }                               
                             }
                         }
                     case .username:

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		62E1728DBD1FDF0F5E5C6998 /* Pods_WolfFX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4DDAFBC92A8DE3EBEC85F92 /* Pods_WolfFX.framework */; };
+		8103B178242BEDC8008D7D5B /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B177242BEDC8008D7D5B /* Redux.swift */; };
 		81066A3C241FBA6700CA8829 /* WSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81066A3B241FBA6700CA8829 /* WSManager.swift */; };
 		81066A3E2420BF3F00CA8829 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 81066A3D2420BF3F00CA8829 /* Podfile */; };
 		811ED6C024191A120002F559 /* SignupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6BF24191A120002F559 /* SignupPresenter.swift */; };
@@ -81,8 +82,9 @@
 		45270D39D6F5BF4446F2567D /* Pods-WolfFXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFXTests.release.xcconfig"; path = "Target Support Files/Pods-WolfFXTests/Pods-WolfFXTests.release.xcconfig"; sourceTree = "<group>"; };
 		55B49A895A9ABBD490771AC7 /* Pods_WolfFXUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WolfFXUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CC906AF2777012B78946D39 /* Pods-WolfFXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFXTests.debug.xcconfig"; path = "Target Support Files/Pods-WolfFXTests/Pods-WolfFXTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8103B177242BEDC8008D7D5B /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
 		81066A3B241FBA6700CA8829 /* WSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSManager.swift; sourceTree = "<group>"; };
-		81066A3D2420BF3F00CA8829 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		81066A3D2420BF3F00CA8829 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		811E060A07A0606C5423FA73 /* Pods-WolfFX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFX.release.xcconfig"; path = "Target Support Files/Pods-WolfFX/Pods-WolfFX.release.xcconfig"; sourceTree = "<group>"; };
 		811ED6BF24191A120002F559 /* SignupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPresenter.swift; sourceTree = "<group>"; };
 		811ED6C1241921880002F559 /* SignupConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupConfigurator.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				81D8825E2409D9070030C78B /* WolfError.swift */,
 				81A4B35B2413A527004A02CB /* BaseRouter.swift */,
 				811ED6C8241971110002F559 /* Validation.swift */,
+				8103B177242BEDC8008D7D5B /* Redux.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -660,6 +663,7 @@
 				8184269E240D534200713BF5 /* LoginPresenter.swift in Sources */,
 				811ED6C7241935530002F559 /* CheckboxButton.swift in Sources */,
 				81A4B354241129FC004A02CB /* Repository.swift in Sources */,
+				8103B178242BEDC8008D7D5B /* Redux.swift in Sources */,
 				81A4B3602413BCA5004A02CB /* HomeRouter.swift in Sources */,
 				811ED6C9241971110002F559 /* Validation.swift in Sources */,
 				816C17FF24050AE900B1551A /* TabbarConfigurator.swift in Sources */,
