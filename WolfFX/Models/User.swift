@@ -7,21 +7,14 @@
 //
 
 struct User: Codable {
-  var name: String?
-  var firstName: String?
-  var lastName: String?
-  var username: String?
-  var title: String?
-  var ownTitle: String?
-  var gender:String?
-  var password: String?
-  var emails: [ String ]?
-  var phones: [ String ]?
-  var address: String?
-  var birthday: String?
-  var enabled: String?
-  var testAccount: Bool?
-  var deleted: Bool?
-  var currency: String?
+    var billingServer: String?
+    var  country: String?
+    var currency: String?
+    var email: String?
+    var enabled: Bool?
+    var firstName: String?
+    var lastName: String?
+    var phone: String?
+    var tenantId: String?
 }
 

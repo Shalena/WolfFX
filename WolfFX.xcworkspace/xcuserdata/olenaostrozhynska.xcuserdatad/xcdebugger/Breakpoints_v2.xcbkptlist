@@ -7,81 +7,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4E68D295-4E48-42A5-8B0F-A000C78E9DC3"
+            uuid = "927470B1-1215-4095-BCE9-1D8F42C69BCB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WolfFX/Services/WSManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "receiveData()"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "check(json:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E19B1DDB-CA9E-4590-A1CA-1728601477BB"
+            uuid = "5C5DDF24-78F1-4922-A8B2-5C2059591512"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WolfFX/Services/WSManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "receiveData()"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "check(json:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "25E1E4AA-4276-4FCE-A973-16FED837E569"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WolfFX/Services/WSManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "receiveData()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "25E1E4AA-4276-4FCE-A973-16FED837E569 - cb17202dfafa1c3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WolfFX.WSManager.receiveData() -&gt; ()"
-                  moduleName = "WolfFX"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/olenaostrozhynska/Projects/WolfFX/WolfFX/Services/WSManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "41">
-               </Location>
-               <Location
-                  uuid = "25E1E4AA-4276-4FCE-A973-16FED837E569 - 49ab32468ae52331"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;(extension in Foundation):__C.NSURLSessionWebSocketTask.Message, Swift.Error&gt;) -&gt; () in WolfFX.WSManager.receiveData() -&gt; ()"
-                  moduleName = "WolfFX"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/olenaostrozhynska/Projects/WolfFX/WolfFX/Services/WSManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "211">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

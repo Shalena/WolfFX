@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum VertxResponseKeys: String {
+    case profile = "profile"
+    case username = "username"
+}
+
 protocol WebsocketAccess {
     func connect()
     func getUserInfo()
@@ -18,6 +23,12 @@ let userInfoJson: [String: Any] = ["type":"send", "address":"client.trade.userIn
 
 class WSManager: WebsocketAccess {
     var webSocketTask: URLSessionWebSocketTask?
+    
+    lazy var decoder: JSONDecoder = {
+           let decoder = JSONDecoder()
+           decoder.keyDecodingStrategy = .convertFromSnakeCase
+           return decoder
+    }()
     
     func connect() {
         if let baseUrl = URL(string: baseUrlString) {
@@ -48,7 +59,7 @@ class WSManager: WebsocketAccess {
                 case .data(let data):
                     if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
                         print(json)
-                     
+                        self.check(json: json)
                     }
               @unknown default:
                 debugPrint("Unknown message")
@@ -60,6 +71,31 @@ class WSManager: WebsocketAccess {
     func getUserInfo() {
         if let messageString = jsonToString(json: userInfoJson) {
             send(messageString: messageString)
+        }
+    }
+  
+    func check(json: JSON) {
+        if let bodyDictionary = json["body"] as? [String: Any] {
+            let keys: [String] = bodyDictionary.map({ $0.key })
+            print(keys)
+            for key in keys {
+                let vertxResponseKey = VertxResponseKeys(rawValue: key)
+                switch vertxResponseKey {
+                    case .profile:
+                        if let userjson = bodyDictionary[VertxResponseKeys.profile.rawValue] as? JSON {
+                            let userjsonstring = jsonToString(json: userjson)
+                            if let jsonData = userjsonstring?.data(using: .utf8){
+                                let user = try? JSONDecoder().decode(User.self, from: jsonData)
+                                print(user)
+                                
+                            }
+                        }
+                    case .username:
+                        print(bodyDictionary[key])
+                    case .none:
+                    return
+                }
+            }
         }
     }
     
