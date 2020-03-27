@@ -9,9 +9,11 @@
 import Foundation
 import UIKit
 
-class ProfileDetailsViewController: UIViewController {
-
-override func viewDidLoad() {
-    super.viewDidLoad()
-}
+class ProfileDetailsViewController: UIViewController, ProfileDetailsViewProtocol {
+    
+var presenter: ProfileDetailsEvents?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }   
 }

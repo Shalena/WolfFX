@@ -83,3 +83,17 @@ protocol SettingsEvents {
 protocol SettingsTransitions {
      func goToProfile()
 }
+
+// Profile details Screen
+
+protocol ProfileDetailsViewProtocol {
+    var presenter: ProfileDetailsEvents? {get set}
+}
+
+protocol ProfileDetailsEvents {
+    func saveDetails()
+}
+
+protocol ProfileDetailsTransitions {
+     func saveDetails()
+}
