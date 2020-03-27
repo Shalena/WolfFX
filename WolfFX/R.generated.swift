@@ -269,15 +269,22 @@ struct _R: Rswift.Validatable {
     struct settings: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "Settings"
+      let profileDetailsViewController = StoryboardViewControllerResource<ProfileDetailsViewController>(identifier: "ProfileDetailsViewController")
       let settingsViewController = StoryboardViewControllerResource<SettingsViewController>(identifier: "SettingsViewController")
+      
+      func profileDetailsViewController(_: Void = ()) -> ProfileDetailsViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: profileDetailsViewController)
+      }
       
       func settingsViewController(_: Void = ()) -> SettingsViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: settingsViewController)
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "arrow-right", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'arrow-right' is used in storyboard 'Settings', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
+        if _R.storyboard.settings().profileDetailsViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'profileDetailsViewController' could not be loaded from storyboard 'Settings' as 'ProfileDetailsViewController'.") }
         if _R.storyboard.settings().settingsViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'settingsViewController' could not be loaded from storyboard 'Settings' as 'SettingsViewController'.") }
       }
       

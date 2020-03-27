@@ -69,3 +69,17 @@ protocol HomeEvents {
 protocol HomeTransitions {
      func setupLoginOverlay()
 }
+
+// Settings Screen
+
+protocol SettingsViewProtocol {
+    var presenter: SettingsEvents? {get set}
+}
+
+protocol SettingsEvents {
+    func profileChosen()
+}
+
+protocol SettingsTransitions {
+     func goToProfile()
+}

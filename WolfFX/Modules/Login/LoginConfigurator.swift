@@ -12,7 +12,7 @@ import Swinject
 typealias ShowTabbarCallback = (() -> Void)
 
 class LoginConfigurator {
-    func configure(viewController: LoginViewController, with assembler: Assembler, callBack: ShowTabbarCallback) {
+    func configure(viewController: LoginViewController, with assembler: Assembler, callBack: @escaping ShowTabbarCallback) {
         let networkManager = assembler.resolveForced(NetworkAccess.self)
         let websocketManager = assembler.resolveForced(WebsocketAccess.self)
         let presenter = LoginPresenter(with: networkManager, websocketManager: websocketManager)
@@ -21,5 +21,6 @@ class LoginConfigurator {
         presenter.router = router
         viewController.presenter = presenter
         presenter.view = viewController
+        viewController.callback = callBack
     }
 }

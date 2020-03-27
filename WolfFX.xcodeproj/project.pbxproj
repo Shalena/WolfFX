@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		62E1728DBD1FDF0F5E5C6998 /* Pods_WolfFX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4DDAFBC92A8DE3EBEC85F92 /* Pods_WolfFX.framework */; };
 		8103B178242BEDC8008D7D5B /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B177242BEDC8008D7D5B /* Redux.swift */; };
+		8103B17A242E90C5008D7D5B /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B179242E90C5008D7D5B /* SettingsPresenter.swift */; };
+		8103B17C242E90E4008D7D5B /* SettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B17B242E90E4008D7D5B /* SettingsConfigurator.swift */; };
+		8103B17E242E9109008D7D5B /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B17D242E9109008D7D5B /* SettingsRouter.swift */; };
+		8103B181242EACD7008D7D5B /* ProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B180242EACD7008D7D5B /* ProfileDetailsViewController.swift */; };
 		81066A3C241FBA6700CA8829 /* WSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81066A3B241FBA6700CA8829 /* WSManager.swift */; };
 		81066A3E2420BF3F00CA8829 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 81066A3D2420BF3F00CA8829 /* Podfile */; };
 		811ED6C024191A120002F559 /* SignupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6BF24191A120002F559 /* SignupPresenter.swift */; };
@@ -83,6 +87,10 @@
 		55B49A895A9ABBD490771AC7 /* Pods_WolfFXUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WolfFXUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CC906AF2777012B78946D39 /* Pods-WolfFXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFXTests.debug.xcconfig"; path = "Target Support Files/Pods-WolfFXTests/Pods-WolfFXTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8103B177242BEDC8008D7D5B /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
+		8103B179242E90C5008D7D5B /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		8103B17B242E90E4008D7D5B /* SettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsConfigurator.swift; sourceTree = "<group>"; };
+		8103B17D242E9109008D7D5B /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		8103B180242EACD7008D7D5B /* ProfileDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsViewController.swift; sourceTree = "<group>"; };
 		81066A3B241FBA6700CA8829 /* WSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSManager.swift; sourceTree = "<group>"; };
 		81066A3D2420BF3F00CA8829 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		811E060A07A0606C5423FA73 /* Pods-WolfFX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFX.release.xcconfig"; path = "Target Support Files/Pods-WolfFX/Pods-WolfFX.release.xcconfig"; sourceTree = "<group>"; };
@@ -180,6 +188,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8103B17F242EAC8F008D7D5B /* ProfileDetails */ = {
+			isa = PBXGroup;
+			children = (
+				8103B180242EACD7008D7D5B /* ProfileDetailsViewController.swift */,
+			);
+			path = ProfileDetails;
+			sourceTree = "<group>";
+		};
 		811ED6C5241933C80002F559 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +291,7 @@
 		816C17FA24050AA900B1551A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8103B17F242EAC8F008D7D5B /* ProfileDetails */,
 				81A4B34E24105D62004A02CB /* SignUp */,
 				816F67EB240858010016AA95 /* Login */,
 				816C18132405620500B1551A /* Settings */,
@@ -338,6 +355,9 @@
 			isa = PBXGroup;
 			children = (
 				816C18142405623A00B1551A /* SettingsViewController.swift */,
+				8103B179242E90C5008D7D5B /* SettingsPresenter.swift */,
+				8103B17B242E90E4008D7D5B /* SettingsConfigurator.swift */,
+				8103B17D242E9109008D7D5B /* SettingsRouter.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -662,12 +682,15 @@
 				816C1812240560AD00B1551A /* WalletViewController.swift in Sources */,
 				8184269E240D534200713BF5 /* LoginPresenter.swift in Sources */,
 				811ED6C7241935530002F559 /* CheckboxButton.swift in Sources */,
+				8103B181242EACD7008D7D5B /* ProfileDetailsViewController.swift in Sources */,
+				8103B17C242E90E4008D7D5B /* SettingsConfigurator.swift in Sources */,
 				81A4B354241129FC004A02CB /* Repository.swift in Sources */,
 				8103B178242BEDC8008D7D5B /* Redux.swift in Sources */,
 				81A4B3602413BCA5004A02CB /* HomeRouter.swift in Sources */,
 				811ED6C9241971110002F559 /* Validation.swift in Sources */,
 				816C17FF24050AE900B1551A /* TabbarConfigurator.swift in Sources */,
 				816C181824056BAE00B1551A /* R.generated.swift in Sources */,
+				8103B17E242E9109008D7D5B /* SettingsRouter.swift in Sources */,
 				811ED6C2241921880002F559 /* SignupConfigurator.swift in Sources */,
 				811ED6C4241926410002F559 /* SignupRouter.swift in Sources */,
 				816C180C24055D9D00B1551A /* HomeViewController.swift in Sources */,
@@ -675,6 +698,7 @@
 				81A4B3622413BCC5004A02CB /* HomeConfigurator.swift in Sources */,
 				81D882582409D4F30030C78B /* Network.swift in Sources */,
 				816C18152405623A00B1551A /* SettingsViewController.swift in Sources */,
+				8103B17A242E90C5008D7D5B /* SettingsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

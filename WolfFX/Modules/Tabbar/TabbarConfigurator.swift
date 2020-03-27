@@ -27,14 +27,16 @@ class TabbarConfigurator {
             navControllers.append(billingNavigationController)
         }
         if let walletController = R.storyboard.wallet.walletViewController(){
-                  let walletNavigationController = UINavigationController(rootViewController: walletController)
-                  walletNavigationController.tabBarItem = UITabBarItem(title: "Wallet", image: R.image.walletTab()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.walletTab())
-                  navControllers.append(walletNavigationController)
-              }
+            let walletNavigationController = UINavigationController(rootViewController: walletController)
+            walletNavigationController.tabBarItem = UITabBarItem(title: "Wallet", image: R.image.walletTab()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.walletTab())
+            navControllers.append(walletNavigationController)
+        }
         if let settingsController = R.storyboard.settings.settingsViewController() {
-                  let settingsNavigationController = UINavigationController(rootViewController: settingsController)
+            let settingsConfigurator = SettingsConfigurator()
+            settingsConfigurator.configure(viewController: settingsController, with: assembler)
+            let settingsNavigationController = UINavigationController(rootViewController: settingsController)
             settingsNavigationController.tabBarItem = UITabBarItem(title: "Settings", image: R.image.settings()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.settings()?.withTintColor(UIColor.red))
-                  navControllers.append(settingsNavigationController)
+                navControllers.append(settingsNavigationController)
               }
         tabBar.viewControllers = navControllers
         tabBar.selectedIndex = selectedIndex
