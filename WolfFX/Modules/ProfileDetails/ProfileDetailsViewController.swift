@@ -9,11 +9,12 @@
 import Foundation
 import UIKit
 
-class ProfileDetailsViewController: UIViewController, ProfileDetailsViewProtocol {
+class ProfileDetailsViewController: UIViewController, ProfileDetailsViewProtocol, NavigationDesign {
     
 var presenter: ProfileDetailsEvents?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBaseNavigationDesign()
     }   
 }

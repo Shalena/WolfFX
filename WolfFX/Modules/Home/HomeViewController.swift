@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, ViewControllerDesign, HomeViewProtocol {
+class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol {
     var presenter: HomeEvents?
         
     override func viewDidLoad() {
@@ -16,7 +16,6 @@ class HomeViewController: UIViewController, ViewControllerDesign, HomeViewProtoc
         tabBarController?.tabBar.isHidden = true
         setupLoginOverlay()
         setupBaseNavigationDesign()
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "dummyhome.png") ?? UIImage())
     }
     
     private func setupLoginOverlay() {

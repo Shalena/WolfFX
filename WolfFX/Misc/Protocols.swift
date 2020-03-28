@@ -9,8 +9,19 @@
 import Foundation
 import UIKit
 
-protocol ViewControllerDesign: class {
+protocol NavigationDesign: class {
     func setupBaseNavigationDesign()
+}
+
+protocol HeaderDesign: class where Self: UIViewController {
+    
+}
+
+extension HeaderDesign {
+    func setupHeaderDesign() {
+        let baseHeaderView = BaseHeaderView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        view.addSubview(baseHeaderView)
+    }
 }
 
 protocol ShowErrorCapable: class where Self: UIViewController {
@@ -26,7 +37,6 @@ extension ShowErrorCapable {
         self.present(alert, animated: true, completion: nil)
     }
 }
-
 // Login Screen
 
 protocol LoginViewProtocol: ShowErrorCapable {

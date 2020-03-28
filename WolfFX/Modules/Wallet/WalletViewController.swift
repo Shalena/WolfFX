@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WalletViewController: UIViewController, ViewControllerDesign  {
+class WalletViewController: UIViewController, NavigationDesign  {
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BillingDataViewController: UIViewController, ViewControllerDesign {
+class BillingDataViewController: UIViewController, NavigationDesign {
     
     override func viewDidLoad() {
         super.viewDidLoad()

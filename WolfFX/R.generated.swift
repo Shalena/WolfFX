@@ -16,12 +16,10 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.file` struct is generated, and contains static references to 2 files.
+  /// This `R.file` struct is generated, and contains static references to 1 files.
   struct file {
     /// Resource file `Podfile`.
     static let podfile = Rswift.FileResource(bundle: R.hostingBundle, name: "Podfile", pathExtension: "")
-    /// Resource file `dummyhome.png`.
-    static let dummyhomePng = Rswift.FileResource(bundle: R.hostingBundle, name: "dummyhome", pathExtension: "png")
     
     /// `bundle.url(forResource: "Podfile", withExtension: "")`
     static func podfile(_: Void = ()) -> Foundation.URL? {
@@ -29,16 +27,10 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
     
-    /// `bundle.url(forResource: "dummyhome", withExtension: "png")`
-    static func dummyhomePng(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.dummyhomePng
-      return fileResource.bundle.url(forResource: fileResource)
-    }
-    
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 10 images.
+  /// This `R.image` struct is generated, and contains static references to 11 images.
   struct image {
     /// Image `arrow-right`.
     static let arrowRight = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow-right")
@@ -46,8 +38,8 @@ struct R: Rswift.Validatable {
     static let billingTab = Rswift.ImageResource(bundle: R.hostingBundle, name: "billingTab")
     /// Image `close`.
     static let close = Rswift.ImageResource(bundle: R.hostingBundle, name: "close")
-    /// Image `dummyhome`.
-    static let dummyhome = Rswift.ImageResource(bundle: R.hostingBundle, name: "dummyhome")
+    /// Image `dummyHome`.
+    static let dummyHome = Rswift.ImageResource(bundle: R.hostingBundle, name: "dummyHome")
     /// Image `envelope`.
     static let envelope = Rswift.ImageResource(bundle: R.hostingBundle, name: "envelope")
     /// Image `homeTab`.
@@ -56,6 +48,8 @@ struct R: Rswift.Validatable {
     static let selectedCheckBox = Rswift.ImageResource(bundle: R.hostingBundle, name: "selectedCheckBox")
     /// Image `settings`.
     static let settings = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings")
+    /// Image `speedometer`.
+    static let speedometer = Rswift.ImageResource(bundle: R.hostingBundle, name: "speedometer")
     /// Image `unselectedCheckBox`.
     static let unselectedCheckBox = Rswift.ImageResource(bundle: R.hostingBundle, name: "unselectedCheckBox")
     /// Image `walletTab`.
@@ -76,9 +70,9 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.close, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "dummyhome", bundle: ..., traitCollection: ...)`
-    static func dummyhome(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.dummyhome, compatibleWith: traitCollection)
+    /// `UIImage(named: "dummyHome", bundle: ..., traitCollection: ...)`
+    static func dummyHome(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.dummyHome, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "envelope", bundle: ..., traitCollection: ...)`
@@ -101,6 +95,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.settings, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "speedometer", bundle: ..., traitCollection: ...)`
+    static func speedometer(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.speedometer, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "unselectedCheckBox", bundle: ..., traitCollection: ...)`
     static func unselectedCheckBox(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.unselectedCheckBox, compatibleWith: traitCollection)
@@ -109,6 +108,24 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "walletTab", bundle: ..., traitCollection: ...)`
     static func walletTab(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.walletTab, compatibleWith: traitCollection)
+    }
+    
+    fileprivate init() {}
+  }
+  
+  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  struct nib {
+    /// Nib `BaseHeaderView`.
+    static let baseHeaderView = _R.nib._BaseHeaderView()
+    
+    /// `UINib(name: "BaseHeaderView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.baseHeaderView) instead")
+    static func baseHeaderView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.baseHeaderView)
+    }
+    
+    static func baseHeaderView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.baseHeaderView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
     
     fileprivate init() {}
@@ -178,6 +195,33 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     try storyboard.validate()
+    try nib.validate()
+  }
+  
+  struct nib: Rswift.Validatable {
+    static func validate() throws {
+      try _BaseHeaderView.validate()
+    }
+    
+    struct _BaseHeaderView: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "BaseHeaderView"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "envelope", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'envelope' is used in nib 'BaseHeaderView', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "speedometer", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'speedometer' is used in nib 'BaseHeaderView', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+        }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    fileprivate init() {}
   }
   
   struct storyboard: Rswift.Validatable {
@@ -218,6 +262,7 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "dummyHome", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'dummyHome' is used in storyboard 'Home', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.home().homeViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'homeViewController' could not be loaded from storyboard 'Home' as 'HomeViewController'.") }

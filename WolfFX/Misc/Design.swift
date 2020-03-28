@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension ViewControllerDesign where Self: UIViewController {
+extension NavigationDesign where Self: UIViewController {
     func setupBaseNavigationDesign() {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()

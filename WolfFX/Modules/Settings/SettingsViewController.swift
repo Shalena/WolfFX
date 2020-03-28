@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, ViewControllerDesign, SettingsViewProtocol  {
+class SettingsViewController: UIViewController, NavigationDesign, SettingsViewProtocol  {
     @IBOutlet weak var profileDataView: UIView!
     var presenter: SettingsEvents?
     
