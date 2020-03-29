@@ -73,7 +73,7 @@
                                             <action selector="loginAction:" destination="Q5W-Fh-XNH" eventType="touchUpInside" id="L3J-BC-1yN"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f39-av-52g">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f39-av-52g" customClass="SubmitButton" customModule="WolfFX" customModuleProvider="target">
                                         <rect key="frame" x="30" y="525" width="294" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="9nW-N0-uRU"/>

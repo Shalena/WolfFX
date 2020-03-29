@@ -11,7 +11,7 @@ import UIKit
 class LoginViewController: UIViewController, LoginViewProtocol {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var signUpButton: SubmitButton!
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     
@@ -28,10 +28,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
         closeButton.clipsToBounds = true
         closeButton.setImage(R.image.close(), for: .normal)
         closeButton.imageEdgeInsets = UIEdgeInsets(top: 10,left: 10,bottom: 10,right: 10)
-        loginButton.layer.cornerRadius = 5
-        signUpButton.layer.cornerRadius = 5
-        signUpButton.layer.borderWidth = 2
-        signUpButton.layer.borderColor = UIColor.red.cgColor
+        signUpButton.setup(backColor: .clear, borderColor: .darkGray, text: "Sign up", textColor: .white)
     }
     
     @IBAction func loginAction(_ sender: Any) {

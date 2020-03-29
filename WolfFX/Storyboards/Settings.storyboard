@@ -260,7 +260,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ei-wd-aKh">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ei-wd-aKh" customClass="SubmitButton" customModule="WolfFX" customModuleProvider="target">
                                 <rect key="frame" x="30" y="689" width="354" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="YFG-1B-mf3"/>
@@ -323,6 +323,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EAa-VG-wru"/>
                     </view>
+                    <connections>
+                        <outlet property="saveButton" destination="2ei-wd-aKh" id="ecq-k0-Myh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c35-Tw-4Cs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

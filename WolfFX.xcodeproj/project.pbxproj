@@ -19,6 +19,7 @@
 		8103B18A242EC0AE008D7D5B /* BaseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B189242EC0AE008D7D5B /* BaseHeaderView.swift */; };
 		8103B18C242EC2EE008D7D5B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B18B242EC2EE008D7D5B /* Extensions.swift */; };
 		8103B18E242EC3C7008D7D5B /* BaseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8103B18D242EC3C7008D7D5B /* BaseHeaderView.xib */; };
+		8103B1922430CC18008D7D5B /* SubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B1912430CC18008D7D5B /* SubmitButton.swift */; };
 		81066A3C241FBA6700CA8829 /* WSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81066A3B241FBA6700CA8829 /* WSManager.swift */; };
 		81066A3E2420BF3F00CA8829 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 81066A3D2420BF3F00CA8829 /* Podfile */; };
 		811ED6C024191A120002F559 /* SignupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6BF24191A120002F559 /* SignupPresenter.swift */; };
@@ -102,6 +103,7 @@
 		8103B189242EC0AE008D7D5B /* BaseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHeaderView.swift; sourceTree = "<group>"; };
 		8103B18B242EC2EE008D7D5B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8103B18D242EC3C7008D7D5B /* BaseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseHeaderView.xib; sourceTree = "<group>"; };
+		8103B1912430CC18008D7D5B /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
 		81066A3B241FBA6700CA8829 /* WSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSManager.swift; sourceTree = "<group>"; };
 		81066A3D2420BF3F00CA8829 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		811E060A07A0606C5423FA73 /* Pods-WolfFX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFX.release.xcconfig"; path = "Target Support Files/Pods-WolfFX/Pods-WolfFX.release.xcconfig"; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			children = (
 				8103B188242EC047008D7D5B /* BaseHeaderView */,
 				811ED6C6241935530002F559 /* CheckboxButton.swift */,
+				8103B1912430CC18008D7D5B /* SubmitButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -709,6 +712,7 @@
 				8184269E240D534200713BF5 /* LoginPresenter.swift in Sources */,
 				811ED6C7241935530002F559 /* CheckboxButton.swift in Sources */,
 				8103B181242EACD7008D7D5B /* ProfileDetailsViewController.swift in Sources */,
+				8103B1922430CC18008D7D5B /* SubmitButton.swift in Sources */,
 				8103B17C242E90E4008D7D5B /* SettingsConfigurator.swift in Sources */,
 				81A4B354241129FC004A02CB /* Repository.swift in Sources */,
 				8103B18A242EC0AE008D7D5B /* BaseHeaderView.swift in Sources */,
