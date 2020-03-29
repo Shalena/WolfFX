@@ -23,12 +23,12 @@ class TabbarConfigurator {
         }
         if let billingController = R.storyboard.billingData.billingDataViewController() {
             let billingNavigationController = UINavigationController(rootViewController: billingController)
-            billingNavigationController.tabBarItem = UITabBarItem(title: "Billing data", image: R.image.billingTab()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.billingTab())
+            billingNavigationController.tabBarItem = UITabBarItem(title: "Billing data", image: R.image.billingTab()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.billingTab()?.withTintColor(UIColor.red))
             navControllers.append(billingNavigationController)
         }
         if let walletController = R.storyboard.wallet.walletViewController(){
             let walletNavigationController = UINavigationController(rootViewController: walletController)
-            walletNavigationController.tabBarItem = UITabBarItem(title: "Wallet", image: R.image.walletTab()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.walletTab())
+            walletNavigationController.tabBarItem = UITabBarItem(title: "Wallet", image: R.image.walletTab()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.walletTab()?.withTintColor(UIColor.red))
             navControllers.append(walletNavigationController)
         }
         if let settingsController = R.storyboard.settings.settingsViewController() {
