@@ -15,6 +15,10 @@ class CheckboxButton: UIButton {
         setImage(R.image.selectedCheckBox(), for: .selected)
         setImage(R.image.unselectedCheckBox(), for: .normal)
         addTarget(self, action: #selector(checkBoxPressed(_:)), for: .touchUpInside)
+        backgroundColor = .white
+        layer.cornerRadius = 5
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.black.cgColor
     }
     
     @objc func checkBoxPressed(_ sender: CheckboxButton) {
