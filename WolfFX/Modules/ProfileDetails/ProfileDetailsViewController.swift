@@ -9,13 +9,14 @@
 import Foundation
 import UIKit
 
-class ProfileDetailsViewController: UIViewController, ProfileDetailsViewProtocol, NavigationDesign {
+class ProfileDetailsViewController: UIViewController, ProfileDetailsViewProtocol, NavigationDesign, NavigationBackButtonDesign {
     @IBOutlet weak var saveButton: SubmitButton!
     var presenter: ProfileDetailsEvents?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBaseNavigationDesign()
+        setupBackButton()
         saveButton.setup(backColor: .clear, borderColor: .gray, text: "Save", textColor: .gray)
     }   
 }

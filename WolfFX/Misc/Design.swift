@@ -16,3 +16,13 @@ extension NavigationDesign where Self: UIViewController {
         navigationController?.view.backgroundColor = UIColor.clear
     }
 }
+
+extension NavigationBackButtonDesign where Self: UIViewController {
+    func setupBackButton() {
+       let imgBack = R.image.arrowLeft()?.withRenderingMode(.alwaysOriginal)
+       navigationController?.navigationBar.backIndicatorImage = imgBack
+       navigationController?.navigationBar.backIndicatorTransitionMaskImage = imgBack
+       navigationItem.leftItemsSupplementBackButton = true
+       navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+    }
+}

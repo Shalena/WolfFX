@@ -13,6 +13,10 @@ protocol NavigationDesign: class {
     func setupBaseNavigationDesign()
 }
 
+protocol NavigationBackButtonDesign: class {
+    func setupBackButton()
+}
+
 protocol HeaderDesign: class where Self: UIViewController {
     
 }

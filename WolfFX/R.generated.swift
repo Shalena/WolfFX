@@ -30,8 +30,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 11 images.
+  /// This `R.image` struct is generated, and contains static references to 13 images.
   struct image {
+    /// Image `arrow left`.
+    static let arrowLeft = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow left")
     /// Image `arrow-right`.
     static let arrowRight = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow-right")
     /// Image `billingTab`.
@@ -44,6 +46,8 @@ struct R: Rswift.Validatable {
     static let envelope = Rswift.ImageResource(bundle: R.hostingBundle, name: "envelope")
     /// Image `homeTab`.
     static let homeTab = Rswift.ImageResource(bundle: R.hostingBundle, name: "homeTab")
+    /// Image `left-right`.
+    static let leftRight = Rswift.ImageResource(bundle: R.hostingBundle, name: "left-right")
     /// Image `selectedCheckBox`.
     static let selectedCheckBox = Rswift.ImageResource(bundle: R.hostingBundle, name: "selectedCheckBox")
     /// Image `settings`.
@@ -54,6 +58,11 @@ struct R: Rswift.Validatable {
     static let unselectedCheckBox = Rswift.ImageResource(bundle: R.hostingBundle, name: "unselectedCheckBox")
     /// Image `walletTab`.
     static let walletTab = Rswift.ImageResource(bundle: R.hostingBundle, name: "walletTab")
+    
+    /// `UIImage(named: "arrow left", bundle: ..., traitCollection: ...)`
+    static func arrowLeft(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arrowLeft, compatibleWith: traitCollection)
+    }
     
     /// `UIImage(named: "arrow-right", bundle: ..., traitCollection: ...)`
     static func arrowRight(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -83,6 +92,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "homeTab", bundle: ..., traitCollection: ...)`
     static func homeTab(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.homeTab, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "left-right", bundle: ..., traitCollection: ...)`
+    static func leftRight(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.leftRight, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "selectedCheckBox", bundle: ..., traitCollection: ...)`
