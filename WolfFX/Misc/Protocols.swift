@@ -105,6 +105,7 @@ protocol ProfileDetailsViewProtocol {
 }
 
 protocol ProfileDetailsEvents {
+    func textFor(textField: UserDetailsTextFields) -> String 
     func saveDetails()
 }
 

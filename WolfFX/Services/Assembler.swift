@@ -12,6 +12,14 @@ import ReSwift
 
 class Assembler {
     var container = Container()
+    var user: User? {
+           get {
+               return store.state.cState.customer
+           }
+       }
+    var store: Store<AppState> {
+           return resolveForced(Store.self)
+       }
     
     func initFlow() {
         register(NetworkAccess.self, name: nil) { _ in NetwokManager()}

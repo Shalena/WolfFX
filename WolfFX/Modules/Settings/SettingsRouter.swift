@@ -11,8 +11,8 @@ import Foundation
 class SettingsRouter: BaseRouter, SettingsTransitions {
     func goToProfile() {
         if let profileDetailsController = R.storyboard.settings.profileDetailsViewController() {
-     //   let configurator = SettingsConfigurator()
-    // configurator.configure(viewController: profileDetailsController, with: assembler)
+            let configurator = ProfileDetailsConfigurator()
+            configurator.configure(viewController: profileDetailsController, with: assembler)
             sourceController.navigationController?.pushViewController(profileDetailsController, animated: true)
         }
     }

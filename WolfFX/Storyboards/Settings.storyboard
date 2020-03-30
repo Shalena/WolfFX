@@ -362,6 +362,11 @@
                     </view>
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
+                        <outlet property="confirmPasswordTextfield" destination="Qf4-Jc-dXu" id="2Q0-BL-wgC"/>
+                        <outlet property="currencyTextfield" destination="OSx-Ar-lAP" id="s3K-gQ-fPh"/>
+                        <outlet property="emailTextField" destination="EQy-Oa-ZV7" id="V3v-yB-ap5"/>
+                        <outlet property="firstNameTextField" destination="1F4-7a-Taj" id="V44-f2-wAA"/>
+                        <outlet property="passwordTextField" destination="iNl-lE-oDG" id="pBb-M5-Roj"/>
                         <outlet property="saveButton" destination="2ei-wd-aKh" id="ecq-k0-Myh"/>
                     </connections>
                 </viewController>

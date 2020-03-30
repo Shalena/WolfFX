@@ -7,18 +7,47 @@
 //
 
 import Foundation
+import Swinject
+import ReSwift
+
+enum UserDetailsTextFields {
+    case name
+    case email
+    case password
+    case confirmPassword
+    case currency
+}
 
 class ProfileDetailsPresenter: ProfileDetailsEvents {
-   
+
 var view: ProfileDetailsViewProtocol?
 var router: ProfileDetailsTransitions?
 var websocketManager: WebsocketAccess
+var currentUser: User?
 
-    init (with websocketManager: WebsocketAccess) {
+    init (with websocketManager: WebsocketAccess, currentUser: User?, router: ProfileDetailsTransitions) {
         self.websocketManager = websocketManager
+        self.currentUser = currentUser
+        self.router = router
     }
-
+    
+    func textFor(textField: UserDetailsTextFields) -> String {
+        switch textField {
+        case .name:
+            return currentUser?.firstName ?? ""
+        case .email:
+            return currentUser?.email ?? ""
+        case .password:
+            return "••••••••••••"
+        case .confirmPassword:
+            return "Confirm Password"
+        case .currency:
+            return currentUser?.currency ?? ""
+        }
+    }
+    
     func saveDetails() {
         router?.saveDetails()
     }
 }
+
