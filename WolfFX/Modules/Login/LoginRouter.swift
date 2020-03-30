@@ -9,15 +9,23 @@
 import Foundation
 
 class LoginRouter: BaseRouter, LoginTransitions {
-    func userLoggedIn(user: User) {
-       
-    }
-    
+    var callback: ShowTabbarCallback?
     func signUpPressed () {
         if let signUpController = R.storyboard.login.signupViewController() {
             let configurator = SignupConfigurator()
             configurator.configure(viewController: signUpController, with: assembler)
-            sourceController.navigationController?.pushViewController(signUpController, animated: true)
+         //   sourceController.navigationController?.pushViewController(signUpController, animated: true)
+            sourceController.present(signUpController, animated: true, completion: nil)
         }
+    }
+    
+    func removeLoginOverlay() {
+        sourceController.removeFromParent()
+        sourceController.view.removeFromSuperview()
+        callback?()
+    }
+    
+    func userLoggedIn(user: User) {
+       
     }
 }

@@ -15,12 +15,11 @@ class LoginConfigurator {
     func configure(viewController: LoginViewController, with assembler: Assembler, callBack: @escaping ShowTabbarCallback) {
         let networkManager = assembler.resolveForced(NetworkAccess.self)
         let websocketManager = assembler.resolveForced(WebsocketAccess.self)
-        let presenter = LoginPresenter(with: networkManager, websocketManager: websocketManager)
         let router = LoginRouter(with: viewController, assembler: assembler)
         router.sourceController = viewController
-        presenter.router = router
+        router.callback = callBack
+        let presenter = LoginPresenter(with: networkManager, websocketManager: websocketManager, store: assembler.store, router: router)
         viewController.presenter = presenter
         presenter.view = viewController
-        viewController.callback = callBack
     }
 }

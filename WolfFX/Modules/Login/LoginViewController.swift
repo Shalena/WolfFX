@@ -16,8 +16,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     @IBOutlet weak var passwordTextfield: UITextField!
     
     var presenter: LoginEvents?
-    var callback: ShowTabbarCallback?
-    
+      
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDesign()
@@ -42,8 +41,6 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     }
     
     @IBAction func close(_ sender: UIButton) {
-          self.removeFromParent()
-          self.view.removeFromSuperview()
-          callback?()
-      }
+        presenter?.closeScreen()
+    }
 }
