@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReSwift
 
 struct RegistrationForm {
     var firstName: String?
@@ -18,23 +19,29 @@ struct RegistrationForm {
     var tenantId: String?
 }
 
-class SignupPresenter: SignupEvents {
+class SignupPresenter: SignupEvents, StoreSubscriber {
     var view: SignupViewProtocol?
     var router: SignupTransitions?
     var networkManager: NetworkAccess
     var websocketManager: WebsocketAccess
     
-    init (with networkManager: NetworkAccess, websocketManager: WebsocketAccess) {
+    init (with networkManager: NetworkAccess, websocketManager: WebsocketAccess,  store: Store<AppState>) {
         self.networkManager = networkManager
         self.websocketManager = websocketManager
+        store.subscribe(self) { $0.select { $0.cState } }
     }
     
+    func newState(state: CustomerState) {
+        
+    }
+        
     func registerUserWith(form: RegistrationForm) {
         if validatedSuccessfully(form: form) {
             networkManager.signup(firstname: form.firstName ?? "", currency: form.currency ?? "", emails: form.emails ?? [String](), password: form.password ?? "", tenantId: form.tenantId ?? "", username: form.email ?? "", success: { (successfully: Bool) in
                     if successfully {
                         self.websocketManager.connect()
                         self.websocketManager.getUserInfo()
+                        self.userHadCreated()
                     }
                 }, failure: { [weak self] error in
                     if let error = error {
@@ -42,6 +49,10 @@ class SignupPresenter: SignupEvents {
                     }
                 })
         }
+    }
+    
+    func userHadCreated() {
+        router?.removeOverlayAndShowHome()
     }
     
     func validatedSuccessfully(form: RegistrationForm) -> Bool {

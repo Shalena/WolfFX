@@ -14,8 +14,7 @@ class LoginRouter: BaseRouter, LoginTransitions {
         if let signUpController = R.storyboard.login.signupViewController() {
             let configurator = SignupConfigurator()
             configurator.configure(viewController: signUpController, with: assembler)
-         //   sourceController.navigationController?.pushViewController(signUpController, animated: true)
-            sourceController.present(signUpController, animated: true, completion: nil)
+            sourceController.navigationController?.pushViewController(signUpController, animated: true)
         }
     }
     

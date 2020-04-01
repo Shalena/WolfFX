@@ -13,6 +13,7 @@ typealias JSON = [String : Any]
 enum BaseUrl: String {
     case prod = "https://wolffxwarrior.com"
     case stage = "https://staging.cuboidlogic.com"
+    
 }
 
 protocol NetworkAccess {

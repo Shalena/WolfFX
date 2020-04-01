@@ -13,7 +13,7 @@ class SignupConfigurator {
     func configure(viewController: SignupViewController, with assembler: Assembler) {
         let networkManager = assembler.resolveForced(NetworkAccess.self)
         let websocketManager = assembler.resolveForced(WebsocketAccess.self)
-        let presenter = SignupPresenter(with: networkManager, websocketManager: websocketManager)
+        let presenter = SignupPresenter(with: networkManager, websocketManager: websocketManager, store: assembler.store)
         let router = SignupRouter(with: viewController, assembler: assembler)
         router.sourceController = viewController
         presenter.router = router

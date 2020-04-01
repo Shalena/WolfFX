@@ -9,7 +9,7 @@
 import Foundation
 
 class SignupRouter: BaseRouter, SignupTransitions {
-    func userCreated(user: User) {
-        
+    func removeOverlayAndShowHome() {
+        sourceController.navigationController?.popViewController(animated: true)
     }
 }

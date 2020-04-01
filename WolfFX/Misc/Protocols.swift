@@ -67,11 +67,12 @@ protocol SignupViewProtocol: ShowErrorCapable {
 }
 
 protocol SignupEvents {
-     func registerUserWith(form: RegistrationForm)
+    func registerUserWith(form: RegistrationForm)
+    func userHadCreated()
 }
 
 protocol SignupTransitions {
-    func userCreated(user: User)
+    func removeOverlayAndShowHome()
 }
 // Home Screen
 
