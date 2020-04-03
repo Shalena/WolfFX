@@ -11,15 +11,21 @@ import Foundation
 enum VertxResponseKeys: String {
     case profile = "profile"
     case username = "username"
+    case balance = "balance"
+    case currency = "currency"
+    case bonus = "bonus"
 }
 
 protocol WebsocketAccess {
     func connect()
     func getUserInfo()
+    func getBalance()
 }
 
 let baseUrlString = "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket"
 let userInfoJson: [String: Any] = ["type":"send", "address":"client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress":""]
+let getBalanceJson: [String: Any] = ["type":"send", "address": "CurrentBalance", "headers": [String:String](), "body": ["currency":"GBP"], "replyAddress":""]
+
 
 class WSManager: WebsocketAccess {
     static let shared = WSManager()
@@ -76,6 +82,12 @@ class WSManager: WebsocketAccess {
         }
     }
   
+    func getBalance() {
+        if let messageString = jsonToString(json: getBalanceJson) {
+            send(messageString: messageString)
+        }
+    }
+    
     func check(json: JSON) {
         if let bodyDictionary = json["body"] as? [String: Any] {
             let keys: [String] = bodyDictionary.map({ $0.key })
@@ -94,6 +106,12 @@ class WSManager: WebsocketAccess {
                             }
                         }
                     case .username:
+                        print(bodyDictionary[key])
+                    case .balance:
+                        print(bodyDictionary[key])
+                    case .currency:
+                        print(bodyDictionary[key])
+                    case .bonus:
                         print(bodyDictionary[key])
                     case .none:
                     return

@@ -30,6 +30,9 @@ class DataReceiver: NSObject {
                     }
                 }
             }
+    
+    var balance = ""
+    
     init(with assembler: Assembler) {
         self.assembler = assembler
     }

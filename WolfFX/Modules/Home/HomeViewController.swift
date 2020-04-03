@@ -18,6 +18,11 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol {
         setupBaseNavigationDesign()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        WSManager.shared.connect()
+        WSManager.shared.getBalance()
+    }
+    
     private func setupLoginOverlay() {
         presenter?.setupLoginOverlay()
     }

@@ -36,7 +36,7 @@ class LoginPresenter: NSObject, LoginEvents {
         networkManager?.login(email: email, password: password, success: { (successfully: Bool) in
                     if successfully {
                         self.websocketManager?.connect()
-                        self.websocketManager?.getUserInfo()
+                        self.websocketManager?.getBalance()
                     }
                 }, failure: { [weak self] error in
                     if let error = error {
