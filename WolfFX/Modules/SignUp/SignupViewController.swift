@@ -37,7 +37,7 @@ class SignupViewController: UIViewController, SignupViewProtocol {
     
     func setupDesign() {
         let image = R.image.billingTab()?.withRenderingMode(.alwaysOriginal)
-        let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: Selector("didBarButtonbBackTapped"))
+        let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: Selector(("didBarButtonbBackTapped")))
         navigationItem.leftBarButtonItem = barButtonItem
         saveButton.layer.cornerRadius = 5
         saveButton.layer.cornerRadius = 5

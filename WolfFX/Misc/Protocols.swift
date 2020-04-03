@@ -73,7 +73,7 @@ protocol SignupEvents {
 }
 
 protocol SignupTransitions {
-    func removeOverlayAndShowHome()
+    func userHadCreated()
 }
 // Home Screen
 

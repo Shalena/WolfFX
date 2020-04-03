@@ -10,7 +10,6 @@ target 'WolfFX' do
         pod 'SVProgressHUD'
         pod 'Locksmith'
         pod 'Swinject'
-        pod 'ReSwift'
         pod 'Charts'
        
   # Pods for HomeSolutionsCustomer

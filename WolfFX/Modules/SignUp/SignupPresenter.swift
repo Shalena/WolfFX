@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ReSwift
 
 struct RegistrationForm {
     var firstName: String?
@@ -19,29 +18,34 @@ struct RegistrationForm {
     var tenantId: String?
 }
 
-class SignupPresenter: SignupEvents, StoreSubscriber {
+class SignupPresenter: NSObject, SignupEvents {
     var view: SignupViewProtocol?
     var router: SignupTransitions?
     var networkManager: NetworkAccess
     var websocketManager: WebsocketAccess
+    @objc dynamic var dataReceiver: DataReceiver?
+    var observation: NSKeyValueObservation?
     
-    init (with networkManager: NetworkAccess, websocketManager: WebsocketAccess,  store: Store<AppState>) {
+    init (with view: SignupViewProtocol, networkManager: NetworkAccess) {
+        self.view = view
         self.networkManager = networkManager
-        self.websocketManager = websocketManager
-        store.subscribe(self) { $0.select { $0.cState } }
+        self.websocketManager = WSManager.shared
     }
     
-    func newState(state: CustomerState) {
-        
-    }
-        
+    func observe() {
+           observation = observe(\.dataReceiver?.user,
+                      options: [.old, .new]
+                  ) { object, change in
+                     self.userHadCreated()
+                  }
+       }
+    
     func registerUserWith(form: RegistrationForm) {
         if validatedSuccessfully(form: form) {
             networkManager.signup(firstname: form.firstName ?? "", currency: form.currency ?? "", emails: form.emails ?? [String](), password: form.password ?? "", tenantId: form.tenantId ?? "", username: form.email ?? "", success: { (successfully: Bool) in
                     if successfully {
                         self.websocketManager.connect()
                         self.websocketManager.getUserInfo()
-                        self.userHadCreated()
                     }
                 }, failure: { [weak self] error in
                     if let error = error {
@@ -52,7 +56,7 @@ class SignupPresenter: SignupEvents, StoreSubscriber {
     }
     
     func userHadCreated() {
-        router?.removeOverlayAndShowHome()
+        router?.userHadCreated()
     }
     
     func validatedSuccessfully(form: RegistrationForm) -> Bool {
