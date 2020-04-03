@@ -7,7 +7,30 @@
 //
 
 import Foundation
+import Swinject
 
 class DataReceiver: NSObject {
-   @objc dynamic var user: User?
+    private var assembler: Assembler?
+   @objc dynamic var user: User? {
+                set {
+                    do {
+                        let repository = try assembler?.resolve(UserAccessProtocol.self)
+                        repository?.user = newValue
+                    } catch {
+                        return
+                    }
+                }
+    
+                get {
+                    do {
+                        let repository = try assembler?.resolve(UserAccessProtocol.self)
+                        return repository?.user
+                    } catch {
+                        return nil
+                    }
+                }
+            }
+    init(with assembler: Assembler) {
+        self.assembler = assembler
+    }
 }

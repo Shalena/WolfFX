@@ -12,8 +12,7 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
@@ -21,6 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let tabBarConfigurator = TabbarConfigurator()
             let assembler = Assembler()
             assembler.initFlow()
+            let dataReceiver = DataReceiver(with: assembler)
+            WSManager.shared.dataReceiver = dataReceiver
+            WSManager.shared.connect()
             tabBarConfigurator.configure(tabBar: tabBar, with: 0, assembler: assembler)
             window.rootViewController = tabBar
             self.window = window

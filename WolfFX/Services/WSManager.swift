@@ -24,8 +24,8 @@ let userInfoJson: [String: Any] = ["type":"send", "address":"client.trade.userIn
 class WSManager: WebsocketAccess {
     static let shared = WSManager()
     var webSocketTask: URLSessionWebSocketTask?
-    var dataReceiver = DataReceiver()
-    
+    var dataReceiver: DataReceiver?
+
     lazy var decoder: JSONDecoder = {
            let decoder = JSONDecoder()
            decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -89,7 +89,7 @@ class WSManager: WebsocketAccess {
                             if let jsonData = userjsonstring?.data(using: .utf8){
                                 if let user = try? JSONDecoder().decode(User.self, from: jsonData) {
                                     print(user)
-                                    dataReceiver.user = user                                    
+                                    dataReceiver?.user = user
                                 }                               
                             }
                         }
