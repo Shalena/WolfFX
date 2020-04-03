@@ -50,6 +50,7 @@
 		816C181824056BAE00B1551A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C181724056BAD00B1551A /* R.generated.swift */; };
 		816F67EA240857F50016AA95 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F67E9240857F50016AA95 /* LoginViewController.swift */; };
 		816F67ED2408585A0016AA95 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816F67EC2408585A0016AA95 /* Login.storyboard */; };
+		817324C7243674EB000DFB86 /* DataReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817324C6243674EB000DFB86 /* DataReceiver.swift */; };
 		8184269E240D534200713BF5 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184269D240D534200713BF5 /* LoginPresenter.swift */; };
 		81A4B35024105D98004A02CB /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B34F24105D98004A02CB /* SignupViewController.swift */; };
 		81A4B352241129DB004A02CB /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B351241129DB004A02CB /* Assembler.swift */; };
@@ -141,6 +142,7 @@
 		816C181724056BAD00B1551A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = WolfFX/R.generated.swift; sourceTree = "<group>"; };
 		816F67E9240857F50016AA95 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		816F67EC2408585A0016AA95 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		817324C6243674EB000DFB86 /* DataReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceiver.swift; sourceTree = "<group>"; };
 		8184269D240D534200713BF5 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		81A4B34F24105D98004A02CB /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		81A4B351241129DB004A02CB /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 				81A4B351241129DB004A02CB /* Assembler.swift */,
 				81A4B353241129FC004A02CB /* Repository.swift */,
 				81066A3B241FBA6700CA8829 /* WSManager.swift */,
+				817324C6243674EB000DFB86 /* DataReceiver.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 				8103B17E242E9109008D7D5B /* SettingsRouter.swift in Sources */,
 				8103B183242EB13A008D7D5B /* ProfileDetailsPresenter.swift in Sources */,
 				811ED6C2241921880002F559 /* SignupConfigurator.swift in Sources */,
+				817324C7243674EB000DFB86 /* DataReceiver.swift in Sources */,
 				811ED6C4241926410002F559 /* SignupRouter.swift in Sources */,
 				816C180C24055D9D00B1551A /* HomeViewController.swift in Sources */,
 				81A4B352241129DB004A02CB /* Assembler.swift in Sources */,

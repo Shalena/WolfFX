@@ -7,31 +7,36 @@
 //
 
 import Foundation
-import ReSwift
 
-class LoginPresenter: LoginEvents, StoreSubscriber {
+class LoginPresenter: NSObject, LoginEvents {
     var view: LoginViewProtocol?
     var router: LoginTransitions?
-    var networkManager: NetworkAccess
-    var websocketManager: WebsocketAccess
+    var networkManager: NetworkAccess?
+    var websocketManager: WebsocketAccess?
+    @objc dynamic var dataReceiver: DataReceiver?
+    var observation: NSKeyValueObservation?
     
-    init (with networkManager: NetworkAccess, websocketManager: WebsocketAccess,  store: Store<AppState>, router: LoginTransitions) {
+    init (with view: LoginViewProtocol, networkManager: NetworkAccess, router: LoginTransitions) {
+        self.view = view
         self.networkManager = networkManager
-        self.websocketManager = websocketManager
+        self.websocketManager = WSManager.shared
         self.router = router
-        store.subscribe(self) { $0.select { $0.cState } }
+        dataReceiver = WSManager.shared.dataReceiver
+    }
+
+    func observe() {
+        observation = observe(\.dataReceiver?.user,
+                   options: [.old, .new]
+               ) { object, change in
+                  self.userDetailsHadReceived()
+               }
     }
     
-    func newState(state: CustomerState) {
-           // go to home
-    }
-       
     func signIn(email: String, password: String) {
-                networkManager.login(email: email, password: password, success: { (successfully: Bool) in
+        networkManager?.login(email: email, password: password, success: { (successfully: Bool) in
                     if successfully {
-                        self.websocketManager.connect()
-                        self.websocketManager.getUserInfo()
-                        self.userHadSignedIn()
+                        self.websocketManager?.connect()
+                        self.websocketManager?.getUserInfo()
                     }
                 }, failure: { [weak self] error in
                     if let error = error {
@@ -44,11 +49,11 @@ class LoginPresenter: LoginEvents, StoreSubscriber {
         router?.signUpPressed ()
     }
     
-    func userHadSignedIn() {
-        router?.removeLoginOverlay()
+    func userDetailsHadReceived() {
+        router?.userDetailsHadReceived()
     }
        
     func closeScreen() {
-        router?.removeLoginOverlay()
+        router?.closeScreen()
     }
 }

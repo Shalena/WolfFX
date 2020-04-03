@@ -14,12 +14,10 @@ typealias ShowTabbarCallback = (() -> Void)
 class LoginConfigurator {
     func configure(viewController: LoginViewController, with assembler: Assembler, callBack: @escaping ShowTabbarCallback) {
         let networkManager = assembler.resolveForced(NetworkAccess.self)
-        let websocketManager = assembler.resolveForced(WebsocketAccess.self)
         let router = LoginRouter(with: viewController, assembler: assembler)
         router.sourceController = viewController
         router.callback = callBack
-        let presenter = LoginPresenter(with: networkManager, websocketManager: websocketManager, store: assembler.store, router: router)
+        let presenter = LoginPresenter(with: viewController, networkManager: networkManager, router: router)
         viewController.presenter = presenter
-        presenter.view = viewController
     }
 }

@@ -48,16 +48,17 @@ protocol LoginViewProtocol: ShowErrorCapable {
 }
 
 protocol LoginEvents {
+    func observe()
     func signIn(email: String, password: String)
     func signUpPressed()
-    func userHadSignedIn()
+    func userDetailsHadReceived()
     func closeScreen()
 }
 
 protocol LoginTransitions {
-    func userLoggedIn(user: User)
+    func userDetailsHadReceived()
     func signUpPressed()
-    func removeLoginOverlay()
+    func closeScreen()
 }
 
 // Signup Screen

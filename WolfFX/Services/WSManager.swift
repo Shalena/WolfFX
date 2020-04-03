@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ReSwift
 
 enum VertxResponseKeys: String {
     case profile = "profile"
@@ -23,19 +22,16 @@ let baseUrlString = "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket"
 let userInfoJson: [String: Any] = ["type":"send", "address":"client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress":""]
 
 class WSManager: WebsocketAccess {
+    static let shared = WSManager()
     var webSocketTask: URLSessionWebSocketTask?
-    var store: Store<AppState>?
+    var dataReceiver = DataReceiver()
     
     lazy var decoder: JSONDecoder = {
            let decoder = JSONDecoder()
            decoder.keyDecodingStrategy = .convertFromSnakeCase
            return decoder
     }()
-    
-    init (with store: Store<AppState>) {
-        self.store = store
-    }
-    
+
     func connect() {
         if let baseUrl = URL(string: baseUrlString) {
             webSocketTask = URLSession(configuration: .default).webSocketTask(with: baseUrl)
@@ -93,7 +89,7 @@ class WSManager: WebsocketAccess {
                             if let jsonData = userjsonstring?.data(using: .utf8){
                                 if let user = try? JSONDecoder().decode(User.self, from: jsonData) {
                                     print(user)
-                                    store?.dispatch(SignInAction.signIn(user: user))
+                                    dataReceiver.user = user                                    
                                 }                               
                             }
                         }

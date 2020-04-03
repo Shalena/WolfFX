@@ -5,8 +5,9 @@
 //  Created by Елена Острожинская on 2/29/20.
 //  Copyright © 2020 Елена Острожинская. All rights reserved.
 //
+import Foundation
 
-struct User: Codable {
+class User: NSObject, Codable {
     var billingServer: String?
     var  country: String?
     var currency: String?

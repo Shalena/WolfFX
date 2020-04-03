@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDesign()
+        presenter?.observe()
     }
  
      func setupDesign() {

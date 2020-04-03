@@ -25,7 +25,7 @@ class Assembler {
         register(NetworkAccess.self, name: nil) { _ in NetwokManager()}
         let store = Store<AppState>(reducer: appReducer, state: AppState(with: self))
         register(Store.self, name: nil) { _ in store }
-        let websocketManager = WSManager.init(with: store)
+        let websocketManager = WSManager()
         register(WebsocketAccess.self, name: nil) { _ in websocketManager }
         let repository = Repository()
         register(IsFirstLaunchProtocol.self, name: nil) { _ in repository}
