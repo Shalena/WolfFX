@@ -31,7 +31,7 @@ class DataReceiver: NSObject {
                 }
             }
     
-    var balance = ""
+    var realBalance = ""
     
     init(with assembler: Assembler) {
         self.assembler = assembler

@@ -9,14 +9,27 @@
 import Foundation
 
 class Converter {
-    func realBalance (from balance: String, currency: String, bonus: String) -> String {
-        if let balance = Float(balance), let bonus = Float(bonus), let currencySignString = Currency(rawValue: currency)?.sign {
-            let realBalanceString = String(balance + bonus)
-            let resultString = [currencySignString, realBalanceString].joined(separator: " ")            
-            return resultString
-        } else {
-            return ""
+    func realBalance (from balance: Double?, currencyString: String?, bonus: Double?) -> String {
+        var currencySign = ""
+        var balancePart: Double = 0.00
+        var bonusPart: Double = 0.00
+        
+        if let balance = balance {
+            balancePart = balance
         }
+        
+        if let bonus = bonus {
+            bonusPart = bonus
+        }
+        
+        if let currency = currencyString, let sign = Currency(rawValue: currency)?.sign {
+            currencySign = sign
+        }
+      
+        let realBalance = balancePart + bonusPart
+        let realBalanceString = String(realBalance)
+        let resultString = [currencySign, realBalanceString].joined(separator: " ")
+        return resultString
     }
 }
 

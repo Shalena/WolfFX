@@ -92,6 +92,9 @@ class WSManager: WebsocketAccess {
         if let bodyDictionary = json["body"] as? [String: Any] {
             let keys: [String] = bodyDictionary.map({ $0.key })
             print(keys)
+            var balance: Double?
+            var currency: String?
+            var bonus: Double?
             for key in keys {
                 let vertxResponseKey = VertxResponseKeys(rawValue: key)
                 switch vertxResponseKey {
@@ -108,15 +111,18 @@ class WSManager: WebsocketAccess {
                     case .username:
                         print(bodyDictionary[key])
                     case .balance:
-                        print(bodyDictionary[key])
+                        balance = bodyDictionary[key] as? Double
                     case .currency:
-                        print(bodyDictionary[key])
+                        currency = bodyDictionary[key] as? String
                     case .bonus:
-                        print(bodyDictionary[key])
-                    case .none:
-                    return
+                        balance = bodyDictionary[key] as? Double
+                case .none:
+                    continue
                 }
             }
+            let realBalanceString = Converter().realBalance(from: balance, currencyString: currency, bonus: bonus)
+            dataReceiver?.realBalance = realBalanceString
+            
         }
     }
     
