@@ -71,23 +71,23 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3501422C-BCFE-43C8-A9C1-84B7C99D6693"
+            uuid = "74DB5A17-D33D-4C03-80D6-96D7875FADC9"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WolfFX/Services/Converter.swift"
+            filePath = "WolfFX/Views/BaseHeaderView/BaseHeaderViewPresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "realBalance(from:currencyString:bonus:)"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "observe()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E6FA2DF5-64D3-4AA4-8F20-DD54880FA895"
+            uuid = "B699880F-D2D7-4441-B665-847A98C76482"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"

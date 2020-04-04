@@ -115,7 +115,7 @@ class WSManager: WebsocketAccess {
                     case .currency:
                         currency = bodyDictionary[key] as? String
                     case .bonus:
-                        balance = bodyDictionary[key] as? Double
+                        bonus = bodyDictionary[key] as? Double
                 case .none:
                     continue
                 }

@@ -27,7 +27,8 @@ class Converter {
         }
       
         let realBalance = balancePart + bonusPart
-        let realBalanceString = String(realBalance)
+        let realBalanceTruncate = realBalance.truncate(places: 2)
+        let realBalanceString = String(realBalanceTruncate)
         let resultString = [currencySign, realBalanceString].joined(separator: " ")
         return resultString
     }

@@ -63,6 +63,7 @@
 		81A4B35E2413ADDC004A02CB /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B35D2413ADDC004A02CB /* HomePresenter.swift */; };
 		81A4B3602413BCA5004A02CB /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B35F2413BCA5004A02CB /* HomeRouter.swift */; };
 		81A4B3622413BCC5004A02CB /* HomeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B3612413BCC5004A02CB /* HomeConfigurator.swift */; };
+		81AB9E9C2438B1FE00C44C02 /* BaseHeaderViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB9E9B2438B1FE00C44C02 /* BaseHeaderViewPresenter.swift */; };
 		81D882582409D4F30030C78B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D882572409D4F30030C78B /* Network.swift */; };
 		81D8825A2409D6AA0030C78B /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D882592409D6AA0030C78B /* Endpoints.swift */; };
 		81D8825D2409D8880030C78B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D8825C2409D8880030C78B /* User.swift */; };
@@ -157,6 +158,7 @@
 		81A4B35D2413ADDC004A02CB /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		81A4B35F2413BCA5004A02CB /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		81A4B3612413BCC5004A02CB /* HomeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeConfigurator.swift; sourceTree = "<group>"; };
+		81AB9E9B2438B1FE00C44C02 /* BaseHeaderViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHeaderViewPresenter.swift; sourceTree = "<group>"; };
 		81D882572409D4F30030C78B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		81D882592409D6AA0030C78B /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		81D8825C2409D8880030C78B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				8103B189242EC0AE008D7D5B /* BaseHeaderView.swift */,
 				8103B18D242EC3C7008D7D5B /* BaseHeaderView.xib */,
+				81AB9E9B2438B1FE00C44C02 /* BaseHeaderViewPresenter.swift */,
 			);
 			path = BaseHeaderView;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				81D882582409D4F30030C78B /* Network.swift in Sources */,
 				816C18152405623A00B1551A /* SettingsViewController.swift in Sources */,
 				8103B17A242E90C5008D7D5B /* SettingsPresenter.swift in Sources */,
+				81AB9E9C2438B1FE00C44C02 /* BaseHeaderViewPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
