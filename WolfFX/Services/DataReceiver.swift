@@ -10,8 +10,9 @@ import Foundation
 import Swinject
 
 class DataReceiver: NSObject {
-    private var assembler: Assembler?
-   @objc dynamic var user: User? {
+    static let shared = DataReceiver()
+    var assembler: Assembler?
+    @objc dynamic var user: User? {
                 set {
                     do {
                         let repository = try assembler?.resolve(UserAccessProtocol.self)
@@ -32,8 +33,4 @@ class DataReceiver: NSObject {
             }
     
     @objc dynamic var realBalance = ""
-    
-    init(with assembler: Assembler) {
-        self.assembler = assembler
-    }
 }

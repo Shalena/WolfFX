@@ -20,8 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let tabBarConfigurator = TabbarConfigurator()
             let assembler = Assembler()
             assembler.initFlow()
-            let dataReceiver = DataReceiver(with: assembler)
-            WSManager.shared.dataReceiver = dataReceiver
+            DataReceiver.shared.assembler = assembler
             WSManager.shared.connect()
             tabBarConfigurator.configure(tabBar: tabBar, with: 0, assembler: assembler)
             window.rootViewController = tabBar

@@ -30,8 +30,7 @@ let getBalanceJson: [String: Any] = ["type":"send", "address": "CurrentBalance",
 class WSManager: WebsocketAccess {
     static let shared = WSManager()
     var webSocketTask: URLSessionWebSocketTask?
-    var dataReceiver: DataReceiver?
-
+    let arrayOfAcceptors: [JsonAcception] = [UserJsonAcception(), BalanceJsonAcception()]
     lazy var decoder: JSONDecoder = {
            let decoder = JSONDecoder()
            decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -65,9 +64,14 @@ class WSManager: WebsocketAccess {
               case .string(let text):
                 print(text)
                 case .data(let data):
-                    if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
-                        print(json)
-                        self.check(json: json)
+                    if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
+                        let bodyDictionary = json["body"] as? [String: Any] {
+                        print(bodyDictionary)
+                        for acceptor in self.arrayOfAcceptors {
+                            if acceptor.acceptJson(json: bodyDictionary) {
+                                return
+                            }
+                        }
                     }
               @unknown default:
                 debugPrint("Unknown message")
@@ -77,65 +81,14 @@ class WSManager: WebsocketAccess {
     }
     
     func getUserInfo() {
-        if let messageString = jsonToString(json: userInfoJson) {
+        if let messageString = Converter().jsonToString(json: userInfoJson) {
             send(messageString: messageString)
         }
     }
   
     func getBalance() {
-        if let messageString = jsonToString(json: getBalanceJson) {
+        if let messageString = Converter().jsonToString(json: getBalanceJson) {
             send(messageString: messageString)
         }
     }
-    
-    func check(json: JSON) {
-        if let bodyDictionary = json["body"] as? [String: Any] {
-            let keys: [String] = bodyDictionary.map({ $0.key })
-            print(keys)
-            var balance: Double?
-            var currency: String?
-            var bonus: Double?
-            for key in keys {
-                let vertxResponseKey = VertxResponseKeys(rawValue: key)
-                switch vertxResponseKey {
-                    case .profile:
-                        if let userjson = bodyDictionary[VertxResponseKeys.profile.rawValue] as? JSON {
-                            let userjsonstring = jsonToString(json: userjson)
-                            if let jsonData = userjsonstring?.data(using: .utf8){
-                                if let user = try? JSONDecoder().decode(User.self, from: jsonData) {
-                                    print(user)
-                                    dataReceiver?.user = user
-                                }                               
-                            }
-                        }
-                    case .username:
-                        print(bodyDictionary[key])
-                    case .balance:
-                        balance = bodyDictionary[key] as? Double
-                    case .currency:
-                        currency = bodyDictionary[key] as? String
-                    case .bonus:
-                        bonus = bodyDictionary[key] as? Double
-                case .none:
-                    continue
-                }
-            }
-            let realBalanceString = Converter().realBalance(from: balance, currencyString: currency, bonus: bonus)
-            dataReceiver?.realBalance = realBalanceString
-            
-        }
-    }
-    
-    func jsonToString(json: JSON) -> String? {
-        do {
-            let data1 =  try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted) // first of all convert json to the data
-            let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
-            return (convertedString) // <-- here is ur string
-
-        } catch let myJSONError {
-            print(myJSONError)
-        }
-        return nil
-    }
-
 }

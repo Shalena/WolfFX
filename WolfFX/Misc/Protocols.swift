@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol JsonAcception {
+    func acceptJson(json: JSON) -> Bool
+}
+
 protocol NavigationDesign: class {
     func setupBaseNavigationDesign()
 }

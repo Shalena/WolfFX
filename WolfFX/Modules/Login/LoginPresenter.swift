@@ -21,7 +21,7 @@ class LoginPresenter: NSObject, LoginEvents {
         self.networkManager = networkManager
         self.websocketManager = WSManager.shared
         self.router = router
-        dataReceiver = WSManager.shared.dataReceiver
+        dataReceiver = DataReceiver.shared
     }
 
     func observe() {
@@ -36,6 +36,7 @@ class LoginPresenter: NSObject, LoginEvents {
         networkManager?.login(email: email, password: password, success: { (successfully: Bool) in
                     if successfully {
                         self.websocketManager?.connect()
+                        self.websocketManager?.getUserInfo()
                         self.websocketManager?.getBalance()
                     }
                 }, failure: { [weak self] error in

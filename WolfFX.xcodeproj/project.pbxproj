@@ -53,6 +53,8 @@
 		817324C7243674EB000DFB86 /* DataReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817324C6243674EB000DFB86 /* DataReceiver.swift */; };
 		817324C92437CC4B000DFB86 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817324C82437CC4B000DFB86 /* Converter.swift */; };
 		817324CB2437CFE4000DFB86 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817324CA2437CFE4000DFB86 /* Currency.swift */; };
+		817E5D29243B73FE0088E60A /* UserJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817E5D28243B73FE0088E60A /* UserJsonAcception.swift */; };
+		817E5D2C243B74EA0088E60A /* BalanceJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817E5D2B243B74EA0088E60A /* BalanceJsonAcception.swift */; };
 		8184269E240D534200713BF5 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184269D240D534200713BF5 /* LoginPresenter.swift */; };
 		81A4B35024105D98004A02CB /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B34F24105D98004A02CB /* SignupViewController.swift */; };
 		81A4B352241129DB004A02CB /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B351241129DB004A02CB /* Assembler.swift */; };
@@ -148,6 +150,8 @@
 		817324C6243674EB000DFB86 /* DataReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceiver.swift; sourceTree = "<group>"; };
 		817324C82437CC4B000DFB86 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		817324CA2437CFE4000DFB86 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		817E5D28243B73FE0088E60A /* UserJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJsonAcception.swift; sourceTree = "<group>"; };
+		817E5D2B243B74EA0088E60A /* BalanceJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceJsonAcception.swift; sourceTree = "<group>"; };
 		8184269D240D534200713BF5 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		81A4B34F24105D98004A02CB /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		81A4B351241129DB004A02CB /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
@@ -409,6 +413,15 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		817E5D2A243B74C90088E60A /* JSONAcception */ = {
+			isa = PBXGroup;
+			children = (
+				817E5D28243B73FE0088E60A /* UserJsonAcception.swift */,
+				817E5D2B243B74EA0088E60A /* BalanceJsonAcception.swift */,
+			);
+			path = JSONAcception;
+			sourceTree = "<group>";
+		};
 		81A4B34E24105D62004A02CB /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,6 +436,7 @@
 		81D882562409D4C60030C78B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				817E5D2A243B74C90088E60A /* JSONAcception */,
 				81D882572409D4F30030C78B /* Network.swift */,
 				81D882592409D6AA0030C78B /* Endpoints.swift */,
 				81A4B351241129DB004A02CB /* Assembler.swift */,
@@ -713,6 +727,7 @@
 				81A4B35C2413A527004A02CB /* BaseRouter.swift in Sources */,
 				81D8825F2409D9070030C78B /* WolfError.swift in Sources */,
 				8145C8A52405DD8300414AE2 /* Design.swift in Sources */,
+				817E5D29243B73FE0088E60A /* UserJsonAcception.swift in Sources */,
 				817324C92437CC4B000DFB86 /* Converter.swift in Sources */,
 				81A4B35A2413A4BC004A02CB /* LoginRouter.swift in Sources */,
 				81A4B35024105D98004A02CB /* SignupViewController.swift in Sources */,
@@ -727,6 +742,7 @@
 				811ED6C7241935530002F559 /* CheckboxButton.swift in Sources */,
 				8103B181242EACD7008D7D5B /* ProfileDetailsViewController.swift in Sources */,
 				8103B1922430CC18008D7D5B /* SubmitButton.swift in Sources */,
+				817E5D2C243B74EA0088E60A /* BalanceJsonAcception.swift in Sources */,
 				8103B17C242E90E4008D7D5B /* SettingsConfigurator.swift in Sources */,
 				81A4B354241129FC004A02CB /* Repository.swift in Sources */,
 				8103B18A242EC0AE008D7D5B /* BaseHeaderView.swift in Sources */,

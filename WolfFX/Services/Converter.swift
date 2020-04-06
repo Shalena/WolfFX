@@ -32,5 +32,17 @@ class Converter {
         let resultString = [currencySign, realBalanceString].joined(separator: " ")
         return resultString
     }
+    
+    func jsonToString(json: JSON) -> String? {
+        do {
+            let data1 =  try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted) // first of all convert json to the data
+            let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
+            return (convertedString) // <-- here is ur string
+
+        } catch let myJSONError {
+            print(myJSONError)
+        }
+        return nil
+    }
 }
 
