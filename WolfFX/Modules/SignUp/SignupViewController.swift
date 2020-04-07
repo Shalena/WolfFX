@@ -8,8 +8,6 @@
 
 import UIKit
 
-let currencies = ["United States Dollar", "Euro", "British Pound"]
-
 class SignupViewController: UIViewController, SignupViewProtocol {
     
     @IBOutlet weak var firstnameTextfield: UITextField!
@@ -22,6 +20,7 @@ class SignupViewController: UIViewController, SignupViewProtocol {
     
     
     var presenter: SignupEvents?
+    let currencies = Currency.all
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +32,7 @@ class SignupViewController: UIViewController, SignupViewProtocol {
 
         currencyTextField.delegate = self
         currencyTextField.inputView = pickerView
-        currencyTextField.text = currencies[0]
+        currencyTextField.text = Currency.unitedStatesDollar.title
         presenter?.observe()
     }
     
@@ -76,11 +75,11 @@ extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return currencies[row]
+        return currencies[row].title
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        currencyTextField.text = currencies[row]
+        currencyTextField.text = currencies[row].title
     }
 }
 
