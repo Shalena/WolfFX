@@ -87,6 +87,7 @@ protocol HomeViewProtocol {
 
 protocol HomeEvents {
     func setupLoginOverlay()
+    func homeViewIsReady()
 }
 
 protocol HomeTransitions {

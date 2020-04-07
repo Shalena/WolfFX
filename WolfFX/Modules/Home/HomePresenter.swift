@@ -21,5 +21,11 @@ class HomePresenter: HomeEvents {
     func setupLoginOverlay() {
         router?.setupLoginOverlay()
     }
+    
+    func homeViewIsReady() {
+        WSManager.shared.connect()
+        WSManager.shared.getBalance()
+        WSManager.shared.readAllStatuses()
+    }
 }
     

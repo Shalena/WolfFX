@@ -16,11 +16,11 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol {
         tabBarController?.tabBar.isHidden = true
         setupLoginOverlay()
         setupBaseNavigationDesign()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        WSManager.shared.connect()
-        WSManager.shared.getBalance()
+        presenter?.homeViewIsReady()
     }
     
     private func setupLoginOverlay() {
