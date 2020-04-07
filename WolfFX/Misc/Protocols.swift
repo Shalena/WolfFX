@@ -84,7 +84,6 @@ protocol SignupTransitions {
 
 protocol HomeViewProtocol {
     var presenter: HomeEvents? {get set}
-    func removeOverlay()
 }
 
 protocol HomeEvents {

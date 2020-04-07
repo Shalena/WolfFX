@@ -21,6 +21,7 @@ class SignupViewController: UIViewController, SignupViewProtocol {
     
     var presenter: SignupEvents?
     let currencies = Currency.all
+    var selectedCurrency = Currency.greatBritainPound
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,10 +57,10 @@ class SignupViewController: UIViewController, SignupViewProtocol {
         let password = passwordTextfield.text
         let registrationForm = RegistrationForm(firstName: firstName,
                                                     email: email,
-                                                    emails: [(email ?? "")] ?? [String](),
+                                                    emails: [(email ?? "")] ,
                                                     password: password,
                                                     isTerms: termsButton.isSelected,
-                                                    currency: "EUR",
+                                                    currency: selectedCurrency.rawValue,
                                                     tenantId: "00000000-0000-0000-0000-000000000000")
         presenter?.registerUserWith(form: registrationForm)
     }
@@ -80,6 +81,7 @@ extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         currencyTextField.text = currencies[row].title
+        selectedCurrency = currencies[row]
     }
 }
 

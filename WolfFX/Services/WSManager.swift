@@ -25,7 +25,7 @@ protocol WebsocketAccess {
 
 let baseUrlString = "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket"
 let userInfoJson: [String: Any] = ["type": "send", "address": "client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
-let getBalanceJson: [String: Any] = ["type":"send", "address": "CurrentBalance", "headers": [String:String](), "body": ["currency":"GBP"], "replyAddress": ""]
+let getBalanceJson: [String: Any] = ["type":"send", "address": "CurrentBalance", "headers": [String:String](), "body": ["currency": "%@"], "replyAddress": ""]
 let readAllStatusesJson: [String: Any] = ["type":"send", "address": "ReadAllStatuses", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 
 
@@ -90,8 +90,11 @@ class WSManager: WebsocketAccess {
     }
   
     func getBalance() {
+        let user = DataReceiver.shared.user
+        guard let currency = user?.currency else { return }
         if let messageString = Converter().jsonToString(json: getBalanceJson) {
-            send(messageString: messageString)
+            let messageStringWithFormat = String(format: messageString, currency)
+            send(messageString: messageStringWithFormat)
         }
     }
     
