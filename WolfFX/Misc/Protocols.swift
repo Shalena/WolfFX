@@ -72,6 +72,7 @@ protocol SignupViewProtocol: ShowErrorCapable {
 }
 
 protocol SignupEvents {
+    func observe()
     func registerUserWith(form: RegistrationForm)
     func userHadCreated()
 }
@@ -83,6 +84,7 @@ protocol SignupTransitions {
 
 protocol HomeViewProtocol {
     var presenter: HomeEvents? {get set}
+    func removeOverlay()
 }
 
 protocol HomeEvents {

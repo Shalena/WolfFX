@@ -30,6 +30,7 @@ class SignupPresenter: NSObject, SignupEvents {
         self.view = view
         self.networkManager = networkManager
         self.websocketManager = WSManager.shared
+        dataReceiver = DataReceiver.shared
     }
     
     func observe() {

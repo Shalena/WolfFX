@@ -8,7 +8,7 @@
 
 import UIKit
 
-let currencies = ["Euro", "United States Dollar", "British Pound"]
+let currencies = ["United States Dollar", "Euro", "British Pound"]
 
 class SignupViewController: UIViewController, SignupViewProtocol {
     
@@ -33,6 +33,8 @@ class SignupViewController: UIViewController, SignupViewProtocol {
 
         currencyTextField.delegate = self
         currencyTextField.inputView = pickerView
+        currencyTextField.text = currencies[0]
+        presenter?.observe()
     }
     
     func setupDesign() {

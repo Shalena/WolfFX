@@ -26,4 +26,14 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol {
     private func setupLoginOverlay() {
         presenter?.setupLoginOverlay()
     }
+    
+    func removeOverlay() {
+//        for view in self.view.subviews {
+//            if view.isKind(of: LoginViewController.self) {
+//                view.removeFromSuperview()
+//                tabBarController?.tabBar.isHidden = false
+//            }
+//        }
+        
+    }
 }

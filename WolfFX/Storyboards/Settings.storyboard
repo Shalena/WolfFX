@@ -276,9 +276,9 @@
                                                     <constraint firstAttribute="width" secondItem="Zw1-vp-rBq" secondAttribute="height" multiplier="1:1" id="bXh-tF-Mk2"/>
                                                 </constraints>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click here to accept our Client  Agreement" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iaa-nc-LSt">
-                                                <rect key="frame" x="70" y="605.5" width="314" height="19.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click here to accept our Client  Agreement" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iaa-nc-LSt">
+                                                <rect key="frame" x="70" y="580" width="314" height="70"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -322,6 +322,7 @@
                                             <constraint firstItem="OSx-Ar-lAP" firstAttribute="top" secondItem="1ra-1m-F6Q" secondAttribute="bottom" constant="10" id="tp7-oe-Nsw"/>
                                             <constraint firstAttribute="trailing" secondItem="iaa-nc-LSt" secondAttribute="trailing" constant="30" id="v8g-Dp-nBO"/>
                                             <constraint firstAttribute="trailing" secondItem="Qf4-Jc-dXu" secondAttribute="trailing" constant="30" id="v93-1u-9F5"/>
+                                            <constraint firstItem="iaa-nc-LSt" firstAttribute="bottom" secondItem="Zw1-vp-rBq" secondAttribute="bottom" constant="20" id="wMm-uQ-QRK"/>
                                             <constraint firstItem="Acx-9G-MlK" firstAttribute="leading" secondItem="w5M-Wk-0EP" secondAttribute="leading" constant="30" id="yJg-9n-sBZ"/>
                                         </constraints>
                                     </view>

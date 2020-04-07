@@ -27,11 +27,11 @@ enum FieldsValidationType {
     var regEx: String {
         switch self {
         case .firstName:
-            return "^[a-zA-Z](([’,. -][a-zA-Z ])?[a-zA-Z])+$"
+            return "[a-zA-Z0-9]"
         case .email:
             return "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         case .password:
-            return "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$"
+            return "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,16}$"
         }
     }
 }
@@ -41,11 +41,11 @@ enum CheckboxesValidationType {
 }
 
 enum AlertMessages: String {
-    case firstNameInvalid = "First name should be at least 2 characters long and consist of letters"
+    case firstNameInvalid = "First name should not contain punctuation characters"
     case firstNameEpmty = "First name should not be empty"
     case emailInvalid = "Email should be valid"
     case emailEmpty = "Email should not be empty"
-    case passwordInvalid = "Password must be at least 8 characters long, at least 1 lowercase letter, at least 1 uppercase letter, no punctuation characters, at least 1 number"
+    case passwordInvalid = "Password length should include from 8 to 16 characters. At least one letter and number"
     case passwordEmpty = "Password should not be empty"
     case checkbox = "Please accept out terms of use and privacy policy"
    
