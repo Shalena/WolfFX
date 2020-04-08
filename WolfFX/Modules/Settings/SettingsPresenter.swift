@@ -15,4 +15,8 @@ class SettingsPresenter: SettingsEvents {
     func profileChosen() {
         router?.goToProfile()
     }
+    
+    func logout() {
+        router?.logout()
+    }
 }

@@ -103,10 +103,12 @@ protocol SettingsViewProtocol {
 
 protocol SettingsEvents {
     func profileChosen()
+    func logout()
 }
 
 protocol SettingsTransitions {
-     func goToProfile()
+    func goToProfile()
+    func logout()
 }
 
 // Profile details Screen

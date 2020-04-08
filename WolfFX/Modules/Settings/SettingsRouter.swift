@@ -16,4 +16,8 @@ class SettingsRouter: BaseRouter, SettingsTransitions {
             sourceController.navigationController?.pushViewController(profileDetailsController, animated: true)
         }
     }
+    
+    func logout() {
+        
+    }
 }
