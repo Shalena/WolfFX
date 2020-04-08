@@ -18,6 +18,10 @@ class SettingsRouter: BaseRouter, SettingsTransitions {
     }
     
     func logout() {
-        
+        DataReceiver.shared.user = nil
+        if let home = sourceController.tabBarController?.children[0].children[0] as? HomeViewController {
+            sourceController.tabBarController?.selectedIndex = 0
+            home.setupLoginOverlay()
+        }
     }
 }

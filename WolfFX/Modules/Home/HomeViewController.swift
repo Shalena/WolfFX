@@ -22,7 +22,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol {
         presenter?.homeViewIsReady()
     }
     
-    private func setupLoginOverlay() {
+     func setupLoginOverlay() {
         presenter?.setupLoginOverlay()
     }
 }

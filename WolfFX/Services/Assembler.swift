@@ -8,25 +8,18 @@
 
 import Foundation
 import Swinject
-import ReSwift
 
 class Assembler {
     var container = Container()
     var user: User? {
            get {
-               return store.state.cState.customer
+                DataReceiver.shared.user
            }
        }
-    var store: Store<AppState> {
-           return resolveForced(Store.self)
-       }
+
     
     func initFlow() {
         register(NetworkAccess.self, name: nil) { _ in NetwokManager()}
-        let store = Store<AppState>(reducer: appReducer, state: AppState(with: self))
-        register(Store.self, name: nil) { _ in store }
-        let websocketManager = WSManager()
-        register(WebsocketAccess.self, name: nil) { _ in websocketManager }
         let repository = Repository()
         register(IsFirstLaunchProtocol.self, name: nil) { _ in repository}
         register(UserAccessProtocol.self, name: nil) { _ in repository }
