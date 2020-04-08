@@ -23,7 +23,6 @@ class HomePresenter: HomeEvents {
     }
     
     func homeViewIsReady() {
-        WSManager.shared.connect()
         WSManager.shared.getBalance()
         WSManager.shared.readAllStatuses()
     }

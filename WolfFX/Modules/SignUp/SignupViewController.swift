@@ -62,7 +62,7 @@ class SignupViewController: UIViewController, SignupViewProtocol {
                                                     isTerms: termsButton.isSelected,
                                                     currency: selectedCurrency.rawValue,
                                                     tenantId: "00000000-0000-0000-0000-000000000000")
-        presenter?.registerUserWith(form: registrationForm)
+        presenter?.registerUserWith(form: registrationForm, confirmPasswordString: confirmPasswordTextfield.text)
     }
 }
 

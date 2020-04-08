@@ -41,8 +41,10 @@ class SignupPresenter: NSObject, SignupEvents {
                   }
        }
     
-    func registerUserWith(form: RegistrationForm) {
-        if validatedSuccessfully(form: form) {
+    func registerUserWith(form: RegistrationForm, confirmPasswordString: String?) {
+        //confirmPassword is not send to the backend, so it is separate from the common form
+        
+        if validatedSuccessfully(form: form) && passwordsMatch(password: form.password ?? "", confirmPassword: confirmPasswordString ?? "") {
             networkManager.signup(firstname: form.firstName ?? "", currency: form.currency ?? "", emails: form.emails ?? [String](), password: form.password ?? "", tenantId: form.tenantId ?? "", username: form.email ?? "", success: { (successfully: Bool) in
                     if successfully {
                         self.websocketManager.connect()
@@ -58,6 +60,19 @@ class SignupPresenter: NSObject, SignupEvents {
     
     func userHadCreated() {
         router?.userHadCreated()
+    }
+    
+    func passwordsMatch(password: String, confirmPassword: String) -> Bool {
+        let registrationValidation = Validation()
+        let response = registrationValidation.passwordsMatch(password: password, confirmPassword: confirmPassword)
+        switch response {
+        case .success:
+            return true
+        case .failure(_, let message):
+            let wolfError = WolfError(description: message.rawValue)
+            view?.showErrorAlertWith(error: wolfError)
+            return false
+        }
     }
     
     func validatedSuccessfully(form: RegistrationForm) -> Bool {

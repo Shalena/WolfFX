@@ -48,6 +48,7 @@ enum AlertMessages: String {
     case passwordInvalid = "Password length should include from 8 to 16 characters. At least one letter and number"
     case passwordEmpty = "Password should not be empty"
     case checkbox = "Please accept out terms of use and privacy policy"
+    case passwordsDontMatch = "Passwords don't match"
    
     func localized() -> String {
         return NSLocalizedString(self.rawValue, comment: "")
@@ -118,5 +119,13 @@ class Validation: NSObject {
             }
         }
          return .success
+    }
+    
+    func passwordsMatch(password: String, confirmPassword: String) -> Valid {
+        if password == confirmPassword {
+            return .success
+        } else {
+            return .failure(.error,AlertMessages.passwordsDontMatch)
+        }
     }
 }

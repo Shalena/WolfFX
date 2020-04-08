@@ -76,11 +76,11 @@ class WSManager: WebsocketAccess {
                         }
                     }
               @unknown default:
-                debugPrint("Unknown message")
-              }
-              self.connect()
+              debugPrint("Unknown message")
+            }
         }
-      }
+        self.receiveData()
+      }          
     }
     
     func getUserInfo() {

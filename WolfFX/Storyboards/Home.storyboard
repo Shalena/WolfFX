@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQu-Fm-M9E" customClass="BaseHeaderView" customModule="WolfFX" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="100"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="m5g-4M-4dP"/>
@@ -26,7 +26,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gQu-Fm-M9E" firstAttribute="leading" secondItem="hWp-1Q-FvU" secondAttribute="leading" id="867-dH-TTf"/>
-                            <constraint firstItem="gQu-Fm-M9E" firstAttribute="top" secondItem="hWp-1Q-FvU" secondAttribute="top" id="Whf-NX-Mnv"/>
+                            <constraint firstItem="gQu-Fm-M9E" firstAttribute="top" secondItem="hWp-1Q-FvU" secondAttribute="top" constant="20" id="Whf-NX-Mnv"/>
                             <constraint firstItem="hWp-1Q-FvU" firstAttribute="trailing" secondItem="gQu-Fm-M9E" secondAttribute="trailing" id="ftQ-Jp-980"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hWp-1Q-FvU"/>

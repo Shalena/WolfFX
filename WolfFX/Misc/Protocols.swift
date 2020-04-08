@@ -73,7 +73,7 @@ protocol SignupViewProtocol: ShowErrorCapable {
 
 protocol SignupEvents {
     func observe()
-    func registerUserWith(form: RegistrationForm)
+    func registerUserWith(form: RegistrationForm, confirmPasswordString: String?)
     func userHadCreated()
 }
 
