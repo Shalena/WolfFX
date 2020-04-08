@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="1422"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7GO-JZ-0kf" userLabel="Container View">
-                                        <rect key="frame" x="0.0" y="-78" width="414" height="1500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hvd-Dh-mFn">
                                                 <rect key="frame" x="10" y="0.0" width="394" height="500"/>
@@ -257,7 +257,7 @@
                                     <constraint firstItem="7GO-JZ-0kf" firstAttribute="leading" secondItem="Uy1-Wv-4Oa" secondAttribute="leading" id="LDJ-4L-q5P"/>
                                     <constraint firstItem="7GO-JZ-0kf" firstAttribute="width" secondItem="Uy1-Wv-4Oa" secondAttribute="width" id="Zo0-m4-Ztx"/>
                                     <constraint firstAttribute="trailing" secondItem="7GO-JZ-0kf" secondAttribute="trailing" id="bXk-Vd-3cn"/>
-                                    <constraint firstItem="7GO-JZ-0kf" firstAttribute="top" secondItem="Uy1-Wv-4Oa" secondAttribute="top" constant="-78" id="kUx-oW-cmF"/>
+                                    <constraint firstItem="7GO-JZ-0kf" firstAttribute="top" secondItem="Uy1-Wv-4Oa" secondAttribute="top" id="kUx-oW-cmF"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="P7g-uf-MYe"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="NR4-GK-CLI"/>
