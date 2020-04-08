@@ -97,7 +97,7 @@ protocol HomeTransitions {
 
 // Settings Screen
 
-protocol SettingsViewProtocol {
+protocol SettingsViewProtocol: ShowErrorCapable {
     var presenter: SettingsEvents? {get set}
 }
 

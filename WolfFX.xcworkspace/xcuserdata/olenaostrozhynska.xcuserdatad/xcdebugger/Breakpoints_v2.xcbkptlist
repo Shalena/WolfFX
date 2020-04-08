@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "043E3B01-F61C-41CD-9250-5231790569AF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WolfFX/Services/Network.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "performRequestSuccessfully(endpoint:success:failure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "49C40A9F-2E52-4E22-A04E-C1908C10144E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -176,6 +160,70 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
             endingLineNumber = "21"
+            landmarkName = "logout()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9C320842-7B54-4421-B2C0-4C9AEEDFB27C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WolfFX/Modules/Settings/SettingsPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "logout()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9C320842-7B54-4421-B2C0-4C9AEEDFB27C - cc88713a55109809"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in WolfFX.SettingsPresenter.logout() -&gt; ()"
+                  moduleName = "WolfFX"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olenaostrozhynska/Projects/WolfFX/WolfFX/Modules/Settings/SettingsPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "9C320842-7B54-4421-B2C0-4C9AEEDFB27C - 8bfbe7a546529958"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Optional&lt;WolfFX.WolfError&gt;) -&gt; () in WolfFX.SettingsPresenter.logout() -&gt; ()"
+                  moduleName = "WolfFX"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olenaostrozhynska/Projects/WolfFX/WolfFX/Modules/Settings/SettingsPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "881350C1-0B17-4B7C-A836-35E03BD2C566"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WolfFX/Modules/Settings/SettingsPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "logout()"
             landmarkType = "7">
          </BreakpointContent>

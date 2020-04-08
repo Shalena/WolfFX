@@ -11,11 +11,10 @@ import Swinject
 
 class SettingsConfigurator {
     func configure(viewController: SettingsViewController, with assembler: Assembler) {
-        let presenter = SettingsPresenter()
+        let networkManager = assembler.resolveForced(NetworkAccess.self)
         let router = SettingsRouter(with: viewController, assembler: assembler)
         router.sourceController = viewController
-        presenter.router = router
+        let presenter = SettingsPresenter(with: viewController, networkManager: networkManager, router: router)
         viewController.presenter = presenter
-        presenter.view = viewController
     }
 }

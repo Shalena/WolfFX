@@ -19,6 +19,7 @@ enum httpMethod {
 enum Endpoint {
     case login(email: String, password: String)
     case signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String)
+    case logout
     
     var path: String {
     switch self {
@@ -26,12 +27,14 @@ enum Endpoint {
         return "/mt1/login"
     case .signup:
         return "/mt1/createUser"
+    case .logout:
+        return "/mt1/logout"
         }
     }
         
     var headers: Headers? {
     switch self {
-    case .login, .signup:
+    case .login, .signup, .logout:
         return nil
         }
     }
@@ -48,12 +51,14 @@ enum Endpoint {
             "username":username,
             "emails": emails,
             "tenantId":tenantId]
+    case .logout:
+        return nil
         }
     }
         
     var method: httpMethod {
     switch self {
-    case .login, .signup:
+    case .login, .signup, .logout:
         return .post
         }
     }

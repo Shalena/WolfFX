@@ -19,6 +19,7 @@ enum BaseUrl: String {
 protocol NetworkAccess {
   func login(email: String, password: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
+  func logout(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
 }
 
 class NetwokManager: NetworkAccess {
@@ -37,6 +38,14 @@ class NetwokManager: NetworkAccess {
             failure (error)
         })
     }
+    
+    func logout(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)  {
+           performRequestSuccessfully(endpoint: Endpoint.logout, success: { (successfully: Bool) in
+               success (successfully)
+           }, failure: { error in
+               failure (error)
+           })
+       }
     
  lazy var networking: Networking = {
         let networking = Networking(baseURL: baseUrl)
