@@ -13,6 +13,7 @@ class HomeRouter: BaseRouter, HomeTransitions {
     func setupLoginOverlay() {
         let loginConfigurator = LoginConfigurator()
         if let loginController = R.storyboard.login.loginViewController() {
+             sourceController.tabBarController?.tabBar.isHidden = true
              let showTabbarCallback: ShowTabbarCallback = {
                 self.sourceController.tabBarController?.tabBar.isHidden = false
              }

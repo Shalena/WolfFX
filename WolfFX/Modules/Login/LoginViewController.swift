@@ -22,7 +22,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
         setupDesign()
         presenter?.observe()
     }
- 
+
      func setupDesign() {
         closeButton.layer.cornerRadius = 0.5 * closeButton.bounds.size.width
         closeButton.clipsToBounds = true

@@ -13,7 +13,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.tabBar.isHidden = true
         setupLoginOverlay()
         setupBaseNavigationDesign()
     }

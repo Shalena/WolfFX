@@ -11,10 +11,8 @@ import Swinject
 
 class ProfileDetailsConfigurator {
     func configure(viewController: ProfileDetailsViewController, with assembler: Assembler) {
-        let websocketManager = assembler.resolveForced(WebsocketAccess.self)
         let router = ProfileDetailsRouter(with: viewController, assembler: assembler)
-        let presenter = ProfileDetailsPresenter.init(with: websocketManager, currentUser: assembler.user, router: router)
+        let presenter = ProfileDetailsPresenter(with: viewController, currentUser: assembler.user, router: router)
         viewController.presenter = presenter
-        presenter.view = viewController
     }
 }

@@ -10,7 +10,7 @@
         <!--Login View Controller-->
         <scene sceneID="ZCD-BY-J6F">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="Q5W-Fh-XNH" customClass="LoginViewController" customModule="WolfFX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" hidesBottomBarWhenPushed="YES" id="Q5W-Fh-XNH" customClass="LoginViewController" customModule="WolfFX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HKk-hb-cIM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

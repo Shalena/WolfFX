@@ -25,10 +25,11 @@ var router: ProfileDetailsTransitions?
 var websocketManager: WebsocketAccess
 var currentUser: User?
 
-    init (with websocketManager: WebsocketAccess, currentUser: User?, router: ProfileDetailsTransitions) {
-        self.websocketManager = websocketManager
+    init (with view: ProfileDetailsViewProtocol, currentUser: User?, router: ProfileDetailsTransitions) {
+        self.view = view
         self.currentUser = currentUser
         self.router = router
+        websocketManager = WSManager.shared
     }
     
     func textFor(textField: UserDetailsTextFields) -> String {
