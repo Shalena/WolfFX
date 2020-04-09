@@ -276,6 +276,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
+                        <outlet property="loginAndSighOutLabel" destination="92w-93-z5B" id="iWd-4a-tAY"/>
                         <outlet property="profileDataView" destination="2T9-8M-RvT" id="y7q-Sd-sY2"/>
                         <outlet property="signOutView" destination="QPe-qb-eBN" id="V5N-T6-Pdj"/>
                     </connections>

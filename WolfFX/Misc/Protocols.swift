@@ -99,11 +99,13 @@ protocol HomeTransitions {
 
 protocol SettingsViewProtocol: ShowErrorCapable {
     var presenter: SettingsEvents? {get set}
+    func updateloginAndSighOutLabel(with text: String)
 }
 
 protocol SettingsEvents {
+    func settingsViewIsReady()
     func profileChosen()
-    func logout()
+    func lastSectionTapped()
 }
 
 protocol SettingsTransitions {
