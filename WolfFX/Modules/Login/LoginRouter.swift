@@ -9,8 +9,7 @@
 import Foundation
 
 class LoginRouter: BaseRouter, LoginTransitions {
-    var callback: ShowTabbarCallback?
-    
+  
     func signUpPressed () {
         if let signUpController = R.storyboard.login.signupViewController() {
             let configurator = SignupConfigurator()
@@ -27,7 +26,6 @@ class LoginRouter: BaseRouter, LoginTransitions {
        DispatchQueue.main.async {
             self.sourceController.removeFromParent()
             self.sourceController.view.removeFromSuperview()
-            self.callback?()
         }
     }
 }

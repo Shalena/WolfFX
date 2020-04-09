@@ -18,7 +18,6 @@ class SignupViewController: UIViewController, SignupViewProtocol {
     @IBOutlet weak var termsButton: CheckboxButton!
     @IBOutlet weak var saveButton: UIButton!
     
-    
     var presenter: SignupEvents?
     let currencies = Currency.all
     var selectedCurrency = Currency.greatBritainPound

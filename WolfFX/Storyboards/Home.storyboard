@@ -10,7 +10,7 @@
         <!--Home View Controller-->
         <scene sceneID="vOF-Zs-qAM">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="fp4-bO-3ng" customClass="HomeViewController" customModule="WolfFX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" hidesBottomBarWhenPushed="YES" id="fp4-bO-3ng" customClass="HomeViewController" customModule="WolfFX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WwM-6Q-IcY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

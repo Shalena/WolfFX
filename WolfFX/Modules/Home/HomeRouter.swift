@@ -13,11 +13,7 @@ class HomeRouter: BaseRouter, HomeTransitions {
     func setupLoginOverlay() {
         let loginConfigurator = LoginConfigurator()
         if let loginController = R.storyboard.login.loginViewController() {
-             sourceController.tabBarController?.tabBar.isHidden = true
-             let showTabbarCallback: ShowTabbarCallback = {
-                self.sourceController.tabBarController?.tabBar.isHidden = false
-             }
-             loginConfigurator.configure(viewController: loginController, with: assembler, callBack: showTabbarCallback)
+             loginConfigurator.configure(viewController: loginController, with: assembler)
              loginController.willMove(toParent: sourceController)
              sourceController.view.addSubview(loginController.view)
              sourceController.addChild(loginController)
