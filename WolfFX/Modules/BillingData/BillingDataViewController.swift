@@ -10,6 +10,13 @@ import UIKit
 
 class BillingDataViewController: UIViewController, NavigationDesign {
     
+    @IBOutlet weak var realMoneyValue: UILabel!
+    @IBOutlet weak var bonusesValue: UILabel!
+    @IBOutlet weak var amauntPendingWithdrawPendingValue
+    : UILabel!
+    @IBOutlet weak var dateFromValue: UILabel!
+    @IBOutlet weak var dateToValue: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBaseNavigationDesign()
