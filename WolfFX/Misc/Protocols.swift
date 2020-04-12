@@ -80,6 +80,7 @@ protocol SignupEvents {
 protocol SignupTransitions {
     func userHadCreated()
 }
+
 // Home Screen
 
 protocol HomeViewProtocol {
@@ -93,6 +94,20 @@ protocol HomeEvents {
 
 protocol HomeTransitions {
      func setupLoginOverlay()
+}
+
+// Billing Data Screen
+
+protocol BillingDataViewProtocol {
+    var presenter: BillingDataEvents? {get set}
+}
+
+protocol BillingDataEvents {
+   
+}
+
+protocol BillingDataTransitions {
+     
 }
 
 // Settings Screen

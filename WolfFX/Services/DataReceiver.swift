@@ -32,5 +32,5 @@ class DataReceiver: NSObject {
                 }
             }
     
-    @objc dynamic var realBalance = ""
+    @objc dynamic var realBalanceString = ""
 }

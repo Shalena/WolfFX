@@ -29,7 +29,7 @@ class BaseHeaderView: UIView {
         contentView.fixInView(self)
         presenter.view = self
         presenter.observe()
-        realbalanceLabel.text = DataReceiver.shared.realBalance
+        realbalanceLabel.text = DataReceiver.shared.realBalanceString
     }
     
     func updateWith(realBalance: String) {

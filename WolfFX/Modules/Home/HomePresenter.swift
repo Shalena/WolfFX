@@ -23,8 +23,8 @@ class HomePresenter: HomeEvents {
     }
     
     func homeViewIsReady() {
-        WSManager.shared.getBalance()
-        WSManager.shared.readAllStatuses()
+ //       WSManager.shared.getBalance()
+ //       WSManager.shared.readAllStatuses()
     }
 }
     

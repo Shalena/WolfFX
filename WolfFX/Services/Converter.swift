@@ -9,7 +9,7 @@
 import Foundation
 
 class Converter {
-    func realBalance (from balance: Double?, currencyString: String?, bonus: Double?) -> String {
+    func realBalanceString(from balance: Double?, currencyString: String?, bonus: Double?) -> String {
         var currencySign = ""
         var balancePart: Double = 0.00
         var bonusPart: Double = 0.00
@@ -31,6 +31,27 @@ class Converter {
         let realBalanceString = String(realBalanceTruncate)
         let resultString = [currencySign, realBalanceString].joined(separator: " ")
         return resultString
+    }
+    
+    func realBalanceStructure(from balance: Double?, bonus: Double?, amauntPendingWithdraw: Double?, dateFrom: TimeInterval?) {
+        
+        if let balance = balance {
+           let balanceString = String(balance.truncate(places: 2))
+        }
+        
+        if let bonus = bonus {
+            let bonusString = String(bonus.truncate(places: 2))
+        }
+        
+        if let amauntPendingWithdraw = amauntPendingWithdraw {
+            let amauntPendingWithdrawString = String(amauntPendingWithdraw.truncate(places: 2))
+        }
+        
+        if let time = dateFrom {
+            let date = Date(timeIntervalSince1970: time)
+            let dateFormatter = DateFormatter()
+            let dateFromString = dateFormatter.string(from: date)
+        }
     }
     
     func jsonToString(json: JSON) -> String? {

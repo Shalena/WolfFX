@@ -11,12 +11,17 @@ import Foundation
 let balanceKey = "balance"
 let currencyKey = "currency"
 let bonusKey = "bonus"
+let timeKey = "time"
+let amauntPendingWithdrawalKey = "holdBalance"
 
 class BalanceJsonAcception: JsonAcception {
     func acceptJson(json: JSON) -> Bool {
         var balance: Double?
         var currency: String?
         var bonus: Double?
+        var time: TimeInterval?
+        var amauntPendingWithdrawal: Double?
+        
         let keys: [String] = json.map({ $0.key })
         if keys.contains(balanceKey) {
             for key in keys {
@@ -29,9 +34,15 @@ class BalanceJsonAcception: JsonAcception {
                 else if key == bonusKey {
                     bonus = json[key] as? Double
                 }
+                else if key == timeKey {
+                    time = json[key] as? Double
+                }
+                else if key == amauntPendingWithdrawalKey {
+                    amauntPendingWithdrawal = json[key] as? Double
+                }
             }
-            let realBalanceString = Converter().realBalance(from: balance, currencyString: currency, bonus: bonus)
-            DataReceiver.shared.realBalance = realBalanceString
+            let realBalanceString = Converter().realBalanceString(from: balance, currencyString: currency, bonus: bonus)
+            DataReceiver.shared.realBalanceString = realBalanceString
             return true
         } else {
             return false

@@ -14,7 +14,7 @@ class BaseHeaderViewPresenter: NSObject {
     var view: BaseHeaderView?
     
     func observe() {
-             observation = observe(\.dataReceiver.realBalance,
+             observation = observe(\.dataReceiver.realBalanceString,
                         options: [.old, .new]
                     ) { object, change in
                         if let realBalanceString = change.newValue {
