@@ -9,6 +9,10 @@
 import Foundation
 
 class SettingsRouter: BaseRouter, SettingsTransitions {
+    func goToHome() {
+        sourceController.tabBarController?.selectedIndex = 0
+    }
+    
     func goToProfile() {
         if let profileDetailsController = R.storyboard.settings.profileDetailsViewController() {
             let configurator = ProfileDetailsConfigurator()

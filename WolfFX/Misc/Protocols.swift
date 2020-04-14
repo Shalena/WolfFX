@@ -127,6 +127,7 @@ protocol SettingsEvents {
 
 protocol SettingsTransitions {
     func goToProfile()
+    func goToHome()
     func logout()
 }
 

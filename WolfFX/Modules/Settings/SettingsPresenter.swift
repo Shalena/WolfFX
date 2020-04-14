@@ -49,7 +49,11 @@ class SettingsPresenter: NSObject, SettingsEvents {
     }
     
     func profileChosen() {
-        router?.goToProfile()
+        if dataReceiver?.user != nil {
+            router?.goToProfile()
+        } else {
+            router?.goToHome()
+        }
     }
     
     func lastSectionTapped() {
