@@ -22,9 +22,17 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
         dataReceiver = DataReceiver.shared
     }
 
-    func observe() {
-        observation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
-                 
+    func billingDataViewIsReady() {
+        let billingData = DataReceiver.shared.billingData
+        view?.updateViewWith(data: billingData)
+        observe()
+    }
+    
+    private func observe() {
+        observation = observe(\.dataReceiver?.billingData, options: [.old, .new]) { object, change in
+            if let billingData = change.newValue as? BillingData {
+                self.view?.updateViewWith(data: billingData)
+            }            
         }
     }
 }

@@ -100,10 +100,11 @@ protocol HomeTransitions {
 
 protocol BillingDataViewProtocol {
     var presenter: BillingDataEvents? {get set}
+    func updateViewWith(data: BillingData)
 }
 
 protocol BillingDataEvents {
-   
+    func billingDataViewIsReady()
 }
 
 protocol BillingDataTransitions {

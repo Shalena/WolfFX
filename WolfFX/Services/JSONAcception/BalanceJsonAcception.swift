@@ -41,8 +41,11 @@ class BalanceJsonAcception: JsonAcception {
                     amauntPendingWithdrawal = json[key] as? Double
                 }
             }
-            let realBalanceString = Converter().realBalanceString(from: balance, currencyString: currency, bonus: bonus)
+            let converter = Converter()
+            let realBalanceString = converter.realBalanceString(from: balance, currencyString: currency, bonus: bonus)
+            let billingData = converter.balanceData(from: balance, bonus: bonus, amauntPendingWithdraw: amauntPendingWithdrawal, dateTo: time)
             DataReceiver.shared.realBalanceString = realBalanceString
+            DataReceiver.shared.billingData = billingData
             return true
         } else {
             return false

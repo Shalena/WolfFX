@@ -13,8 +13,8 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLoginOverlay()
         setupBaseNavigationDesign()
+        setupLoginOverlay()
     }
     
     override func viewWillAppear(_ animated: Bool) {

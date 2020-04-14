@@ -20,7 +20,15 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBaseNavigationDesign()
+        presenter?.billingDataViewIsReady()
     }
     
+    func updateViewWith(data: BillingData) {
+        realMoneyValue.text = data.balance
+        bonusesValue.text = data.bonus
+        amauntPendingWithdrawPendingValue.text = data.amauntPendingWithdrawal
+        dateFromValue.text = data.dateFrom
+        dateToValue.text = data.dateTo
+    }
 }
 

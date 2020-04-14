@@ -8,8 +8,6 @@
 
 import UIKit
 
-let indexOfHomeTab = 0
-
 class TabbarConfigurator {
     var navControllers = [UINavigationController]()
     
@@ -22,6 +20,8 @@ class TabbarConfigurator {
             navControllers.append(homeNavigationController)
         }
         if let billingController = R.storyboard.billingData.billingDataViewController() {
+            let billingConfigurator = BillingDataConfigurator()
+            billingConfigurator.configure(viewController: billingController, with: assembler)
             let billingNavigationController = UINavigationController(rootViewController: billingController)
             billingNavigationController.tabBarItem = UITabBarItem(title: "Billing data", image: R.image.billingTab()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.billingTab()?.withTintColor(UIColor.red))
             navControllers.append(billingNavigationController)

@@ -33,25 +33,35 @@ class Converter {
         return resultString
     }
     
-    func realBalanceStructure(from balance: Double?, bonus: Double?, amauntPendingWithdraw: Double?, dateFrom: TimeInterval?) {
+    func balanceData(from balance: Double?, bonus: Double?, amauntPendingWithdraw: Double?, dateTo: TimeInterval?) -> BillingData {
+        var balanceString = ""
+        var bonusString = ""
+        var amauntPendingWithdrawString = ""
+        var dateFromString = ""
+        var dateToString = ""
         
         if let balance = balance {
-           let balanceString = String(balance.truncate(places: 2))
+            balanceString = String(balance.truncate(places: 2))
         }
         
         if let bonus = bonus {
-            let bonusString = String(bonus.truncate(places: 2))
+            bonusString = String(bonus.truncate(places: 2))
         }
         
         if let amauntPendingWithdraw = amauntPendingWithdraw {
-            let amauntPendingWithdrawString = String(amauntPendingWithdraw.truncate(places: 2))
+            amauntPendingWithdrawString = String(amauntPendingWithdraw.truncate(places: 2))
         }
         
-        if let time = dateFrom {
-            let date = Date(timeIntervalSince1970: time)
+        if let time = dateTo {
+            let date = Date(timeIntervalSince1970: (time / 1000.0))
             let dateFormatter = DateFormatter()
-            let dateFromString = dateFormatter.string(from: date)
+            dateFormatter.dateFormat = "dd-MMM-yyyy"
+            dateToString = dateFormatter.string(from: date)
+            let dateFrom = date.startOfMonth()
+            dateFromString = dateFormatter.string(from: dateFrom)
         }
+        let billingData = BillingData(with: balanceString,  bonus: bonusString, amauntPendingWithdrawal: amauntPendingWithdrawString, dateFrom: dateFromString, dateTo: dateToString)
+            return billingData
     }
     
     func jsonToString(json: JSON) -> String? {
