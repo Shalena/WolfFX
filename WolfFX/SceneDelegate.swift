@@ -26,6 +26,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = tabBar
             self.window = window
             window.makeKeyAndVisible()
+            // brutal fix for the first tab
+            tabBar.selectedIndex = 1
+            tabBar.selectedIndex = 0
         }
     }
 
