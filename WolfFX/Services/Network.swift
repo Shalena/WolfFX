@@ -86,9 +86,26 @@ class NetwokManager: NetworkAccess {
                         failure(hsError)
                 }
             }
-        default: return
+        case .get:
+            networking.get(endpoint.path, parameters: endpoint.parameters) { result in
+            switch result {
+                case .success(let response):
+                    print(response.headers)
+                    success(true)
+                case .failure(let error):
+                    if error.statusCode == 200 {
+                        success(true)
+                    } else {
+                        let description = error.error.localizedDescription
+                        let hsError = WolfError(description: description)
+                        failure(hsError)
+                }
+            }
         }
+        case .patch, .put:
+        return
     }
+}
 }
     
 

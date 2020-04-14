@@ -11,12 +11,14 @@ import Foundation
 class BillingDataPresenter: NSObject, BillingDataEvents {
     var view: BillingDataViewProtocol?
     var router: BillingDataTransitions?
+    var networkManager: NetworkAccess?
     var websocketManager: WebsocketAccess?
     @objc dynamic var dataReceiver: DataReceiver?
     var observation: NSKeyValueObservation?
     
-    init (with view: BillingDataViewProtocol, router: BillingDataTransitions) {
+    init (with view: BillingDataViewProtocol, networkManager: NetworkAccess, router: BillingDataTransitions) {
         self.view = view
+        self.networkManager = networkManager
         self.websocketManager = WSManager.shared
         self.router = router
         dataReceiver = DataReceiver.shared
@@ -34,5 +36,13 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
                 self.view?.updateViewWith(data: billingData)
             }            
         }
+    }
+    
+    func showRange() {
+        networkManager?.getBillingHistory(success: { successfully in
+            self.websocketManager?.connect()
+        }, failure: { error in
+            
+        })
     }
 }
