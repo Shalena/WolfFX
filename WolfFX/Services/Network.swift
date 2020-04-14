@@ -19,6 +19,7 @@ enum BaseUrl: String {
 protocol NetworkAccess {
   func login(email: String, password: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
+  func getBillingHistory(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func logout(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
 }
 
@@ -33,6 +34,14 @@ class NetwokManager: NetworkAccess {
     
     func login(email: String, password: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void) {
         performRequestSuccessfully(endpoint: Endpoint.login(email: email, password: password), success: { (successfully: Bool) in
+            success (successfully)
+        }, failure: { error in
+            failure (error)
+        })
+    }
+    
+    func getBillingHistory(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void) {
+        performRequestSuccessfully(endpoint: Endpoint.billingHistory, success: { (successfully: Bool) in
             success (successfully)
         }, failure: { error in
             failure (error)
