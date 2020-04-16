@@ -30,6 +30,7 @@ class BaseHeaderView: UIView {
         presenter.view = self
         presenter.observe()
         realbalanceLabel.text = DataReceiver.shared.realBalanceString
+        setupGestes()
     }
     
     func updateWith(realBalance: String) {
@@ -37,6 +38,18 @@ class BaseHeaderView: UIView {
             self.realbalanceLabel.text = realBalance
         }       
     }
+    
+    private func setupGestes() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
+        self.addGestureRecognizer(tap)
+    }
+    
+    @objc private func viewTapped(_ sender: UITapGestureRecognizer? = nil) {
+        if let tabBar: UITabBarController = self.window?.rootViewController as? UITabBarController {
+            tabBar.selectedIndex = 1
+        }
+    }
 }
+
 
 
