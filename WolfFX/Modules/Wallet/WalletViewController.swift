@@ -8,12 +8,13 @@
 
 import UIKit
 
-class WalletViewController: UIViewController, NavigationDesign  {
-    
+class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesign  {
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var depositView: UIView!
     @IBOutlet weak var withdrawView: UIView!
+    @IBOutlet weak var amountTextView: UITextField!
     @IBOutlet weak var continueButton: SubmitButton!
+    var presenter: WalletEvents?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,17 @@ class WalletViewController: UIViewController, NavigationDesign  {
         segment.defaultConfiguration()
         withdrawView.isHidden = true
         continueButton.setup(backColor: .red, borderColor: .red, text: "CONTINUE", textColor: .black)
+        addTextToTheLeft(textfield: amountTextView)
+    }
+    
+    private func addTextToTheLeft(textfield: UITextField) {
+        let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 30.0, height: 30.0))
+        label.text = "¥"
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = UIColor.white
+        label.textAlignment = .center
+        textfield.leftView = label
+        textfield.leftViewMode = .always
     }
     
     @IBAction func segmentControlChanged(_ sender: Any) {

@@ -111,6 +111,19 @@ protocol BillingDataEvents {
 protocol BillingDataTransitions {
      
 }
+// Wallet Screen
+
+protocol WalletViewProtocol {
+    var presenter: WalletEvents? {get set}
+}
+
+protocol WalletEvents {
+    func walletViewIsReady()
+}
+
+protocol WalletTransitions {
+     
+}
 
 // Settings Screen
 

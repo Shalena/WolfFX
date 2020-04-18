@@ -103,4 +103,16 @@ class WSManager: WebsocketAccess {
               send(messageString: messageString)
           }
       }
+    
+    func sendPing() {
+        webSocketTask?.sendPing { (error) in
+        if let error = error {
+          print("Sending PING failed: \(error)")
+        }
+     
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+          self.sendPing()
+        }
+      }
+    }
 }

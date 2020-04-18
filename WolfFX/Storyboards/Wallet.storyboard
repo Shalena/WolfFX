@@ -171,6 +171,7 @@
                         <viewLayoutGuide key="safeArea" id="AIi-HU-PpO"/>
                     </view>
                     <connections>
+                        <outlet property="amountTextView" destination="2yQ-Rc-Z4X" id="MSV-SE-NpV"/>
                         <outlet property="continueButton" destination="73b-Ad-Nqx" id="Ivd-GA-UOc"/>
                         <outlet property="depositView" destination="hsC-hE-eEQ" id="zh7-ie-xSn"/>
                         <outlet property="segment" destination="pci-oQ-VTy" id="xo6-as-hi3"/>
