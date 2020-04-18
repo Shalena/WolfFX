@@ -8,19 +8,26 @@
 
 import Foundation
 
+struct WithdrawForm {
+    var amaunt: Double?
+    var bankName: String?
+    var beneficiaryBankAccount: String?
+    var beneficiaryName: String?
+}
+
 class WalletPresenter: WalletEvents {
-var view: WalletViewProtocol?
-var router: WalletTransitions?
-var networkManager: NetworkAccess?
+    var view: WalletViewProtocol?
+    var router: WalletTransitions?
+    var networkManager: NetworkAccess?
 
+    init (with view: WalletViewProtocol, networkManager: NetworkAccess, router: WalletTransitions) {
+        self.view = view
+        self.networkManager = networkManager
+        self.router = router
+    }
+    
+    func withdrawRequestWith(form: WithdrawForm) {
+        
+    }
 
-init (with view: WalletViewProtocol, networkManager: NetworkAccess, router: WalletTransitions) {
-    self.view = view
-    self.networkManager = networkManager
-    self.router = router
-}
-
-func walletViewIsReady() {
-  
-}
 }

@@ -118,7 +118,7 @@ protocol WalletViewProtocol {
 }
 
 protocol WalletEvents {
-    func walletViewIsReady()
+    func withdrawRequestWith(form: WithdrawForm)
 }
 
 protocol WalletTransitions {
