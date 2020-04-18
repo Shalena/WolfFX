@@ -21,6 +21,7 @@ protocol NetworkAccess {
   func signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func getBillingHistory(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func logout(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
+  func withdraw(amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url : String, billingServer: String, tenantId: String, currency: String, name: String, method: String, bankName: String)
 }
 
 class NetwokManager: NetworkAccess {
@@ -47,6 +48,10 @@ class NetwokManager: NetworkAccess {
             failure (error)
         })
     }
+    
+    func withdraw(amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url: String, billingServer: String, tenantId: String, currency: String, name: String, method: String, bankName: String) {
+           
+       }
     
     func logout(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)  {
            performRequestSuccessfully(endpoint: Endpoint.logout, success: { (successfully: Bool) in

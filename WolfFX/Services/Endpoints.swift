@@ -20,6 +20,7 @@ enum Endpoint {
     case login(email: String, password: String)
     case signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String)
     case billingHistory
+    case withdraw (amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url: String, billingServer: String, currency: String, name: String)
     case logout
     
     var path: String {
@@ -32,12 +33,14 @@ enum Endpoint {
         return "/mt1/logout"
     case .billingHistory:
         return "/wolffx/billingHistory"
+    case .withdraw:
+        return "/payapi/v1/withdrawal"
         }
     }
         
     var headers: Headers? {
     switch self {
-    case .login, .signup, .billingHistory, .logout:
+    case .login, .signup, .billingHistory, .withdraw, .logout:
         return nil
         }
     }
@@ -54,6 +57,16 @@ enum Endpoint {
             "username":username,
             "emails": emails,
             "tenantId":tenantId]
+    case .withdraw (let amount, let beneficiaryBankAccount, let beneficiaryName, let accountNumber, let broker, let url, let billingServe, let currency, let name):
+        return ["amount" :amount,
+                "beneficiaryBankAccount": beneficiaryBankAccount,
+                "beneficiaryName": beneficiaryName,
+                "accountNumber": accountNumber,
+                "broker": broker,
+                "url": url,
+                "billingServe": billingServe,
+                "currency": currency,
+                "name": name]
     case .logout, .billingHistory:
         return nil
         }
@@ -61,7 +74,7 @@ enum Endpoint {
         
     var method: httpMethod {
     switch self {
-    case .login, .signup, .logout:
+    case .login, .signup, .withdraw, .logout:
         return .post
     case .billingHistory:
         return .get
