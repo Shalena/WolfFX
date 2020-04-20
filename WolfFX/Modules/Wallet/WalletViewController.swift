@@ -10,10 +10,10 @@ import UIKit
 
 class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesign  {
     @IBOutlet weak var segment: UISegmentedControl!
-    @IBOutlet weak var depositView: UIView!
-    @IBOutlet weak var withdrawView: UIView!
-    @IBOutlet weak var amountTextView: UITextField!
-    @IBOutlet weak var continueButton: SubmitButton!
+  //  @IBOutlet weak var depositView: UIView!
+  //  @IBOutlet weak var withdrawView: UIView!
+ //   @IBOutlet weak var amountTextView: UITextField!
+ //   @IBOutlet weak var continueButton: SubmitButton!
     var presenter: WalletEvents?
     
     override func viewDidLoad() {
@@ -24,9 +24,9 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     func setupDesign() {
         setupBaseNavigationDesign()
         segment.defaultConfiguration()
-        withdrawView.isHidden = true
-        continueButton.setup(backColor: .red, borderColor: .red, text: "CONTINUE", textColor: .black)
-        addTextToTheLeft(textfield: amountTextView)
+      //  withdrawView.isHidden = true
+      //  continueButton.setup(backColor: .red, borderColor: .red, text: "CONTINUE", textColor: .black)
+      //  addTextToTheLeft(textfield: amountTextView)
     }
     
     private func addTextToTheLeft(textfield: UITextField) {
@@ -42,11 +42,13 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     @IBAction func segmentControlChanged(_ sender: Any) {
         switch segment.selectedSegmentIndex {
             case 0:
-                depositView.isHidden = false
-                withdrawView.isHidden = true
+            return
+               // depositView.isHidden = false
+              //  withdrawView.isHidden = true
             case 1:
-                depositView.isHidden = true
-                withdrawView.isHidden = false
+            return
+              //  depositView.isHidden = true
+              //  withdrawView.isHidden = false
            
             default:
                 break
