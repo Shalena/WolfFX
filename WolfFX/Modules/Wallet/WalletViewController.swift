@@ -10,8 +10,8 @@ import UIKit
 
 class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesign  {
     @IBOutlet weak var segment: UISegmentedControl!
-  //  @IBOutlet weak var depositView: UIView!
-  //  @IBOutlet weak var withdrawView: UIView!
+    @IBOutlet weak var depositView: UIView!
+   @IBOutlet weak var withdrawView: UIView!
  //   @IBOutlet weak var amountTextView: UITextField!
  //   @IBOutlet weak var continueButton: SubmitButton!
     var presenter: WalletEvents?
@@ -24,7 +24,8 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     func setupDesign() {
         setupBaseNavigationDesign()
         segment.defaultConfiguration()
-      //  withdrawView.isHidden = true
+        depositView.isHidden = false
+        withdrawView.isHidden = true
       //  continueButton.setup(backColor: .red, borderColor: .red, text: "CONTINUE", textColor: .black)
       //  addTextToTheLeft(textfield: amountTextView)
     }
@@ -42,14 +43,11 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     @IBAction func segmentControlChanged(_ sender: Any) {
         switch segment.selectedSegmentIndex {
             case 0:
-            return
-               // depositView.isHidden = false
-              //  withdrawView.isHidden = true
+                depositView.isHidden = false
+                withdrawView.isHidden = true
             case 1:
-            return
-              //  depositView.isHidden = true
-              //  withdrawView.isHidden = false
-           
+                depositView.isHidden = true
+                withdrawView.isHidden = false
             default:
                 break
             }
