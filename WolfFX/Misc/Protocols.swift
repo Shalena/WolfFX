@@ -115,9 +115,13 @@ protocol BillingDataTransitions {
 
 protocol WalletViewProtocol {
     var presenter: WalletEvents? {get set}
+    func updateWith(poundValueString: String)
 }
 
 protocol WalletEvents {
+    func walletViewIsReady()
+    func getExchangeRate()
+    func amountChanged(text: String)
     func withdrawRequestWith(form: WithdrawForm)
 }
 

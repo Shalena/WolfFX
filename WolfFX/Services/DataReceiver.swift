@@ -34,4 +34,5 @@ class DataReceiver: NSObject {
     
     @objc dynamic var realBalanceString = ""
     @objc dynamic var billingData = BillingData(with: nil,  bonus: nil, amauntPendingWithdrawal: nil, dateFrom: nil, dateTo: nil)
+    var rate: Double?
 }

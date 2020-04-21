@@ -20,11 +20,13 @@ protocol NetworkAccess {
   func login(email: String, password: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func getBillingHistory(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
-  func logout(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
+  func getExchangeRate(with broker: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func withdraw(amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url : String, billingServer: String, tenantId: String, currency: String, name: String, method: String, bankName: String)
+  func logout(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
 }
 
 class NetwokManager: NetworkAccess {
+    
     func signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)  {
         performRequestSuccessfully(endpoint: Endpoint.signup(firstname: firstname, currency: currency, emails: emails, password: password, tenantId: tenantId, username: username), success: { (successfully: Bool) in
             success (successfully)
@@ -43,6 +45,14 @@ class NetwokManager: NetworkAccess {
     
     func getBillingHistory(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void) {
         performRequestSuccessfully(endpoint: Endpoint.billingHistory, success: { (successfully: Bool) in
+            success (successfully)
+        }, failure: { error in
+            failure (error)
+        })
+    }
+    
+    func getExchangeRate(with broker: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void) {
+        performRequestSuccessfully(endpoint: Endpoint.exchangeRate(broker: broker), success: { (successfully: Bool) in
             success (successfully)
         }, failure: { error in
             failure (error)
@@ -96,6 +106,10 @@ class NetwokManager: NetworkAccess {
             switch result {
                 case .success(let response):
                     print(response.headers)
+                    if let json = try? response.data.toJSON() as? JSON {
+                        let exchangeAcception = ExchangeRateJsonAcception()
+                        exchangeAcception.accept(json: json)
+                    }
                     success(true)
                 case .failure(let error):
                     if error.statusCode == 200 {

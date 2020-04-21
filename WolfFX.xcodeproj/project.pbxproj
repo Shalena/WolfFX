@@ -33,6 +33,8 @@
 		814F2ED224423A9000E0820C /* BillingDataConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F2ED124423A9000E0820C /* BillingDataConfigurator.swift */; };
 		814F2ED424423C1A00E0820C /* BillingDataRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F2ED324423C1A00E0820C /* BillingDataRouter.swift */; };
 		814F2ED624438C9300E0820C /* BillingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F2ED524438C9300E0820C /* BillingData.swift */; };
+		815FD04B244F230B00EE7083 /* ExchangeRateJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815FD04A244F230B00EE7083 /* ExchangeRateJsonAcception.swift */; };
+		815FD04D244F76DB00EE7083 /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815FD04C244F76DB00EE7083 /* ExchangeRate.swift */; };
 		816C17CB24050A0F00B1551A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C17CA24050A0F00B1551A /* AppDelegate.swift */; };
 		816C17CD24050A0F00B1551A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C17CC24050A0F00B1551A /* SceneDelegate.swift */; };
 		816C17CF24050A0F00B1551A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C17CE24050A0F00B1551A /* ContentView.swift */; };
@@ -131,6 +133,8 @@
 		814F2ED124423A9000E0820C /* BillingDataConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingDataConfigurator.swift; sourceTree = "<group>"; };
 		814F2ED324423C1A00E0820C /* BillingDataRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingDataRouter.swift; sourceTree = "<group>"; };
 		814F2ED524438C9300E0820C /* BillingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingData.swift; sourceTree = "<group>"; };
+		815FD04A244F230B00EE7083 /* ExchangeRateJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateJsonAcception.swift; sourceTree = "<group>"; };
+		815FD04C244F76DB00EE7083 /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
 		816C17C724050A0F00B1551A /* WolfFX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WolfFX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		816C17CA24050A0F00B1551A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		816C17CC24050A0F00B1551A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -438,6 +442,7 @@
 			children = (
 				817E5D28243B73FE0088E60A /* UserJsonAcception.swift */,
 				817E5D2B243B74EA0088E60A /* BalanceJsonAcception.swift */,
+				815FD04A244F230B00EE7083 /* ExchangeRateJsonAcception.swift */,
 			);
 			path = JSONAcception;
 			sourceTree = "<group>";
@@ -473,6 +478,7 @@
 			children = (
 				81D8825C2409D8880030C78B /* User.swift */,
 				814F2ED524438C9300E0820C /* BillingData.swift */,
+				815FD04C244F76DB00EE7083 /* ExchangeRate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -736,7 +742,9 @@
 			files = (
 				816C17CB24050A0F00B1551A /* AppDelegate.swift in Sources */,
 				816C17CD24050A0F00B1551A /* SceneDelegate.swift in Sources */,
+				815FD04D244F76DB00EE7083 /* ExchangeRate.swift in Sources */,
 				8103B185242EB161008D7D5B /* ProfileDetailsConfigurator.swift in Sources */,
+				815FD04B244F230B00EE7083 /* ExchangeRateJsonAcception.swift in Sources */,
 				81A4B3562413A3CF004A02CB /* LoginConfigurator.swift in Sources */,
 				816F67EA240857F50016AA95 /* LoginViewController.swift in Sources */,
 				814F2ED624438C9300E0820C /* BillingData.swift in Sources */,

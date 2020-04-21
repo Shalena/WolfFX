@@ -20,6 +20,10 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDesign()
+        amountTextView.delegate = self
+        amountTextView.addTarget(self, action: #selector(WalletViewController.textFieldDidChange(_:)),
+        for: .editingChanged)
+        presenter?.walletViewIsReady()
     }
     
     func setupDesign() {
@@ -29,6 +33,16 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         withdrawView.isHidden = true
         continueButton.setup(backColor: .red, borderColor: .red, text: "CONTINUE", textColor: .black)
         addTextToTheLeft(textfield: amountTextView)
+    }
+   
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if let text = textField.text {
+            presenter?.amountChanged(text: text)
+        }
+    }
+    
+    func updateWith(poundValueString: String) {
+        amountLabel.text = poundValueString
     }
     
     private func addTextToTheLeft(textfield: UITextField) {
@@ -56,5 +70,16 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     
     @IBAction func depositContinuePressed(_ sender: Any) {
         
+    }
+}
+
+extension WalletViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let letters = NSCharacterSet.letters
+            if string.rangeOfCharacter(from: letters) != nil {
+                return false
+            } else {
+                return true
+        }
     }
 }
