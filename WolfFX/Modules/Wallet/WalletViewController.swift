@@ -84,7 +84,9 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         }
     
     @IBAction func depositContinuePressed(_ sender: Any) {
-        
+        if let text = amountTextView.text {
+            presenter?.deposit(with: text)
+        }
     }
 }
 

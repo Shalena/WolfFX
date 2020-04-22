@@ -45,6 +45,20 @@ extension ShowErrorCapable {
         self.present(alert, animated: true, completion: nil)
     }
 }
+
+protocol ShowAlertCapable: class where Self: UIViewController {
+    
+}
+
+extension ShowAlertCapable {
+    func showAlertWith(text: String) {
+        let alert = UIAlertController(title: nil, message: text, preferredStyle: .alert)
+        alert.view.tintColor = UIColor.black
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
 // Login Screen
 
 protocol LoginViewProtocol: ShowErrorCapable {
@@ -111,9 +125,10 @@ protocol BillingDataEvents {
 protocol BillingDataTransitions {
      
 }
+
 // Wallet Screen
 
-protocol WalletViewProtocol {
+protocol WalletViewProtocol: ShowErrorCapable, ShowAlertCapable {
     var presenter: WalletEvents? {get set}
     func updateWith(poundValueString: String)
 }
@@ -123,6 +138,7 @@ protocol WalletEvents {
     func walletViewIsReady()
     func getExchangeRate()
     func amountChanged(text: String)
+    func deposit(with amount: String)
     func withdrawRequestWith(form: WithdrawForm)
 }
 
