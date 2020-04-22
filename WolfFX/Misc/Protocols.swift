@@ -119,6 +119,7 @@ protocol WalletViewProtocol {
 }
 
 protocol WalletEvents {
+    var pickerDataSource: [String]? { get set }
     func walletViewIsReady()
     func getExchangeRate()
     func amountChanged(text: String)

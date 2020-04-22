@@ -29,8 +29,6 @@ class SignupViewController: UIViewController, SignupViewProtocol {
         let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
-
-        currencyTextField.delegate = self
         currencyTextField.inputView = pickerView
         currencyTextField.text = Currency.unitedStatesDollar.title
         presenter?.observe()
@@ -84,6 +82,4 @@ extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
-extension SignupViewController: UITextFieldDelegate {
-    
-}
+

@@ -9,6 +9,7 @@
 import Foundation
 
 let defaultBroker = "KAIZEN_LOGIC_OPTIONS"
+let pickerStrings = ["China Union Pay"]
 
 struct WithdrawForm {
     var amaunt: Double?
@@ -21,12 +22,14 @@ class WalletPresenter: WalletEvents {
     var view: WalletViewProtocol?
     var router: WalletTransitions?
     var networkManager: NetworkAccess?
+    var pickerDataSource: [String]?
     var rate: Double?
 
     init (with view: WalletViewProtocol, networkManager: NetworkAccess, router: WalletTransitions) {
         self.view = view
         self.networkManager = networkManager
         self.router = router
+        self.pickerDataSource = pickerStrings
     }
     
     func walletViewIsReady() {

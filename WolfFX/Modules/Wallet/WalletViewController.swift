@@ -13,6 +13,7 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     @IBOutlet weak var depositView: UIView!
     @IBOutlet weak var withdrawView: UIView!
     @IBOutlet weak var amountTextView: UITextField!
+    @IBOutlet weak var paymentMethodTextField: UITextField!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var continueButton: SubmitButton!
     var presenter: WalletEvents?
@@ -23,6 +24,10 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         amountTextView.delegate = self
         amountTextView.addTarget(self, action: #selector(WalletViewController.textFieldDidChange(_:)),
         for: .editingChanged)
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        paymentMethodTextField.inputView = pickerView
         presenter?.walletViewIsReady()
     }
     
@@ -33,6 +38,7 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         withdrawView.isHidden = true
         continueButton.setup(backColor: .red, borderColor: .red, text: "CONTINUE", textColor: .black)
         addTextToTheLeft(textfield: amountTextView)
+        setupPaymentMethodTextField()
     }
    
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -53,6 +59,15 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         label.textAlignment = .center
         textfield.leftView = label
         textfield.leftViewMode = .always
+    }
+    
+    private func setupPaymentMethodTextField() {
+        paymentMethodTextField.rightViewMode = .always
+           let container = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 25))
+           let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+           imageView.image = R.image.arrowDown()
+           container.addSubview(imageView)
+           paymentMethodTextField.rightView = container
     }
     
     @IBAction func segmentControlChanged(_ sender: Any) {
@@ -81,5 +96,24 @@ extension WalletViewController: UITextFieldDelegate {
             } else {
                 return true
         }
+    }
+}
+
+extension WalletViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+       return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return presenter?.pickerDataSource?.count ?? 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return presenter?.pickerDataSource?[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        paymentMethodTextField.text = presenter?.pickerDataSource?[row]
+   
     }
 }

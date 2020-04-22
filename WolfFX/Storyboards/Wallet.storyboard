@@ -136,7 +136,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CKT-5K-8Pm">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="China Union Pay" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CKT-5K-8Pm">
                                         <rect key="frame" x="10" y="238.5" width="374" height="34"/>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -209,6 +209,7 @@
                         <outlet property="amountTextView" destination="hja-0v-K7Z" id="nyr-36-vIw"/>
                         <outlet property="continueButton" destination="0yy-lz-tMb" id="sXp-hm-yZU"/>
                         <outlet property="depositView" destination="5BT-jx-sg1" id="rJO-FK-h8W"/>
+                        <outlet property="paymentMethodTextField" destination="CKT-5K-8Pm" id="ggV-TO-fNH"/>
                         <outlet property="segment" destination="pci-oQ-VTy" id="xo6-as-hi3"/>
                         <outlet property="withdrawView" destination="uw8-HQ-Nk4" id="zv2-Tb-1vC"/>
                     </connections>
