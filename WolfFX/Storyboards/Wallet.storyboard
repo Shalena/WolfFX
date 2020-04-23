@@ -76,6 +76,7 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u0t-q6-ZQO">
                                                         <rect key="frame" x="30" y="307.5" width="334" height="34"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
@@ -316,9 +317,13 @@
                     </view>
                     <size key="freeformSize" width="414" height="1400"/>
                     <connections>
+                        <outlet property="amauntAvailableLabel" destination="8uE-Ca-LUr" id="2aI-E9-hyn"/>
+                        <outlet property="amauntWithdrawTextField" destination="u0t-q6-ZQO" id="Oka-5Z-Fj4"/>
                         <outlet property="amountLabel" destination="0Xk-CI-bhf" id="cSw-KC-7M6"/>
                         <outlet property="amountTextView" destination="hja-0v-K7Z" id="nyr-36-vIw"/>
                         <outlet property="bankNameTextField" destination="PDD-lK-pbL" id="ygf-ln-BAl"/>
+                        <outlet property="beneficiaryBankAccountTextField" destination="vLp-pw-Rdw" id="IwN-g3-Hww"/>
+                        <outlet property="beneficiaryNameTextField" destination="BzG-ii-ChO" id="FAG-Qp-uR2"/>
                         <outlet property="continueButton" destination="0yy-lz-tMb" id="sXp-hm-yZU"/>
                         <outlet property="depositView" destination="5BT-jx-sg1" id="rJO-FK-h8W"/>
                         <outlet property="paymentMethodTextField" destination="CKT-5K-8Pm" id="ggV-TO-fNH"/>

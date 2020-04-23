@@ -22,7 +22,7 @@ protocol NetworkAccess {
   func getBillingHistory(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func getExchangeRate(with broker: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func deposit (with deviceType: String?, amountFee: Double, sign: String?, cardType: String, merchantTradeId: String, userName: String?, version: String, paymentCard: String?, issuingBank: String, payType: String, merchantId: String, payIp: String?, signType: String, notifyUrl: String, inputCharset: String, currency: String, goodsTitle: String, returnUrl: String, subIssuingBank: String?, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
-  func withdraw(amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url : String, billingServer: String, tenantId: String, currency: String, name: String, method: String, bankName: String)
+  func withdraw(amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url : String, billingServer: String, tenantId: String, currency: String, name: String, method: String, bankName: String , success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func logout(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
 }
 
@@ -67,8 +67,12 @@ class NetwokManager: NetworkAccess {
         })
     }
     
-    func withdraw(amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url: String, billingServer: String, tenantId: String, currency: String, name: String, method: String, bankName: String) {
-           
+    func withdraw(amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url: String, billingServer: String, tenantId: String, currency: String, name: String, method: String, bankName: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void) {
+        performRequestSuccessfully(endpoint: Endpoint.withdraw(amount: amount, beneficiaryBankAccount: beneficiaryBankAccount, beneficiaryName: beneficiaryName, accountNumber: accountNumber, broker: broker, url: url, billingServer: billingServer, currency: currency, name: name), success: { (successfully: Bool) in
+                success (successfully)
+            }, failure: { error in
+                failure (error)
+            })
        }
     
     func logout(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)  {

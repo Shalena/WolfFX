@@ -137,6 +137,7 @@ protocol WalletEvents {
     var pickerDataSource: [String]? { get set }
     func walletViewIsReady()
     func getExchangeRate()
+    func textForAvailableAmaunt() -> String
     func amountChanged(text: String)
     func deposit(with amount: String)
     func withdrawRequestWith(form: WithdrawForm)

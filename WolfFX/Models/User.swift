@@ -9,7 +9,7 @@ import Foundation
 
 class User: NSObject, Codable {
     var billingServer: String?
-    var  country: String?
+    var country: String?
     var currency: String?
     var email: String?
     var enabled: Bool?
