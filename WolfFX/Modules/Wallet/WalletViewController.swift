@@ -10,12 +10,21 @@ import UIKit
 
 class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesign  {
     @IBOutlet weak var segment: UISegmentedControl!
+    
     @IBOutlet weak var depositView: UIView!
-    @IBOutlet weak var withdrawView: UIView!
     @IBOutlet weak var amountTextView: UITextField!
     @IBOutlet weak var paymentMethodTextField: UITextField!
     @IBOutlet weak var amountLabel: UILabel!
+    
+    @IBOutlet weak var withdrawView: UIView!
+    
+   
+    @IBOutlet weak var withdrawalToTextField: UITextField!
+    @IBOutlet weak var bankNameTextField: UITextField!
+    
     @IBOutlet weak var continueButton: SubmitButton!
+    @IBOutlet weak var requestWithdrawButton: SubmitButton!
+    
     var presenter: WalletEvents?
     
     override func viewDidLoad() {
@@ -37,8 +46,9 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         depositView.isHidden = false
         withdrawView.isHidden = true
         continueButton.setup(backColor: .red, borderColor: .red, text: "CONTINUE", textColor: .black)
+        requestWithdrawButton.setup(backColor: .clear, borderColor: .red, text: "Request Withdrawal", textColor: .white)
         addTextToTheLeft(textfield: amountTextView)
-        setupPaymentMethodTextField()
+        setupTextFieldsWithArrows()
     }
    
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -61,13 +71,16 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         textfield.leftViewMode = .always
     }
     
-    private func setupPaymentMethodTextField() {
-        paymentMethodTextField.rightViewMode = .always
-           let container = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 25))
-           let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-           imageView.image = R.image.arrowDown()
-           container.addSubview(imageView)
-           paymentMethodTextField.rightView = container
+    private func setupTextFieldsWithArrows() {
+        let textFields = [paymentMethodTextField, withdrawalToTextField, bankNameTextField]
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 25))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        imageView.image = R.image.arrowDown()
+        container.addSubview(imageView)        
+        for textField in textFields {
+            textField?.rightViewMode = .always
+            textField?.rightView = container
+        }
     }
     
     @IBAction func segmentControlChanged(_ sender: Any) {
@@ -87,6 +100,10 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         if let text = amountTextView.text {
             presenter?.deposit(with: text)
         }
+    }
+    
+    @IBAction func requestWithdrawPressed(_ sender: Any) {
+        
     }
 }
 

@@ -42,11 +42,11 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m45-Jd-u69">
                                 <rect key="frame" x="0.0" y="254" width="414" height="1112"/>
                                 <subviews>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uw8-HQ-Nk4" userLabel="Withdraw View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="570"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uw8-HQ-Nk4" userLabel="Withdraw View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="787"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kv1-ED-CTr">
-                                                <rect key="frame" x="10" y="0.0" width="394" height="570"/>
+                                                <rect key="frame" x="10" y="0.0" width="394" height="787"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request for money withdraw" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIW-4P-cm9">
                                                         <rect key="frame" x="40" y="70" width="314" height="62.5"/>
@@ -54,22 +54,130 @@
                                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RkK-iy-r69">
-                                                        <rect key="frame" x="90" y="470" width="214" height="50"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Withdrawal to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03T-GM-G6A">
+                                                        <rect key="frame" x="30" y="182.5" width="334" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="China Union Pay" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nbb-No-tn6">
+                                                        <rect key="frame" x="30" y="213" width="334" height="34"/>
+                                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Amount (availlable)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uE-Ca-LUr">
+                                                        <rect key="frame" x="30" y="277" width="334" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u0t-q6-ZQO">
+                                                        <rect key="frame" x="30" y="307.5" width="334" height="34"/>
+                                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RMB to be paid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Hk-4J-12J">
+                                                        <rect key="frame" x="30" y="351.5" width="334" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Bank name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpi-5p-VH0">
+                                                        <rect key="frame" x="30" y="382" width="334" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PDD-lK-pbL">
+                                                        <rect key="frame" x="30" y="413" width="334" height="34"/>
+                                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Beneficiary bank account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSy-QL-dmf">
+                                                        <rect key="frame" x="30" y="477" width="334" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vLp-pw-Rdw">
+                                                        <rect key="frame" x="30" y="508" width="334" height="34"/>
+                                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Beneficiary name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wub-ow-X89">
+                                                        <rect key="frame" x="30" y="572" width="334" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BzG-ii-ChO">
+                                                        <rect key="frame" x="30" y="603" width="334" height="34"/>
+                                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RkK-iy-r69" customClass="SubmitButton" customModule="WolfFX" customModuleProvider="target">
+                                                        <rect key="frame" x="90" y="687" width="214" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="WhZ-MD-vcG"/>
                                                         </constraints>
-                                                        <state key="normal" title="Button"/>
+                                                        <state key="normal" title="Request Withdraw">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="requestWithdrawPressed:" destination="Muh-j0-yNG" eventType="touchUpInside" id="GeQ-Ty-emD"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="u0t-q6-ZQO" secondAttribute="trailing" constant="30" id="4UN-nV-UWl"/>
+                                                    <constraint firstItem="03T-GM-G6A" firstAttribute="leading" secondItem="Kv1-ED-CTr" secondAttribute="leading" constant="30" id="4og-ki-A5A"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PDD-lK-pbL" secondAttribute="trailing" constant="30" id="51e-u4-2zI"/>
                                                     <constraint firstAttribute="trailing" secondItem="SIW-4P-cm9" secondAttribute="trailing" constant="40" id="6Y7-sp-mkm"/>
+                                                    <constraint firstItem="Wub-ow-X89" firstAttribute="leading" secondItem="Kv1-ED-CTr" secondAttribute="leading" constant="30" id="7K6-BT-e7t"/>
+                                                    <constraint firstAttribute="trailing" secondItem="lpi-5p-VH0" secondAttribute="trailing" constant="30" id="BjI-Rf-BXN"/>
+                                                    <constraint firstAttribute="trailing" secondItem="BzG-ii-ChO" secondAttribute="trailing" constant="30" id="Ci6-L7-6T2"/>
+                                                    <constraint firstItem="6Hk-4J-12J" firstAttribute="leading" secondItem="Kv1-ED-CTr" secondAttribute="leading" constant="30" id="CoM-ql-Hog"/>
+                                                    <constraint firstItem="BzG-ii-ChO" firstAttribute="leading" secondItem="Kv1-ED-CTr" secondAttribute="leading" constant="30" id="E7O-Zi-dWM"/>
+                                                    <constraint firstItem="lpi-5p-VH0" firstAttribute="top" secondItem="6Hk-4J-12J" secondAttribute="bottom" constant="10" id="Edk-OK-7mw"/>
+                                                    <constraint firstItem="lpi-5p-VH0" firstAttribute="leading" secondItem="Kv1-ED-CTr" secondAttribute="leading" constant="30" id="Ftb-K3-Y7k"/>
+                                                    <constraint firstItem="8uE-Ca-LUr" firstAttribute="leading" secondItem="Kv1-ED-CTr" secondAttribute="leading" constant="30" id="HkD-ci-MrL"/>
                                                     <constraint firstItem="RkK-iy-r69" firstAttribute="leading" secondItem="Kv1-ED-CTr" secondAttribute="leading" constant="90" id="Hyj-Vz-My1"/>
+                                                    <constraint firstItem="NSy-QL-dmf" firstAttribute="leading" secondItem="Kv1-ED-CTr" secondAttribute="leading" constant="30" id="I2p-Sy-69y"/>
+                                                    <constraint firstItem="NSy-QL-dmf" firstAttribute="top" secondItem="PDD-lK-pbL" secondAttribute="bottom" constant="30" id="Ij4-pq-FAY"/>
+                                                    <constraint firstAttribute="trailing" secondItem="NSy-QL-dmf" secondAttribute="trailing" constant="30" id="Jlf-I4-Yi6"/>
+                                                    <constraint firstItem="Nbb-No-tn6" firstAttribute="leading" secondItem="Kv1-ED-CTr" secondAttribute="leading" constant="30" id="KfD-IA-KHk"/>
                                                     <constraint firstAttribute="trailing" secondItem="RkK-iy-r69" secondAttribute="trailing" constant="90" id="KmM-4q-Y4c"/>
+                                                    <constraint firstItem="vLp-pw-Rdw" firstAttribute="leading" secondItem="Kv1-ED-CTr" secondAttribute="leading" constant="30" id="MBt-KA-Er9"/>
+                                                    <constraint firstAttribute="trailing" secondItem="03T-GM-G6A" secondAttribute="trailing" constant="30" id="N1S-su-JA6"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Wub-ow-X89" secondAttribute="trailing" constant="30" id="WdC-Tq-IJd"/>
+                                                    <constraint firstAttribute="trailing" secondItem="6Hk-4J-12J" secondAttribute="trailing" constant="30" id="XZI-rR-ppZ"/>
+                                                    <constraint firstItem="PDD-lK-pbL" firstAttribute="top" secondItem="lpi-5p-VH0" secondAttribute="bottom" constant="10" id="YF5-yD-EuX"/>
+                                                    <constraint firstItem="BzG-ii-ChO" firstAttribute="top" secondItem="Wub-ow-X89" secondAttribute="bottom" constant="10" id="Yn8-6n-zfE"/>
+                                                    <constraint firstItem="PDD-lK-pbL" firstAttribute="leading" secondItem="Kv1-ED-CTr" secondAttribute="leading" constant="30" id="b3r-os-vLH"/>
                                                     <constraint firstItem="SIW-4P-cm9" firstAttribute="leading" secondItem="Kv1-ED-CTr" secondAttribute="leading" constant="40" id="bCD-EM-yY7"/>
-                                                    <constraint firstItem="RkK-iy-r69" firstAttribute="top" secondItem="SIW-4P-cm9" secondAttribute="top" constant="400" id="rEI-dB-Dw2"/>
+                                                    <constraint firstAttribute="trailing" secondItem="8uE-Ca-LUr" secondAttribute="trailing" constant="30" id="cUi-wz-6dM"/>
+                                                    <constraint firstItem="u0t-q6-ZQO" firstAttribute="top" secondItem="8uE-Ca-LUr" secondAttribute="bottom" constant="10" id="cmJ-3U-T3T"/>
+                                                    <constraint firstItem="8uE-Ca-LUr" firstAttribute="top" secondItem="Nbb-No-tn6" secondAttribute="bottom" constant="30" id="fZU-w7-Foh"/>
+                                                    <constraint firstItem="Wub-ow-X89" firstAttribute="top" secondItem="vLp-pw-Rdw" secondAttribute="bottom" constant="30" id="iNn-SM-ipi"/>
+                                                    <constraint firstItem="03T-GM-G6A" firstAttribute="top" secondItem="SIW-4P-cm9" secondAttribute="bottom" constant="50" id="ipW-Et-4BS"/>
+                                                    <constraint firstItem="6Hk-4J-12J" firstAttribute="top" secondItem="u0t-q6-ZQO" secondAttribute="bottom" constant="10" id="lPW-I6-MDd"/>
+                                                    <constraint firstAttribute="trailing" secondItem="vLp-pw-Rdw" secondAttribute="trailing" constant="30" id="odx-uF-qL3"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Nbb-No-tn6" secondAttribute="trailing" constant="30" id="pIb-vV-8nI"/>
+                                                    <constraint firstItem="u0t-q6-ZQO" firstAttribute="leading" secondItem="Kv1-ED-CTr" secondAttribute="leading" constant="30" id="rO1-v4-oAF"/>
+                                                    <constraint firstItem="vLp-pw-Rdw" firstAttribute="top" secondItem="NSy-QL-dmf" secondAttribute="bottom" constant="10" id="rXE-Oe-Hbr"/>
+                                                    <constraint firstItem="Nbb-No-tn6" firstAttribute="top" secondItem="03T-GM-G6A" secondAttribute="bottom" constant="10" id="sif-VO-KYy"/>
                                                     <constraint firstItem="SIW-4P-cm9" firstAttribute="top" secondItem="Kv1-ED-CTr" secondAttribute="top" constant="70" id="ttR-fV-Mzy"/>
+                                                    <constraint firstItem="RkK-iy-r69" firstAttribute="top" secondItem="BzG-ii-ChO" secondAttribute="bottom" constant="50" id="xSc-77-vrX"/>
                                                     <constraint firstAttribute="bottom" secondItem="RkK-iy-r69" secondAttribute="bottom" constant="50" id="zdC-9S-Txh"/>
                                                 </constraints>
                                             </view>
@@ -102,7 +210,7 @@
                                 <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5BT-jx-sg1" userLabel="Deposit View">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5BT-jx-sg1" userLabel="Deposit View">
                                 <rect key="frame" x="10" y="254" width="394" height="1112"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deposit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAn-o8-8wp">
@@ -210,11 +318,14 @@
                     <connections>
                         <outlet property="amountLabel" destination="0Xk-CI-bhf" id="cSw-KC-7M6"/>
                         <outlet property="amountTextView" destination="hja-0v-K7Z" id="nyr-36-vIw"/>
+                        <outlet property="bankNameTextField" destination="PDD-lK-pbL" id="ygf-ln-BAl"/>
                         <outlet property="continueButton" destination="0yy-lz-tMb" id="sXp-hm-yZU"/>
                         <outlet property="depositView" destination="5BT-jx-sg1" id="rJO-FK-h8W"/>
                         <outlet property="paymentMethodTextField" destination="CKT-5K-8Pm" id="ggV-TO-fNH"/>
+                        <outlet property="requestWithdrawButton" destination="RkK-iy-r69" id="EqX-44-rp3"/>
                         <outlet property="segment" destination="pci-oQ-VTy" id="xo6-as-hi3"/>
                         <outlet property="withdrawView" destination="uw8-HQ-Nk4" id="zv2-Tb-1vC"/>
+                        <outlet property="withdrawalToTextField" destination="Nbb-No-tn6" id="EgY-yJ-Tu8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lB7-NJ-Nd4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
