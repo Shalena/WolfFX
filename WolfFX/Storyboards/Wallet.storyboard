@@ -328,6 +328,7 @@
                         <outlet property="exchangeDepositLabel" destination="0Xk-CI-bhf" id="bI1-kz-g8J"/>
                         <outlet property="paymentMethodTextField" destination="CKT-5K-8Pm" id="ggV-TO-fNH"/>
                         <outlet property="requestWithdrawButton" destination="RkK-iy-r69" id="EqX-44-rp3"/>
+                        <outlet property="rmbLabel" destination="6Hk-4J-12J" id="aXZ-zK-rfU"/>
                         <outlet property="segment" destination="pci-oQ-VTy" id="xo6-as-hi3"/>
                         <outlet property="withdrawView" destination="uw8-HQ-Nk4" id="zv2-Tb-1vC"/>
                         <outlet property="withdrawalToTextField" destination="Nbb-No-tn6" id="EgY-yJ-Tu8"/>

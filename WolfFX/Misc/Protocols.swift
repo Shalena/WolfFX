@@ -131,6 +131,7 @@ protocol BillingDataTransitions {
 protocol WalletViewProtocol: ShowErrorCapable, ShowAlertCapable {
     var presenter: WalletEvents? {get set}
     func updateExchangeDepositLabel(with string: String)
+    func updateRMBLabel(with string: String)
 }
 
 protocol WalletEvents {
@@ -138,7 +139,8 @@ protocol WalletEvents {
     func walletViewIsReady()
     func getExchangeRate()
     func textForAvailableAmount() -> String
-    func amountChanged(text: String)
+    func amountDepositChanged(text: String)
+    func amountWithdrawChanged(text: String)
     func deposit(with amount: String)
     func withdrawRequestWith(form: WithdrawForm)
 }

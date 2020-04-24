@@ -46,6 +46,7 @@ class WalletPresenter: WalletEvents {
     var networkManager: NetworkAccess?
     var pickerDataSource: [String]?
     var rate: Double?
+    var withdrawRate: Double?
 
     init (with view: WalletViewProtocol, networkManager: NetworkAccess, router: WalletTransitions) {
         self.view = view
@@ -61,6 +62,7 @@ class WalletPresenter: WalletEvents {
     func getExchangeRate() {
         networkManager?.getExchangeRate(with: defaultBroker, success: { successfully in
             self.rate = DataReceiver.shared.rate
+            self.withdrawRate = DataReceiver.shared.withdrawRate
         }, failure: { error in
             if let error = error {
                 self.view?.showErrorAlertWith(error: error)
@@ -68,12 +70,25 @@ class WalletPresenter: WalletEvents {
         })
     }
     
-    func amountChanged(text: String) {
-        if let cnuValue = Double(text), let rate = rate {
-            let poundValue = cnuValue / rate
-            updateViewWith(poundValue: poundValue)
+    func amountDepositChanged(text: String) {
+        if let value = Double(text), let rate = rate {
+            let exchangeValue = value / rate
+            updateViewWith(poundValue: exchangeValue)
         }
     }
+    
+    func amountWithdrawChanged(text: String) {
+        if let value = Double(text), let withdrawRate = withdrawRate {
+            let exchangeValue = withdrawRate / value
+            updateViewWithRMB(value: exchangeValue)
+        }
+    }
+    
+    private func updateViewWithRMB(value: Double) {
+           let string = String(value.truncate(places: 2))
+           let fullString = "RMB to be paid" + " " + string
+           view?.updateRMBLabel(with: fullString)
+       }
     
     private func updateViewWith(poundValue: Double) {
         let string = String(poundValue.truncate(places: 2))
