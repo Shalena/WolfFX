@@ -317,15 +317,15 @@
                     </view>
                     <size key="freeformSize" width="414" height="1400"/>
                     <connections>
-                        <outlet property="amauntAvailableLabel" destination="8uE-Ca-LUr" id="2aI-E9-hyn"/>
-                        <outlet property="amauntWithdrawTextField" destination="u0t-q6-ZQO" id="Oka-5Z-Fj4"/>
-                        <outlet property="amountLabel" destination="0Xk-CI-bhf" id="cSw-KC-7M6"/>
-                        <outlet property="amountTextView" destination="hja-0v-K7Z" id="nyr-36-vIw"/>
+                        <outlet property="amountAvailableWithrawLabel" destination="8uE-Ca-LUr" id="wPr-D0-6MY"/>
+                        <outlet property="amountDepositTextField" destination="hja-0v-K7Z" id="veb-7h-key"/>
+                        <outlet property="amountWithdrawTextField" destination="u0t-q6-ZQO" id="sPH-eW-WHX"/>
                         <outlet property="bankNameTextField" destination="PDD-lK-pbL" id="ygf-ln-BAl"/>
                         <outlet property="beneficiaryBankAccountTextField" destination="vLp-pw-Rdw" id="IwN-g3-Hww"/>
                         <outlet property="beneficiaryNameTextField" destination="BzG-ii-ChO" id="FAG-Qp-uR2"/>
                         <outlet property="continueButton" destination="0yy-lz-tMb" id="sXp-hm-yZU"/>
                         <outlet property="depositView" destination="5BT-jx-sg1" id="rJO-FK-h8W"/>
+                        <outlet property="exchangeDepositLabel" destination="0Xk-CI-bhf" id="bI1-kz-g8J"/>
                         <outlet property="paymentMethodTextField" destination="CKT-5K-8Pm" id="ggV-TO-fNH"/>
                         <outlet property="requestWithdrawButton" destination="RkK-iy-r69" id="EqX-44-rp3"/>
                         <outlet property="segment" destination="pci-oQ-VTy" id="xo6-as-hi3"/>

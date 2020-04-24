@@ -12,19 +12,19 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     @IBOutlet weak var segment: UISegmentedControl!
     
     @IBOutlet weak var depositView: UIView!
-    @IBOutlet weak var amountTextView: UITextField!
+    @IBOutlet weak var amountDepositTextField: UITextField!
     @IBOutlet weak var paymentMethodTextField: UITextField!
-    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var exchangeDepositLabel: UILabel!
     
     @IBOutlet weak var withdrawView: UIView!
     
     @IBOutlet weak var beneficiaryNameTextField: UITextField!
     
-    @IBOutlet weak var amauntAvailableLabel: UILabel!
+    @IBOutlet weak var amountAvailableWithrawLabel: UILabel!
     @IBOutlet weak var beneficiaryBankAccountTextField: UITextField!
     @IBOutlet weak var withdrawalToTextField: UITextField!
     @IBOutlet weak var bankNameTextField: UITextField!
-    @IBOutlet weak var amauntWithdrawTextField: UITextField!
+    @IBOutlet weak var amountWithdrawTextField: UITextField!
     
     @IBOutlet weak var continueButton: SubmitButton!
     @IBOutlet weak var requestWithdrawButton: SubmitButton!
@@ -34,8 +34,11 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDesign()
-        amountTextView.delegate = self
-        amountTextView.addTarget(self, action: #selector(WalletViewController.textFieldDidChange(_:)),
+        amountDepositTextField.delegate = self
+        amountWithdrawTextField.delegate = self
+        amountDepositTextField.addTarget(self, action: #selector(WalletViewController.textFieldDidChange(_:)),
+        for: .editingChanged)
+        amountWithdrawTextField.addTarget(self, action: #selector(WalletViewController.textFieldDidChange(_:)),
         for: .editingChanged)
         let pickerView = UIPickerView()
         pickerView.delegate = self
@@ -52,19 +55,22 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         continueButton.setup(backColor: .red, borderColor: .red, text: "CONTINUE", textColor: .black)
         requestWithdrawButton.setup(backColor: .clear, borderColor: .red, text: "Request Withdrawal", textColor: .white)
         setupTextFieldsWithArrows()
-        prefill(textField: amountTextView, with: "¥")
-        prefill(textField: amauntWithdrawTextField, with: "£")
-        updateAvailableAmaunt()
+        prefill(textField: amountDepositTextField, with: "¥")
+        prefill(textField: amountWithdrawTextField, with: "£")
+        updateAvailableAmountWithdraw()
     }
    
     @objc func textFieldDidChange(_ textField: UITextField) {
-        if let text = textField.text {
+        guard let text = textField.text else {return}
+        if textField == amountDepositTextField {
             presenter?.amountChanged(text: text)
+        } else if textField == amountWithdrawTextField {
+            
         }
     }
     
-    func updateWith(poundValueString: String) {
-        amountLabel.text = poundValueString
+    func updateExchangeDepositLabel(with string: String) {
+        exchangeDepositLabel.text = string
     }
     
     private func prefill(textField: UITextField, with text: String) {
@@ -89,8 +95,8 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         }
     }
     
-    private func updateAvailableAmaunt() {
-        amauntAvailableLabel.text = presenter?.textForAvailableAmaunt()
+    private func updateAvailableAmountWithdraw() {
+        amountAvailableWithrawLabel.text = presenter?.textForAvailableAmount()
     }
     
     @IBAction func segmentControlChanged(_ sender: Any) {
@@ -107,13 +113,13 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         }
     
     @IBAction func depositContinuePressed(_ sender: Any) {
-        if let text = amountTextView.text {
+        if let text = amountDepositTextField.text {
             presenter?.deposit(with: text)
         }
     }
     
     @IBAction func requestWithdrawPressed(_ sender: Any) {
-        if let text = amauntWithdrawTextField.text,
+        if let text = amountWithdrawTextField.text,
            let amount = Double(text),
            let bankName = bankNameTextField.text,
            let beneficiaryBankAccount = beneficiaryBankAccountTextField.text,

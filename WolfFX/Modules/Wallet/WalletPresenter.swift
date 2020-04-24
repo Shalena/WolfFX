@@ -78,10 +78,10 @@ class WalletPresenter: WalletEvents {
     private func updateViewWith(poundValue: Double) {
         let string = String(poundValue.truncate(places: 2))
         let fullString = "£" + " " + string
-        view?.updateWith(poundValueString: fullString)
+        view?.updateExchangeDepositLabel(with: fullString)
     }
     
-    func textForAvailableAmaunt() -> String {
+    func textForAvailableAmount() -> String {
         var balance = ""
         if let balanceValue = DataReceiver.shared.billingData.balance {
             balance = balanceValue

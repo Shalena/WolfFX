@@ -130,14 +130,14 @@ protocol BillingDataTransitions {
 
 protocol WalletViewProtocol: ShowErrorCapable, ShowAlertCapable {
     var presenter: WalletEvents? {get set}
-    func updateWith(poundValueString: String)
+    func updateExchangeDepositLabel(with string: String)
 }
 
 protocol WalletEvents {
     var pickerDataSource: [String]? { get set }
     func walletViewIsReady()
     func getExchangeRate()
-    func textForAvailableAmaunt() -> String
+    func textForAvailableAmount() -> String
     func amountChanged(text: String)
     func deposit(with amount: String)
     func withdrawRequestWith(form: WithdrawForm)
