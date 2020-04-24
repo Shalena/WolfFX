@@ -118,6 +118,7 @@ class NetwokManager: NetworkAccess {
                         print(response.headers)
                         success(true)
                     case .failure(let error):
+                        print(error.fullResponse)
                         let description = error.error.localizedDescription
                         let hsError = WolfError(description: description)
                         failure(hsError)

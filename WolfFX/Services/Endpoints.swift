@@ -47,8 +47,16 @@ enum Endpoint {
         
     var headers: Headers? {
     switch self {
-    case .login, .signup, .billingHistory, .exchangeRate, . deposit, .withdraw, .logout:
+    case .login, .signup, .billingHistory, .exchangeRate, . deposit, .logout:
         return nil
+    case .withdraw:
+        let username = "withdrawuser"
+        let password = "aKSmUtinsNfnfM"
+        let loginString = String(format: "%@:%@", username, password)
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+        let authString = "Basic " + base64LoginString
+        return ["Authorization": authString]
         }
     }
         
