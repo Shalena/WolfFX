@@ -57,6 +57,7 @@ class WalletPresenter: WalletEvents {
     
     func walletViewIsReady() {
         getExchangeRate()
+        WSManager.shared.getBanks()
     }
        
     func getExchangeRate() {
