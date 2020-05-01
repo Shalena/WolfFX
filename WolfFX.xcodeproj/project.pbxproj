@@ -29,6 +29,8 @@
 		811ED6C9241971110002F559 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C8241971110002F559 /* Validation.swift */; };
 		8145C8A32405DD5700414AE2 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C8A22405DD5700414AE2 /* Protocols.swift */; };
 		8145C8A52405DD8300414AE2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C8A42405DD8300414AE2 /* Design.swift */; };
+		814D3131245C53B200C092EC /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814D3130245C53B200C092EC /* Asset.swift */; };
+		814D3133245C563600C092EC /* AssetsJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814D3132245C563600C092EC /* AssetsJsonAcception.swift */; };
 		814F2ED024423A7700E0820C /* BillingDataPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F2ECF24423A7700E0820C /* BillingDataPresenter.swift */; };
 		814F2ED224423A9000E0820C /* BillingDataConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F2ED124423A9000E0820C /* BillingDataConfigurator.swift */; };
 		814F2ED424423C1A00E0820C /* BillingDataRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F2ED324423C1A00E0820C /* BillingDataRouter.swift */; };
@@ -129,6 +131,8 @@
 		811ED6C8241971110002F559 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		8145C8A22405DD5700414AE2 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		8145C8A42405DD8300414AE2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
+		814D3130245C53B200C092EC /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
+		814D3132245C563600C092EC /* AssetsJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsJsonAcception.swift; sourceTree = "<group>"; };
 		814F2ECF24423A7700E0820C /* BillingDataPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingDataPresenter.swift; sourceTree = "<group>"; };
 		814F2ED124423A9000E0820C /* BillingDataConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingDataConfigurator.swift; sourceTree = "<group>"; };
 		814F2ED324423C1A00E0820C /* BillingDataRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingDataRouter.swift; sourceTree = "<group>"; };
@@ -443,6 +447,7 @@
 				817E5D28243B73FE0088E60A /* UserJsonAcception.swift */,
 				817E5D2B243B74EA0088E60A /* BalanceJsonAcception.swift */,
 				815FD04A244F230B00EE7083 /* ExchangeRateJsonAcception.swift */,
+				814D3132245C563600C092EC /* AssetsJsonAcception.swift */,
 			);
 			path = JSONAcception;
 			sourceTree = "<group>";
@@ -479,6 +484,7 @@
 				81D8825C2409D8880030C78B /* User.swift */,
 				814F2ED524438C9300E0820C /* BillingData.swift */,
 				815FD04C244F76DB00EE7083 /* ExchangeRate.swift */,
+				814D3130245C53B200C092EC /* Asset.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -782,11 +788,13 @@
 				81A4B354241129FC004A02CB /* Repository.swift in Sources */,
 				814F2ED424423C1A00E0820C /* BillingDataRouter.swift in Sources */,
 				8103B18A242EC0AE008D7D5B /* BaseHeaderView.swift in Sources */,
+				814D3131245C53B200C092EC /* Asset.swift in Sources */,
 				8103B178242BEDC8008D7D5B /* Redux.swift in Sources */,
 				81A4B3602413BCA5004A02CB /* HomeRouter.swift in Sources */,
 				811ED6C9241971110002F559 /* Validation.swift in Sources */,
 				816C17FF24050AE900B1551A /* TabbarConfigurator.swift in Sources */,
 				816C181824056BAE00B1551A /* R.generated.swift in Sources */,
+				814D3133245C563600C092EC /* AssetsJsonAcception.swift in Sources */,
 				8103B17E242E9109008D7D5B /* SettingsRouter.swift in Sources */,
 				8103B183242EB13A008D7D5B /* ProfileDetailsPresenter.swift in Sources */,
 				811ED6C2241921880002F559 /* SignupConfigurator.swift in Sources */,
