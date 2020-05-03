@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 let assetsKeys = ["nightPriceSetting", "data", "formalDays", "replyAddress"]
 
 class AssetsJsonAcception: JsonAcception {
@@ -25,10 +24,10 @@ class AssetsJsonAcception: JsonAcception {
                 let id = dict["id"] as? Int64
                 let type = dict["type"] as? String ?? ""
                 let assetType = AssetType(rawValue: type) ?? nil
-                let asset = Asset(name: name, id: id, assetType: assetType)
+                let asset = Asset(name: name, id: id, type: assetType)
                 assets.append(asset)
             }
-            
+            DataReceiver.shared.assets = assets
             return true
         } else {
             return false

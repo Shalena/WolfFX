@@ -15,8 +15,15 @@ enum AssetType: String {
     case sentiment = "SENTIMENT"
 }
 
-struct Asset {
+class Asset: NSObject {
     var name: String?
     var id: Int64?
     var assetType: AssetType?
+    
+    init(name: String?, id: Int64?, type: AssetType?) {
+        super.init()
+        self.name = name
+        self.id = id
+        self.assetType = type
+    }
 }

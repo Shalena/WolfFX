@@ -9,13 +9,17 @@
 import Foundation
 import UIKit
 
-class HomePresenter: HomeEvents {
+class HomePresenter: NSObject, HomeEvents {
     var view: HomeViewProtocol?
     var router: HomeTransitions?
     var networkManager: NetworkAccess
+    @objc dynamic var dataReceiver: DataReceiver?
+    var observation: NSKeyValueObservation?
+    var assets: [Asset]?
     
     init (with networkManager: NetworkAccess) {
         self.networkManager = networkManager
+        self.dataReceiver = DataReceiver.shared
     }
     
     func setupLoginOverlay() {
@@ -23,8 +27,15 @@ class HomePresenter: HomeEvents {
     }
     
     func homeViewIsReady() {
- //       WSManager.shared.getBalance()
- //       WSManager.shared.readAllStatuses()
+        observe()
+    }
+    
+   func observe() {
+    observation = observe(\.dataReceiver?.assets, options: [.old, .new]) { object, change in
+        if let assets = change.newValue {
+            self.assets = assets
+        }
+        }
     }
 }
     
