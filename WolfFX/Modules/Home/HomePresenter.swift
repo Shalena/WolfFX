@@ -16,10 +16,13 @@ class HomePresenter: NSObject, HomeEvents {
     @objc dynamic var dataReceiver: DataReceiver?
     var observation: NSKeyValueObservation?
     var assets: [Asset]?
+    var websocketManager: WebsocketAccess?
+    var timer: Timer?
     
     init (with networkManager: NetworkAccess) {
         self.networkManager = networkManager
         self.dataReceiver = DataReceiver.shared
+        self.websocketManager = WSManager.shared
     }
     
     func setupLoginOverlay() {
@@ -28,6 +31,10 @@ class HomePresenter: NSObject, HomeEvents {
     
     func homeViewIsReady() {
         observe()
+        websocketManager?.getBalance()        
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            self.websocketManager?.getAssetPrice()
+        }
     }
     
    func observe() {

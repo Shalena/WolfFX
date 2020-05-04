@@ -21,13 +21,16 @@ protocol WebsocketAccess {
     func getUserInfo()
     func getBalance()
     func readAllStatuses()
+    func getAssetPrice()
     func getBanks()
+    func sendPing()
 }
 
 let baseUrlString = "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket"
 let userInfoJson: [String: Any] = ["type": "send", "address": "client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 let getBalanceJson: [String: Any] = ["type":"send", "address": "CurrentBalance", "headers": [String:String](), "body": ["currency": "%@"], "replyAddress": ""]
 let readAllStatusesJson: [String: Any] = ["type":"send", "address": "ReadAllStatuses", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
+let assetPriceJson: [String: Any] = ["type": "register", "address": "AssetPrice-9-00000000-0000-0000-0000-000000000000", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 let banksJson: [String: Any] = ["type": "send", "address": "payapi.withdraw.china.banks", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 
 class WSManager: WebsocketAccess {
@@ -39,6 +42,7 @@ class WSManager: WebsocketAccess {
            decoder.keyDecodingStrategy = .convertFromSnakeCase
            return decoder
     }()
+    var timer: Timer?
 
     func connect() {
         if let baseUrl = URL(string: baseUrlString) {
@@ -62,6 +66,7 @@ class WSManager: WebsocketAccess {
         switch result {
             case .failure(let error):
               print("Error in receiving message: \(error)")
+              self.connect()
             case .success(let message):
               switch message {
               case .string(let text):
@@ -111,14 +116,19 @@ class WSManager: WebsocketAccess {
           }
       }
     
+    func getAssetPrice() {
+        if let messageString = Converter().jsonToString(json: assetPriceJson) {
+            send(messageString: messageString)
+        }
+    }
+    
     func sendPing() {
         webSocketTask?.sendPing { (error) in
         if let error = error {
           print("Sending PING failed: \(error)")
-        }
-     
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-          self.sendPing()
+        }     
+            self.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
+            self.sendPing()
         }
       }
     }
