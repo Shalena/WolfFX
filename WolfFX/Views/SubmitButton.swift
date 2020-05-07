@@ -15,6 +15,7 @@ override func awakeFromNib() {
     super.awakeFromNib();
     layer.cornerRadius = 5
     layer.borderWidth = 2
+    layer.borderColor = UIColor.clear.cgColor
 }    
     func setup(backColor: UIColor, borderColor: UIColor, text: String, textColor: UIColor) {
         backgroundColor = backColor

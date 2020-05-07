@@ -17,14 +17,9 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     @IBOutlet weak var exchangeDepositLabel: UILabel!
     
     @IBOutlet weak var withdrawView: UIView!
-    
     @IBOutlet weak var beneficiaryNameTextField: UITextField!
-    
     @IBOutlet weak var amountAvailableWithrawLabel: UILabel!
-    
-    
     @IBOutlet weak var rmbLabel: UILabel!
-    
     @IBOutlet weak var beneficiaryBankAccountTextField: UITextField!
     @IBOutlet weak var withdrawalToTextField: UITextField!
     @IBOutlet weak var bankNameTextField: UITextField!
