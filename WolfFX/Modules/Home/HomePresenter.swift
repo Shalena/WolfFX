@@ -20,7 +20,7 @@ class HomePresenter: NSObject, HomeEvents {
     @objc dynamic var dataReceiver: DataReceiver?
     var observation: NSKeyValueObservation?
     var assets: [Asset]?
-    var tableDataSource: [[Asset]]?
+    var tableDataSource = [[Asset]?]()
     var websocketManager: WebsocketAccess?
     var timer: Timer?
     
@@ -78,8 +78,8 @@ class HomePresenter: NSObject, HomeEvents {
             let indices = self.assets?.filter{$0.assetType == .indices}
             let commodities = self.assets?.filter{$0.assetType == .commodities}
             let sentiments = self.assets?.filter{$0.assetType == .sentiment}
-            
-      
+            self.tableDataSource = [currencies, indices, commodities, sentiments]
+            self.view?.updateAssetsTable()
         }
     }
 }
@@ -92,6 +92,10 @@ class HomePresenter: NSObject, HomeEvents {
         } else {
           return nil
         }
+    }
+    
+    func update(cell: AssetCell, with text: String) {
+        cell.titleLabel.text = text
     }
 }
 

@@ -149,16 +149,55 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="ZAn-bQ-y0c"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="bkW-GO-4db"/>
                             </scrollView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zDu-xG-ZMB">
+                                <rect key="frame" x="20" y="64" width="374" height="778"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssetCell" rowHeight="43" id="9CG-kp-lT1" customClass="AssetCell" customModule="WolfFX" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="43"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9CG-kp-lT1" id="1Gn-bI-NiD" userLabel="ContentView">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypF-Ex-YOd">
+                                                    <rect key="frame" x="10" y="0.0" width="364" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ypF-Ex-YOd" firstAttribute="top" secondItem="1Gn-bI-NiD" secondAttribute="top" id="2Gv-ED-wG2"/>
+                                                <constraint firstItem="ypF-Ex-YOd" firstAttribute="leading" secondItem="1Gn-bI-NiD" secondAttribute="leading" constant="10" id="Vt7-4u-ZiU"/>
+                                                <constraint firstAttribute="trailing" secondItem="ypF-Ex-YOd" secondAttribute="trailing" id="kOX-jb-vRe"/>
+                                                <constraint firstAttribute="bottom" secondItem="ypF-Ex-YOd" secondAttribute="bottom" id="x7h-3l-u07"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="ypF-Ex-YOd" id="eSP-1X-9Em"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="fp4-bO-3ng" id="BgK-Ih-m2r"/>
+                                    <outlet property="delegate" destination="fp4-bO-3ng" id="67F-7n-hUR"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gQu-Fm-M9E" firstAttribute="leading" secondItem="hWp-1Q-FvU" secondAttribute="leading" id="867-dH-TTf"/>
+                            <constraint firstItem="hWp-1Q-FvU" firstAttribute="trailing" secondItem="zDu-xG-ZMB" secondAttribute="trailing" constant="20" id="K3V-FT-LAP"/>
                             <constraint firstItem="Kv1-a7-Xs9" firstAttribute="leading" secondItem="hWp-1Q-FvU" secondAttribute="leading" id="RE4-Fu-YR6"/>
+                            <constraint firstItem="hWp-1Q-FvU" firstAttribute="bottom" secondItem="zDu-xG-ZMB" secondAttribute="bottom" constant="20" id="UEk-Ox-uGB"/>
                             <constraint firstItem="gQu-Fm-M9E" firstAttribute="top" secondItem="hWp-1Q-FvU" secondAttribute="top" id="Whf-NX-Mnv"/>
                             <constraint firstItem="hWp-1Q-FvU" firstAttribute="trailing" secondItem="Kv1-a7-Xs9" secondAttribute="trailing" id="Z3w-uO-MpX"/>
+                            <constraint firstItem="zDu-xG-ZMB" firstAttribute="top" secondItem="hWp-1Q-FvU" secondAttribute="top" constant="20" id="clh-h4-9Ub"/>
                             <constraint firstItem="hWp-1Q-FvU" firstAttribute="trailing" secondItem="gQu-Fm-M9E" secondAttribute="trailing" id="ftQ-Jp-980"/>
                             <constraint firstItem="hWp-1Q-FvU" firstAttribute="bottom" secondItem="Kv1-a7-Xs9" secondAttribute="bottom" id="suN-gf-Ev1"/>
                             <constraint firstItem="Kv1-a7-Xs9" firstAttribute="top" secondItem="gQu-Fm-M9E" secondAttribute="bottom" id="wMM-DU-d90"/>
+                            <constraint firstItem="zDu-xG-ZMB" firstAttribute="leading" secondItem="hWp-1Q-FvU" secondAttribute="leading" constant="20" id="zEJ-a3-u1f"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hWp-1Q-FvU"/>
                     </view>
@@ -168,6 +207,7 @@
                         <outlet property="investmentTextField" destination="IhL-PE-tKe" id="N6w-qW-JDs"/>
                         <outlet property="leverageTextField" destination="9Px-C5-LZJ" id="9fx-He-TXJ"/>
                         <outlet property="lineChartView" destination="F4g-VF-38s" id="Jf4-0M-QAp"/>
+                        <outlet property="tableView" destination="zDu-xG-ZMB" id="hH0-Nk-Pio"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oA6-CE-EhZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -17,6 +17,8 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     @IBOutlet weak var leverageTextField: UITextField!
     @IBOutlet weak var expiryTimeTextField: UITextField!
     
+    @IBOutlet weak var tableView: UITableView!
+    
     var presenter: HomeEvents?
     var infoView = UIView()
     var timer: Timer?
@@ -53,6 +55,8 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         expiryTimeTextField.inputView = expiryPicker
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        tableView.delegate = self
+        tableView.allowsSelection = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +65,15 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     
      func setupLoginOverlay() {
         presenter?.setupLoginOverlay()
+    }
+    
+    func updateAssetsTable() {
+        guard tableView != nil else {
+            return
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     private func setupChartDesign() {
@@ -197,15 +210,24 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return presenter?.tableDataSource?.count ?? 0
+        return presenter?.tableDataSource.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.tableDataSource?[section].count ?? 0
+        return presenter?.tableDataSource[section]?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let identidier = "AssetCell"
+        if let cell = tableView.dequeueReusableCell(withIdentifier: identidier, for: indexPath) as? AssetCell {
+            presenter?.update(cell: cell, with: "String")
         return cell
+        } else {
+            return  UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       print ("everything is fine")
     }
 }

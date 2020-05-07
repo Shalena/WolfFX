@@ -152,6 +152,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  struct reuseIdentifier {
+    /// Reuse identifier `AssetCell`.
+    static let assetCell: Rswift.ReuseIdentifier<AssetCell> = Rswift.ReuseIdentifier(identifier: "AssetCell")
+    
+    fileprivate init() {}
+  }
+  
   /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
   struct storyboard {
     /// Storyboard `Billing Data`.

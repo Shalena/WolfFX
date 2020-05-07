@@ -99,6 +99,7 @@ protocol SignupTransitions {
 
 protocol HomeViewProtocol {
     var presenter: HomeEvents? {get set}
+    func updateAssetsTable()
 }
 
 protocol HomeEvents {
@@ -108,10 +109,11 @@ protocol HomeEvents {
     var selectedInvestment: PickerEntry? {get set}
     var selectedLeverage: PickerEntry? {get set}
     var selectedExpiry: String? {get set}
-    var tableDataSource: [[Asset]]? {get set}
+    var tableDataSource: [[Asset]?] {get set}
     func setupLoginOverlay()
     func homeViewIsReady()
-    func textForInfoLabel() -> String? 
+    func textForInfoLabel() -> String?
+    func update(cell: AssetCell, with text: String)
 }
 
 protocol HomeTransitions {
