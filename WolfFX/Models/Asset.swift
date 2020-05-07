@@ -13,6 +13,7 @@ enum AssetType: String {
     case indices = "INDICES"
     case commodities = "COMMODITY"
     case sentiment = "SENTIMENT"
+    static let all = [currency, indices, commodities, sentiment]
 }
 
 class Asset: NSObject {

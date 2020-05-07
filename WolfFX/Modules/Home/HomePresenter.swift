@@ -20,6 +20,7 @@ class HomePresenter: NSObject, HomeEvents {
     @objc dynamic var dataReceiver: DataReceiver?
     var observation: NSKeyValueObservation?
     var assets: [Asset]?
+    var tableDataSource: [[Asset]]?
     var websocketManager: WebsocketAccess?
     var timer: Timer?
     
@@ -63,19 +64,25 @@ class HomePresenter: NSObject, HomeEvents {
     
     func homeViewIsReady() {
         observe()
-        websocketManager?.getBalance()        
+        websocketManager?.readAllStatuses()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             self.websocketManager?.getAssetPrice()
         }
     }
     
-   func observe() {
+    func observe() {
     observation = observe(\.dataReceiver?.assets, options: [.old, .new]) { object, change in
         if let assets = change.newValue {
             self.assets = assets
-        }
+            let currencies = self.assets?.filter{$0.assetType == .currency}
+            let indices = self.assets?.filter{$0.assetType == .indices}
+            let commodities = self.assets?.filter{$0.assetType == .commodities}
+            let sentiments = self.assets?.filter{$0.assetType == .sentiment}
+            
+      
         }
     }
+}
     
     func textForInfoLabel() -> String? {
         if let investment = selectedInvestment, let leverage = selectedLeverage {
@@ -86,11 +93,6 @@ class HomePresenter: NSObject, HomeEvents {
           return nil
         }
     }
-    
-    @IBAction func investmentPressed(_ sender: UIButton) {
-        
-    }
-    
 }
 
 struct PickerEntry {

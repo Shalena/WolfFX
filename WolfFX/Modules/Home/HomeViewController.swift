@@ -194,3 +194,18 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         infoLabel.text = presenter?.textForInfoLabel()
     }
 }
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return presenter?.tableDataSource?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter?.tableDataSource?[section].count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        return cell
+    }
+}

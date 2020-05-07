@@ -31,6 +31,7 @@
 		8145C8A52405DD8300414AE2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C8A42405DD8300414AE2 /* Design.swift */; };
 		814D3131245C53B200C092EC /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814D3130245C53B200C092EC /* Asset.swift */; };
 		814D3133245C563600C092EC /* AssetsJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814D3132245C563600C092EC /* AssetsJsonAcception.swift */; };
+		814D31352464414E00C092EC /*  .swift in Sources */ = {isa = PBXBuildFile; fileRef = 814D31342464414E00C092EC /*  .swift */; };
 		814F2ED024423A7700E0820C /* BillingDataPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F2ECF24423A7700E0820C /* BillingDataPresenter.swift */; };
 		814F2ED224423A9000E0820C /* BillingDataConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F2ED124423A9000E0820C /* BillingDataConfigurator.swift */; };
 		814F2ED424423C1A00E0820C /* BillingDataRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F2ED324423C1A00E0820C /* BillingDataRouter.swift */; };
@@ -133,6 +134,7 @@
 		8145C8A42405DD8300414AE2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		814D3130245C53B200C092EC /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		814D3132245C563600C092EC /* AssetsJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsJsonAcception.swift; sourceTree = "<group>"; };
+		814D31342464414E00C092EC /*  .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " .swift"; sourceTree = "<group>"; };
 		814F2ECF24423A7700E0820C /* BillingDataPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingDataPresenter.swift; sourceTree = "<group>"; };
 		814F2ED124423A9000E0820C /* BillingDataConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingDataConfigurator.swift; sourceTree = "<group>"; };
 		814F2ED324423C1A00E0820C /* BillingDataRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingDataRouter.swift; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 				814F2ED524438C9300E0820C /* BillingData.swift */,
 				815FD04C244F76DB00EE7083 /* ExchangeRate.swift */,
 				814D3130245C53B200C092EC /* Asset.swift */,
+				814D31342464414E00C092EC /*  .swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -749,6 +752,7 @@
 				816C17CB24050A0F00B1551A /* AppDelegate.swift in Sources */,
 				816C17CD24050A0F00B1551A /* SceneDelegate.swift in Sources */,
 				815FD04D244F76DB00EE7083 /* ExchangeRate.swift in Sources */,
+				814D31352464414E00C092EC /*  .swift in Sources */,
 				8103B185242EB161008D7D5B /* ProfileDetailsConfigurator.swift in Sources */,
 				815FD04B244F230B00EE7083 /* ExchangeRateJsonAcception.swift in Sources */,
 				81A4B3562413A3CF004A02CB /* LoginConfigurator.swift in Sources */,

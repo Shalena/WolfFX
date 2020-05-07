@@ -36,9 +36,11 @@ class LoginPresenter: NSObject, LoginEvents {
         networkManager?.login(email: email, password: password, success: { (successfully: Bool) in
                     if successfully {
                         self.websocketManager?.connect()
-                        self.websocketManager?.sendPing()
-                        self.websocketManager?.getUserInfo()
+                       // self.websocketManager?.sendPing()
                       //  self.websocketManager?.getBalance()
+                        self.websocketManager?.getUserInfo()
+                        
+                        
                         
                       //  self.websocketManager?.readAllStatuses()
                       //  self.websocketManager?.getAssetPrice()
