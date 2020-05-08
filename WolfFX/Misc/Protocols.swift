@@ -100,6 +100,7 @@ protocol SignupTransitions {
 protocol HomeViewProtocol {
     var presenter: HomeEvents? {get set}
     func updateAssetsTable()
+    func redrawChart()
 }
 
 protocol HomeEvents {

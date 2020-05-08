@@ -146,7 +146,11 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
            let frame = CGRect(x: pt.x, y: pt.y, width: 50, height: 50)
            infoView.frame = frame
     }
-
+    
+    func redrawChart() {
+        
+    }
+    
     private func setupTextFieldsDesign() {
         let textFields = [investmentTextField, leverageTextField, expiryTimeTextField]
                for textField in textFields {

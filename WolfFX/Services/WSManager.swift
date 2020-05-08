@@ -36,7 +36,7 @@ let banksJson: [String: Any] = ["type": "send", "address": "payapi.withdraw.chin
 class WSManager: WebsocketAccess {
     static let shared = WSManager()
     var webSocketTask: URLSessionWebSocketTask?
-    let arrayOfAcceptors: [JsonAcception] = [UserJsonAcception(), BalanceJsonAcception(), AssetsJsonAcception()]
+    let arrayOfAcceptors: [JsonAcception] = [UserJsonAcception(), BalanceJsonAcception(), AssetsJsonAcception(), AssetPriceJsonAcception()]
     var timer: Timer?
 
     func connect() {

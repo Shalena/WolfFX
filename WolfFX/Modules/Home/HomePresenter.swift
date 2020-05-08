@@ -19,11 +19,13 @@ class HomePresenter: NSObject, HomeEvents {
     var networkManager: NetworkAccess
     @objc dynamic var dataReceiver: DataReceiver?
     var observation: NSKeyValueObservation?
+    var observation2: NSKeyValueObservation?
     var assets: [Asset]?
     var selectedAsset: Asset?
     var tableDataSource: AssetsDataSource?
     var websocketManager: WebsocketAccess?
     var timer: Timer?
+    var currentAssetPrice: AssetPrice?
     
     let investmentDataSource: [PickerEntry] = {
         let currencySign: String = Currency(rawValue: DataReceiver.shared.user?.currency ?? "")?.sign ?? ""
@@ -65,7 +67,8 @@ class HomePresenter: NSObject, HomeEvents {
     
     func homeViewIsReady() {
         observe()
-        websocketManager?.readAllStatuses()
+        observePrice()
+     //   websocketManager?.readAllStatuses()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             self.websocketManager?.getAssetPrice()
         }
@@ -86,6 +89,15 @@ class HomePresenter: NSObject, HomeEvents {
         }
     }
 }
+    
+     func observePrice() {
+        observation2 = observe(\.dataReceiver?.assetPrice, options: [.old, .new]) { object, change in
+            if let assetPrice = change.newValue {
+                self.currentAssetPrice = assetPrice
+                self.view?.redrawChart()
+            }
+        }
+    }
     
     func textForInfoLabel() -> String? {
         if let investment = selectedInvestment, let leverage = selectedLeverage {
