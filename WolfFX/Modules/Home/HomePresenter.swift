@@ -20,7 +20,8 @@ class HomePresenter: NSObject, HomeEvents {
     @objc dynamic var dataReceiver: DataReceiver?
     var observation: NSKeyValueObservation?
     var assets: [Asset]?
-    var tableDataSource = [[Asset]?]()
+    var selectedAsset: Asset?
+    var tableDataSource: AssetsDataSource?
     var websocketManager: WebsocketAccess?
     var timer: Timer?
     
@@ -78,7 +79,9 @@ class HomePresenter: NSObject, HomeEvents {
             let indices = self.assets?.filter{$0.assetType == .indices}
             let commodities = self.assets?.filter{$0.assetType == .commodities}
             let sentiments = self.assets?.filter{$0.assetType == .sentiment}
-            self.tableDataSource = [currencies, indices, commodities, sentiments]
+            let grouppedAssets = [currencies, indices, commodities, sentiments]
+            let dataSource = AssetsDataSource.init(grouppedAssets: grouppedAssets)
+            self.tableDataSource = dataSource
             self.view?.updateAssetsTable()
         }
     }

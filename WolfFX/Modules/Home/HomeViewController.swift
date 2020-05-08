@@ -17,6 +17,8 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     @IBOutlet weak var leverageTextField: UITextField!
     @IBOutlet weak var expiryTimeTextField: UITextField!
     
+    @IBOutlet weak var changeAssetButton: SubmitButton!
+    
     @IBOutlet weak var tableView: UITableView!
     
     var presenter: HomeEvents?
@@ -54,7 +56,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         leverageTextField.inputView = leveragePicker
         expiryTimeTextField.inputView = expiryPicker
         
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+      //  view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         tableView.delegate = self
         tableView.allowsSelection = true
     }
@@ -159,6 +161,10 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         leverageTextField.text = presenter?.selectedLeverage?.title
         expiryTimeTextField.text = presenter?.selectedExpiry
     }
+    
+    @IBAction func changeAssetPressed(_ sender: Any) {
+        tableView.isHidden = false
+    }
 }
 
 extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -210,24 +216,35 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return presenter?.tableDataSource.count ?? 0
+        return presenter?.tableDataSource?.grouppedAssets.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return presenter?.tableDataSource?.sectionTitles[section]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.tableDataSource[section]?.count ?? 0
+        return presenter?.tableDataSource?.grouppedAssets[section]?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identidier = "AssetCell"
         if let cell = tableView.dequeueReusableCell(withIdentifier: identidier, for: indexPath) as? AssetCell {
-            presenter?.update(cell: cell, with: "String")
+            let text = presenter?.tableDataSource?.grouppedAssets[indexPath.section]?[indexPath.row].name ?? ""
+            presenter?.update(cell: cell, with: text)
         return cell
         } else {
             return  UITableViewCell()
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       print ("everything is fine")
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        tableView.isHidden = true
+        let asset = presenter?.tableDataSource?.grouppedAssets[indexPath.section]?[indexPath.row]
+        changeAssetButton.setTitle(asset?.name, for: .normal)
+        presenter?.selectedAsset = asset        
     }
 }
+
+
+

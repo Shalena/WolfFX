@@ -109,7 +109,8 @@ protocol HomeEvents {
     var selectedInvestment: PickerEntry? {get set}
     var selectedLeverage: PickerEntry? {get set}
     var selectedExpiry: String? {get set}
-    var tableDataSource: [[Asset]?] {get set}
+    var selectedAsset: Asset? {get set}
+    var tableDataSource: AssetsDataSource? {get set}
     func setupLoginOverlay()
     func homeViewIsReady()
     func textForInfoLabel() -> String?

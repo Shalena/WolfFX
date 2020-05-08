@@ -9,10 +9,6 @@
 import Foundation
 
 struct AssetsDataSource {
-    var currencies: [Asset]?
-    var indicies: [Asset]?
-    var commodities: [Asset]?
-    var sentiments: [Asset]?
-    var numberOfCategories = AssetType.all.count
+    var grouppedAssets: [[Asset]?]   
     let sectionTitles = ["CURRENCIES", "INDICIES", "COMMODITIES", "SENTIMENTS"]
 }
