@@ -18,8 +18,9 @@ class HomePresenter: NSObject, HomeEvents {
     var router: HomeTransitions?
     var networkManager: NetworkAccess
     @objc dynamic var dataReceiver: DataReceiver?
-    var observation: NSKeyValueObservation?
-    var observation2: NSKeyValueObservation?
+    var userObservation: NSKeyValueObservation?
+    var assetsObservation: NSKeyValueObservation?
+    var priceObservation: NSKeyValueObservation?
     var assets: [Asset]?
     var selectedAsset: Asset?
     var tableDataSource: AssetsDataSource?
@@ -66,16 +67,22 @@ class HomePresenter: NSObject, HomeEvents {
     }
     
     func homeViewIsReady() {
-        observe()
+        observeUser()
+        observeAssets()
         observePrice()
-     //   websocketManager?.readAllStatuses()
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-            self.websocketManager?.getAssetPrice()
-        }
     }
     
-    func observe() {
-    observation = observe(\.dataReceiver?.assets, options: [.old, .new]) { object, change in
+    private func observeUser() {
+        userObservation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
+            if let user = change.newValue {
+                self.websocketManager?.connect()
+                self.websocketManager?.getBalance()
+            }
+        }
+    }
+        
+   private func observeAssets() {
+    assetsObservation = observe(\.dataReceiver?.assets, options: [.old, .new]) { object, change in
         if let assets = change.newValue {
             self.assets = assets
             let currencies = self.assets?.filter{$0.assetType == .currency}
@@ -83,18 +90,25 @@ class HomePresenter: NSObject, HomeEvents {
             let commodities = self.assets?.filter{$0.assetType == .commodities}
             let sentiments = self.assets?.filter{$0.assetType == .sentiment}
             let grouppedAssets = [currencies, indices, commodities, sentiments]
-            let dataSource = AssetsDataSource.init(grouppedAssets: grouppedAssets)
+            let dataSource = AssetsDataSource(grouppedAssets: grouppedAssets)
             self.tableDataSource = dataSource
             self.view?.updateAssetsTable()
+            self.getPrice()
         }
     }
 }
+
+   private func getPrice() {
+        self.websocketManager?.connect()
+        self.websocketManager?.getAssetPrice()
+    }
     
      func observePrice() {
-        observation2 = observe(\.dataReceiver?.assetPrice, options: [.old, .new]) { object, change in
+        priceObservation = observe(\.dataReceiver?.assetPrice, options: [.old, .new]) { object, change in
             if let assetPrice = change.newValue {
                 self.currentAssetPrice = assetPrice
                 self.view?.redrawChart()
+                self.getPrice()
             }
         }
     }

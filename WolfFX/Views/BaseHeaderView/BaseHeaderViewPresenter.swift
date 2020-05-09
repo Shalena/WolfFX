@@ -20,6 +20,8 @@ class BaseHeaderViewPresenter: NSObject {
                         if let realBalanceString = change.newValue {
                             self.view?.updateWith(realBalance: realBalanceString)
                         }
+                        WSManager.shared.connect()
+                        WSManager.shared.readAllStatuses()
                     }
          }
 }
