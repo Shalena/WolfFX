@@ -102,6 +102,7 @@ protocol HomeViewProtocol {
     func updateAssetsTable()
     func redrawChart()
     func updateChart(with entries: [PriceEntry])
+    func updateChartWithNewValue(assetPrice: AssetPrice)
 }
 
 protocol HomeEvents {

@@ -124,20 +124,20 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         infoLabel.text = presenter?.textForInfoLabel()
     }
         
-    @objc func updateCounter() {
+    func updateChartWithNewValue(assetPrice: AssetPrice) {
+        guard let newValue = assetPrice.price else { return }
         let currentSet = lineChartView.data?.getDataSetByIndex(0)
         currentIndex =  Double(currentSet?.entryCount ?? 0)
-        let value = Double(arc4random_uniform(10))
-        let nextChartEntry = ChartDataEntry(x: currentIndex, y: value)
-        currentSet?.addEntry(nextChartEntry)
+        let chartEntry = ChartDataEntry(x: currentIndex, y: newValue)
+        currentSet?.addEntry(chartEntry)
         lineChartView.data?.notifyDataChanged()
         lineChartView.notifyDataSetChanged()
         lineChartView.setVisibleXRangeMaximum(10)
         lineChartView.moveViewToX(currentIndex)
-        let highlight = Highlight(x: currentIndex, y: value, dataSetIndex: 0)
+        let highlight = Highlight(x: currentIndex, y: newValue, dataSetIndex: 0)
         lineChartView.highlightValue(highlight, callDelegate: true)
     }
-    
+
     internal func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
            guard let chartDataSet = lineChartView.data?.dataSets[0] else {return} // get dataSet used by chart
            guard let chartView = chartView as? LineChartView else {return}

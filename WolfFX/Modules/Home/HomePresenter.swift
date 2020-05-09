@@ -117,15 +117,18 @@ class HomePresenter: NSObject, HomeEvents {
                 DispatchQueue.main.async {
                     self.view?.updateChart(with: priceEntries)
                 }
+                self.getPrice()
             }
         }
     }
     
      private func observePrice() {
         priceObservation = observe(\.dataReceiver?.assetPrice, options: [.old, .new]) { object, change in
-            if let assetPrice = change.newValue {
+            if let assetPrice = change.newValue as? AssetPrice {
                 self.currentAssetPrice = assetPrice
-                self.view?.redrawChart()
+                DispatchQueue.main.async {
+                   self.view?.updateChartWithNewValue(assetPrice: assetPrice)
+                }
                 self.getPrice()
             }
         }
