@@ -20,6 +20,7 @@ class HomePresenter: NSObject, HomeEvents {
     @objc dynamic var dataReceiver: DataReceiver?
     var userObservation: NSKeyValueObservation?
     var assetsObservation: NSKeyValueObservation?
+    var priceHistoryObservation: NSKeyValueObservation?
     var priceObservation: NSKeyValueObservation?
     var assets: [Asset]?
     var selectedAsset: Asset?
@@ -69,6 +70,7 @@ class HomePresenter: NSObject, HomeEvents {
     func homeViewIsReady() {
         observeUser()
         observeAssets()
+        observePriceHistory()
         observePrice()
     }
     
@@ -93,17 +95,33 @@ class HomePresenter: NSObject, HomeEvents {
             let dataSource = AssetsDataSource(grouppedAssets: grouppedAssets)
             self.tableDataSource = dataSource
             self.view?.updateAssetsTable()
-            self.getPrice()
+           // self.getPrice()
+            self.getPriceHistory()
         }
     }
 }
 
-   private func getPrice() {
+    private func getPriceHistory() {
+        self.websocketManager?.connect()
+        self.websocketManager?.getPriceHistory()
+    }
+    
+    private func getPrice() {
         self.websocketManager?.connect()
         self.websocketManager?.getAssetPrice()
     }
     
-     func observePrice() {
+    private func observePriceHistory() {
+        priceHistoryObservation = observe(\.dataReceiver?.priceHistory, options: [.old, .new]) { object, change in
+            if let priceEntries = change.newValue as? [PriceEntry] {
+                DispatchQueue.main.async {
+                    self.view?.updateChart(with: priceEntries)
+                }
+            }
+        }
+    }
+    
+     private func observePrice() {
         priceObservation = observe(\.dataReceiver?.assetPrice, options: [.old, .new]) { object, change in
             if let assetPrice = change.newValue {
                 self.currentAssetPrice = assetPrice

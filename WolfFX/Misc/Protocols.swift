@@ -101,6 +101,7 @@ protocol HomeViewProtocol {
     var presenter: HomeEvents? {get set}
     func updateAssetsTable()
     func redrawChart()
+    func updateChart(with entries: [PriceEntry])
 }
 
 protocol HomeEvents {

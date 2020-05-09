@@ -38,4 +38,5 @@ class DataReceiver: NSObject {
     var withdrawRate: Double?
     @objc dynamic var assets: [Asset]?
     @objc dynamic var assetPrice: AssetPrice?
+    @objc dynamic var priceHistory: [PriceEntry]?
 }

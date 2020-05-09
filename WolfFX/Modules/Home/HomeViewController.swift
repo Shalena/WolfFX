@@ -10,6 +10,7 @@ import UIKit
 import Charts
 
 class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, ChartViewDelegate {
+   
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var chartConteinerView: UIView!
     
@@ -43,7 +44,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         super.viewDidLoad()
         setupBaseNavigationDesign()
         setupLoginOverlay()
-        setupChartDesign()
+    //    setupChartDesign()
         setupTextFieldsDesign()
         investmentPicker.delegate = self
         investmentPicker.dataSource = self
@@ -78,6 +79,36 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         }
     }
     
+    func updateChart(with entries: [PriceEntry]) {
+           setupChartDesign()
+           lineChartEntries = [ChartDataEntry]()
+           let values = entries.map({$0.value})
+           for i in 0..<values.count {
+               let chartDataEntry = ChartDataEntry(x: Double(i), y: values[i])
+               lineChartEntries.append(chartDataEntry)
+           }
+           let lineSet = LineChartDataSet(entries: lineChartEntries, label: nil)
+           lineSet.colors = [UIColor.red]
+           lineSet.drawCirclesEnabled = false
+           let gradColors = [UIColor.red.cgColor, UIColor.clear.cgColor]
+           let colorLocations:[CGFloat] = [0.0, 1.0]
+           if let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradColors as CFArray, locations: colorLocations) {
+               lineSet.fill = Fill(linearGradient: gradient, angle: 90.0)
+               lineSet.drawFilledEnabled = true
+           }
+           let labels = entries.map({$0.label})
+           let lineChartViewData = LineChartData.init(dataSets: [lineSet])
+           lineChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
+           lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: labels)
+           lineChartView.xAxis.labelTextColor = UIColor.white
+           lineChartView.leftAxis.labelTextColor = UIColor.white
+           lineChartView.rightAxis.enabled = false
+           lineChartView.xAxis.setLabelCount(labels.count, force: true)
+           lineChartView.legend.enabled = false
+           lineChartView.data = lineChartViewData
+           lineChartView.delegate = self
+       }
+       
     private func setupChartDesign() {
         infoView.backgroundColor = UIColor.clear
         infoView.layer.borderWidth = 2.0
@@ -91,36 +122,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
             infoView.trailingAnchor.constraint(equalTo: infoLabel.leadingAnchor),
         ])
         infoLabel.text = presenter?.textForInfoLabel()
-        
-        let wEntriesArray = WEntry.wEntriesArray()
-        lineChartEntries = [ChartDataEntry]()
-        let values = wEntriesArray.map({$0.value})
-        for i in 0..<values.count {
-            let chartDataEntry = ChartDataEntry(x: Double(i), y: values[i])
-            lineChartEntries.append(chartDataEntry)
-        }
-        let lineSet = LineChartDataSet(entries: lineChartEntries, label: nil)
-        lineSet.colors = [UIColor.red]
-        lineSet.drawCirclesEnabled = false
-        let gradColors = [UIColor.red.cgColor, UIColor.clear.cgColor]
-        let colorLocations:[CGFloat] = [0.0, 1.0]
-        if let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradColors as CFArray, locations: colorLocations) {
-            lineSet.fill = Fill(linearGradient: gradient, angle: 90.0)
-            lineSet.drawFilledEnabled = true
-        }
-        let labels = wEntriesArray.map({$0.label})
-        let lineChartViewData = LineChartData.init(dataSets: [lineSet])
-        lineChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
-        lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: labels)
-        lineChartView.xAxis.labelTextColor = UIColor.white
-        lineChartView.leftAxis.labelTextColor = UIColor.white
-        lineChartView.rightAxis.enabled = false
-        lineChartView.xAxis.setLabelCount(labels.count, force: true)
-        lineChartView.legend.enabled = false
-        lineChartView.data = lineChartViewData
-        lineChartView.delegate = self
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-        
     }
         
     @objc func updateCounter() {
@@ -143,7 +144,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
            let transform = chartView.getTransformer(forAxis: chartDataSet.axisDependency)
            let pt = transform.pixelForValues(x: highlight.x, y: highlight.y)
            print(pt)
-           let frame = CGRect(x: pt.x, y: pt.y, width: 50, height: 50)
+           let frame = CGRect(x: pt.x, y: pt.y - 25, width: 50, height: 50)
            infoView.frame = frame
     }
     
