@@ -25,14 +25,14 @@ class LoginPresenter: NSObject, LoginEvents {
     }
 
     func observe() {
-        observation = observe(\.dataReceiver?.user,
-                   options: [.old, .new]
-               ) { object, change in
-                  self.userDetailsHadReceived()
-               }
+        observation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
+            self.view?.hideHud()
+            self.userDetailsHadReceived()
+        }
     }
     
     func signIn(email: String, password: String) {
+        view?.showHud()
         networkManager?.login(email: email, password: password, success: { (successfully: Bool) in
                     if successfully {
                         self.websocketManager?.connect()

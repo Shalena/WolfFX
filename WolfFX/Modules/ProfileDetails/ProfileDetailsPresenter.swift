@@ -8,7 +8,7 @@
 
 import Foundation
 import Swinject
-import ReSwift
+
 
 enum UserDetailsTextFields {
     case name

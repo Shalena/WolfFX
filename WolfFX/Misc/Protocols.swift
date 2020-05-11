@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+import SVProgressHUD
+
+let multiplierHudOffset: CGFloat = 235/667
 
 protocol JsonAcception {
     func acceptJson(json: JSON) -> Bool
@@ -46,6 +49,30 @@ extension ShowErrorCapable {
     }
 }
 
+protocol ShowHudCapable: class where Self: UIViewController {
+    
+}
+
+extension ShowHudCapable {
+   func showHud() {
+       SVProgressHUD.setBackgroundColor(UIColor.clear)
+       SVProgressHUD.setForegroundColor(UIColor.red)
+     //  let height = UIScreen.main.bounds.size.height
+     //  let offset = height * multiplierHudOffset
+     //  SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0, vertical: offset))
+       SVProgressHUD.show()
+   }
+   
+   func hideHud() {
+       SVProgressHUD.dismiss()
+   }
+}
+
+
+
+
+
+
 protocol ShowAlertCapable: class where Self: UIViewController {
     
 }
@@ -61,7 +88,7 @@ extension ShowAlertCapable {
 
 // Login Screen
 
-protocol LoginViewProtocol: ShowErrorCapable {
+protocol LoginViewProtocol: ShowErrorCapable, ShowHudCapable {
     var presenter: LoginEvents? {get set}
 }
 

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		62E1728DBD1FDF0F5E5C6998 /* Pods_WolfFX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4DDAFBC92A8DE3EBEC85F92 /* Pods_WolfFX.framework */; };
-		8103B178242BEDC8008D7D5B /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B177242BEDC8008D7D5B /* Redux.swift */; };
 		8103B17A242E90C5008D7D5B /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B179242E90C5008D7D5B /* SettingsPresenter.swift */; };
 		8103B17C242E90E4008D7D5B /* SettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B17B242E90E4008D7D5B /* SettingsConfigurator.swift */; };
 		8103B17E242E9109008D7D5B /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B17D242E9109008D7D5B /* SettingsRouter.swift */; };
@@ -114,7 +113,6 @@
 		45270D39D6F5BF4446F2567D /* Pods-WolfFXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFXTests.release.xcconfig"; path = "Target Support Files/Pods-WolfFXTests/Pods-WolfFXTests.release.xcconfig"; sourceTree = "<group>"; };
 		55B49A895A9ABBD490771AC7 /* Pods_WolfFXUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WolfFXUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CC906AF2777012B78946D39 /* Pods-WolfFXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFXTests.debug.xcconfig"; path = "Target Support Files/Pods-WolfFXTests/Pods-WolfFXTests.debug.xcconfig"; sourceTree = "<group>"; };
-		8103B177242BEDC8008D7D5B /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
 		8103B179242E90C5008D7D5B /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		8103B17B242E90E4008D7D5B /* SettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsConfigurator.swift; sourceTree = "<group>"; };
 		8103B17D242E9109008D7D5B /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
@@ -284,7 +282,6 @@
 				81D8825E2409D9070030C78B /* WolfError.swift */,
 				81A4B35B2413A527004A02CB /* BaseRouter.swift */,
 				811ED6C8241971110002F559 /* Validation.swift */,
-				8103B177242BEDC8008D7D5B /* Redux.swift */,
 				8103B18B242EC2EE008D7D5B /* Extensions.swift */,
 				817324CA2437CFE4000DFB86 /* Currency.swift */,
 			);
@@ -808,7 +805,6 @@
 				814F2ED424423C1A00E0820C /* BillingDataRouter.swift in Sources */,
 				8103B18A242EC0AE008D7D5B /* BaseHeaderView.swift in Sources */,
 				814D3131245C53B200C092EC /* Asset.swift in Sources */,
-				8103B178242BEDC8008D7D5B /* Redux.swift in Sources */,
 				81A4B3602413BCA5004A02CB /* HomeRouter.swift in Sources */,
 				811ED6C9241971110002F559 /* Validation.swift in Sources */,
 				816C17FF24050AE900B1551A /* TabbarConfigurator.swift in Sources */,
