@@ -8,9 +8,7 @@
 
 import Foundation
 import UIKit
-import SVProgressHUD
-
-let multiplierHudOffset: CGFloat = 235/667
+import KRProgressHUD
 
 protocol JsonAcception {
     func acceptJson(json: JSON) -> Bool
@@ -55,23 +53,13 @@ protocol ShowHudCapable: class where Self: UIViewController {
 
 extension ShowHudCapable {
    func showHud() {
-       SVProgressHUD.setBackgroundColor(UIColor.clear)
-       SVProgressHUD.setForegroundColor(UIColor.red)
-     //  let height = UIScreen.main.bounds.size.height
-     //  let offset = height * multiplierHudOffset
-     //  SVProgressHUD.setOffsetFromCenter(UIOffset(horizontal: 0, vertical: offset))
-       SVProgressHUD.show()
+        KRProgressHUD.show()
    }
    
    func hideHud() {
-       SVProgressHUD.dismiss()
+        KRProgressHUD.dismiss()
    }
 }
-
-
-
-
-
 
 protocol ShowAlertCapable: class where Self: UIViewController {
     

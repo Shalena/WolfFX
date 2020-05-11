@@ -2,41 +2,45 @@ PODS:
   - Charts (3.4.0):
     - Charts/Core (= 3.4.0)
   - Charts/Core (3.4.0)
+  - KRActivityIndicatorView (3.0.5)
+  - KRProgressHUD (3.4.5):
+    - KRActivityIndicatorView (= 3.0.5)
   - Locksmith (4.0.0)
   - Networking (5.0.0)
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
-  - SVProgressHUD (2.2.5)
   - Swinject (2.7.1)
 
 DEPENDENCIES:
   - Charts
+  - KRProgressHUD
   - Locksmith
   - Networking
   - R.swift
-  - SVProgressHUD
   - Swinject
 
 SPEC REPOS:
   trunk:
     - Charts
+    - KRActivityIndicatorView
+    - KRProgressHUD
     - Locksmith
     - Networking
     - R.swift
     - R.swift.Library
-    - SVProgressHUD
     - Swinject
 
 SPEC CHECKSUMS:
   Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
+  KRActivityIndicatorView: 912bc0413d98340f384b12a4e1e6aa8f42fb377d
+  KRProgressHUD: df4cdc3a1baf708d4276a089ee34d133fa9a6f3e
   Locksmith: e9bebbaaa4cee3c511bc358a44f843c3fe00e21f
   Networking: 8ced5868ab2b5cf0fcc1d3657bf9bb589ae2fe91
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
-  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: 44244ad01119697fd3fbd37138d2bf11f6f98a1d
+PODFILE CHECKSUM: ecf9268d4c40d1553ff085d06445601378c34d1b
 
 COCOAPODS: 1.8.0

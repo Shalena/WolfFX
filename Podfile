@@ -7,7 +7,7 @@ target 'WolfFX' do
   
         pod 'Networking'
         pod 'R.swift'
-        pod 'SVProgressHUD'
+        pod 'KRProgressHUD'
         pod 'Locksmith'
         pod 'Swinject'
         pod 'Charts'
