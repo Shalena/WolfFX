@@ -24,6 +24,7 @@ protocol WebsocketAccess {
     func getPriceHistory()
     func getAssetPrice()
     func getBanks()
+    func ping()
 }
 
 let baseUrlString = "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket"
@@ -121,6 +122,18 @@ class WSManager: WebsocketAccess {
     func getAssetPrice() {
         if let messageString = Converter().jsonToString(json: assetPriceJson) {
             send(messageString: messageString)
+        }
+    }
+    
+    func ping() {
+        webSocketTask?.sendPing { (error) in
+            if let error = error {
+                print("Ping failed: \(error)")
+            }
+            let timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
+                self.ping()
+            }
+            timer.fire()
         }
     }
 }

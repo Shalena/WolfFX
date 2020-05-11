@@ -44,7 +44,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         super.viewDidLoad()
         setupBaseNavigationDesign()
         setupLoginOverlay()
-    //    setupChartDesign()
         setupTextFieldsDesign()
         investmentPicker.delegate = self
         investmentPicker.dataSource = self
@@ -56,8 +55,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         investmentTextField.inputView = investmentPicker
         leverageTextField.inputView = leveragePicker
         expiryTimeTextField.inputView = expiryPicker
-        
-      //  view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+    
         tableView.delegate = self
         tableView.allowsSelection = true
     }
@@ -65,7 +63,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     override func viewWillAppear(_ animated: Bool) {
         presenter?.homeViewIsReady()
     }
-    
+
      func setupLoginOverlay() {
         presenter?.setupLoginOverlay()
     }
@@ -216,6 +214,7 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             presenter?.selectedExpiry = selectedExpiry
         }
         infoLabel.text = presenter?.textForInfoLabel()
+        self.view.endEditing(true)
     }
 }
 
