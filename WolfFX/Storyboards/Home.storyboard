@@ -64,6 +64,9 @@
                                                         <state key="normal" title="IN TRADE">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="tradeAction:" destination="fp4-bO-3ng" eventType="touchUpInside" id="hsE-ED-4gu"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fw2-zl-giw" customClass="SubmitButton" customModule="WolfFX" customModuleProvider="target">
                                                         <rect key="frame" x="270" y="120" width="120" height="50"/>

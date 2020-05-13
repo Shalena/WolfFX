@@ -168,6 +168,10 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     @IBAction func changeAssetPressed(_ sender: Any) {
         tableView.isHidden = false
     }
+    
+    @IBAction func tradeAction(_ sender: Any) {
+        presenter?.tradeAction()
+    }
 }
 
 extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {

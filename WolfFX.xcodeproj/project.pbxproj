@@ -76,6 +76,9 @@
 		81A4B3602413BCA5004A02CB /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B35F2413BCA5004A02CB /* HomeRouter.swift */; };
 		81A4B3622413BCC5004A02CB /* HomeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B3612413BCC5004A02CB /* HomeConfigurator.swift */; };
 		81AB9E9C2438B1FE00C44C02 /* BaseHeaderViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AB9E9B2438B1FE00C44C02 /* BaseHeaderViewPresenter.swift */; };
+		81AF5B2A246C2EB10058FC03 /* WebsocketJsonCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF5B29246C2EB10058FC03 /* WebsocketJsonCreator.swift */; };
+		81AF5B2C246C35D00058FC03 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF5B2B246C35D00058FC03 /* Range.swift */; };
+		81AF5B2E246C60070058FC03 /* RangeJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF5B2D246C60070058FC03 /* RangeJsonAcception.swift */; };
 		81BA2A462465D72000C13F64 /* AssetPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA2A452465D72000C13F64 /* AssetPrice.swift */; };
 		81BA2A482465D92E00C13F64 /* AssetPriceJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA2A472465D92E00C13F64 /* AssetPriceJsonAcception.swift */; };
 		81D882582409D4F30030C78B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D882572409D4F30030C78B /* Network.swift */; };
@@ -188,6 +191,9 @@
 		81A4B35F2413BCA5004A02CB /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		81A4B3612413BCC5004A02CB /* HomeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeConfigurator.swift; sourceTree = "<group>"; };
 		81AB9E9B2438B1FE00C44C02 /* BaseHeaderViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHeaderViewPresenter.swift; sourceTree = "<group>"; };
+		81AF5B29246C2EB10058FC03 /* WebsocketJsonCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsocketJsonCreator.swift; sourceTree = "<group>"; };
+		81AF5B2B246C35D00058FC03 /* Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
+		81AF5B2D246C60070058FC03 /* RangeJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeJsonAcception.swift; sourceTree = "<group>"; };
 		81BA2A452465D72000C13F64 /* AssetPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPrice.swift; sourceTree = "<group>"; };
 		81BA2A472465D92E00C13F64 /* AssetPriceJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPriceJsonAcception.swift; sourceTree = "<group>"; };
 		81D882572409D4F30030C78B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -458,6 +464,7 @@
 				814D3132245C563600C092EC /* AssetsJsonAcception.swift */,
 				81BA2A472465D92E00C13F64 /* AssetPriceJsonAcception.swift */,
 				815B66732466E1C000E4227A /* PriceHistoryJsonAcceptor.swift */,
+				81AF5B2D246C60070058FC03 /* RangeJsonAcception.swift */,
 			);
 			path = JSONAcception;
 			sourceTree = "<group>";
@@ -484,6 +491,7 @@
 				81066A3B241FBA6700CA8829 /* WSManager.swift */,
 				817324C6243674EB000DFB86 /* DataReceiver.swift */,
 				817324C82437CC4B000DFB86 /* Converter.swift */,
+				81AF5B29246C2EB10058FC03 /* WebsocketJsonCreator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -497,6 +505,7 @@
 				814D3130245C53B200C092EC /* Asset.swift */,
 				814D31342464414E00C092EC /* AssetsDataSource.swift */,
 				81BA2A452465D72000C13F64 /* AssetPrice.swift */,
+				81AF5B2B246C35D00058FC03 /* Range.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -762,8 +771,10 @@
 				816C17CB24050A0F00B1551A /* AppDelegate.swift in Sources */,
 				816C17CD24050A0F00B1551A /* SceneDelegate.swift in Sources */,
 				815FD04D244F76DB00EE7083 /* ExchangeRate.swift in Sources */,
+				81AF5B2E246C60070058FC03 /* RangeJsonAcception.swift in Sources */,
 				814D31352464414E00C092EC /* AssetsDataSource.swift in Sources */,
 				8103B185242EB161008D7D5B /* ProfileDetailsConfigurator.swift in Sources */,
+				81AF5B2C246C35D00058FC03 /* Range.swift in Sources */,
 				815FD04B244F230B00EE7083 /* ExchangeRateJsonAcception.swift in Sources */,
 				81A4B3562413A3CF004A02CB /* LoginConfigurator.swift in Sources */,
 				816F67EA240857F50016AA95 /* LoginViewController.swift in Sources */,
@@ -818,6 +829,7 @@
 				816C180C24055D9D00B1551A /* HomeViewController.swift in Sources */,
 				81A4B352241129DB004A02CB /* Assembler.swift in Sources */,
 				81A4B3622413BCC5004A02CB /* HomeConfigurator.swift in Sources */,
+				81AF5B2A246C2EB10058FC03 /* WebsocketJsonCreator.swift in Sources */,
 				81BA2A482465D92E00C13F64 /* AssetPriceJsonAcception.swift in Sources */,
 				81D882582409D4F30030C78B /* Network.swift in Sources */,
 				816C18152405623A00B1551A /* SettingsViewController.swift in Sources */,

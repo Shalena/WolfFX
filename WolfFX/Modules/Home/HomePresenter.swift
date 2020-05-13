@@ -22,12 +22,13 @@ class HomePresenter: NSObject, HomeEvents {
     var assetsObservation: NSKeyValueObservation?
     var priceHistoryObservation: NSKeyValueObservation?
     var priceObservation: NSKeyValueObservation?
+    var rangeObservation: NSKeyValueObservation?
     var assets: [Asset]?
     var selectedAsset: Asset?
     var tableDataSource: AssetsDataSource?
     var websocketManager: WebsocketAccess?
     var timer: Timer?
-    var currentAssetPrice: AssetPrice?
+    var currentRange: Range?
     
     let investmentDataSource: [PickerEntry] = {
         let currencySign: String = Currency(rawValue: DataReceiver.shared.user?.currency ?? "")?.sign ?? ""
@@ -72,11 +73,16 @@ class HomePresenter: NSObject, HomeEvents {
         observeAssets()
         observePriceHistory()
         observePrice()
+        observeRange()
+    }
+    
+    func tradeAction() {
+        
     }
     
     private func observeUser() {
         userObservation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
-            if let user = change.newValue {
+            if change.newValue != nil {
                 self.websocketManager?.connect()
                 self.websocketManager?.getBalance()
             }
@@ -95,8 +101,9 @@ class HomePresenter: NSObject, HomeEvents {
             let dataSource = AssetsDataSource(grouppedAssets: grouppedAssets)
             self.tableDataSource = dataSource
             self.view?.updateAssetsTable()
-           // self.getPrice()
-            self.getPriceHistory()
+            self.websocketManager?.connect()
+            self.websocketManager?.getAssetRange()
+          //  self.getPriceHistory()
         }
     }
 }
@@ -125,11 +132,18 @@ class HomePresenter: NSObject, HomeEvents {
      private func observePrice() {
         priceObservation = observe(\.dataReceiver?.assetPrice, options: [.old, .new]) { object, change in
             if let assetPrice = change.newValue as? AssetPrice {
-                self.currentAssetPrice = assetPrice
                 DispatchQueue.main.async {
                    self.view?.updateChartWithNewValue(assetPrice: assetPrice)
                 }
                 self.getPrice()
+            }
+        }
+    }
+    
+    private func observeRange() {
+        rangeObservation = observe(\.dataReceiver?.range, options: [.old, .new]) { object, change in
+            if let range = change.newValue as? Range {
+                self.currentRange = range
             }
         }
     }
@@ -154,36 +168,3 @@ struct PickerEntry {
     var value: Int
 }
 
-struct WEntry {
-    var value: Double
-    var date: Date
-    var label: String
-    
-    init(value: Double,
-          date: Date) {
-        self.value = value
-        self.date = date
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        let label = formatter.string(from: date)
-        self.label = label
-       }
-    
-  static func wEntriesArray() -> [WEntry] {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd HH:mm"
-        let firstDate = formatter.date(from: "2016/10/08 22:31")!
-        let secondDate = formatter.date(from: "2016/10/08 22:32")!
-        let thirdDate = formatter.date(from: "2016/10/08 22:33")!
-        let fourthDate = formatter.date(from: "2016/10/08 22:34")!
-        let fifthDate = formatter.date(from: "2016/10/08 22:35")!
-        let wEntriesArray = [
-            WEntry(value: 3.0, date: firstDate),
-            WEntry(value: 10.0, date: secondDate),
-            WEntry(value: 1.0, date: thirdDate),
-            WEntry(value: 8.0, date: fourthDate),
-            WEntry(value: 7.0, date: fifthDate)
-        ]
-        return wEntriesArray
-    }
-}

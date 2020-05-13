@@ -39,4 +39,5 @@ class DataReceiver: NSObject {
     @objc dynamic var assets: [Asset]?
     @objc dynamic var assetPrice: AssetPrice?
     @objc dynamic var priceHistory: [PriceEntry]?
+    @objc dynamic var range: Range?
 }

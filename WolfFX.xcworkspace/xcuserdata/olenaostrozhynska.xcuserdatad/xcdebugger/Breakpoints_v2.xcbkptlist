@@ -166,32 +166,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9303497B-C36E-472C-B990-E8B5202BFE23"
-            shouldBeEnabled = "No"
+            uuid = "C9110D4A-B712-4FF3-9F6F-823EE9597B45"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WolfFX/Services/WSManager.swift"
+            filePath = "WolfFX/Services/JSONAcception/RangeJsonAcception.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "getPriceHistory()"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "acceptJson(json:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3325C49B-B8A7-40CA-B8B8-876784734337"
+            uuid = "B030DE53-89D6-46A5-B210-B3E99F532B90"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WolfFX/Services/WSManager.swift"
+            filePath = "WolfFX/Modules/Home/HomePresenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "ping()"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "observeRange()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

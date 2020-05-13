@@ -133,6 +133,7 @@ protocol HomeEvents {
     func homeViewIsReady()
     func textForInfoLabel() -> String?
     func update(cell: AssetCell, with text: String)
+    func tradeAction()
 }
 
 protocol HomeTransitions {
