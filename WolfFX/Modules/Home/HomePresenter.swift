@@ -101,9 +101,8 @@ class HomePresenter: NSObject, HomeEvents {
             let dataSource = AssetsDataSource(grouppedAssets: grouppedAssets)
             self.tableDataSource = dataSource
             self.view?.updateAssetsTable()
-            self.websocketManager?.connect()
-            self.websocketManager?.getAssetRange()
-          //  self.getPriceHistory()
+            self.getAssetRange()
+            self.getPriceHistory()
         }
     }
 }
@@ -115,7 +114,20 @@ class HomePresenter: NSObject, HomeEvents {
     
     private func getPrice() {
         self.websocketManager?.connect()
-        self.websocketManager?.getAssetPrice()
+              DispatchQueue.main.async {
+                  self.timer?.invalidate()
+                self.timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { [weak self]  (_) in                self?.websocketManager?.getAssetPrice()
+                  })
+              }
+    }
+  
+    private func getAssetRange() {
+        self.websocketManager?.connect()
+        DispatchQueue.main.async {
+            self.timer?.invalidate()
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self]  (_) in                self?.websocketManager?.getAssetRange()
+            })
+        }
     }
     
     private func observePriceHistory() {
@@ -135,7 +147,6 @@ class HomePresenter: NSObject, HomeEvents {
                 DispatchQueue.main.async {
                    self.view?.updateChartWithNewValue(assetPrice: assetPrice)
                 }
-                self.getPrice()
             }
         }
     }
