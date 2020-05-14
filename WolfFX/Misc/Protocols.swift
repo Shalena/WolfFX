@@ -123,10 +123,10 @@ protocol HomeViewProtocol {
 protocol HomeEvents {
     var investmentDataSource: [PickerEntry] {get}
     var leverageDataSource: [PickerEntry] {get}
-    var expiryDataSource: [String] {get}
+    var expiryDataSource: [PickerEntry] {get}
     var selectedInvestment: PickerEntry? {get set}
     var selectedLeverage: PickerEntry? {get set}
-    var selectedExpiry: String? {get set}
+    var selectedExpiry: PickerEntry? {get set}
     var selectedAsset: Asset? {get set}
     var tableDataSource: AssetsDataSource? {get set}
     func setupLoginOverlay()

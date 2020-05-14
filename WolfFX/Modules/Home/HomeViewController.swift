@@ -162,7 +162,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                }
         investmentTextField.text = presenter?.selectedInvestment?.title
         leverageTextField.text = presenter?.selectedLeverage?.title
-        expiryTimeTextField.text = presenter?.selectedExpiry
+        expiryTimeTextField.text = presenter?.selectedExpiry?.title
     }
     
     @IBAction func changeAssetPressed(_ sender: Any) {
@@ -197,7 +197,7 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         } else if pickerView == leveragePicker {
             return presenter?.leverageDataSource[row].title
         } else if pickerView == expiryPicker {
-            return presenter?.expiryDataSource[row]
+            return presenter?.expiryDataSource[row].title
         } else {
            return nil
         }
@@ -214,7 +214,7 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             leverageTextField.text = selectedLeverage?.title
         } else if pickerView == expiryPicker {
             let selectedExpiry = presenter?.expiryDataSource[row]
-            expiryTimeTextField.text = selectedExpiry
+            expiryTimeTextField.text = selectedExpiry?.title
             presenter?.selectedExpiry = selectedExpiry
         }
         infoLabel.text = presenter?.textForInfoLabel()

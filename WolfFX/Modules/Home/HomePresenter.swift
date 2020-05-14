@@ -11,7 +11,8 @@ import Charts
 
 let investmentArray: [Int] = [1, 5, 10, 20, 100]
 let leverageArray: [Int] = [2, 3, 4, 5]
-let expiryTimeArray = ["30s", "1m", "2m", "15m", "1h"]
+let expiryTimeArray: [Int] = [30, 60, 120, 900, 3600]
+let expiryTimeTitlesArray = ["30s", "1m", "2m", "15m", "1h"]
 
 class HomePresenter: NSObject, HomeEvents {
     var view: HomeViewProtocol?
@@ -37,31 +38,25 @@ class HomePresenter: NSObject, HomeEvents {
     let leverageDataSource: [PickerEntry] = {
         return leverageArray.map({  PickerEntry(title: String($0) + "x", value: $0) })
     }()
-    let expiryDataSource = expiryTimeArray
-    
-    var selectedInvestment: PickerEntry? = {
-        if let middleElement = investmentArray.middle, let currency = DataReceiver.shared.user?.currency {
-            let currencySign: String = Currency(rawValue: currency)?.sign ?? ""
-            return PickerEntry(title: String(middleElement) + currencySign, value: middleElement)
-    } else {
-            return nil
+    let expiryDataSource: [PickerEntry] = {
+        var pickerEntries = [PickerEntry]()
+        for (title, value) in zip(expiryTimeTitlesArray, expiryTimeArray) {
+            let pickerEntry = PickerEntry.init(title: title, value: value)
+            pickerEntries.append(pickerEntry)
         }
+        return pickerEntries
     }()
-    var selectedLeverage: PickerEntry? = {
-        if let middleElement = leverageArray.middle {
-            return PickerEntry(title: String(middleElement) + "x", value: middleElement)
-        } else {
-            return nil
-        }
-    }()
-    var selectedExpiry: String? = {
-        return expiryTimeArray.middle
-    }()
+    var selectedInvestment: PickerEntry?
+    var selectedLeverage: PickerEntry?
+    var selectedExpiry: PickerEntry?
     
     init (with networkManager: NetworkAccess) {
         self.networkManager = networkManager
         self.dataReceiver = DataReceiver.shared
         self.websocketManager = WSManager.shared
+        self.selectedInvestment = investmentDataSource.middle
+        self.selectedLeverage = leverageDataSource.middle
+        self.selectedExpiry = expiryDataSource.middle
     }
     
     func setupLoginOverlay() {
