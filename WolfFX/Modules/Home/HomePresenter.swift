@@ -9,9 +9,11 @@
 import Foundation
 import Charts
 
-let investmentArray: [Int] = [1, 5, 10, 20, 100]
-let leverageArray: [Int] = [2, 3, 4, 5]
-let expiryTimeArray: [Int] = [30, 60, 120, 900, 3600]
+let currentType = "IN"  // In trade is implemented only
+let leverageMultiplier: Int64 = 100
+let investmentArray: [Int64] = [1, 5, 10, 20, 100]
+let leverageArray: [Int64] = [2, 3, 4, 5]
+let expiryTimeArray: [Int64] = [30, 60, 120, 900, 3600]
 let expiryTimeTitlesArray = ["30s", "1m", "2m", "15m", "1h"]
 
 class HomePresenter: NSObject, HomeEvents {
@@ -29,6 +31,7 @@ class HomePresenter: NSObject, HomeEvents {
     var tableDataSource: AssetsDataSource?
     var websocketManager: WebsocketAccess?
     var timer: Timer?
+    var assetTimer: Timer?
     var currentRange: Range?
     
     let investmentDataSource: [PickerEntry] = {
@@ -88,6 +91,7 @@ class HomePresenter: NSObject, HomeEvents {
     assetsObservation = observe(\.dataReceiver?.assets, options: [.old, .new]) { object, change in
         if let assets = change.newValue {
             self.assets = assets
+            self.selectedAsset = assets?[0]
             let currencies = self.assets?.filter{$0.assetType == .currency}
             let indices = self.assets?.filter{$0.assetType == .indices}
             let commodities = self.assets?.filter{$0.assetType == .commodities}
@@ -117,10 +121,16 @@ class HomePresenter: NSObject, HomeEvents {
     }
   
     private func getAssetRange() {
+        guard let leverageValue = selectedLeverage?.value else {return}
+        let leverageParameter = leverageValue * leverageMultiplier
+        guard let timeDuration = selectedExpiry?.value else {return}
+        let type = currentType
+        guard let assedId = selectedAsset?.id else {return}
+        guard let stake = selectedInvestment?.value else {return}
         self.websocketManager?.connect()
         DispatchQueue.main.async {
-            self.timer?.invalidate()
-            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self]  (_) in                self?.websocketManager?.getAssetRange()
+            self.assetTimer?.invalidate()
+            self.assetTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self]  (_) in                self?.websocketManager?.getAssetRange(leverage: leverageParameter, timeDuration: timeDuration, type: type, assetId: assedId, stake: stake)
             })
         }
     }
@@ -171,6 +181,6 @@ class HomePresenter: NSObject, HomeEvents {
 
 struct PickerEntry {
     var title: String
-    var value: Int
+    var value: Int64
 }
 
