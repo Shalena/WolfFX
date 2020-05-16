@@ -23,7 +23,19 @@ class WebsocketJsonCreator {
                           "username": username],
                 "replyAddress": ""]
     }
+    
+    func orderExecutor(leverage: Int64, rangeId: String, min: Double, max: Double, currency: String) -> [String : Any] {
+        return ["type": "send",
+        "address": "OrderExecutor",
+        "headers": [:],
+        "body" : ["range": [
+                    "rangeId": rangeId,
+                    "leverage": leverage,
+                    "currency": currency,
+                    "min": min,
+                    "max":max]],
+        "replyAddress": ""]
+    }
 }
-
 
 

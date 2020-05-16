@@ -75,9 +75,9 @@ class HomePresenter: NSObject, HomeEvents {
     }
     
     func tradeAction() {
-        
+        orderExecutor()
     }
-    
+       
     private func observeUser() {
         userObservation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
             if change.newValue != nil {
@@ -128,11 +128,23 @@ class HomePresenter: NSObject, HomeEvents {
         guard let assedId = selectedAsset?.id else {return}
         guard let stake = selectedInvestment?.value else {return}
         self.websocketManager?.connect()
+        self.websocketManager?.getAssetRange(leverage: leverageParameter, timeDuration: timeDuration, type: type, assetId: assedId, stake: stake)
         DispatchQueue.main.async {
             self.assetTimer?.invalidate()
-            self.assetTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self]  (_) in                self?.websocketManager?.getAssetRange(leverage: leverageParameter, timeDuration: timeDuration, type: type, assetId: assedId, stake: stake)
+            self.assetTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self]  (_) in
+                self?.getAssetRange()
             })
         }
+    }
+    
+    private func orderExecutor() {
+        guard let leverageValue = selectedLeverage?.value else {return}
+        let leverageParameter = leverageValue * leverageMultiplier
+        guard let rangeId = currentRange?.rangeId else {return}
+        guard let min = currentRange?.min else {return}
+        guard let max = currentRange?.max else {return}
+        self.websocketManager?.connect()
+        self.websocketManager?.orderExecutor(leverage: leverageParameter, rangeId: rangeId, min: min, max: max)
     }
     
     private func observePriceHistory() {

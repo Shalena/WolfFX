@@ -24,6 +24,7 @@ protocol WebsocketAccess {
     func getPriceHistory()
     func getAssetPrice()
     func getAssetRange(leverage: Int64, timeDuration: Int64, type: String, assetId: Int64, stake: Int64)
+    func orderExecutor(leverage: Int64, rangeId: String, min: Double, max: Double)
     func getBanks()
     func ping()
 }
@@ -34,7 +35,6 @@ let getBalanceJson: [String: Any] = ["type":"send", "address": "CurrentBalance",
 let readAllStatusesJson: [String: Any] = ["type":"send", "address": "ReadAllStatuses", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 let priceHistoryJson: [String: Any] = ["type":"send","address":"PriceHistoryRequests", "headers": [String:String](), "body": ["assetId": 9, "durationSec":300], "replyAddress": ""]
 let assetPriceJson: [String: Any] = ["type": "register", "address": "AssetPrice-9-00000000-0000-0000-0000-000000000000", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
-let orderExecutor: [String: Any] = ["type": "send","address": "OrderExecutor", "headers": [String:String](),"body":["range":["leverage":200, "rangeId": "%@", "currency": "%@", "min":72.32648325000001,"max":100.39347675]], "replyAddress": ""]
 let banksJson: [String: Any] = ["type": "send", "address": "payapi.withdraw.china.banks", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 
 class WSManager: WebsocketAccess {
@@ -134,6 +134,16 @@ class WSManager: WebsocketAccess {
         guard let username = DataReceiver.shared.user?.email else { return }
         let rangeId = UUID().uuidString
         let json = websocketJsonCreator.assetRange(rangeId: rangeId, leverage: leverage, timeDuration: timeDuration, type: type, currency: currency, assetId: assetId, stake: stake, username: username)
+        if let messageString = Converter().jsonToString(json: json) {
+            send(messageString: messageString)
+        }
+    }
+    
+    func orderExecutor(leverage: Int64, rangeId: String, min: Double, max: Double) {
+        let user = DataReceiver.shared.user
+        guard let currency = user?.currency else { return }
+        let min = 25.00
+        let json = websocketJsonCreator.orderExecutor(leverage: leverage, rangeId: rangeId, min: min, max: max, currency: currency)
         if let messageString = Converter().jsonToString(json: json) {
             send(messageString: messageString)
         }
