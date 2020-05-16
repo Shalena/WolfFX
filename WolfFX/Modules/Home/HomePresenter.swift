@@ -57,9 +57,9 @@ class HomePresenter: NSObject, HomeEvents {
         self.networkManager = networkManager
         self.dataReceiver = DataReceiver.shared
         self.websocketManager = WSManager.shared
-        self.selectedInvestment = investmentDataSource.middle
-        self.selectedLeverage = leverageDataSource.middle
-        self.selectedExpiry = expiryDataSource.middle
+        self.selectedInvestment = investmentDataSource.first
+        self.selectedLeverage = leverageDataSource.first
+        self.selectedExpiry = expiryDataSource.first
     }
     
     func setupLoginOverlay() {
