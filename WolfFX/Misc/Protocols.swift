@@ -112,7 +112,7 @@ protocol SignupTransitions {
 
 // Home Screen
 
-protocol HomeViewProtocol {
+protocol HomeViewProtocol: ShowHudCapable {
     var presenter: HomeEvents? {get set}
     func updateAssetsTable()
     func redrawChart()

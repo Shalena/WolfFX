@@ -80,6 +80,7 @@ class HomePresenter: NSObject, HomeEvents {
        
     private func observeUser() {
         userObservation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
+            self.view?.showHud()
             if change.newValue != nil {
                 self.websocketManager?.connect()
                 self.websocketManager?.getBalance()
@@ -105,7 +106,28 @@ class HomePresenter: NSObject, HomeEvents {
         }
     }
 }
-
+    private func observePriceHistory() {
+         priceHistoryObservation = observe(\.dataReceiver?.priceHistory, options: [.old, .new]) { object, change in
+             if let priceEntries = change.newValue as? [PriceEntry] {
+                 DispatchQueue.main.async {
+                     self.view?.updateChart(with: priceEntries)
+                 }
+                 self.getPrice()
+             }
+         }
+     }
+     
+      private func observePrice() {
+         priceObservation = observe(\.dataReceiver?.assetPrice, options: [.old, .new]) { object, change in
+            self.view?.hideHud()
+             if let assetPrice = change.newValue as? AssetPrice {
+                 DispatchQueue.main.async {
+                    self.view?.updateChartWithNewValue(assetPrice: assetPrice)
+                 }
+             }
+         }
+     }
+    
     private func getPriceHistory() {
         self.websocketManager?.connect()
         self.websocketManager?.getPriceHistory()
@@ -147,27 +169,7 @@ class HomePresenter: NSObject, HomeEvents {
         self.websocketManager?.orderExecutor(leverage: leverageParameter, rangeId: rangeId, min: min, max: max)
     }
     
-    private func observePriceHistory() {
-        priceHistoryObservation = observe(\.dataReceiver?.priceHistory, options: [.old, .new]) { object, change in
-            if let priceEntries = change.newValue as? [PriceEntry] {
-                DispatchQueue.main.async {
-                    self.view?.updateChart(with: priceEntries)
-                }
-                self.getPrice()
-            }
-        }
-    }
-    
-     private func observePrice() {
-        priceObservation = observe(\.dataReceiver?.assetPrice, options: [.old, .new]) { object, change in
-            if let assetPrice = change.newValue as? AssetPrice {
-                DispatchQueue.main.async {
-                   self.view?.updateChartWithNewValue(assetPrice: assetPrice)
-                }
-            }
-        }
-    }
-    
+
     private func observeRange() {
         rangeObservation = observe(\.dataReceiver?.range, options: [.old, .new]) { object, change in
             if let range = change.newValue as? Range {

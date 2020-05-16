@@ -26,7 +26,6 @@ class LoginPresenter: NSObject, LoginEvents {
 
     func observe() {
         observation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
-            self.view?.hideHud()
             self.userDetailsHadReceived()
         }
     }
@@ -39,6 +38,7 @@ class LoginPresenter: NSObject, LoginEvents {
                         self.websocketManager?.getUserInfo()
                     }
                 }, failure: { [weak self] error in
+                    self?.view?.hideHud()
                     if let error = error {
                       self?.view?.showErrorAlertWith(error: error)
                     }
