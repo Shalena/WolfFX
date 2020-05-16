@@ -45,6 +45,9 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         setupBaseNavigationDesign()
         setupLoginOverlay()
         setupTextFieldsDesign()
+        if let title = presenter?.selectedAsset?.name {
+            updateAssetButton(with: title)
+        }
         investmentPicker.delegate = self
         investmentPicker.dataSource = self
         leveragePicker.delegate = self
@@ -146,10 +149,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
            infoView.frame = frame
     }
     
-    func redrawChart() {
-        
-    }
-    
     private func setupTextFieldsDesign() {
         let textFields = [investmentTextField, leverageTextField, expiryTimeTextField]
                for textField in textFields {
@@ -163,6 +162,12 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         investmentTextField.text = presenter?.selectedInvestment?.title
         leverageTextField.text = presenter?.selectedLeverage?.title
         expiryTimeTextField.text = presenter?.selectedExpiry?.title
+    }
+    
+    func updateAssetButton(with title: String) {
+        DispatchQueue.main.async {
+            self.changeAssetButton.setTitle(title, for: .normal)
+        }
     }
     
     @IBAction func changeAssetPressed(_ sender: Any) {

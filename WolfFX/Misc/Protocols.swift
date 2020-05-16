@@ -115,7 +115,7 @@ protocol SignupTransitions {
 protocol HomeViewProtocol: ShowHudCapable {
     var presenter: HomeEvents? {get set}
     func updateAssetsTable()
-    func redrawChart()
+    func updateAssetButton(with title: String)
     func updateChart(with entries: [PriceEntry])
     func updateChartWithNewValue(assetPrice: AssetPrice)
 }

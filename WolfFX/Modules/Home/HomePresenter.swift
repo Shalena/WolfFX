@@ -27,7 +27,6 @@ class HomePresenter: NSObject, HomeEvents {
     var priceObservation: NSKeyValueObservation?
     var rangeObservation: NSKeyValueObservation?
     var assets: [Asset]?
-    var selectedAsset: Asset?
     var tableDataSource: AssetsDataSource?
     var websocketManager: WebsocketAccess?
     var timer: Timer?
@@ -52,6 +51,14 @@ class HomePresenter: NSObject, HomeEvents {
     var selectedInvestment: PickerEntry?
     var selectedLeverage: PickerEntry?
     var selectedExpiry: PickerEntry?
+    
+    var selectedAsset: Asset? {
+        didSet {
+            if let title = selectedAsset?.name {
+                view?.updateAssetButton(with: title)
+            }
+        }
+    }
     
     init (with networkManager: NetworkAccess) {
         self.networkManager = networkManager
@@ -101,6 +108,13 @@ class HomePresenter: NSObject, HomeEvents {
             let dataSource = AssetsDataSource(grouppedAssets: grouppedAssets)
             self.tableDataSource = dataSource
             self.view?.updateAssetsTable()
+            if let array = assets {
+                if let asset = array.first(where: {$0.id == 13}) { // id 13 is for GPB/USD
+                    self.selectedAsset = asset
+                } else {
+                
+                }
+            }
             self.getAssetRange()
             self.getPriceHistory()
         }
