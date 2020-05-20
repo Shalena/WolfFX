@@ -98,16 +98,19 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                lineSet.drawFilledEnabled = true
            }
            let labels = entries.map({$0.label})
-           let lineChartViewData = LineChartData.init(dataSets: [lineSet])
+           let lineChartViewData = LineChartData(dataSets: [lineSet])
+           lineChartViewData.setDrawValues(false)
            lineChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
            lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: labels)
            lineChartView.xAxis.labelTextColor = UIColor.white
            lineChartView.leftAxis.labelTextColor = UIColor.white
            lineChartView.rightAxis.enabled = false
-           lineChartView.xAxis.setLabelCount(labels.count, force: true)
+           lineChartView.xAxis.setLabelCount(3, force: true)
+           lineChartView.xAxis.labelFont = UIFont.systemFont(ofSize: 18)
            lineChartView.legend.enabled = false
            lineChartView.data = lineChartViewData
            lineChartView.delegate = self
+           lineChartView.setViewPortOffsets(left: 30, top: 30, right: 30, bottom: 30)
        }
        
     private func setupChartDesign() {
@@ -133,7 +136,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         currentSet?.addEntry(chartEntry)
         lineChartView.data?.notifyDataChanged()
         lineChartView.notifyDataSetChanged()
-        lineChartView.setVisibleXRangeMaximum(10)
+        lineChartView.setVisibleXRangeMaximum(20)
         lineChartView.moveViewToX(currentIndex)
         let highlight = Highlight(x: currentIndex, y: newValue, dataSetIndex: 0)
         lineChartView.highlightValue(highlight, callDelegate: true)

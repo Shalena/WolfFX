@@ -66,7 +66,6 @@ class WSManager: WebsocketAccess {
         switch result {
             case .failure(let error):
               print("Error in receiving message: \(error)")
-              self.connect()
             case .success(let message):
               switch message {
               case .string(let text):
@@ -142,7 +141,6 @@ class WSManager: WebsocketAccess {
     func orderExecutor(leverage: Int64, rangeId: String, min: Double, max: Double) {
         let user = DataReceiver.shared.user
         guard let currency = user?.currency else { return }
-        let min = 25.00
         let json = websocketJsonCreator.orderExecutor(leverage: leverage, rangeId: rangeId, min: min, max: max, currency: currency)
         if let messageString = Converter().jsonToString(json: json) {
             send(messageString: messageString)

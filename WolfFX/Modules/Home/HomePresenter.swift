@@ -89,7 +89,6 @@ class HomePresenter: NSObject, HomeEvents {
         userObservation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
             self.view?.showHud()
             if change.newValue != nil {
-                self.websocketManager?.connect()
                 self.websocketManager?.getBalance()
             }
         }
@@ -143,7 +142,6 @@ class HomePresenter: NSObject, HomeEvents {
      }
     
     private func getPriceHistory() {
-        self.websocketManager?.connect()
         self.websocketManager?.getPriceHistory()
     }
     
@@ -179,7 +177,6 @@ class HomePresenter: NSObject, HomeEvents {
         guard let rangeId = currentRange?.rangeId else {return}
         guard let min = currentRange?.min else {return}
         guard let max = currentRange?.max else {return}
-        self.websocketManager?.connect()
         self.websocketManager?.orderExecutor(leverage: leverageParameter, rangeId: rangeId, min: min, max: max)
     }
     
