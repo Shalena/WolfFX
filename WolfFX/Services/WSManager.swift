@@ -33,8 +33,8 @@ let baseUrlString = "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket"
 let userInfoJson: [String: Any] = ["type": "send", "address": "client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 let getBalanceJson: [String: Any] = ["type":"send", "address": "CurrentBalance", "headers": [String:String](), "body": ["currency": "%@"], "replyAddress": ""]
 let readAllStatusesJson: [String: Any] = ["type":"send", "address": "ReadAllStatuses", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
-let priceHistoryJson: [String: Any] = ["type":"send","address":"PriceHistoryRequests", "headers": [String:String](), "body": ["assetId": 9, "durationSec":300], "replyAddress": ""]
-let assetPriceJson: [String: Any] = ["type": "register", "address": "AssetPrice-9-00000000-0000-0000-0000-000000000000", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
+let priceHistoryJson: [String: Any] = ["type":"send","address":"PriceHistoryRequests", "headers": [String:String](), "body": ["assetId": 13, "durationSec":300], "replyAddress": ""]
+let assetPriceJson: [String: Any] = ["type": "register", "address": "AssetPrice-13-00000000-0000-0000-0000-000000000000", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 let banksJson: [String: Any] = ["type": "send", "address": "payapi.withdraw.china.banks", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 
 class WSManager: WebsocketAccess {

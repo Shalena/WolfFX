@@ -32,6 +32,8 @@ class HomePresenter: NSObject, HomeEvents {
     var timer: Timer?
     var assetTimer: Timer?
     var currentRange: Range?
+    var axisValueFormatter: IAxisValueFormatter?
+    var axisLabels = [String]()
     
     let investmentDataSource: [PickerEntry] = {
         let currencySign: String = Currency(rawValue: DataReceiver.shared.user?.currency ?? "")?.sign ?? ""
@@ -122,9 +124,11 @@ class HomePresenter: NSObject, HomeEvents {
     private func observePriceHistory() {
          priceHistoryObservation = observe(\.dataReceiver?.priceHistory, options: [.old, .new]) { object, change in
              if let priceEntries = change.newValue as? [PriceEntry] {
+                self.axisLabels = priceEntries.map({$0.label})
+                self.axisValueFormatter = IndexAxisValueFormatter(values: self.axisLabels)
                  DispatchQueue.main.async {
                      self.view?.updateChart(with: priceEntries)
-                 }
+                 }                 
                  self.getPrice()
              }
          }
@@ -133,7 +137,9 @@ class HomePresenter: NSObject, HomeEvents {
       private func observePrice() {
          priceObservation = observe(\.dataReceiver?.assetPrice, options: [.old, .new]) { object, change in
             self.view?.hideHud()
-             if let assetPrice = change.newValue as? AssetPrice {
+             if let assetPrice = change.newValue as? AssetPrice, let axisLabel = assetPrice.label {
+                self.axisLabels.append(axisLabel)
+                self.axisValueFormatter = IndexAxisValueFormatter(values: self.axisLabels)
                  DispatchQueue.main.async {
                     self.view?.updateChartWithNewValue(assetPrice: assetPrice)
                  }
@@ -149,7 +155,7 @@ class HomePresenter: NSObject, HomeEvents {
         self.websocketManager?.connect()
               DispatchQueue.main.async {
                   self.timer?.invalidate()
-                self.timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { [weak self]  (_) in                self?.websocketManager?.getAssetPrice()
+                self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { [weak self]  (_) in                self?.websocketManager?.getAssetPrice()
                   })
               }
     }
@@ -208,4 +214,5 @@ struct PickerEntry {
     var title: String
     var value: Int64
 }
+
 

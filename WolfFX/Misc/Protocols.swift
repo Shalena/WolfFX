@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import KRProgressHUD
+import Charts
 
 protocol JsonAcception {
     func acceptJson(json: JSON) -> Bool
@@ -129,6 +130,7 @@ protocol HomeEvents {
     var selectedExpiry: PickerEntry? {get set}
     var selectedAsset: Asset? {get set}
     var tableDataSource: AssetsDataSource? {get set}
+    var axisValueFormatter: IAxisValueFormatter? {get set}
     func setupLoginOverlay()
     func homeViewIsReady()
     func textForInfoLabel() -> String?
