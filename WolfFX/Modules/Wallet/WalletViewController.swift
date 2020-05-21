@@ -28,6 +28,9 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     @IBOutlet weak var continueButton: SubmitButton!
     @IBOutlet weak var requestWithdrawButton: SubmitButton!
     
+    var paymentMethodPickerView: UIPickerView?
+    var bankPickerView: UIPickerView?
+    
     var presenter: WalletEvents?
     
     override func viewDidLoad() {
@@ -39,10 +42,14 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         for: .editingChanged)
         amountWithdrawTextField.addTarget(self, action: #selector(WalletViewController.textFieldDidChange(_:)),
         for: .editingChanged)
-        let pickerView = UIPickerView()
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        paymentMethodTextField.inputView = pickerView
+        paymentMethodPickerView = UIPickerView()
+        paymentMethodPickerView?.delegate = self
+        paymentMethodPickerView?.dataSource = self
+        paymentMethodTextField.inputView = paymentMethodPickerView
+        bankPickerView = UIPickerView()
+        bankPickerView?.delegate = self
+        bankPickerView?.dataSource = self
+        bankNameTextField.inputView = bankPickerView
         presenter?.walletViewIsReady()
     }
     
@@ -146,19 +153,33 @@ extension WalletViewController: UITextFieldDelegate {
 
 extension WalletViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-       return 1
+        return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return presenter?.pickerDataSource?.count ?? 0
+        if pickerView == paymentMethodPickerView {
+            return presenter?.pickerDataSource?.count ?? 0
+        } else if pickerView == bankPickerView {
+            return presenter?.pickerBankDataSource?.count ?? 0
+        }
+        return 0
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return presenter?.pickerDataSource?[row]
+        if pickerView == paymentMethodPickerView {
+            return presenter?.pickerDataSource?[row]
+        } else if pickerView == bankPickerView {
+            return presenter?.pickerBankDataSource?[row].title
+        }
+        return ""
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        paymentMethodTextField.text = presenter?.pickerDataSource?[row]
+        if pickerView == paymentMethodPickerView {
+            paymentMethodTextField.text = presenter?.pickerDataSource?[row]
+        } else if pickerView == bankPickerView {
+            bankNameTextField.text = presenter?.pickerBankDataSource?[row].title
+        }
         view.endEditing(true)
     }
 }
