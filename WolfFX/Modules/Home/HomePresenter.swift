@@ -210,9 +210,6 @@ class HomePresenter: NSObject, HomeEvents {
     }
 }
 
-struct PickerEntry {
-    var title: String
-    var value: Int64
-}
+
 
 

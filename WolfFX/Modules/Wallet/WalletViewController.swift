@@ -159,6 +159,6 @@ extension WalletViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         paymentMethodTextField.text = presenter?.pickerDataSource?[row]
-   
+        view.endEditing(true)
     }
 }

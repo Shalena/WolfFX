@@ -8,6 +8,24 @@
 
 import Foundation
 
+let banksJsonValues =  [
+    ["value": "ICBC", "name": "Industrial and Commercial Bank of China"],
+    ["value": "ABC", "name": "Agricultural Bank of China"],
+    ["value": "BOC", "name": "Bank of China"],
+    ["value": "CCB", "name": "China Construction Bank"],
+    ["value": "CMB", "name": "China Merchant Bank"],
+    ["value": "COMM", "name": "Bank of Communications"],
+    ["value": "CEB", "name":  "China Everbright Bank"],
+    ["value": "CMBC", "name": "China Minsheng Bank" ],
+    ["value": "CIB", "name": "China Indusrial Bank"],
+    ["value": "SPABANK", "name": "Pingan Bank"],
+    ["value": "CITIC", "name": "China Citic Bank"],
+    ["value": "HXB", "name": "Huaxia Bank"],
+    ["value": "SPDB", "name": "Shanghai Pudong Development Bank"],
+    ["value": "GDB", "name": "Guangdong Development Bank"],
+    ["value": "POSTGC", "name": "Postal Savings Bank of China"]
+]
+
 let methodPickerStrings = ["China Union Pay"]
 
 // Deposit Constants
@@ -40,13 +58,22 @@ struct WithdrawForm {
 }
 
 class WalletPresenter: WalletEvents {
-   
     var view: WalletViewProtocol?
     var router: WalletTransitions?
     var networkManager: NetworkAccess?
-    var pickerDataSource: [String]?
     var rate: Double?
     var withdrawRate: Double?
+    var pickerDataSource: [String]?
+    lazy var pickerBankDataSource: [BankPikerEntry]? = {
+        var pickerEntries = [BankPikerEntry]()
+        for dict in banksJsonValues {
+            let value = dict["value"]
+            let name = dict["name"]
+            let pickerEntry = BankPikerEntry(title: name ?? "", value: value ?? "")
+            pickerEntries.append(pickerEntry)
+        }
+        return pickerEntries
+    }()
 
     init (with view: WalletViewProtocol, networkManager: NetworkAccess, router: WalletTransitions) {
         self.view = view
@@ -122,8 +149,11 @@ class WalletPresenter: WalletEvents {
             let currency = user.currency,
             let accountNumber = user.email,
             let name = user.firstName else {return}
-
-        networkManager?.withdraw(amount: form.amaunt, beneficiaryBankAccount: form.beneficiaryBankAccount, beneficiaryName: form.beneficiaryName, accountNumber: accountNumber, broker: defaultBroker, url: withdrawUrl, billingServer: billingServer, tenantId: tenantId, currency: currency, name: name, method: method, bankName: form.bankName, success: { successfully in
+            var bankParameter = ""
+            if let bank = pickerBankDataSource?.first(where: {$0.title == form.bankName}) {
+                bankParameter = bank.value
+            }
+        networkManager?.withdraw(amount: form.amaunt, beneficiaryBankAccount: form.beneficiaryBankAccount, beneficiaryName: form.beneficiaryName, accountNumber: accountNumber, broker: defaultBroker, url: withdrawUrl, billingServer: billingServer, tenantId: tenantId, currency: currency, name: name, method: method, bankName: bankParameter, success: { successfully in
                 self.view?.showAlertWith(text: "Sent successfully")
             }, failure: { error in
                 if let error = error {
