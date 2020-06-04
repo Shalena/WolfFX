@@ -76,6 +76,7 @@ class HomePresenter: NSObject, HomeEvents {
     }
     
     func homeViewIsReady() {
+        self.websocketManager?.disconnect()
         self.websocketManager?.connect()
         self.websocketManager?.getBalance()
         observeAssets()
@@ -153,12 +154,11 @@ class HomePresenter: NSObject, HomeEvents {
     }
     
     private func getPrice() {
-        self.websocketManager?.connect()
-              DispatchQueue.main.async {
-                  self.timer?.invalidate()
-                self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { [weak self]  (_) in                self?.websocketManager?.getAssetPrice()
-                  })
-              }
+        DispatchQueue.main.async {
+            self.timer?.invalidate()
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { [weak self]  (_) in self?.websocketManager?.getAssetPrice()
+            })
+        }
     }
   
     private func getAssetRange() {

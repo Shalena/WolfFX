@@ -37,12 +37,4 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
             }            
         }
     }
-    
-    func showRange() {
-        networkManager?.getBillingHistory(success: { successfully in
-            self.websocketManager?.connect()
-        }, failure: { error in
-            
-        })
-    }
 }

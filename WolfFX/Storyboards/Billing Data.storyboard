@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1015"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NWk-ci-oFj">
-                                                <rect key="frame" x="10" y="0.0" width="394" height="428"/>
+                                                <rect key="frame" x="10" y="0.0" width="394" height="300"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwW-T0-qEr">
                                                         <rect key="frame" x="0.0" y="0.0" width="394" height="300"/>
@@ -148,34 +148,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xEW-Lr-qfa">
-                                                        <rect key="frame" x="0.0" y="300" width="394" height="110"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="110"/>
                                                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="110" id="7tT-Kd-OhG"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XMi-x7-KZK">
-                                                        <rect key="frame" x="0.0" y="300" width="394" height="128"/>
-                                                        <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpn-V8-DMH" customClass="SubmitButton" customModule="WolfFX" customModuleProvider="target">
-                                                                <rect key="frame" x="30" y="39" width="334" height="50"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="50" id="hNY-yc-crC"/>
-                                                                </constraints>
-                                                                <state key="normal" title="Show range">
-                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="showRangePressed:" destination="oFO-BB-Rru" eventType="touchUpInside" id="ePJ-wU-wux"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="xpn-V8-DMH" secondAttribute="trailing" constant="30" id="A7K-bg-6uF"/>
-                                                            <constraint firstItem="xpn-V8-DMH" firstAttribute="leading" secondItem="XMi-x7-KZK" secondAttribute="leading" constant="30" id="KbU-l0-xJA"/>
-                                                            <constraint firstAttribute="height" constant="128" id="USh-zb-SIX"/>
-                                                            <constraint firstItem="xpn-V8-DMH" firstAttribute="centerY" secondItem="XMi-x7-KZK" secondAttribute="centerY" id="pAT-iA-Cuk"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>

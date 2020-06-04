@@ -149,7 +149,6 @@ protocol BillingDataViewProtocol {
 
 protocol BillingDataEvents {
     func billingDataViewIsReady()
-    func showRange()
 }
 
 protocol BillingDataTransitions {

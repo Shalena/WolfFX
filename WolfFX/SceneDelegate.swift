@@ -20,7 +20,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let assembler = Assembler()
             assembler.initFlow()
             DataReceiver.shared.assembler = assembler
-            WSManager.shared.connect()
             guard let loginScreen = R.storyboard.login.loginViewController() else { return }
             let configurator = LoginConfigurator()
             configurator.configure(viewController: loginScreen, with: assembler)

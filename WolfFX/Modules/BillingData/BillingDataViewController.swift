@@ -30,9 +30,5 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
         dateFromValue.text = data.dateFrom
         dateToValue.text = data.dateTo
     }
-    
-    @IBAction func showRangePressed(_ sender: Any) {
-        presenter?.showRange()
-    }
 }
 
