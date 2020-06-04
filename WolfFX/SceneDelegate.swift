@@ -16,19 +16,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            let tabBar = TabbarView()
-            let tabBarConfigurator = TabbarConfigurator()
+         
             let assembler = Assembler()
             assembler.initFlow()
             DataReceiver.shared.assembler = assembler
             WSManager.shared.connect()
-            tabBarConfigurator.configure(tabBar: tabBar, with: 0, assembler: assembler)
-            window.rootViewController = tabBar
+            guard let loginScreen = R.storyboard.login.loginViewController() else { return }
+            let configurator = LoginConfigurator()
+            configurator.configure(viewController: loginScreen, with: assembler)
+           
+            window.rootViewController = loginScreen
             self.window = window
             window.makeKeyAndVisible()
-            // brutal fix for the first tab
-            tabBar.selectedIndex = 1
-            tabBar.selectedIndex = 0
         }
     }
 

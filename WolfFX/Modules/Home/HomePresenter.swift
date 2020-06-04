@@ -76,7 +76,8 @@ class HomePresenter: NSObject, HomeEvents {
     }
     
     func homeViewIsReady() {
-        observeUser()
+        self.websocketManager?.connect()
+        self.websocketManager?.getBalance()
         observeAssets()
         observePriceHistory()
         observePrice()

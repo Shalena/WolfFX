@@ -27,7 +27,7 @@ enum FieldsValidationType {
     var regEx: String {
         switch self {
         case .firstName:
-            return "[a-zA-Z0-9]"
+            return "^[a-zA-Z](([’,. -][a-zA-Z ])?[a-zA-Z])+$"
         case .email:
             return "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         case .password:

@@ -43,7 +43,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBaseNavigationDesign()
-        setupLoginOverlay()
         setupTextFieldsDesign()
         if let title = presenter?.selectedAsset?.name {
             updateAssetButton(with: title)
@@ -61,12 +60,9 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     
         tableView.delegate = self
         tableView.allowsSelection = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         presenter?.homeViewIsReady()
     }
-
+    
      func setupLoginOverlay() {
         presenter?.setupLoginOverlay()
     }

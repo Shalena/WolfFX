@@ -31,7 +31,6 @@ class SignupViewController: UIViewController, SignupViewProtocol {
         pickerView.dataSource = self
         currencyTextField.inputView = pickerView
         currencyTextField.text = Currency.unitedStatesDollar.title
-        presenter?.observe()
     }
     
     func setupDesign() {

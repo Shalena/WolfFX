@@ -97,18 +97,16 @@ protocol LoginTransitions {
 
 // Signup Screen
 
-protocol SignupViewProtocol: ShowErrorCapable {
+protocol SignupViewProtocol: ShowErrorCapable, ShowHudCapable {
     var presenter: SignupEvents? {get set}
 }
 
 protocol SignupEvents {
-    func observe()
     func registerUserWith(form: RegistrationForm, confirmPasswordString: String?)
-    func userHadCreated()
 }
 
 protocol SignupTransitions {
-    func userHadCreated()
+  
 }
 
 // Home Screen

@@ -26,7 +26,9 @@ class LoginPresenter: NSObject, LoginEvents {
 
     func observe() {
         observation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
-            self.userDetailsHadReceived()
+            if change.newValue != nil {
+                self.userDetailsHadReceived()
+            }
         }
     }
     

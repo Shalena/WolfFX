@@ -33,33 +33,23 @@ class SignupPresenter: NSObject, SignupEvents {
         dataReceiver = DataReceiver.shared
     }
     
-    func observe() {
-           observation = observe(\.dataReceiver?.user,
-                      options: [.old, .new]
-                  ) { object, change in
-                     self.userHadCreated()
-                  }
-       }
-    
     func registerUserWith(form: RegistrationForm, confirmPasswordString: String?) {
         //confirmPassword is not send to the backend, so it is separate from the common form
         
         if validatedSuccessfully(form: form) && passwordsMatch(password: form.password ?? "", confirmPassword: confirmPasswordString ?? "") {
+            view?.showHud()
             networkManager.signup(firstname: form.firstName ?? "", currency: form.currency ?? "", emails: form.emails ?? [String](), password: form.password ?? "", tenantId: form.tenantId ?? "", username: form.email ?? "", success: { (successfully: Bool) in
                     if successfully {
                         self.websocketManager.connect()
                         self.websocketManager.getUserInfo()
                     }
                 }, failure: { [weak self] error in
+                    self?.view?.hideHud()
                     if let error = error {
                       self?.view?.showErrorAlertWith(error: error)
                     }
                 })
         }
-    }
-    
-    func userHadCreated() {
-        router?.userHadCreated()
     }
     
     func passwordsMatch(password: String, confirmPassword: String) -> Bool {

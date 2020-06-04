@@ -14,18 +14,25 @@ class LoginRouter: BaseRouter, LoginTransitions {
         if let signUpController = R.storyboard.login.signupViewController() {
             let configurator = SignupConfigurator()
             configurator.configure(viewController: signUpController, with: assembler)
-            sourceController.navigationController?.pushViewController(signUpController, animated: true)
+            sourceController.show(signUpController, sender: sourceController)
         }
     }
     
     func userDetailsHadReceived() {
-        closeScreen()
+        DispatchQueue.main.async {
+            self.showTabbar()
+        }       
     }
 
     func closeScreen() {
-       DispatchQueue.main.async {
-            self.sourceController.removeFromParent()
-            self.sourceController.view.removeFromSuperview()
-        }
+        self.sourceController.removeFromParent()
+        self.sourceController.view.removeFromSuperview()      
+    }
+    
+    func showTabbar() {
+        let tabBar = TabbarView()
+        let tabBarConfigurator = TabbarConfigurator()
+        tabBarConfigurator.configure(tabBar: tabBar, with: 0, assembler: assembler)
+        sourceController.show(tabBar, sender: self)
     }
 }

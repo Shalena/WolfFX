@@ -9,10 +9,5 @@
 import Foundation
 
 class SignupRouter: BaseRouter, SignupTransitions {
-    func userHadCreated() {
-     DispatchQueue.main.async {
-        self.sourceController.navigationController?.popToRootViewController(animated: true)
-     }
-          
-    }
+   
 }
