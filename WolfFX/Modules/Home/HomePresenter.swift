@@ -28,7 +28,6 @@ class HomePresenter: NSObject, HomeEvents {
     var rangeObservation: NSKeyValueObservation?
     var assets: [Asset]?
     var tableDataSource: AssetsDataSource?
-    var websocketManager: WebsocketAccess?
     var timer: Timer?
     var assetTimer: Timer?
     var currentRange: Range?
@@ -65,7 +64,6 @@ class HomePresenter: NSObject, HomeEvents {
     init (with networkManager: NetworkAccess) {
         self.networkManager = networkManager
         self.dataReceiver = DataReceiver.shared
-        self.websocketManager = WSManager.shared
         self.selectedInvestment = investmentDataSource.first
         self.selectedLeverage = leverageDataSource.first
         self.selectedExpiry = expiryDataSource.first
@@ -76,9 +74,8 @@ class HomePresenter: NSObject, HomeEvents {
     }
     
     func homeViewIsReady() {
-        self.websocketManager?.disconnect()
-        self.websocketManager?.connect()
-        self.websocketManager?.getBalance()
+        WSManager.shared.connect()
+        WSManager.shared.getBalance()
         observeAssets()
         observePriceHistory()
         observePrice()
@@ -88,21 +85,11 @@ class HomePresenter: NSObject, HomeEvents {
     func tradeAction() {
         orderExecutor()
     }
-       
-    private func observeUser() {
-        userObservation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
-            self.view?.showHud()
-            if change.newValue != nil {
-                self.websocketManager?.getBalance()
-            }
-        }
-    }
-        
+
    private func observeAssets() {
     assetsObservation = observe(\.dataReceiver?.assets, options: [.old, .new]) { object, change in
         if let assets = change.newValue {
             self.assets = assets
-            self.selectedAsset = assets?[0]
             let currencies = self.assets?.filter{$0.assetType == .currency}
             let indices = self.assets?.filter{$0.assetType == .indices}
             let commodities = self.assets?.filter{$0.assetType == .commodities}
@@ -130,7 +117,7 @@ class HomePresenter: NSObject, HomeEvents {
                 self.axisValueFormatter = IndexAxisValueFormatter(values: self.axisLabels)
                  DispatchQueue.main.async {
                      self.view?.updateChart(with: priceEntries)
-                 }                 
+                 }
                  self.getPrice()
              }
          }
@@ -140,9 +127,9 @@ class HomePresenter: NSObject, HomeEvents {
          priceObservation = observe(\.dataReceiver?.assetPrice, options: [.old, .new]) { object, change in
             self.view?.hideHud()
              if let assetPrice = change.newValue as? AssetPrice, let axisLabel = assetPrice.label {
-                self.axisLabels.append(axisLabel)
-                self.axisValueFormatter = IndexAxisValueFormatter(values: self.axisLabels)
                  DispatchQueue.main.async {
+                    self.axisLabels.append(axisLabel)
+                    self.axisValueFormatter = IndexAxisValueFormatter(values: self.axisLabels)
                     self.view?.updateChartWithNewValue(assetPrice: assetPrice)
                  }
              }
@@ -150,13 +137,16 @@ class HomePresenter: NSObject, HomeEvents {
      }
     
     private func getPriceHistory() {
-        self.websocketManager?.getPriceHistory()
+        WSManager.shared.connect()
+        WSManager.shared.getPriceHistory()
     }
     
     private func getPrice() {
         DispatchQueue.main.async {
             self.timer?.invalidate()
-            self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { [weak self]  (_) in self?.websocketManager?.getAssetPrice()
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self]  (_) in
+                WSManager.shared.connect()
+                WSManager.shared.getAssetPrice()
             })
         }
     }
@@ -168,8 +158,8 @@ class HomePresenter: NSObject, HomeEvents {
         let type = currentType
         guard let assedId = selectedAsset?.id else {return}
         guard let stake = selectedInvestment?.value else {return}
-        self.websocketManager?.connect()
-        self.websocketManager?.getAssetRange(leverage: leverageParameter, timeDuration: timeDuration, type: type, assetId: assedId, stake: stake)
+       // WSManager.shared.connect()
+        WSManager.shared.getAssetRange(leverage: leverageParameter, timeDuration: timeDuration, type: type, assetId: assedId, stake: stake)
         DispatchQueue.main.async {
             self.assetTimer?.invalidate()
             self.assetTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self]  (_) in
@@ -184,7 +174,7 @@ class HomePresenter: NSObject, HomeEvents {
         guard let rangeId = currentRange?.rangeId else {return}
         guard let min = currentRange?.min else {return}
         guard let max = currentRange?.max else {return}
-        self.websocketManager?.orderExecutor(leverage: leverageParameter, rangeId: rangeId, min: min, max: max)
+        WSManager.shared.orderExecutor(leverage: leverageParameter, rangeId: rangeId, min: min, max: max)
     }
     
 

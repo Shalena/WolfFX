@@ -12,14 +12,12 @@ class LoginPresenter: NSObject, LoginEvents {
     var view: LoginViewProtocol?
     var router: LoginTransitions?
     var networkManager: NetworkAccess?
-    var websocketManager: WebsocketAccess?
     @objc dynamic var dataReceiver: DataReceiver?
     var observation: NSKeyValueObservation?
     
     init (with view: LoginViewProtocol, networkManager: NetworkAccess, router: LoginTransitions) {
         self.view = view
         self.networkManager = networkManager
-        self.websocketManager = WSManager.shared
         self.router = router
         dataReceiver = DataReceiver.shared
     }
@@ -36,8 +34,8 @@ class LoginPresenter: NSObject, LoginEvents {
         view?.showHud()
         networkManager?.login(email: email, password: password, success: { (successfully: Bool) in
                     if successfully {
-                        self.websocketManager?.connect()
-                        self.websocketManager?.getUserInfo()
+                        WSManager.shared.connect()
+                        WSManager.shared.getUserInfo()
                     }
                 }, failure: { [weak self] error in
                     self?.view?.hideHud()

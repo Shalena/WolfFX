@@ -18,7 +18,6 @@ enum VertxResponseKeys: String {
 
 protocol WebsocketAccess {
     func connect()
-    func disconnect()
     func getUserInfo()
     func getBalance()
     func readAllStatuses()
@@ -40,12 +39,13 @@ let banksJson: [String: Any] = ["type": "send", "address": "payapi.withdraw.chin
 
 class WSManager: WebsocketAccess {
     static let shared = WSManager()
-    var webSocketTask: URLSessionWebSocketTask?
-    let arrayOfAcceptors: [JsonAcception] = [UserJsonAcception(), BalanceJsonAcception(), PriceHistoryJsonAcception(), AssetsJsonAcception(), AssetPriceJsonAcception(), RangeJsonAcception()]
-    let websocketJsonCreator = WebsocketJsonCreator()
-    var timer: Timer?
+    private var webSocketTask: URLSessionWebSocketTask?
+    private let arrayOfAcceptors: [JsonAcception] = [UserJsonAcception(), BalanceJsonAcception(), PriceHistoryJsonAcception(), AssetsJsonAcception(), AssetPriceJsonAcception(), RangeJsonAcception()]
+    private let websocketJsonCreator = WebsocketJsonCreator()
+    private var timer: Timer?
 
     func connect() {
+        stop()
         if let baseUrl = URL(string: baseUrlString) {
             webSocketTask = URLSession(configuration: .default).webSocketTask(with: baseUrl)
             webSocketTask?.resume()
@@ -160,7 +160,7 @@ class WSManager: WebsocketAccess {
         }
     }
     
-   func disconnect() {
+   func stop() {
         webSocketTask?.cancel(with: .goingAway, reason: nil)
     }
 }
