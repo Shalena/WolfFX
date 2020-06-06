@@ -12,6 +12,8 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
     @IBOutlet weak var profileDataView: UIView!
     @IBOutlet weak var signOutView: UIView!
     @IBOutlet weak var loginAndSighOutLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     var presenter: SettingsEvents?
     
     override func viewDidLoad() {
@@ -43,3 +45,21 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
     }
 }
 
+extension SettingsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LanguageCell", for: indexPath) as? LanguageCell {
+            return cell
+        }
+        fatalError()
+    }
+}
+
+extension SettingsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return languageFlowLayout()
+    }
+}

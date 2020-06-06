@@ -44,6 +44,12 @@ extension UIViewController {
             $0.removeFromParent()
         }
     }
+    
+    func languageFlowLayout () -> CGSize {
+        let width = (UIScreen.main.bounds.width - 40) / 2
+        let height = CGFloat(50.00)
+        return CGSize(width: width, height: height)
+    }
 }
 
 extension Date {
