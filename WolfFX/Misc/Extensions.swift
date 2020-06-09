@@ -46,8 +46,8 @@ extension UIViewController {
     }
     
     func languageFlowLayout () -> CGSize {
-        let width = (UIScreen.main.bounds.width - 40) / 2
-        let height = CGFloat(50.00)
+        let width = (UIScreen.main.bounds.width - 40) / 2 // 40 = 4 paddings with value 10
+        let height = CGFloat(50.00) // good looking for 2 languages, should be calcalated when we have more languages
         return CGSize(width: width, height: height)
     }
 }

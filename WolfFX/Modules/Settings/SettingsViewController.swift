@@ -13,7 +13,11 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
     @IBOutlet weak var signOutView: UIView!
     @IBOutlet weak var loginAndSighOutLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var languageHeaderView: UIView!
+    @IBOutlet weak var languageView: UIView!
+    @IBOutlet weak var languageArrow: UIImageView!
     
+    var languageViewIsHidden = true
     var presenter: SettingsEvents?
     
     override func viewDidLoad() {
@@ -28,6 +32,8 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
         profileDataView.addGestureRecognizer(profileTap)
         let logoutTap = UITapGestureRecognizer(target: self, action: #selector(self.lastSectionTapped(_:)))
                signOutView.addGestureRecognizer(logoutTap)
+        let languageTap = UITapGestureRecognizer(target: self, action: #selector(self.languageTapped(_:)))
+        languageHeaderView.addGestureRecognizer(languageTap)
     }
    
     @objc private func profileTapped(_ sender: UITapGestureRecognizer? = nil) {
@@ -36,6 +42,18 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
     
     @objc private func lastSectionTapped(_ sender: UITapGestureRecognizer? = nil) {
         presenter?.lastSectionTapped()
+    }
+    
+    @objc private func languageTapped(_ sender: UITapGestureRecognizer? = nil) {
+        languageViewIsHidden = !languageViewIsHidden
+        languageView.isHidden = languageViewIsHidden
+        var angle = CGFloat(0.0)
+        if languageViewIsHidden {
+            angle = .pi / -2
+        } else {
+            angle = .pi / 2
+        }
+        languageArrow.transform = languageArrow.transform.rotated(by: angle)
     }
     
     func updateloginAndSighOutLabel(with text: String) {
@@ -52,6 +70,7 @@ extension SettingsViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LanguageCell", for: indexPath) as? LanguageCell {
+            presenter?.configure(cell: cell, at: indexPath.row)
             return cell
         }
         fatalError()
@@ -61,5 +80,11 @@ extension SettingsViewController: UICollectionViewDelegate, UICollectionViewData
 extension SettingsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return languageFlowLayout()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedLanguage = presenter?.languages[indexPath.row]
+        print(selectedLanguage)
+        
     }
 }

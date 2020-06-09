@@ -187,8 +187,10 @@ protocol SettingsViewProtocol: ShowErrorCapable {
 }
 
 protocol SettingsEvents {
+    var languages: [Language] {get set}
     func settingsViewIsReady()
     func profileChosen()
+    func configure(cell: LanguageCell, at index: Int)
     func lastSectionTapped()
 }
 

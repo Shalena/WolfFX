@@ -29,6 +29,7 @@ class SettingsPresenter: NSObject, SettingsEvents {
     @objc dynamic var dataReceiver: DataReceiver?
     var observation: NSKeyValueObservation?
     var currentLoginState: LoginState?
+    var languages = Language.all
     
     init (with view: SettingsViewProtocol, networkManager: NetworkAccess, router: SettingsTransitions) {
         self.view = view
@@ -64,6 +65,11 @@ class SettingsPresenter: NSObject, SettingsEvents {
             logout()
         case .none: return
         }
+    }
+    
+    func configure(cell: LanguageCell, at index: Int) {
+        let language = languages[index]
+        cell.title.text = language.title
     }
     
     private func setupLoginLogoutState() {
