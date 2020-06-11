@@ -35,3 +35,16 @@
 // Header view
 
 "Real balance" = "实际余额";
+
+// Home Screen
+
+"In trade" = "In trade";
+"Investment" = "投资";
+"Leverage" = "杠杆";
+"Expiry time" = "到期时间";
+"Asset" = "资产";
+"Currencies" = "货币·";
+"Indices" = "指数";
+"Commodities" = "商品";
+"Sentiments" = "市场情绪";
+

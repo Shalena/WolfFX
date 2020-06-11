@@ -54,14 +54,14 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="Kl8-4d-R4d"/>
                                                         </constraints>
-                                                        <state key="normal" title="IN TRADE">
+                                                        <state key="normal">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="tradeAction:" destination="fp4-bO-3ng" eventType="touchUpInside" id="hsE-ED-4gu"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Asset" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n9A-FA-sXJ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n9A-FA-sXJ">
                                                         <rect key="frame" x="270" y="90" width="114" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -82,13 +82,13 @@
                                                             <action selector="changeAssetPressed:" destination="fp4-bO-3ng" eventType="touchUpInside" id="aq2-Lt-TeY"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Investment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iir-ag-IP6">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iir-ag-IP6">
                                                         <rect key="frame" x="10" y="90" width="82.5" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leverage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tEH-KH-BC6">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tEH-KH-BC6">
                                                         <rect key="frame" x="96.5" y="90" width="83" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -104,7 +104,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiry time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iV-GP-bXv">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9iV-GP-bXv">
                                                         <rect key="frame" x="183.5" y="90" width="82.5" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -190,7 +190,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="bkW-GO-4db"/>
                             </scrollView>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hZ8-D9-tRn">
-                                <rect key="frame" x="20" y="64" width="374" height="778"/>
+                                <rect key="frame" x="20" y="64" width="374" height="718"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssetCell" id="kTZ-MJ-WWD" customClass="AssetCell" customModule="WolfFX" customModuleProvider="target">
@@ -227,7 +227,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="hWp-1Q-FvU" firstAttribute="bottom" secondItem="hZ8-D9-tRn" secondAttribute="bottom" constant="20" id="16D-Qc-e8F"/>
+                            <constraint firstItem="hWp-1Q-FvU" firstAttribute="bottom" secondItem="hZ8-D9-tRn" secondAttribute="bottom" constant="80" id="16D-Qc-e8F"/>
                             <constraint firstItem="gQu-Fm-M9E" firstAttribute="leading" secondItem="hWp-1Q-FvU" secondAttribute="leading" id="867-dH-TTf"/>
                             <constraint firstItem="hZ8-D9-tRn" firstAttribute="leading" secondItem="hWp-1Q-FvU" secondAttribute="leading" constant="20" id="9Hk-6k-nJJ"/>
                             <constraint firstItem="Kv1-a7-Xs9" firstAttribute="leading" secondItem="hWp-1Q-FvU" secondAttribute="leading" id="RE4-Fu-YR6"/>
@@ -242,12 +242,17 @@
                         <viewLayoutGuide key="safeArea" id="hWp-1Q-FvU"/>
                     </view>
                     <connections>
+                        <outlet property="assetLabel" destination="n9A-FA-sXJ" id="ieA-6k-Q6c"/>
                         <outlet property="changeAssetButton" destination="fw2-zl-giw" id="5zs-Vu-dbp"/>
                         <outlet property="chartConteinerView" destination="MAU-sA-3dY" id="MnQ-In-Sgw"/>
+                        <outlet property="expiryTimeLabel" destination="9iV-GP-bXv" id="Qbh-IM-6cK"/>
                         <outlet property="expiryTimeTextField" destination="ZeK-05-wFz" id="f9g-Cf-BjD"/>
+                        <outlet property="investmentLabel" destination="iir-ag-IP6" id="fCF-ib-VCG"/>
                         <outlet property="investmentTextField" destination="IhL-PE-tKe" id="N6w-qW-JDs"/>
+                        <outlet property="leverageLabel" destination="tEH-KH-BC6" id="Lne-mU-KpA"/>
                         <outlet property="leverageTextField" destination="9Px-C5-LZJ" id="9fx-He-TXJ"/>
                         <outlet property="lineChartView" destination="F4g-VF-38s" id="Jf4-0M-QAp"/>
+                        <outlet property="playButton" destination="9FG-XJ-Olk" id="Avb-5w-TcW"/>
                         <outlet property="tableView" destination="hZ8-D9-tRn" id="rjy-cv-o4I"/>
                     </connections>
                 </viewController>

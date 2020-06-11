@@ -35,3 +35,15 @@
 // Header view
 
 "Real balance" = "Real balance";
+
+// Home Screen
+
+"In trade" = "In trade";
+"Investment" = "Investment";
+"Leverage" = "Leverage";
+"Expiry time" = "Expiry time";
+"Asset" = "Asset";
+"Currencies" = "Currencies";
+"Indices" = "Indices";
+"Commodities" = "Commodities";
+"Sentiments" = "Sentiments";

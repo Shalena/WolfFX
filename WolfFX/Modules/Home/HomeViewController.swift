@@ -14,12 +14,18 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var chartConteinerView: UIView!
     
+    @IBOutlet weak var investmentLabel: UILabel!
+    @IBOutlet weak var leverageLabel: UILabel!
+    @IBOutlet weak var expiryTimeLabel: UILabel!
+    @IBOutlet weak var assetLabel: UILabel!
+   
     @IBOutlet weak var investmentTextField: UITextField!
     @IBOutlet weak var leverageTextField: UITextField!
     @IBOutlet weak var expiryTimeTextField: UITextField!
     
     @IBOutlet weak var changeAssetButton: SubmitButton!
     
+    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     var presenter: HomeEvents?
@@ -61,9 +67,18 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         tableView.delegate = self
         tableView.allowsSelection = true
         presenter?.homeViewIsReady()
+        localize()
     }
     
-     func setupLoginOverlay() {
+    func localize() {
+        investmentLabel.text = R.string.localizable.investment()
+        leverageLabel.text = R.string.localizable.leverage()
+        expiryTimeLabel.text = R.string.localizable.expiryTime()
+        assetLabel.text = R.string.localizable.asset()
+        playButton.setTitle(R.string.localizable.inTrade().uppercased(), for: .normal)
+    }
+     
+    func setupLoginOverlay() {
         presenter?.setupLoginOverlay()
     }
     

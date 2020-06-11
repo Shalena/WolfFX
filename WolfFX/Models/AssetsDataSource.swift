@@ -10,5 +10,8 @@ import Foundation
 
 struct AssetsDataSource {
     var grouppedAssets: [[Asset]?]   
-    let sectionTitles = ["CURRENCIES", "INDICIES", "COMMODITIES", "SENTIMENTS"]
+    let sectionTitles = [R.string.localizable.currencies().uppercased(),
+                         R.string.localizable.indices().uppercased(),
+                         R.string.localizable.commodities().uppercased(),
+                         R.string.localizable.sentiments().uppercased()]
 }
