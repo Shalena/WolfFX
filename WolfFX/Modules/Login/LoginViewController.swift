@@ -9,6 +9,11 @@
 import UIKit
 
 class LoginViewController: UIViewController, LoginViewProtocol {
+    @IBOutlet weak var loginLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var restorePasswordButton: UIButton!
+    @IBOutlet weak var orLabel: UILabel!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: SubmitButton!
@@ -21,6 +26,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
         super.viewDidLoad()
         setupDesign()
         presenter?.observe()
+        localize()
     }
     
      func setupDesign() {
@@ -29,6 +35,16 @@ class LoginViewController: UIViewController, LoginViewProtocol {
         closeButton.setImage(R.image.close(), for: .normal)
         closeButton.imageEdgeInsets = UIEdgeInsets(top: 10,left: 10,bottom: 10,right: 10)
         signUpButton.setup(backColor: .clear, borderColor: .darkGray, text: "Sign up", textColor: .white)
+    }
+    
+    func localize() {
+        loginLabel.text = R.string.localizable.logIn()
+        emailLabel.text = R.string.localizable.email()
+        passwordLabel.text = R.string.localizable.password()
+        loginButton.setTitle(R.string.localizable.logIn(), for: .normal)
+        restorePasswordButton.setTitle(R.string.localizable.restorePassword(), for: .normal)
+        orLabel.text = R.string.localizable.or()
+        signUpButton.setTitle(R.string.localizable.signUp(), for: .normal)
     }
     
     @IBAction func loginAction(_ sender: Any) {

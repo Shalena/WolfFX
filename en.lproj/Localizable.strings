@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  WolfFX
+
+  Created by Елена Острожинская on 6/11/20.
+  Copyright © 2020 Елена Острожинская. All rights reserved.
+*/
+
+"Log in" = "Log in";
+"Email" = "Email";
+"Password" = "Password";
+"Restore password" = "Restore password";
+"or" = "or";
+"Sign up" = "Sign up";

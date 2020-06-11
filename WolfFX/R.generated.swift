@@ -210,6 +210,88 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
+  /// This `R.string` struct is generated, and contains static references to 2 localization tables.
+  struct string {
+    /// This `R.string.launchScreen` struct is generated, and contains static references to 0 localization keys.
+    struct launchScreen {
+      fileprivate init() {}
+    }
+    
+    /// This `R.string.localizable` struct is generated, and contains static references to 6 localization keys.
+    struct localizable {
+      /// en translation: Email
+      /// 
+      /// Locales: en, zh-Hans
+      static let email = Rswift.StringResource(key: "Email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Log in
+      /// 
+      /// Locales: en, zh-Hans
+      static let logIn = Rswift.StringResource(key: "Log in", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Password
+      /// 
+      /// Locales: en, zh-Hans
+      static let password = Rswift.StringResource(key: "Password", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Restore password
+      /// 
+      /// Locales: en, zh-Hans
+      static let restorePassword = Rswift.StringResource(key: "Restore password", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Sign up
+      /// 
+      /// Locales: en, zh-Hans
+      static let signUp = Rswift.StringResource(key: "Sign up", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: or
+      /// 
+      /// Locales: en, zh-Hans
+      static let or = Rswift.StringResource(key: "or", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      
+      /// en translation: Email
+      /// 
+      /// Locales: en, zh-Hans
+      static func email(_: Void = ()) -> String {
+        return NSLocalizedString("Email", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Log in
+      /// 
+      /// Locales: en, zh-Hans
+      static func logIn(_: Void = ()) -> String {
+        return NSLocalizedString("Log in", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Password
+      /// 
+      /// Locales: en, zh-Hans
+      static func password(_: Void = ()) -> String {
+        return NSLocalizedString("Password", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Restore password
+      /// 
+      /// Locales: en, zh-Hans
+      static func restorePassword(_: Void = ()) -> String {
+        return NSLocalizedString("Restore password", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Sign up
+      /// 
+      /// Locales: en, zh-Hans
+      static func signUp(_: Void = ()) -> String {
+        return NSLocalizedString("Sign up", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: or
+      /// 
+      /// Locales: en, zh-Hans
+      static func or(_: Void = ()) -> String {
+        return NSLocalizedString("or", bundle: R.hostingBundle, comment: "")
+      }
+      
+      fileprivate init() {}
+    }
+    
+    fileprivate init() {}
+  }
+  
   fileprivate struct intern: Rswift.Validatable {
     fileprivate static func validate() throws {
       try _R.validate()

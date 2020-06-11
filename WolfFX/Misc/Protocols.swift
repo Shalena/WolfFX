@@ -23,6 +23,10 @@ protocol NavigationBackButtonDesign: class {
     func setupBackButton()
 }
 
+protocol LocalizableScreen: class where Self: UIViewController {
+    func localize()
+}
+
 protocol HeaderDesign: class where Self: UIViewController {
     
 }
@@ -77,7 +81,7 @@ extension ShowAlertCapable {
 
 // Login Screen
 
-protocol LoginViewProtocol: ShowErrorCapable, ShowHudCapable {
+protocol LoginViewProtocol: ShowErrorCapable, ShowHudCapable, LocalizableScreen {
     var presenter: LoginEvents? {get set}
 }
 
