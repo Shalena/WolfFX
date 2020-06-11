@@ -6,9 +6,32 @@
   Copyright © 2020 Елена Острожинская. All rights reserved.
 */
 
+// Tabs
+
+"Home" = "Home";
+"Billing data" = "Billing data";
+"Wallet" = "Wallet";
+
+// Log in screen
+
 "Log in" = "Log in";
 "Email" = "Email";
 "Password" = "Password";
 "Restore password" = "Restore password";
 "or" = "or";
 "Sign up" = "Sign up";
+
+// Sign up screen
+
+"Create your account" = "Create your account";
+"First name" = "First name";
+"Currency" = "Currency";
+"Click here to accept our client agreement" = "Click here to accept our client agreement";
+"Save" = "Save";
+"British pound" = "British pound";
+"United states pound" = "United states pound";
+"Euro" = "Euro";
+
+// Header view
+
+"Real balance" = "Real balance";

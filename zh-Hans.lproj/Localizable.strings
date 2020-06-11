@@ -6,9 +6,32 @@
   Copyright © 2020 Елена Острожинская. All rights reserved.
 */
 
+// Tabs
+
+"Home" = "主页";
+"Billing data" = "账单资料";
+"Wallet" = "钱包";
+
+// Login screen
+
 "Log in" = "登入账户";
 "Email" = "电邮";
 "Password" = "密码";
 "Restore password" = "恢复密码";
 "or" = "或者";
 "Sign up" = "开立账户";
+
+// Sign up screen
+
+"Create your account" = "创建您的账户";
+"First name" = "";
+"Currency" = "";
+"Click here to accept our client agreement" = "";
+"Save" = "";
+"British pound" = "";
+"United states dollar" = "";
+"Euro" = "";
+
+// Header view
+
+"Real balance" = "实际余额";

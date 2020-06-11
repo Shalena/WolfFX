@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BaseHeaderView" customModule="WolfFX" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="lXz-se-6mY" id="Peh-IY-zmN"/>
+                <outlet property="realBalanceTitleLabel" destination="Hk9-PX-Q6g" id="WT1-Ad-QRj"/>
                 <outlet property="realbalanceLabel" destination="x8s-pW-jSu" id="JC5-5D-aFK"/>
             </connections>
         </placeholder>
@@ -51,8 +52,8 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real balance" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hk9-PX-Q6g">
-                            <rect key="frame" x="10" y="73.5" width="236.5" height="16"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hk9-PX-Q6g">
+                            <rect key="frame" x="10" y="81.5" width="236.5" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>

@@ -12,6 +12,8 @@ import UIKit
 class BaseHeaderView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var realbalanceLabel: UILabel!
+    @IBOutlet weak var realBalanceTitleLabel: UILabel!
+    
     let presenter = BaseHeaderViewPresenter()
        
     override init(frame: CGRect) {
@@ -31,7 +33,13 @@ class BaseHeaderView: UIView {
         presenter.observe()
         realbalanceLabel.text = DataReceiver.shared.realBalanceString
         setupGestes()
+        localize()
     }
+    
+    func localize() {
+        realBalanceTitleLabel.text = R.string.localizable.realBalance()
+    }
+    
     
     func updateWith(realBalance: String) {
         DispatchQueue.main.async {
