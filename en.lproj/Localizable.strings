@@ -47,3 +47,13 @@
 "Indices" = "Indices";
 "Commodities" = "Commodities";
 "Sentiments" = "Sentiments";
+
+// Billing Data Screen
+
+"Billing data" = "Billing data";
+"Balance" = "Balance";
+"Real money" = "Real money";
+"Bonuses" = "Bonuses";
+"Amount pending withdrawal" = "Amount pending withdrawal";
+"Date from" = "Date from";
+"Date to" = "Date to";

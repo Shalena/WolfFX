@@ -146,7 +146,7 @@ protocol HomeTransitions {
 
 // Billing Data Screen
 
-protocol BillingDataViewProtocol {
+protocol BillingDataViewProtocol: LocalizableScreen {
     var presenter: BillingDataEvents? {get set}
     func updateViewWith(data: BillingData)
 }

@@ -217,16 +217,28 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 28 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 34 localization keys.
     struct localizable {
+      /// en translation: Amount pending withdrawal
+      /// 
+      /// Locales: en, zh-Hans
+      static let amountPendingWithdrawal = Rswift.StringResource(key: "Amount pending withdrawal", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Asset
       /// 
       /// Locales: en, zh-Hans
       static let asset = Rswift.StringResource(key: "Asset", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Balance
+      /// 
+      /// Locales: en, zh-Hans
+      static let balance = Rswift.StringResource(key: "Balance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Billing data
       /// 
       /// Locales: en, zh-Hans
       static let billingData = Rswift.StringResource(key: "Billing data", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Bonuses
+      /// 
+      /// Locales: en, zh-Hans
+      static let bonuses = Rswift.StringResource(key: "Bonuses", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: British pound
       /// 
       /// Locales: en, zh-Hans
@@ -251,6 +263,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let currency = Rswift.StringResource(key: "Currency", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Date from
+      /// 
+      /// Locales: en, zh-Hans
+      static let dateFrom = Rswift.StringResource(key: "Date from", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Date to
+      /// 
+      /// Locales: en, zh-Hans
+      static let dateTo = Rswift.StringResource(key: "Date to", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Email
       /// 
       /// Locales: en, zh-Hans
@@ -299,6 +319,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let realBalance = Rswift.StringResource(key: "Real balance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Real money
+      /// 
+      /// Locales: en, zh-Hans
+      static let realMoney = Rswift.StringResource(key: "Real money", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Restore password
       /// 
       /// Locales: en, zh-Hans
@@ -332,6 +356,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       static let unitedStatesDollar = Rswift.StringResource(key: "United states dollar", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       
+      /// en translation: Amount pending withdrawal
+      /// 
+      /// Locales: en, zh-Hans
+      static func amountPendingWithdrawal(_: Void = ()) -> String {
+        return NSLocalizedString("Amount pending withdrawal", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Asset
       /// 
       /// Locales: en, zh-Hans
@@ -339,11 +370,25 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Asset", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Balance
+      /// 
+      /// Locales: en, zh-Hans
+      static func balance(_: Void = ()) -> String {
+        return NSLocalizedString("Balance", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Billing data
       /// 
       /// Locales: en, zh-Hans
       static func billingData(_: Void = ()) -> String {
         return NSLocalizedString("Billing data", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Bonuses
+      /// 
+      /// Locales: en, zh-Hans
+      static func bonuses(_: Void = ()) -> String {
+        return NSLocalizedString("Bonuses", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: British pound
@@ -386,6 +431,20 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func currency(_: Void = ()) -> String {
         return NSLocalizedString("Currency", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Date from
+      /// 
+      /// Locales: en, zh-Hans
+      static func dateFrom(_: Void = ()) -> String {
+        return NSLocalizedString("Date from", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Date to
+      /// 
+      /// Locales: en, zh-Hans
+      static func dateTo(_: Void = ()) -> String {
+        return NSLocalizedString("Date to", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Email
@@ -470,6 +529,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func realBalance(_: Void = ()) -> String {
         return NSLocalizedString("Real balance", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Real money
+      /// 
+      /// Locales: en, zh-Hans
+      static func realMoney(_: Void = ()) -> String {
+        return NSLocalizedString("Real money", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Restore password
