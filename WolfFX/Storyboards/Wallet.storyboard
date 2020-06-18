@@ -29,8 +29,8 @@
                                     <constraint firstAttribute="height" constant="40" id="PRl-8I-Pda"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="DEPOSIT"/>
-                                    <segment title="WITHDRAW"/>
+                                    <segment title=""/>
+                                    <segment title=""/>
                                 </segments>
                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="selectedSegmentTintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -43,94 +43,97 @@
                                 <rect key="frame" x="0.0" y="254" width="414" height="1112"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uw8-HQ-Nk4" userLabel="Withdraw View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="787"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kv1-ED-CTr">
-                                                <rect key="frame" x="10" y="0.0" width="394" height="787"/>
+                                                <rect key="frame" x="10" y="0.0" width="394" height="600"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request for money withdraw" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIW-4P-cm9">
-                                                        <rect key="frame" x="40" y="70" width="314" height="62.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIW-4P-cm9">
+                                                        <rect key="frame" x="40" y="70" width="314" height="0.0"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="314" id="Wbj-uc-rkb"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Withdrawal to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03T-GM-G6A">
-                                                        <rect key="frame" x="30" y="182.5" width="334" height="20.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03T-GM-G6A">
+                                                        <rect key="frame" x="30" y="120" width="334" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="China Union Pay" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nbb-No-tn6">
-                                                        <rect key="frame" x="30" y="213" width="334" height="34"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nbb-No-tn6">
+                                                        <rect key="frame" x="30" y="130" width="334" height="34"/>
                                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Amount (availlable)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uE-Ca-LUr">
-                                                        <rect key="frame" x="30" y="277" width="334" height="20.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uE-Ca-LUr">
+                                                        <rect key="frame" x="30" y="194" width="334" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u0t-q6-ZQO">
-                                                        <rect key="frame" x="30" y="307.5" width="334" height="34"/>
+                                                        <rect key="frame" x="30" y="204" width="334" height="34"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RMB to be paid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Hk-4J-12J">
-                                                        <rect key="frame" x="30" y="351.5" width="334" height="20.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Hk-4J-12J">
+                                                        <rect key="frame" x="30" y="248" width="334" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Bank name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpi-5p-VH0">
-                                                        <rect key="frame" x="30" y="382" width="334" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpi-5p-VH0">
+                                                        <rect key="frame" x="30" y="258" width="334" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PDD-lK-pbL">
-                                                        <rect key="frame" x="30" y="413" width="334" height="34"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PDD-lK-pbL">
+                                                        <rect key="frame" x="30" y="268" width="334" height="34"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Beneficiary bank account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSy-QL-dmf">
-                                                        <rect key="frame" x="30" y="477" width="334" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSy-QL-dmf">
+                                                        <rect key="frame" x="30" y="332" width="334" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vLp-pw-Rdw">
-                                                        <rect key="frame" x="30" y="508" width="334" height="34"/>
+                                                        <rect key="frame" x="30" y="342" width="334" height="34"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Beneficiary name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wub-ow-X89">
-                                                        <rect key="frame" x="30" y="572" width="334" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wub-ow-X89">
+                                                        <rect key="frame" x="30" y="406" width="334" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BzG-ii-ChO">
-                                                        <rect key="frame" x="30" y="603" width="334" height="34"/>
+                                                        <rect key="frame" x="30" y="416" width="334" height="34"/>
                                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RkK-iy-r69" customClass="SubmitButton" customModule="WolfFX" customModuleProvider="target">
-                                                        <rect key="frame" x="90" y="687" width="214" height="50"/>
+                                                        <rect key="frame" x="90" y="500" width="214" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="WhZ-MD-vcG"/>
                                                         </constraints>
-                                                        <state key="normal" title="Request Withdraw">
+                                                        <state key="normal">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -202,7 +205,7 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="UbU-hs-dTr"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="oxA-jC-hSR"/>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY WALLET" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vc-R6-7mh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vc-R6-7mh">
                                 <rect key="frame" x="10" y="154" width="394" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="TsG-YF-AGI"/>
@@ -214,51 +217,54 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5BT-jx-sg1" userLabel="Deposit View">
                                 <rect key="frame" x="10" y="254" width="394" height="1112"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deposit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAn-o8-8wp">
-                                        <rect key="frame" x="0.0" y="10" width="394" height="31.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAn-o8-8wp">
+                                        <rect key="frame" x="0.0" y="10" width="394" height="0.0"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="394" id="NP3-wV-5PW"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hsz-XL-Lcv">
-                                        <rect key="frame" x="10" y="61.5" width="374" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hsz-XL-Lcv">
+                                        <rect key="frame" x="10" y="30" width="374" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£ 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xk-CI-bhf">
-                                        <rect key="frame" x="10" y="156.5" width="374" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xk-CI-bhf">
+                                        <rect key="frame" x="10" y="104" width="374" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please confirm your payment method from the list below" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="r10-pQ-Ran">
-                                        <rect key="frame" x="10" y="197.5" width="374" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="r10-pQ-Ran">
+                                        <rect key="frame" x="10" y="124" width="374" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hja-0v-K7Z">
-                                        <rect key="frame" x="10" y="102.5" width="374" height="34"/>
+                                        <rect key="frame" x="10" y="50" width="374" height="34"/>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="China Union Pay" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CKT-5K-8Pm">
-                                        <rect key="frame" x="10" y="238.5" width="374" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CKT-5K-8Pm">
+                                        <rect key="frame" x="10" y="144" width="374" height="34"/>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yy-lz-tMb" customClass="SubmitButton" customModule="WolfFX" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="292.5" width="374" height="50"/>
+                                        <rect key="frame" x="10" y="198" width="374" height="50"/>
                                         <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="8nl-EZ-6Jz"/>
                                         </constraints>
-                                        <state key="normal" title="CONTINUE">
+                                        <state key="normal">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -317,20 +323,30 @@
                     </view>
                     <size key="freeformSize" width="414" height="1400"/>
                     <connections>
+                        <outlet property="amountAvailable" destination="8uE-Ca-LUr" id="7ze-Wm-BtV"/>
                         <outlet property="amountAvailableWithrawLabel" destination="8uE-Ca-LUr" id="wPr-D0-6MY"/>
                         <outlet property="amountDepositTextField" destination="hja-0v-K7Z" id="veb-7h-key"/>
                         <outlet property="amountWithdrawTextField" destination="u0t-q6-ZQO" id="sPH-eW-WHX"/>
                         <outlet property="bankNameTextField" destination="PDD-lK-pbL" id="ygf-ln-BAl"/>
+                        <outlet property="bankNameTitle" destination="lpi-5p-VH0" id="2TA-ii-jY4"/>
+                        <outlet property="beneficiaryBankAccount" destination="NSy-QL-dmf" id="T15-Re-BY8"/>
                         <outlet property="beneficiaryBankAccountTextField" destination="vLp-pw-Rdw" id="IwN-g3-Hww"/>
+                        <outlet property="beneficiaryName" destination="Wub-ow-X89" id="Al4-QU-fF6"/>
                         <outlet property="beneficiaryNameTextField" destination="BzG-ii-ChO" id="FAG-Qp-uR2"/>
                         <outlet property="continueButton" destination="0yy-lz-tMb" id="sXp-hm-yZU"/>
+                        <outlet property="depositTitle" destination="zAn-o8-8wp" id="tyf-AK-1AL"/>
                         <outlet property="depositView" destination="5BT-jx-sg1" id="rJO-FK-h8W"/>
+                        <outlet property="enterAmountTitle" destination="Hsz-XL-Lcv" id="cJc-wc-vDz"/>
                         <outlet property="exchangeDepositLabel" destination="0Xk-CI-bhf" id="bI1-kz-g8J"/>
+                        <outlet property="myWalletTitle" destination="8vc-R6-7mh" id="Bat-RL-T2u"/>
                         <outlet property="paymentMethodTextField" destination="CKT-5K-8Pm" id="ggV-TO-fNH"/>
+                        <outlet property="pleaseConfirmYourMethodTitle" destination="r10-pQ-Ran" id="3TM-Rs-1Sl"/>
+                        <outlet property="requestForMoneyWithdrawal" destination="SIW-4P-cm9" id="ljv-vf-dCN"/>
                         <outlet property="requestWithdrawButton" destination="RkK-iy-r69" id="EqX-44-rp3"/>
                         <outlet property="rmbLabel" destination="6Hk-4J-12J" id="aXZ-zK-rfU"/>
                         <outlet property="segment" destination="pci-oQ-VTy" id="xo6-as-hi3"/>
                         <outlet property="withdrawView" destination="uw8-HQ-Nk4" id="zv2-Tb-1vC"/>
+                        <outlet property="withdrawalTo" destination="03T-GM-G6A" id="uIV-cU-4uJ"/>
                         <outlet property="withdrawalToTextField" destination="Nbb-No-tn6" id="EgY-yJ-Tu8"/>
                     </connections>
                 </viewController>

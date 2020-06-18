@@ -161,7 +161,7 @@ protocol BillingDataTransitions {
 
 // Wallet Screen
 
-protocol WalletViewProtocol: ShowErrorCapable, ShowAlertCapable {
+protocol WalletViewProtocol: ShowErrorCapable, ShowAlertCapable, LocalizableScreen {
     var presenter: WalletEvents? {get set}
     func updateExchangeDepositLabel(with string: String)
     func updateRMBLabel(with string: String)

@@ -57,3 +57,22 @@
 "Amount pending withdrawal" = "Amount pending withdrawal";
 "Date from" = "Date from";
 "Date to" = "Date to";
+
+// Wallet Screen
+
+"My wallet" = "My wallet";
+"Deposit" = "Deposit";
+"Withdraw" = "Withdraw";
+"Deposit" = "Deposit";
+"Enter amount" = "Enter amount";
+"Please confirm your payment method from the list below" = "Please confirm your payment method from the list below";
+"Continue" = "Continue";
+"Request for money withdrawal" = "Request for money withdrawal";
+"Withdrawal to" = "* Withdrawal to";
+"Amount available" = "Amount available";
+"RMB to be paid" = "RMB to be paid";
+"Bank name" = "* Bank name";
+"Beneficiary bank account" = "* Beneficiary bank account";
+"Beneficiary name" = "* Beneficiary name";
+"Request withdrawal" = "Request withdrawal";
+"China Union Pay" = "China Union Pay";

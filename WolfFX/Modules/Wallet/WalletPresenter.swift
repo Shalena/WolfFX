@@ -26,7 +26,7 @@ let banksJsonValues =  [
     ["value": "POSTGC", "name": "Postal Savings Bank of China"]
 ]
 
-let methodPickerStrings = ["China Union Pay"]
+let methodPickerStrings = [R.string.localizable.chinaUnionPay()]
 
 // Deposit Constants
 let cardType = "D"
@@ -114,7 +114,7 @@ class WalletPresenter: WalletEvents {
     
     private func updateViewWithRMB(value: Double) {
            let string = String(value.truncate(places: 2))
-           let fullString = "RMB to be paid" + " " + string
+        let fullString = R.string.localizable.rmbToBePaid() + " " + string
            view?.updateRMBLabel(with: fullString)
        }
     

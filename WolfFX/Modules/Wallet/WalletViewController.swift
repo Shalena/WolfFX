@@ -9,14 +9,22 @@
 import UIKit
 
 class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesign  {
+    @IBOutlet weak var myWalletTitle: UILabel!
     @IBOutlet weak var segment: UISegmentedControl!
-    
     @IBOutlet weak var depositView: UIView!
+    @IBOutlet weak var depositTitle: UILabel!
+    @IBOutlet weak var pleaseConfirmYourMethodTitle: UILabel!
+    @IBOutlet weak var enterAmountTitle: UILabel!
     @IBOutlet weak var amountDepositTextField: UITextField!
     @IBOutlet weak var paymentMethodTextField: UITextField!
     @IBOutlet weak var exchangeDepositLabel: UILabel!
-    
     @IBOutlet weak var withdrawView: UIView!
+    @IBOutlet weak var requestForMoneyWithdrawal: UILabel!
+    @IBOutlet weak var withdrawalTo: UILabel!
+    @IBOutlet weak var amountAvailable: UILabel!
+    @IBOutlet weak var bankNameTitle: UILabel!
+    @IBOutlet weak var beneficiaryBankAccount: UILabel!
+    @IBOutlet weak var beneficiaryName: UILabel!
     @IBOutlet weak var beneficiaryNameTextField: UITextField!
     @IBOutlet weak var amountAvailableWithrawLabel: UILabel!
     @IBOutlet weak var rmbLabel: UILabel!
@@ -24,7 +32,6 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     @IBOutlet weak var withdrawalToTextField: UITextField!
     @IBOutlet weak var bankNameTextField: UITextField!
     @IBOutlet weak var amountWithdrawTextField: UITextField!
-    
     @IBOutlet weak var continueButton: SubmitButton!
     @IBOutlet weak var requestWithdrawButton: SubmitButton!
     
@@ -51,6 +58,7 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         bankPickerView?.dataSource = self
         bankNameTextField.inputView = bankPickerView
         presenter?.walletViewIsReady()
+        localize()
     }
     
     func setupDesign() {
@@ -58,13 +66,33 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         segment.defaultConfiguration()
         depositView.isHidden = false
         withdrawView.isHidden = true
-        continueButton.setup(backColor: .red, borderColor: .red, text: "CONTINUE", textColor: .black)
+        continueButton.setup(backColor: .red, borderColor: .red, text: R.string.localizable.continue(), textColor: .black)
         requestWithdrawButton.setup(backColor: .clear, borderColor: .red, text: "Request Withdrawal", textColor: .white)
         setupTextFieldsWithArrows()
         prefill(textField: amountDepositTextField, with: "¥")
         prefill(textField: amountWithdrawTextField, with: "£")
         updateAvailableAmountWithdraw()
     }
+    
+    func localize() {
+         myWalletTitle.text = R.string.localizable.myWallet().uppercased()
+         segment.setTitle(R.string.localizable.deposit().uppercased(), forSegmentAt: 0)
+         segment.setTitle(R.string.localizable.withdraw().uppercased(), forSegmentAt: 1)
+         //Deposit
+         depositTitle.text = R.string.localizable.deposit()
+         enterAmountTitle.text = R.string.localizable.enterAmount()
+         pleaseConfirmYourMethodTitle.text = R.string.localizable.pleaseConfirmYourPaymentMethodFromTheListBelow()
+         // Withdraw
+         requestForMoneyWithdrawal.text = R.string.localizable.requestForMoneyWithdrawal()
+         paymentMethodTextField.text = presenter?.pickerDataSource?[0]
+         withdrawalTo.text = R.string.localizable.withdrawalTo()
+         withdrawalToTextField.text = presenter?.pickerDataSource?[0]
+         amountAvailable.text = R.string.localizable.amountAvailable()
+         rmbLabel.text = R.string.localizable.rmbToBePaid()
+         bankNameTitle.text = R.string.localizable.bankName()
+         beneficiaryBankAccount.text = R.string.localizable.beneficiaryBankAccount()
+         beneficiaryName.text = R.string.localizable.beneficiaryName()
+     }
    
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard let text = textField.text else {return}

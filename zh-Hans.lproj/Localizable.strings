@@ -57,3 +57,24 @@
 "Amount pending withdrawal" = "待提款金额";
 "Date from" = "日子从";
 "Date to" = "至";
+
+
+// Wallet Screen
+
+"My wallet" = "钱包";
+"Deposit" = "存款";
+"Withdraw" = "提款";
+"Deposit" = "存入";
+"Enter amount" = "输入金額";
+"Please confirm your payment method from the list below" = "请选择您想使用的支付方式";
+"Continue" = "继续";
+"Request for money withdrawal" = "申请提款";
+"Withdrawal to" = "* 提款到";
+"Amount" = "金额";
+"available" = "可用";
+"RMB to be paid" = "人民幣";
+"Bank name" = "* 银行名称";
+"Beneficiary bank account" = "*  收款人银行账户";
+"Beneficiary name" = "* 收款人名字";
+"Request withdrawal" = "要求提款";
+"China Union Pay" = "";
