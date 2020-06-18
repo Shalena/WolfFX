@@ -217,7 +217,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 57 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 59 localization keys.
     struct localizable {
       /// en translation: * Bank name
       /// 
@@ -231,6 +231,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let beneficiaryName = Rswift.StringResource(key: "Beneficiary name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: * Currency
+      /// 
+      /// Locales: en, zh-Hans
+      static let currency = Rswift.StringResource(key: "Currency", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: * Email
+      /// 
+      /// Locales: en, zh-Hans
+      static let email = Rswift.StringResource(key: "Email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: * First name
+      /// 
+      /// Locales: en, zh-Hans
+      static let firstName = Rswift.StringResource(key: "First name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: * Password
+      /// 
+      /// Locales: en, zh-Hans
+      static let password = Rswift.StringResource(key: "Password", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: * Withdrawal to
       /// 
       /// Locales: en, zh-Hans
@@ -275,6 +291,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let commodities = Rswift.StringResource(key: "Commodities", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Confirm password
+      /// 
+      /// Locales: en, zh-Hans
+      static let confirmPassword = Rswift.StringResource(key: "Confirm password", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Continue
       /// 
       /// Locales: en, zh-Hans
@@ -287,10 +307,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let currencies = Rswift.StringResource(key: "Currencies", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Currency
-      /// 
-      /// Locales: en, zh-Hans
-      static let currency = Rswift.StringResource(key: "Currency", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Date from
       /// 
       /// Locales: en, zh-Hans
@@ -303,10 +319,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let deposit = Rswift.StringResource(key: "Deposit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Email
-      /// 
-      /// Locales: en, zh-Hans
-      static let email = Rswift.StringResource(key: "Email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Enter amount
       /// 
       /// Locales: en, zh-Hans
@@ -319,10 +331,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let expiryTime = Rswift.StringResource(key: "Expiry time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: First name
-      /// 
-      /// Locales: en, zh-Hans
-      static let firstName = Rswift.StringResource(key: "First name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Home
       /// 
       /// Locales: en, zh-Hans
@@ -363,14 +371,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let myWallet = Rswift.StringResource(key: "My wallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Password
-      /// 
-      /// Locales: en, zh-Hans
-      static let password = Rswift.StringResource(key: "Password", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please confirm your payment method from the list below
       /// 
       /// Locales: en, zh-Hans
       static let pleaseConfirmYourPaymentMethodFromTheListBelow = Rswift.StringResource(key: "Please confirm your payment method from the list below", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Profile
+      /// 
+      /// Locales: en, zh-Hans
+      static let profile = Rswift.StringResource(key: "Profile", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Profile data
       /// 
       /// Locales: en, zh-Hans
@@ -469,6 +477,34 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Beneficiary name", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: * Currency
+      /// 
+      /// Locales: en, zh-Hans
+      static func currency(_: Void = ()) -> String {
+        return NSLocalizedString("Currency", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: * Email
+      /// 
+      /// Locales: en, zh-Hans
+      static func email(_: Void = ()) -> String {
+        return NSLocalizedString("Email", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: * First name
+      /// 
+      /// Locales: en, zh-Hans
+      static func firstName(_: Void = ()) -> String {
+        return NSLocalizedString("First name", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: * Password
+      /// 
+      /// Locales: en, zh-Hans
+      static func password(_: Void = ()) -> String {
+        return NSLocalizedString("Password", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: * Withdrawal to
       /// 
       /// Locales: en, zh-Hans
@@ -546,6 +582,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Commodities", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Confirm password
+      /// 
+      /// Locales: en, zh-Hans
+      static func confirmPassword(_: Void = ()) -> String {
+        return NSLocalizedString("Confirm password", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Continue
       /// 
       /// Locales: en, zh-Hans
@@ -565,13 +608,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func currencies(_: Void = ()) -> String {
         return NSLocalizedString("Currencies", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Currency
-      /// 
-      /// Locales: en, zh-Hans
-      static func currency(_: Void = ()) -> String {
-        return NSLocalizedString("Currency", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Date from
@@ -595,13 +631,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Deposit", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Email
-      /// 
-      /// Locales: en, zh-Hans
-      static func email(_: Void = ()) -> String {
-        return NSLocalizedString("Email", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Enter amount
       /// 
       /// Locales: en, zh-Hans
@@ -621,13 +650,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func expiryTime(_: Void = ()) -> String {
         return NSLocalizedString("Expiry time", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: First name
-      /// 
-      /// Locales: en, zh-Hans
-      static func firstName(_: Void = ()) -> String {
-        return NSLocalizedString("First name", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Home
@@ -700,18 +722,18 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("My wallet", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Password
-      /// 
-      /// Locales: en, zh-Hans
-      static func password(_: Void = ()) -> String {
-        return NSLocalizedString("Password", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Please confirm your payment method from the list below
       /// 
       /// Locales: en, zh-Hans
       static func pleaseConfirmYourPaymentMethodFromTheListBelow(_: Void = ()) -> String {
         return NSLocalizedString("Please confirm your payment method from the list below", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Profile
+      /// 
+      /// Locales: en, zh-Hans
+      static func profile(_: Void = ()) -> String {
+        return NSLocalizedString("Profile", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Profile data

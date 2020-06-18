@@ -87,3 +87,13 @@
 "Legal Information" = "Legal Information";
 "Sign in" = "Sign in";
 "Sign out" = "Sign out";
+
+// Profile
+
+"Profile" = "Profile";
+"First name" = "* First name";
+"Email" = "* Email";
+"Password" = "* Password";
+"Confirm password" = "Confirm password";
+"Currency" = "* Currency";
+"Save" = "Save";

@@ -206,7 +206,7 @@ protocol SettingsTransitions {
 
 // Profile details Screen
 
-protocol ProfileDetailsViewProtocol {
+protocol ProfileDetailsViewProtocol: LocalizableScreen {
     var presenter: ProfileDetailsEvents? {get set}
 }
 

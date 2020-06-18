@@ -26,7 +26,7 @@
 "Create your account" = "创建您的账户";
 "First name" = "";
 "Currency" = "";
-"Click here to accept our client agreement" = "";
+"Click here to accept our client agreement" = "点击此处确认客户同意书";
 "Save" = "";
 "British pound" = "";
 "United states dollar" = "";
@@ -88,3 +88,13 @@
 "Legal Information" = "法律信息";
 "Sign in" = "登入";
 "Sign out" = "登出";
+
+// Profile
+
+"Profile" = "档案";
+"First name" = "名";
+"Email" = "电子邮件";
+"Password" = "密码";
+"Confirm password" = "确认密码";
+"Currency" = "币种";
+"Save" = "保存";
