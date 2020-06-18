@@ -185,7 +185,7 @@ protocol WalletTransitions {
 
 // Settings Screen
 
-protocol SettingsViewProtocol: ShowErrorCapable {
+protocol SettingsViewProtocol: ShowErrorCapable, LocalizableScreen {
     var presenter: SettingsEvents? {get set}
     func updateloginAndSighOutLabel(with text: String)
 }

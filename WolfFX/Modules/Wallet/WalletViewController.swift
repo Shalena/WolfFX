@@ -71,7 +71,6 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         setupTextFieldsWithArrows()
         prefill(textField: amountDepositTextField, with: "¥")
         prefill(textField: amountWithdrawTextField, with: "£")
-        updateAvailableAmountWithdraw()
     }
     
     func localize() {
@@ -87,11 +86,11 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
          paymentMethodTextField.text = presenter?.pickerDataSource?[0]
          withdrawalTo.text = R.string.localizable.withdrawalTo()
          withdrawalToTextField.text = presenter?.pickerDataSource?[0]
-         amountAvailable.text = R.string.localizable.amountAvailable()
          rmbLabel.text = R.string.localizable.rmbToBePaid()
          bankNameTitle.text = R.string.localizable.bankName()
          beneficiaryBankAccount.text = R.string.localizable.beneficiaryBankAccount()
          beneficiaryName.text = R.string.localizable.beneficiaryName()
+         updateAvailableAmountWithdraw() // string is calculated
      }
    
     @objc func textFieldDidChange(_ textField: UITextField) {

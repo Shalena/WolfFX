@@ -9,6 +9,7 @@
 import UIKit
 
 class SettingsViewController: UIViewController, NavigationDesign, SettingsViewProtocol  {
+  
     @IBOutlet weak var profileDataView: UIView!
     @IBOutlet weak var signOutView: UIView!
     @IBOutlet weak var loginAndSighOutLabel: UILabel!
@@ -16,6 +17,12 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
     @IBOutlet weak var languageHeaderView: UIView!
     @IBOutlet weak var languageView: UIView!
     @IBOutlet weak var languageArrow: UIImageView!
+    @IBOutlet weak var settingsTitle: UILabel!
+    @IBOutlet weak var profileData: UILabel!
+    @IBOutlet weak var language: UILabel!
+    @IBOutlet weak var support: UILabel!
+    @IBOutlet weak var howToTrade: UILabel!
+    @IBOutlet weak var legalInformation: UILabel!    
     
     var languageViewIsHidden = true
     var presenter: SettingsEvents?
@@ -25,6 +32,7 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
         setupBaseNavigationDesign()
         setupGestes()
         presenter?.settingsViewIsReady()
+        localize()
     }
     
     private func setupGestes() {
@@ -35,7 +43,17 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
         let languageTap = UITapGestureRecognizer(target: self, action: #selector(self.languageTapped(_:)))
         languageHeaderView.addGestureRecognizer(languageTap)
     }
-   
+    
+    func localize() {
+         settingsTitle.text = R.string.localizable.settings()
+         profileData.text = R.string.localizable.profileData()
+         language.text = R.string.localizable.language()
+         support.text = R.string.localizable.support()
+         howToTrade.text = R.string.localizable.howToTrade()
+         legalInformation.text = R.string.localizable.legalInformation()
+         loginAndSighOutLabel.text = R.string.localizable.logIn()
+    }
+    
     @objc private func profileTapped(_ sender: UITapGestureRecognizer? = nil) {
         presenter?.profileChosen()
     }

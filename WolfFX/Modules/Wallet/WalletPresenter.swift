@@ -129,7 +129,7 @@ class WalletPresenter: WalletEvents {
         if let balanceValue = DataReceiver.shared.billingData.balance {
             balance = balanceValue
         }
-        return String(format: "Amaunt (available %@)", balance)
+        return String(format: R.string.localizable.amountAvailable(balance))
     }
     
     func deposit(with amount: String) {

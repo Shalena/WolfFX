@@ -70,11 +70,21 @@
 "Continue" = "继续";
 "Request for money withdrawal" = "申请提款";
 "Withdrawal to" = "* 提款到";
-"Amount" = "金额";
-"available" = "可用";
+"Amount available" = "金额 (可用 %@)";
 "RMB to be paid" = "人民幣";
 "Bank name" = "* 银行名称";
 "Beneficiary bank account" = "*  收款人银行账户";
 "Beneficiary name" = "* 收款人名字";
 "Request withdrawal" = "要求提款";
 "China Union Pay" = "";
+
+// Settings
+
+"Settings" = "设置";
+"Profile data" = "个人资料数据";
+"Language" = "语言";
+"Support" = "支持";
+"How to trade" = "怎样交易";
+"Legal Information" = "法律信息";
+"Sign in" = "登入";
+"Sign out" = "登出";

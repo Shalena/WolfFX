@@ -35,8 +35,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kk2-Nj-cZ6" userLabel="Header View">
                                                         <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SETTINGS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ye-1p-ZcC">
-                                                                <rect key="frame" x="157" y="40" width="80.5" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ye-1p-ZcC">
+                                                                <rect key="frame" x="197" y="50" width="0.0" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -55,8 +55,8 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2T9-8M-RvT" userLabel="Profile Data View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="68.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cM-NS-arP">
-                                                                        <rect key="frame" x="10" y="24" width="89" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cM-NS-arP">
+                                                                        <rect key="frame" x="10" y="34" width="0.0" height="0.0"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -80,8 +80,8 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TId-Qc-YPT" userLabel="Language Header View">
                                                                 <rect key="frame" x="0.0" y="68.5" width="394" height="68"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cO5-mk-QBw">
-                                                                        <rect key="frame" x="10" y="24" width="76" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cO5-mk-QBw">
+                                                                        <rect key="frame" x="10" y="34" width="0.0" height="0.0"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -176,8 +176,8 @@
                                                                             <constraint firstAttribute="width" secondItem="mP0-PY-IQd" secondAttribute="height" multiplier="1:1" id="Hmv-Zw-wXA"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Support" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n1-dX-KJX">
-                                                                        <rect key="frame" x="10" y="24" width="62" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n1-dX-KJX">
+                                                                        <rect key="frame" x="10" y="34.5" width="0.0" height="0.0"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -201,8 +201,8 @@
                                                                             <constraint firstAttribute="width" secondItem="fh8-a3-cBl" secondAttribute="height" multiplier="1:1" id="2vz-wg-STU"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to trade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jbw-6P-FtS">
-                                                                        <rect key="frame" x="10" y="24" width="99" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jbw-6P-FtS">
+                                                                        <rect key="frame" x="10" y="34" width="0.0" height="0.0"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -219,8 +219,8 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHe-9l-JlV" userLabel="Legal Information View">
                                                                 <rect key="frame" x="0.0" y="273.5" width="394" height="68"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legal Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJo-wq-waL">
-                                                                        <rect key="frame" x="10" y="24" width="133" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJo-wq-waL">
+                                                                        <rect key="frame" x="10" y="34" width="0.0" height="0.0"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -244,8 +244,8 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QPe-qb-eBN" userLabel="Sign Out View">
                                                                 <rect key="frame" x="0.0" y="341.5" width="394" height="68.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92w-93-z5B">
-                                                                        <rect key="frame" x="10" y="24" width="63.5" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92w-93-z5B">
+                                                                        <rect key="frame" x="10" y="34.5" width="0.0" height="0.0"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -335,12 +335,18 @@
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
                         <outlet property="collectionView" destination="4Xe-Hc-bF5" id="0PL-cO-KNM"/>
+                        <outlet property="howToTrade" destination="Jbw-6P-FtS" id="amR-fp-geZ"/>
+                        <outlet property="language" destination="cO5-mk-QBw" id="NcK-rD-5N5"/>
                         <outlet property="languageArrow" destination="V8M-YN-zG0" id="fk8-de-Mn9"/>
                         <outlet property="languageHeaderView" destination="TId-Qc-YPT" id="Nce-hR-hNh"/>
                         <outlet property="languageView" destination="3Ii-H6-He6" id="aBS-27-kRe"/>
+                        <outlet property="legalInformation" destination="BJo-wq-waL" id="OiM-6W-8yS"/>
                         <outlet property="loginAndSighOutLabel" destination="92w-93-z5B" id="iWd-4a-tAY"/>
+                        <outlet property="profileData" destination="8cM-NS-arP" id="nwI-BG-eSJ"/>
                         <outlet property="profileDataView" destination="2T9-8M-RvT" id="y7q-Sd-sY2"/>
+                        <outlet property="settingsTitle" destination="0ye-1p-ZcC" id="RBC-d8-ZHu"/>
                         <outlet property="signOutView" destination="QPe-qb-eBN" id="V5N-T6-Pdj"/>
+                        <outlet property="support" destination="6n1-dX-KJX" id="wmp-6H-RMV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="REc-R8-c9h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

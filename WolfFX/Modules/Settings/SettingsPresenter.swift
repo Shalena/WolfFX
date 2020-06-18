@@ -15,9 +15,9 @@ enum LoginState {
     var text: String {
         switch self {
         case .userIsLoggedIn:
-            return "Logout"
+            return R.string.localizable.signOut()
         case .userIsLoggedOut:
-            return "Sign In"
+            return R.string.localizable.logIn()
         }
     }
 }

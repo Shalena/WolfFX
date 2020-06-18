@@ -69,10 +69,21 @@
 "Continue" = "Continue";
 "Request for money withdrawal" = "Request for money withdrawal";
 "Withdrawal to" = "* Withdrawal to";
-"Amount available" = "Amount available";
+"Amount available" = "Amount (available %@)";
 "RMB to be paid" = "RMB to be paid";
 "Bank name" = "* Bank name";
 "Beneficiary bank account" = "* Beneficiary bank account";
 "Beneficiary name" = "* Beneficiary name";
 "Request withdrawal" = "Request withdrawal";
 "China Union Pay" = "China Union Pay";
+
+// Settings
+
+"Settings" = "Settings";
+"Profile data" = "Profile data";
+"Language" = "Language";
+"Support" = "Support";
+"How to trade" = "How to trade";
+"Legal Information" = "Legal Information";
+"Sign in" = "Sign in";
+"Sign out" = "Sign out";
