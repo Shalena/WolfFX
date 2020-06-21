@@ -107,7 +107,7 @@ class WalletPresenter: WalletEvents {
     
     func amountWithdrawChanged(text: String) {
         if let value = Double(text), let withdrawRate = withdrawRate {
-            let exchangeValue = withdrawRate / value
+            let exchangeValue = withdrawRate * value
             updateViewWithRMB(value: exchangeValue)
         }
     }
