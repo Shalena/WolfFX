@@ -21,8 +21,6 @@ enum Endpoint {
     case signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String)
     case billingHistory
     case exchangeRate (broker: String)
-    case deposit (deviceType: String?, amountFee: Double, sign: String?, cardType: String, merchantTradeId: String, userName: String?, version: String, paymentCard: String?, issuingBank: String, payType: String, merchantId: String, payIp: String?,
-        signType: String, notifyUrl: String, inputCharset: String, currency: String, goodsTitle: String, returnUrl: String, subIssuingBank: String?)
     case withdraw (amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url: String, billingServer: String, currency: String, name: String)
     case logout
     
@@ -40,14 +38,12 @@ enum Endpoint {
         return "/payapi/v1/withdrawal"
     case .exchangeRate:
         return "/payapi/v1/payins/GBP/exchangeRate"
-    case .deposit:
-        return "/payment/v3/unionpayIntGate.html"
         }
     }
         
     var headers: Headers? {
     switch self {
-    case .login, .signup, .billingHistory, .exchangeRate, . deposit, .logout:
+    case .login, .signup, .billingHistory, .exchangeRate, .logout:
         return nil
     case .withdraw:
         let username = "withdrawuser"
@@ -74,29 +70,6 @@ enum Endpoint {
             "tenantId":tenantId]
     case .exchangeRate(let broker):
         return ["broker": broker]
-        
-    case .deposit(let deviceType, let amountFee, let sign, let cardType, let merchantTradeId, let userName, let version, let  paymentCard, let issuingBank, let payType, let merchantId, let payIp, let signType, let notifyUrl, let inputCharset, let currency, let goodsTitle, let returnUrl, let subIssuingBank):
-        return ["deviceType": deviceType,
-                "amountFee": amountFee,
-                "sign": sign,
-                "cardType": cardType,
-                "merchantTradeId": merchantTradeId,
-                "userName": userName,
-                "version": version,
-                "paymentCard": paymentCard,
-                "issuingBank": issuingBank,
-                "payType": payType,
-                "merchantId":merchantId,
-                "payIp": payIp,
-                "signType": signType,
-                "notifyUrl": notifyUrl,
-                "inputCharset": inputCharset,
-                "currency": currency,
-                "goodsTitle": goodsTitle ,
-                "returnUrl": returnUrl,
-                "subIssuingBank": subIssuingBank
-        ]
-        
     case .withdraw (let amount, let beneficiaryBankAccount, let beneficiaryName, let accountNumber, let broker, let url, let billingServe, let currency, let name):
         return ["amount" :amount,
                 "beneficiaryBankAccount": beneficiaryBankAccount,
@@ -116,7 +89,7 @@ enum Endpoint {
     switch self {
     case .login, .signup, .withdraw, .logout:
         return .post
-    case .billingHistory, .exchangeRate, .deposit:
+    case .billingHistory,  .exchangeRate:
         return .get
         }
     }

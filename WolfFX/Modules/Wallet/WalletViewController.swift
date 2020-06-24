@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesign  {
     @IBOutlet weak var myWalletTitle: UILabel!
@@ -37,8 +38,18 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     
     var paymentMethodPickerView: UIPickerView?
     var bankPickerView: UIPickerView?
+    var webView: WKWebView!
     
     var presenter: WalletEvents?
+    
+    func loadWebView(string: String) {
+        webView = WKWebView(frame: view.frame)
+        webView.navigationDelegate = self
+        view.addSubview(webView)
+        showHud()
+        webView.loadHTMLString(string, baseURL: nil)
+        webView.allowsBackForwardNavigationGestures = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -208,5 +219,16 @@ extension WalletViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             bankNameTextField.text = presenter?.pickerBankDataSource?[row].title
         }
         view.endEditing(true)
+    }
+}
+
+  extension WalletViewController: WKNavigationDelegate {
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        hideHud()
+        let substring = BaseUrl.stage.rawValue
+        if let url = webView.url?.absoluteString, url.contains(substring) {
+            webView.removeFromSuperview()
+        }
     }
 }

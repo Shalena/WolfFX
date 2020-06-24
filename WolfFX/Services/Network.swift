@@ -21,20 +21,13 @@ protocol NetworkAccess {
   func signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func getBillingHistory(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func getExchangeRate(with broker: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
-  func deposit (with deviceType: String?, amountFee: Double, sign: String?, cardType: String, merchantTradeId: String, userName: String?, version: String, paymentCard: String?, issuingBank: String, payType: String, merchantId: String, payIp: String?, signType: String, notifyUrl: String, inputCharset: String, currency: String, goodsTitle: String, returnUrl: String, subIssuingBank: String?, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
+  func deposit(with amountFee: Double, success: @escaping (String) -> Void, failure: @escaping (WolfError?) -> Void) 
   func withdraw(amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url : String, billingServer: String, tenantId: String, currency: String, name: String, method: String, bankName: String , success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func logout(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
 }
 
 class NetwokManager: NetworkAccess {
-    func deposit(with deviceType: String?, amountFee: Double, sign: String?, cardType: String, merchantTradeId: String, userName: String?, version: String, paymentCard: String?, issuingBank: String, payType: String, merchantId: String, payIp: String?, signType: String, notifyUrl: String, inputCharset: String, currency: String, goodsTitle: String, returnUrl: String, subIssuingBank: String?, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void) {
-        performRequestSuccessfully(endpoint: Endpoint.deposit(deviceType: deviceType, amountFee: amountFee, sign: sign, cardType: cardType, merchantTradeId: merchantTradeId, userName: userName, version: version, paymentCard: paymentCard, issuingBank: issuingBank, payType: payType, merchantId: merchantId, payIp: payIp, signType: signType, notifyUrl: notifyUrl, inputCharset: inputCharset, currency: currency, goodsTitle: goodsTitle, returnUrl: returnUrl, subIssuingBank: subIssuingBank), success: { successfully in
-            success (successfully)
-        }, failure: { error in
-            failure (error)
-        })
-    }
-        
+   
     func signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)  {
         performRequestSuccessfully(endpoint: Endpoint.signup(firstname: firstname, currency: currency, emails: emails, password: password, tenantId: tenantId, username: username), success: { (successfully: Bool) in
             success (successfully)
@@ -65,6 +58,30 @@ class NetwokManager: NetworkAccess {
         }, failure: { error in
             failure (error)
         })
+    }
+    
+    func deposit(with amountFee: Double, success: @escaping (String) -> Void, failure: @escaping (WolfError?) -> Void) {
+        let session = URLSession.shared
+        let url = URL(string: "https://staging.cuboidlogic.com/payapi/v1/swiftpay/payins?a=10&c=CNY&a_n=2test@test.com&r_u=https://staging.cuboidlogic.com/wolffx/wallet/deposit&e_r=9.48930&a_c=GBP")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
+            if let data = data {
+                do {
+                    if let content = String(data: data, encoding: .utf8) {
+                        success(content)
+                    }
+                } catch {
+                    let description = error.localizedDescription
+                    let wolfError = WolfError(description: description)
+                    failure(wolfError)
+                }
+            }
+        }.resume()
     }
     
     func withdraw(amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url: String, billingServer: String, tenantId: String, currency: String, name: String, method: String, bankName: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void) {
@@ -99,16 +116,10 @@ class NetwokManager: NetworkAccess {
     }()
     
     lazy var payBaseUrl: String = {
-          return "https://api.onepay.solutions"
+          return "https://staging.cuboidlogic.com/payapi/v1/swiftpay/payins?a=10&c=CNY&a_n=2test@test.com&r_u=https://staging.cuboidlogic.com/wolffx/wallet/deposit&e_r=9.48930&a_c=GBP"
       }()
     
     func performRequestSuccessfully(endpoint: Endpoint, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void) {
-        switch endpoint {
-        case .deposit:
-            networking = Networking(baseURL: payBaseUrl)
-        default:
-            break
-        }
     networking.headerFields = endpoint.headers
     switch endpoint.method {
         case .post:
