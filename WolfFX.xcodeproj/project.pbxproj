@@ -21,6 +21,7 @@
 		8103B1922430CC18008D7D5B /* SubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8103B1912430CC18008D7D5B /* SubmitButton.swift */; };
 		81066A3C241FBA6700CA8829 /* WSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81066A3B241FBA6700CA8829 /* WSManager.swift */; };
 		81066A3E2420BF3F00CA8829 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 81066A3D2420BF3F00CA8829 /* Podfile */; };
+		810886A924A4E48700265862 /* OrderExecutorJSONAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810886A824A4E48700265862 /* OrderExecutorJSONAcception.swift */; };
 		811ED6C024191A120002F559 /* SignupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6BF24191A120002F559 /* SignupPresenter.swift */; };
 		811ED6C2241921880002F559 /* SignupConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C1241921880002F559 /* SignupConfigurator.swift */; };
 		811ED6C4241926410002F559 /* SignupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C3241926410002F559 /* SignupRouter.swift */; };
@@ -133,6 +134,7 @@
 		8103B1912430CC18008D7D5B /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
 		81066A3B241FBA6700CA8829 /* WSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSManager.swift; sourceTree = "<group>"; };
 		81066A3D2420BF3F00CA8829 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		810886A824A4E48700265862 /* OrderExecutorJSONAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderExecutorJSONAcception.swift; sourceTree = "<group>"; };
 		811E060A07A0606C5423FA73 /* Pods-WolfFX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFX.release.xcconfig"; path = "Target Support Files/Pods-WolfFX/Pods-WolfFX.release.xcconfig"; sourceTree = "<group>"; };
 		811ED6BF24191A120002F559 /* SignupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPresenter.swift; sourceTree = "<group>"; };
 		811ED6C1241921880002F559 /* SignupConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupConfigurator.swift; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 				81BA2A472465D92E00C13F64 /* AssetPriceJsonAcception.swift */,
 				815B66732466E1C000E4227A /* PriceHistoryJsonAcceptor.swift */,
 				81AF5B2D246C60070058FC03 /* RangeJsonAcception.swift */,
+				810886A824A4E48700265862 /* OrderExecutorJSONAcception.swift */,
 			);
 			path = JSONAcception;
 			sourceTree = "<group>";
@@ -851,6 +854,7 @@
 				8103B183242EB13A008D7D5B /* ProfileDetailsPresenter.swift in Sources */,
 				811ED6C2241921880002F559 /* SignupConfigurator.swift in Sources */,
 				817324C7243674EB000DFB86 /* DataReceiver.swift in Sources */,
+				810886A924A4E48700265862 /* OrderExecutorJSONAcception.swift in Sources */,
 				811ED6C4241926410002F559 /* SignupRouter.swift in Sources */,
 				816C180C24055D9D00B1551A /* HomeViewController.swift in Sources */,
 				81A4B352241129DB004A02CB /* Assembler.swift in Sources */,

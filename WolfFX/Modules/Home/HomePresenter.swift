@@ -158,8 +158,9 @@ class HomePresenter: NSObject, HomeEvents {
         let type = currentType
         guard let assedId = selectedAsset?.id else {return}
         guard let stake = selectedInvestment?.value else {return}
-        WSManager.shared.getAssetRange(leverage: leverageParameter, timeDuration: timeDuration, type: type, assetId: assedId, stake: stake)
+      
         DispatchQueue.main.async {
+            WSManager.shared.getAssetRange(leverage: leverageParameter, timeDuration: timeDuration, type: type, assetId: assedId, stake: stake)
             self.assetTimer?.invalidate()
             self.assetTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self]  (_) in
                 self?.getAssetRange()

@@ -25,6 +25,7 @@ class WebsocketJsonCreator {
     }
     
     func orderExecutor(leverage: Int64, rangeId: String, min: Double, max: Double, currency: String) -> [String : Any] {
+        let uuid = generateVersionOneAkaTimeBasedUUID()
         return ["type": "send",
         "address": "OrderExecutor",
         "headers": [:],
@@ -34,8 +35,34 @@ class WebsocketJsonCreator {
                     "currency": currency,
                     "min": min,
                     "max":max]],
-        "replyAddress": ""]
+        "replyAddress": uuid]
     }
+    
+    private func generateVersionOneAkaTimeBasedUUID() -> String {
+           // figure out the sizes
+
+           let uuidSize = MemoryLayout<uuid_t>.size
+           let uuidStringSize = MemoryLayout<uuid_string_t>.size
+
+           // get some ram
+
+           let uuidPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: uuidSize)
+           let uuidStringPointer = UnsafeMutablePointer<Int8>.allocate(capacity: uuidStringSize)
+
+           // do the work in C
+
+           uuid_generate_time(uuidPointer)
+           uuid_unparse(uuidPointer, uuidStringPointer)
+
+           // make a Swift string while we still have the C stuff
+
+          let uuidString = NSString(utf8String: uuidStringPointer) as String?
+
+           // avoid leaks
+
+           assert(uuidString != nil, "uuid (V1 style) failed")
+           return uuidString ?? ""
+       }
 }
 
 

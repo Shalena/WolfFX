@@ -40,7 +40,7 @@ let banksJson: [String: Any] = ["type": "send", "address": "payapi.withdraw.chin
 class WSManager: WebsocketAccess {
     static let shared = WSManager()
     private var webSocketTask: URLSessionWebSocketTask?
-    private let arrayOfAcceptors: [JsonAcception] = [UserJsonAcception(), BalanceJsonAcception(), PriceHistoryJsonAcception(), AssetsJsonAcception(), AssetPriceJsonAcception(), RangeJsonAcception()]
+    private let arrayOfAcceptors: [JsonAcception] = [UserJsonAcception(), BalanceJsonAcception(), PriceHistoryJsonAcception(), AssetsJsonAcception(), AssetPriceJsonAcception(), RangeJsonAcception(), OrderExecutorJSONAcception()]
     private let websocketJsonCreator = WebsocketJsonCreator()
     private var timer: Timer?
 
@@ -51,6 +51,7 @@ class WSManager: WebsocketAccess {
             webSocketTask?.resume()
             self.receiveData()
         }
+        ping()
     }
     
     func send(messageString: String) {
@@ -85,7 +86,7 @@ class WSManager: WebsocketAccess {
               debugPrint("Unknown message")
             }
         }
-        self.receiveData()
+            self.receiveData()        
       }          
     }
     
@@ -132,7 +133,7 @@ class WSManager: WebsocketAccess {
         let user = DataReceiver.shared.user
         guard let currency = user?.currency else { return }
         guard let username = DataReceiver.shared.user?.email else { return }
-        let rangeId = UUID().uuidString
+        let rangeId = generateVersionOneAkaTimeBasedUUID()
         let json = websocketJsonCreator.assetRange(rangeId: rangeId, leverage: leverage, timeDuration: timeDuration, type: type, currency: currency, assetId: assetId, stake: stake, username: username)
         if let messageString = Converter().jsonToString(json: json) {
             send(messageString: messageString)
@@ -152,8 +153,10 @@ class WSManager: WebsocketAccess {
         webSocketTask?.sendPing { (error) in
             if let error = error {
                 print("Ping failed: \(error)")
+            } else {
+                print("Ping success")
             }
-            let timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
+            let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
                 self.ping()
             }
             timer.fire()
@@ -163,4 +166,31 @@ class WSManager: WebsocketAccess {
    func stop() {
         webSocketTask?.cancel(with: .goingAway, reason: nil)
     }
+    
+
+  private func generateVersionOneAkaTimeBasedUUID() -> String {
+        // figure out the sizes
+
+        let uuidSize = MemoryLayout<uuid_t>.size
+        let uuidStringSize = MemoryLayout<uuid_string_t>.size
+
+        // get some ram
+
+        let uuidPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: uuidSize)
+        let uuidStringPointer = UnsafeMutablePointer<Int8>.allocate(capacity: uuidStringSize)
+
+        // do the work in C
+
+        uuid_generate_time(uuidPointer)
+        uuid_unparse(uuidPointer, uuidStringPointer)
+
+        // make a Swift string while we still have the C stuff
+
+       let uuidString = NSString(utf8String: uuidStringPointer) as String?
+
+        // avoid leaks
+
+        assert(uuidString != nil, "uuid (V1 style) failed")
+        return uuidString ?? ""
+    }    
 }
