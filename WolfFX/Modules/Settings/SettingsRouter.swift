@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class SettingsRouter: BaseRouter, SettingsTransitions {
     func goToHome() {
@@ -22,10 +23,12 @@ class SettingsRouter: BaseRouter, SettingsTransitions {
     }
     
     func logout() {
-        DataReceiver.shared.user = nil
-        if let home = sourceController.tabBarController?.children[0].children[0] as? HomeViewController {
-            home.setupLoginOverlay()
-            sourceController.tabBarController?.selectedIndex = 0
-        }
+        DataReceiver.shared?.user = nil
+        DataReceiver.shared?.clean()
+        let window = UIApplication.shared.windows[0]
+        guard let loginScreen = R.storyboard.login.loginViewController() else { return }
+        let configurator = LoginConfigurator()
+        configurator.configure(viewController: loginScreen, with: assembler)
+        window.rootViewController = loginScreen
     }
 }

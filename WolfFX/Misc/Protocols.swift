@@ -133,7 +133,6 @@ protocol HomeEvents {
     var selectedAsset: Asset? {get set}
     var tableDataSource: AssetsDataSource? {get set}
     var axisValueFormatter: IAxisValueFormatter? {get set}
-    func setupLoginOverlay()
     func homeViewIsReady()
     func textForInfoLabel() -> String?
     func update(cell: AssetCell, with text: String)
@@ -141,7 +140,7 @@ protocol HomeEvents {
 }
 
 protocol HomeTransitions {
-     func setupLoginOverlay()
+     
 }
 
 // Billing Data Screen

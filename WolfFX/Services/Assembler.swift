@@ -13,7 +13,7 @@ class Assembler {
     var container = Container()
     var user: User? {
            get {
-                DataReceiver.shared.user
+            DataReceiver.shared?.user
            }
        }
 

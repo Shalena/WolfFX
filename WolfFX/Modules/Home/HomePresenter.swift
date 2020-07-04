@@ -35,7 +35,7 @@ class HomePresenter: NSObject, HomeEvents {
     var axisLabels = [String]()
     
     let investmentDataSource: [PickerEntry] = {
-        let currencySign: String = Currency(rawValue: DataReceiver.shared.user?.currency ?? "")?.sign ?? ""
+        let currencySign: String = Currency(rawValue: DataReceiver.shared?.user?.currency ?? "")?.sign ?? ""
         return investmentArray.map({ PickerEntry(title: String ($0) + currencySign , value: $0) })
     }()
     let leverageDataSource: [PickerEntry] = {
@@ -67,10 +67,6 @@ class HomePresenter: NSObject, HomeEvents {
         self.selectedInvestment = investmentDataSource.first
         self.selectedLeverage = leverageDataSource.first
         self.selectedExpiry = expiryDataSource.first
-    }
-    
-    func setupLoginOverlay() {
-        router?.setupLoginOverlay()
     }
     
     func homeViewIsReady() {

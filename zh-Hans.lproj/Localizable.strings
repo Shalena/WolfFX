@@ -72,9 +72,9 @@
 "Withdrawal to"  =  "* 提款到";
 "Amount available" = "金额 (可用 %@)";
 "RMB to be paid" = "人民幣";
-"Bank name" = "* 银行名称";
-"Beneficiary bank account" = "* 收款人银行账户";
-"Beneficiary name" = "* 收款人名字";
+"Bank name" = "*银行名称";
+"Beneficiary bank account" = "*收款人银行账户";
+"Beneficiary name" = "*收款人名字";
 "Request withdrawal" = "要求提款";
 "China Union Pay" = "中国银联";
 

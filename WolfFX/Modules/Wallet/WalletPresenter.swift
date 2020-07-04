@@ -95,8 +95,8 @@ class WalletPresenter: WalletEvents {
        
     func getExchangeRate() {
         networkManager?.getExchangeRate(with: defaultBroker, success: { successfully in
-            self.rate = DataReceiver.shared.rate
-            self.withdrawRate = DataReceiver.shared.withdrawRate
+            self.rate = DataReceiver.shared?.rate
+            self.withdrawRate = DataReceiver.shared?.withdrawRate
         }, failure: { error in
             if let error = error {
                 self.view?.showErrorAlertWith(error: error)
@@ -132,7 +132,7 @@ class WalletPresenter: WalletEvents {
     
     func textForAvailableAmount() -> String {
         var balance = ""
-        if let balanceValue = DataReceiver.shared.billingData.balance {
+        if let balanceValue = DataReceiver.shared?.billingData.balance {
             balance = balanceValue
         }
         return String(format: R.string.localizable.amountAvailable(balance))
@@ -151,7 +151,7 @@ class WalletPresenter: WalletEvents {
     }
     
     func withdrawRequestWith(form: WithdrawForm) {
-        guard let user = DataReceiver.shared.user,
+        guard let user = DataReceiver.shared?.user,
             let currency = user.currency,
             let accountNumber = user.email,
             let name = user.firstName else {return}

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class LoginRouter: BaseRouter, LoginTransitions {
   
@@ -25,14 +26,14 @@ class LoginRouter: BaseRouter, LoginTransitions {
     }
 
     func closeScreen() {
-        self.sourceController.removeFromParent()
-        self.sourceController.view.removeFromSuperview()      
+        showTabbar()
     }
     
     func showTabbar() {
         let tabBar = TabbarView()
         let tabBarConfigurator = TabbarConfigurator()
         tabBarConfigurator.configure(tabBar: tabBar, with: 0, assembler: assembler)
-        sourceController.show(tabBar, sender: self)
+        let window = UIApplication.shared.windows[0]
+        window.rootViewController = tabBar
     }
 }

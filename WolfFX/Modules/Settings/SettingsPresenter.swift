@@ -15,9 +15,9 @@ enum LoginState {
     var text: String {
         switch self {
         case .userIsLoggedIn:
-            return R.string.localizable.signOut()
+            return R.string.localizable.signOut().localized()
         case .userIsLoggedOut:
-            return R.string.localizable.logIn()
+            return R.string.localizable.logIn().localized()
         }
     }
 }
@@ -73,7 +73,7 @@ class SettingsPresenter: NSObject, SettingsEvents {
     }
     
     private func setupLoginLogoutState() {
-        if DataReceiver.shared.user != nil {
+        if DataReceiver.shared?.user != nil {
             self.currentLoginState = .userIsLoggedIn
         } else {
             self.currentLoginState = .userIsLoggedOut

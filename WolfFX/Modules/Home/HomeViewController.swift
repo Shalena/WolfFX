@@ -82,10 +82,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         playButton.setTitle(R.string.localizable.inTrade().uppercased().localized(), for: .normal)
     }
      
-    func setupLoginOverlay() {
-        presenter?.setupLoginOverlay()
-    }
-    
     func updateAssetsTable() {
         guard tableView != nil else {
             return

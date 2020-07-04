@@ -10,14 +10,5 @@ import Foundation
 import Swinject
 
 class HomeRouter: BaseRouter, HomeTransitions {
-    func setupLoginOverlay() {
-        let loginConfigurator = LoginConfigurator()
-        if let loginController = R.storyboard.login.loginViewController() {
-             loginConfigurator.configure(viewController: loginController, with: assembler)
-             loginController.willMove(toParent: sourceController)
-             sourceController.view.addSubview(loginController.view)
-             sourceController.addChild(loginController)
-             loginController.didMove(toParent: sourceController)
-         }
-    }
+
 }

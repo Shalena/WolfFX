@@ -16,14 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-         
             let assembler = Assembler()
             assembler.initFlow()
-            DataReceiver.shared.assembler = assembler
+            DataReceiver.shared?.assembler = assembler
             guard let loginScreen = R.storyboard.login.loginViewController() else { return }
             let configurator = LoginConfigurator()
             configurator.configure(viewController: loginScreen, with: assembler)
-           
             window.rootViewController = loginScreen
             self.window = window
             window.makeKeyAndVisible()

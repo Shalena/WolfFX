@@ -25,9 +25,10 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
     }
 
     func billingDataViewIsReady() {
-        let billingData = DataReceiver.shared.billingData
-        view?.updateViewWith(data: billingData)
-        observe()
+        if let billingData = DataReceiver.shared?.billingData {
+            view?.updateViewWith(data: billingData)
+            observe()
+        }
     }
     
     private func observe() {

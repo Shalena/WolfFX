@@ -10,7 +10,7 @@ import Foundation
 import Swinject
 
 class DataReceiver: NSObject {
-    static let shared = DataReceiver()
+    static var shared: DataReceiver? = DataReceiver()
     var assembler: Assembler?
     @objc dynamic var user: User? {
                 set {
@@ -40,4 +40,8 @@ class DataReceiver: NSObject {
     @objc dynamic var assetPrice: AssetPrice?
     @objc dynamic var priceHistory: [PriceEntry]?
     @objc dynamic var range: Range?
+    
+    func clean() {
+        DataReceiver.shared = nil
+    }
 }

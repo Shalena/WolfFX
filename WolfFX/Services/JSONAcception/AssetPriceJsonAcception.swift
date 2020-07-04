@@ -24,7 +24,7 @@ class AssetPriceJsonAcception: JsonAcception {
             let status = json["status"] as? Bool
             let ask = json["ask"] as? Double
             let assetPrice = AssetPrice(price: price, assetId: assetId, status: status, priceTime: priceTime, ask: ask, bid: bid)
-            DataReceiver.shared.assetPrice = assetPrice
+            DataReceiver.shared?.assetPrice = assetPrice
             return true
         } else {
             return false

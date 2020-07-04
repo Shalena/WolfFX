@@ -97,7 +97,7 @@ class WSManager: WebsocketAccess {
     }
   
     func getBalance() {
-        let user = DataReceiver.shared.user
+        let user = DataReceiver.shared?.user
         guard let currency = user?.currency else { return }
         if let messageString = Converter().jsonToString(json: getBalanceJson) {
             let messageStringWithFormat = String(format: messageString, currency)
@@ -130,9 +130,9 @@ class WSManager: WebsocketAccess {
     }
     
     func getAssetRange(leverage: Int64, timeDuration: Int64, type: String, assetId: Int64, stake: Int64) {
-        let user = DataReceiver.shared.user
+        let user = DataReceiver.shared?.user
         guard let currency = user?.currency else { return }
-        guard let username = DataReceiver.shared.user?.email else { return }
+        guard let username = DataReceiver.shared?.user?.email else { return }
         let rangeId = generateVersionOneAkaTimeBasedUUID()
         let json = websocketJsonCreator.assetRange(rangeId: rangeId, leverage: leverage, timeDuration: timeDuration, type: type, currency: currency, assetId: assetId, stake: stake, username: username)
         if let messageString = Converter().jsonToString(json: json) {
@@ -141,7 +141,7 @@ class WSManager: WebsocketAccess {
     }
     
     func orderExecutor(leverage: Int64, rangeId: String, min: Double, max: Double) {
-        let user = DataReceiver.shared.user
+        let user = DataReceiver.shared?.user
         guard let currency = user?.currency else { return }
         let json = websocketJsonCreator.orderExecutor(leverage: leverage, rangeId: rangeId, min: min, max: max, currency: currency)
         if let messageString = Converter().jsonToString(json: json) {

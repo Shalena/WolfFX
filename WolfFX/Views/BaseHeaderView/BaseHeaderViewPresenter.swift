@@ -9,15 +9,19 @@
 import Foundation
 
 class BaseHeaderViewPresenter: NSObject {
-    @objc dynamic var dataReceiver = DataReceiver.shared
+    @objc dynamic var dataReceiver: DataReceiver?
     var observation: NSKeyValueObservation?
     var view: BaseHeaderView?
     
-    func observe() {
-             observation = observe(\.dataReceiver.realBalanceString,
+    override init() {
+        dataReceiver = DataReceiver.shared
+    }
+    
+    func observe() {      
+             observation = observe(\.dataReceiver?.realBalanceString,
                         options: [.old, .new]
                     ) { object, change in
-                        if let realBalanceString = change.newValue {
+                        if let realBalanceString = change.newValue as? String {
                             self.view?.updateWith(realBalance: realBalanceString)
                         }
                         WSManager.shared.connect()

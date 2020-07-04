@@ -27,7 +27,7 @@ class AssetsJsonAcception: JsonAcception {
                 let asset = Asset(name: name, id: id, type: assetType)
                 assets.append(asset)
             }
-            DataReceiver.shared.assets = assets
+            DataReceiver.shared?.assets = assets
             return true
         } else {
             return false
