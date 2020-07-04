@@ -15,8 +15,8 @@
 // Log in screen
 
 "Log in" = "Log in";
-"Email" = "Email";
-"Password" = "Password";
+"EmailOnLogin" = "Email";
+"PasswordOnLogin" = "Password";
 "Restore password" = "Restore password";
 "or" = "or";
 "Sign up" = "Sign up";
@@ -68,7 +68,7 @@
 "Please confirm your payment method from the list below" = "Please confirm your payment method from the list below";
 "Continue" = "Continue";
 "Request for money withdrawal" = "Request for money withdrawal";
-"Withdrawal to" = "* Withdrawal to";
+"Withdrawal to"  =  "Withdrawal to";
 "Amount available" = "Amount (available %@)";
 "RMB to be paid" = "RMB to be paid";
 "Bank name" = "* Bank name";

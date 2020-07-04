@@ -14,9 +14,9 @@ var date: Date
 var label: String
 
 init(value: Double,
-      date: Double) {
+      date: Int64) {
     self.value = value
-    let dateValue = Date(timeIntervalSince1970: date / 1000)
+    let dateValue = Date(timeIntervalSince1970: TimeInterval(date / 1000))
     self.date = dateValue
     let formatter = DateFormatter()
     formatter.dateFormat = "HH:mm"
@@ -34,11 +34,12 @@ class PriceHistoryJsonAcception: JsonAcception {
             keys.append(key)
         }
         if containSameElements(firstArray: priceHistoryKeys, secondArray: keys) {
-            guard let array = json["data"] as? [[Double]] else { return false }
+            print (json["data"])
+            guard let array = json["data"] as? [NSArray] else { return false }
             var priceEntries = [PriceEntry]()
             for priceItem in array {
-                let date = priceItem[0]
-                let value = priceItem[1]
+                guard let date = priceItem[0] as? Int64 else { return false }
+                guard let value = priceItem[1] as? Double else { return false }
                 let priceEntry = PriceEntry(value: value, date: date)
                 priceEntries.append(priceEntry)
             }

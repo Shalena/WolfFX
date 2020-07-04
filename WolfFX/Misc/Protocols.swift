@@ -172,6 +172,7 @@ protocol WalletEvents {
     var pickerDataSource: [String]? { get set }
     var pickerBankDataSource: [BankPikerEntry]?  { get set }
     func walletViewIsReady()
+    func forceLocalizeUpdatePicker()
     func getExchangeRate()
     func textForAvailableAmount() -> String
     func amountDepositChanged(text: String)

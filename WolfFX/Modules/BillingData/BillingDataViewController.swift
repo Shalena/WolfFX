@@ -32,11 +32,11 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
     }
     
     func localize() {
-        billingDataTitle.text = R.string.localizable.billingData()
-        realMoneyTitle.text = R.string.localizable.realMoney()
-        bonusesTitle.text = R.string.localizable.bonuses()
-        dateFromTitle.text = R.string.localizable.dateFrom()
-        dateToTitle.text = R.string.localizable.dateTo()
+        billingDataTitle.text = R.string.localizable.billingData().localized()
+        realMoneyTitle.text = R.string.localizable.realMoney().localized()
+        bonusesTitle.text = R.string.localizable.bonuses().localized()
+        dateFromTitle.text = R.string.localizable.dateFrom().localized()
+        dateToTitle.text = R.string.localizable.dateTo().localized()
     }
     
     func updateViewWith(data: BillingData) {

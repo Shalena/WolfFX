@@ -46,6 +46,10 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         return label
     }()
 
+    override func viewWillAppear(_ animated: Bool) {
+         localize()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBaseNavigationDesign()
@@ -71,11 +75,11 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     }
     
     func localize() {
-        investmentLabel.text = R.string.localizable.investment()
-        leverageLabel.text = R.string.localizable.leverage()
-        expiryTimeLabel.text = R.string.localizable.expiryTime()
-        assetLabel.text = R.string.localizable.asset()
-        playButton.setTitle(R.string.localizable.inTrade().uppercased(), for: .normal)
+        investmentLabel.text = R.string.localizable.investment().localized()
+        leverageLabel.text = R.string.localizable.leverage().localized()
+        expiryTimeLabel.text = R.string.localizable.expiryTime().localized()
+        assetLabel.text = R.string.localizable.asset().localized()
+        playButton.setTitle(R.string.localizable.inTrade().uppercased().localized(), for: .normal)
     }
      
     func setupLoginOverlay() {

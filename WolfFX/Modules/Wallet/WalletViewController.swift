@@ -51,6 +51,10 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         webView.allowsBackForwardNavigationGestures = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        localize()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDesign()
@@ -77,31 +81,35 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
         segment.defaultConfiguration()
         depositView.isHidden = false
         withdrawView.isHidden = true
-        continueButton.setup(backColor: .red, borderColor: .red, text: R.string.localizable.continue(), textColor: .black)
-        requestWithdrawButton.setup(backColor: .clear, borderColor: .red, text: "Request Withdrawal", textColor: .white)
+        continueButton.setup(backColor: .red, borderColor: .red, text: R.string.localizable.continue().localized(), textColor: .black)
+        requestWithdrawButton.setup(backColor: .clear, borderColor: .red, text: R.string.localizable.requestWithdrawal().localized(), textColor: .white)
         setupTextFieldsWithArrows()
         prefill(textField: amountDepositTextField, with: "¥")
         prefill(textField: amountWithdrawTextField, with: "£")
     }
     
     func localize() {
-         myWalletTitle.text = R.string.localizable.myWallet().uppercased()
-         segment.setTitle(R.string.localizable.deposit().uppercased(), forSegmentAt: 0)
-         segment.setTitle(R.string.localizable.withdraw().uppercased(), forSegmentAt: 1)
+        
+        myWalletTitle.text = R.string.localizable.myWallet().localized()
+        segment.setTitle(R.string.localizable.deposit().localized().uppercased(), forSegmentAt: 0)
+        segment.setTitle(R.string.localizable.withdraw().localized().uppercased(), forSegmentAt: 1)
          //Deposit
-         depositTitle.text = R.string.localizable.deposit()
-         enterAmountTitle.text = R.string.localizable.enterAmount()
-         pleaseConfirmYourMethodTitle.text = R.string.localizable.pleaseConfirmYourPaymentMethodFromTheListBelow()
+        depositTitle.text = R.string.localizable.deposit().localized()
+        enterAmountTitle.text = R.string.localizable.enterAmount().localized()
+        pleaseConfirmYourMethodTitle.text = R.string.localizable.pleaseConfirmYourPaymentMethodFromTheListBelow().localized()
          // Withdraw
-         requestForMoneyWithdrawal.text = R.string.localizable.requestForMoneyWithdrawal()
-         paymentMethodTextField.text = presenter?.pickerDataSource?[0]
-         withdrawalTo.text = R.string.localizable.withdrawalTo()
-         withdrawalToTextField.text = presenter?.pickerDataSource?[0]
-         rmbLabel.text = R.string.localizable.rmbToBePaid()
-         bankNameTitle.text = R.string.localizable.bankName()
-         beneficiaryBankAccount.text = R.string.localizable.beneficiaryBankAccount()
-         beneficiaryName.text = R.string.localizable.beneficiaryName()
-         updateAvailableAmountWithdraw() // string is calculated
+        requestForMoneyWithdrawal.text = R.string.localizable.requestForMoneyWithdrawal().localized()
+        presenter?.forceLocalizeUpdatePicker() // localize strings in the picker
+        paymentMethodTextField.text = presenter?.pickerDataSource?[0].localized()
+        withdrawalTo.text = R.string.localizable.withdrawalTo().localized()
+        withdrawalToTextField.text = presenter?.pickerDataSource?[0].localized()
+        rmbLabel.text = R.string.localizable.rmbToBePaid().localized()
+        bankNameTitle.text = R.string.localizable.bankName().localized()
+        beneficiaryBankAccount.text = R.string.localizable.beneficiaryBankAccount().localized()
+        beneficiaryName.text = R.string.localizable.beneficiaryName().localized()
+        updateAvailableAmountWithdraw() // string is calculated
+        continueButton.setTitle(R.string.localizable.continue().localized().uppercased(), for: .normal) // tricky sutiation, we have 2 places where title for button is set up
+        requestWithdrawButton.setTitle(R.string.localizable.requestWithdrawal().localized(), for: .normal)
      }
    
     @objc func textFieldDidChange(_ textField: UITextField) {

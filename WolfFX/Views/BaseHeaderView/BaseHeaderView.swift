@@ -37,7 +37,7 @@ class BaseHeaderView: UIView {
     }
     
     func localize() {
-        realBalanceTitleLabel.text = R.string.localizable.realBalance()
+        realBalanceTitleLabel.text = R.string.localizable.realBalance().localized()
     }
     
     

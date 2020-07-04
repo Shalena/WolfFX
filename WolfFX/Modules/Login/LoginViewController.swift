@@ -34,17 +34,17 @@ class LoginViewController: UIViewController, LoginViewProtocol {
         closeButton.clipsToBounds = true
         closeButton.setImage(R.image.close(), for: .normal)
         closeButton.imageEdgeInsets = UIEdgeInsets(top: 10,left: 10,bottom: 10,right: 10)
-        signUpButton.setup(backColor: .clear, borderColor: .darkGray, text: "Sign up", textColor: .white)
+        signUpButton.setup(backColor: .clear, borderColor: .darkGray, text: R.string.localizable.signUp().localized(), textColor: .white)
     }
     
     func localize() {
-        loginLabel.text = R.string.localizable.logIn()
-        emailLabel.text = R.string.localizable.email()
-        passwordLabel.text = R.string.localizable.password()
-        loginButton.setTitle(R.string.localizable.logIn(), for: .normal)
-        restorePasswordButton.setTitle(R.string.localizable.restorePassword(), for: .normal)
-        orLabel.text = R.string.localizable.or()
-        signUpButton.setTitle(R.string.localizable.signUp(), for: .normal)
+        loginLabel.text = R.string.localizable.logIn().localized()
+        emailLabel.text = R.string.localizable.emailOnLogin().localized()
+        passwordLabel.text = R.string.localizable.passwordOnLogin().localized()
+        loginButton.setTitle(R.string.localizable.logIn().localized(), for: .normal)
+        restorePasswordButton.setTitle(R.string.localizable.restorePassword().localized(), for: .normal)
+        orLabel.text = R.string.localizable.or().localized()
+        signUpButton.setTitle(R.string.localizable.signUp().localized(), for: .normal)
     }
     
     @IBAction func loginAction(_ sender: Any) {

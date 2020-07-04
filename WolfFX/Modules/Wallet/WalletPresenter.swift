@@ -26,7 +26,9 @@ let banksJsonValues =  [
     ["value": "POSTGC", "name": "Postal Savings Bank of China"]
 ]
 
-let methodPickerStrings = [R.string.localizable.chinaUnionPay()]
+var methodPickerStrings = {
+    return [R.string.localizable.chinaUnionPay().localized()]
+}
 
 // Deposit Constants
 let cardType = "D"
@@ -79,7 +81,11 @@ class WalletPresenter: WalletEvents {
         self.view = view
         self.networkManager = networkManager
         self.router = router
-        self.pickerDataSource = methodPickerStrings
+        self.pickerDataSource = methodPickerStrings()
+    }
+    
+    func forceLocalizeUpdatePicker() {
+        self.pickerDataSource = methodPickerStrings()
     }
     
     func walletViewIsReady() {

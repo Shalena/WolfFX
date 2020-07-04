@@ -20,5 +20,14 @@ enum Language {
            }
    }
     
+  var systemName: String {
+          switch self {
+              case .english:
+                  return "en"
+              case .chineese:
+                  return "zh-Hans"
+              }
+      }
+    
    static let all: [Language] = [.english, .chineese]
 }

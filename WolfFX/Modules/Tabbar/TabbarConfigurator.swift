@@ -16,21 +16,21 @@ class TabbarConfigurator {
             let homeConfigurator = HomeConfigurator()
             homeConfigurator.configure(viewController: homeController, with: assembler)
             let homeNavigationController = UINavigationController(rootViewController: homeController)
-            homeNavigationController.tabBarItem = UITabBarItem(title: R.string.localizable.home(), image: R.image.homeTab()?.withTintColor(UIColor.darkGray, renderingMode: .alwaysOriginal), selectedImage: R.image.homeTab())
+            homeNavigationController.tabBarItem = UITabBarItem(title: R.string.localizable.home().localized(), image: R.image.homeTab()?.withTintColor(UIColor.darkGray, renderingMode: .alwaysOriginal), selectedImage: R.image.homeTab())
             navControllers.append(homeNavigationController)
         }
         if let billingController = R.storyboard.billingData.billingDataViewController() {
             let billingConfigurator = BillingDataConfigurator()
             billingConfigurator.configure(viewController: billingController, with: assembler)
             let billingNavigationController = UINavigationController(rootViewController: billingController)
-            billingNavigationController.tabBarItem = UITabBarItem(title: R.string.localizable.billingData(), image: R.image.billingTab()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.billingTab()?.withTintColor(UIColor.red))
+            billingNavigationController.tabBarItem = UITabBarItem(title: R.string.localizable.billingData().localized(), image: R.image.billingTab()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.billingTab()?.withTintColor(UIColor.red))
             navControllers.append(billingNavigationController)
         }
         if let walletController = R.storyboard.wallet.walletViewController() {
             let walletConfigurator = WalletConfigurator()
             walletConfigurator.configure(viewController: walletController, with: assembler)
             let walletNavigationController = UINavigationController(rootViewController: walletController)
-            walletNavigationController.tabBarItem = UITabBarItem(title: R.string.localizable.wallet(), image: R.image.walletTab()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.walletTab()?.withTintColor(UIColor.red))
+            walletNavigationController.tabBarItem = UITabBarItem(title: R.string.localizable.wallet().localized(), image: R.image.walletTab()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.walletTab()?.withTintColor(UIColor.red))
             navControllers.append(walletNavigationController)
         }
         if let settingsController = R.storyboard.settings.settingsViewController() {
@@ -42,5 +42,15 @@ class TabbarConfigurator {
               }
         tabBar.viewControllers = navControllers
         tabBar.selectedIndex = selectedIndex
+    }
+    
+    func localizeForce(tabBar: UITabBar) {
+        if let home = tabBar.items?[0],
+            let billingData = tabBar.items?[1],
+            let wallet = tabBar.items?[2] {
+                home.title = R.string.localizable.home().localized()
+                billingData.title = R.string.localizable.billingData().localized()
+                wallet.title = R.string.localizable.wallet().localized()
+        }
     }
 }

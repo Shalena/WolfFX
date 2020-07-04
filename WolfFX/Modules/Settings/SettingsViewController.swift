@@ -45,13 +45,13 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
     }
     
     func localize() {
-         settingsTitle.text = R.string.localizable.settings()
-         profileData.text = R.string.localizable.profileData()
-         language.text = R.string.localizable.language()
-         support.text = R.string.localizable.support()
-         howToTrade.text = R.string.localizable.howToTrade()
-         legalInformation.text = R.string.localizable.legalInformation()
-         loginAndSighOutLabel.text = R.string.localizable.logIn()
+         settingsTitle.text = R.string.localizable.settings().localized()
+         profileData.text = R.string.localizable.profileData().localized()
+         language.text = R.string.localizable.language().localized()
+         support.text = R.string.localizable.support().localized()
+         howToTrade.text = R.string.localizable.howToTrade().localized()
+         legalInformation.text = R.string.localizable.legalInformation().localized()
+         loginAndSighOutLabel.text = R.string.localizable.logIn().localized()
     }
     
     @objc private func profileTapped(_ sender: UITapGestureRecognizer? = nil) {
@@ -102,7 +102,12 @@ extension SettingsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedLanguage = presenter?.languages[indexPath.row]
-        print(selectedLanguage)
-        
+        if let systemLanguageName = selectedLanguage?.systemName {
+            Bundle.setLanguage(lang: systemLanguageName)
+            localize()
+            if let tabBar = tabBarController?.tabBar {
+                TabbarConfigurator().localizeForce(tabBar: tabBar)
+            }
+        }
     }
 }
