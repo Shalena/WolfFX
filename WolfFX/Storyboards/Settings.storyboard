@@ -166,7 +166,7 @@
                                                                     <constraint firstAttribute="bottom" secondItem="4Xe-Hc-bF5" secondAttribute="bottom" id="y5w-qY-Pnu"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h0y-Ug-Ktr" userLabel="Support View">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h0y-Ug-Ktr" userLabel="Support Header View">
                                                                 <rect key="frame" x="0.0" y="136.5" width="394" height="68.5"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-right" translatesAutoresizingMaskIntoConstraints="NO" id="mP0-PY-IQd">
@@ -189,6 +189,32 @@
                                                                     <constraint firstItem="mP0-PY-IQd" firstAttribute="centerY" secondItem="6n1-dX-KJX" secondAttribute="centerY" id="Fmj-CC-gPN"/>
                                                                     <constraint firstItem="6n1-dX-KJX" firstAttribute="centerY" secondItem="h0y-Ug-Ktr" secondAttribute="centerY" id="cp5-7m-Lmg"/>
                                                                     <constraint firstItem="6n1-dX-KJX" firstAttribute="leading" secondItem="h0y-Ug-Ktr" secondAttribute="leading" constant="10" id="iiM-g9-QO4"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hv2-mK-QT9" userLabel="Support View">
+                                                                <rect key="frame" x="0.0" y="205" width="394" height="68.5"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-right" translatesAutoresizingMaskIntoConstraints="NO" id="EUv-zg-4fF">
+                                                                        <rect key="frame" x="364" y="24" width="20" height="20"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="EUv-zg-4fF" secondAttribute="height" multiplier="1:1" id="BSk-s9-Ysj"/>
+                                                                            <constraint firstAttribute="width" constant="20" id="U4Z-lV-d1h"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="contact@wolffxwarrior.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4NX-9u-Mql">
+                                                                        <rect key="frame" x="20" y="24" width="324" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="4NX-9u-Mql" firstAttribute="centerY" secondItem="hv2-mK-QT9" secondAttribute="centerY" id="9xf-3z-MYJ"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="EUv-zg-4fF" secondAttribute="trailing" constant="10" id="CyN-bS-JgF"/>
+                                                                    <constraint firstItem="EUv-zg-4fF" firstAttribute="centerY" secondItem="hv2-mK-QT9" secondAttribute="centerY" id="ldt-pa-icG"/>
+                                                                    <constraint firstItem="4NX-9u-Mql" firstAttribute="leading" secondItem="hv2-mK-QT9" secondAttribute="leading" constant="20" id="oxG-xQ-yBz"/>
+                                                                    <constraint firstItem="EUv-zg-4fF" firstAttribute="leading" secondItem="4NX-9u-Mql" secondAttribute="trailing" constant="20" id="x3H-3h-qeU"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKm-1u-4nZ" userLabel="How to trade View">
@@ -274,6 +300,7 @@
                                                             <constraint firstItem="QPe-qb-eBN" firstAttribute="height" secondItem="rHe-9l-JlV" secondAttribute="height" id="h7B-eh-kiA"/>
                                                             <constraint firstItem="h0y-Ug-Ktr" firstAttribute="height" secondItem="3Ii-H6-He6" secondAttribute="height" id="kh4-vQ-v6P"/>
                                                             <constraint firstItem="2T9-8M-RvT" firstAttribute="height" secondItem="TId-Qc-YPT" secondAttribute="height" id="oxL-xe-UCl"/>
+                                                            <constraint firstItem="hv2-mK-QT9" firstAttribute="height" secondItem="h0y-Ug-Ktr" secondAttribute="height" id="qyx-GO-Cwn"/>
                                                             <constraint firstItem="3Ii-H6-He6" firstAttribute="height" secondItem="TId-Qc-YPT" secondAttribute="height" id="rbC-dM-8sa"/>
                                                         </constraints>
                                                     </stackView>
@@ -347,6 +374,9 @@
                         <outlet property="settingsTitle" destination="0ye-1p-ZcC" id="RBC-d8-ZHu"/>
                         <outlet property="signOutView" destination="QPe-qb-eBN" id="V5N-T6-Pdj"/>
                         <outlet property="support" destination="6n1-dX-KJX" id="wmp-6H-RMV"/>
+                        <outlet property="supportHeaderView" destination="h0y-Ug-Ktr" id="6Li-Ss-oUS"/>
+                        <outlet property="supportView" destination="hv2-mK-QT9" id="NwY-1w-yd7"/>
+                        <outlet property="suppportArrow" destination="mP0-PY-IQd" id="M3V-0N-raH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="REc-R8-c9h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

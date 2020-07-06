@@ -22,9 +22,14 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
     @IBOutlet weak var language: UILabel!
     @IBOutlet weak var support: UILabel!
     @IBOutlet weak var howToTrade: UILabel!
-    @IBOutlet weak var legalInformation: UILabel!    
+    @IBOutlet weak var legalInformation: UILabel!
+    @IBOutlet weak var supportView: UIView!
+    @IBOutlet weak var supportHeaderView: UIView!
+    @IBOutlet weak var suppportArrow: UIImageView!
     
     var languageViewIsHidden = true
+    var supportViewIsHidden = true
+    
     var presenter: SettingsEvents?
     
     override func viewDidLoad() {
@@ -42,6 +47,8 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
                signOutView.addGestureRecognizer(logoutTap)
         let languageTap = UITapGestureRecognizer(target: self, action: #selector(self.languageTapped(_:)))
         languageHeaderView.addGestureRecognizer(languageTap)
+        let supportTap = UITapGestureRecognizer(target: self, action: #selector(self.supportTapped(_:)))
+        supportHeaderView.addGestureRecognizer(supportTap)
     }
     
     func localize() {
@@ -72,6 +79,18 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
             angle = .pi / 2
         }
         languageArrow.transform = languageArrow.transform.rotated(by: angle)
+    }
+    
+    @objc private func supportTapped(_ sender: UITapGestureRecognizer? = nil) {
+        supportViewIsHidden = !supportViewIsHidden
+        supportView.isHidden = supportViewIsHidden
+        var angle = CGFloat(0.0)
+        if supportViewIsHidden {
+            angle = .pi / -2
+        } else {
+            angle = .pi / 2
+        }
+        suppportArrow.transform = suppportArrow.transform.rotated(by: angle)
     }
     
     func updateloginAndSighOutLabel(with text: String) {
