@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SettingsViewController: UIViewController, NavigationDesign, SettingsViewProtocol  {
   
@@ -22,6 +23,7 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
     @IBOutlet weak var language: UILabel!
     @IBOutlet weak var support: UILabel!
     @IBOutlet weak var howToTrade: UILabel!
+    @IBOutlet weak var legalInformationView: UIView!
     @IBOutlet weak var legalInformation: UILabel!
     @IBOutlet weak var supportView: UIView!
     @IBOutlet weak var supportHeaderView: UIView!
@@ -49,6 +51,8 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
         languageHeaderView.addGestureRecognizer(languageTap)
         let supportTap = UITapGestureRecognizer(target: self, action: #selector(self.supportTapped(_:)))
         supportHeaderView.addGestureRecognizer(supportTap)
+        let legalInfoTap = UITapGestureRecognizer(target: self, action: #selector(self.legalInfoTapped(_:)))
+        legalInformationView.addGestureRecognizer(legalInfoTap)
     }
     
     func localize() {
@@ -91,6 +95,15 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
             angle = .pi / 2
         }
         suppportArrow.transform = suppportArrow.transform.rotated(by: angle)
+    }
+    
+    @objc private func legalInfoTapped(_ sender: UITapGestureRecognizer? = nil) {
+        if let string = LegalInformation.clientAgreement.link, let url = URL(string: string) {
+               let config = SFSafariViewController.Configuration()
+               config.entersReaderIfAvailable = true
+               let vc = SFSafariViewController(url: url, configuration: config)
+               present(vc, animated: true)
+           }
     }
     
     func updateloginAndSighOutLabel(with text: String) {

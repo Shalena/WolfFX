@@ -88,6 +88,15 @@
 "Sign in" = "Sign in";
 "Sign out" = "Sign out";
 
+// Legal information
+
+"About us" = "About us";
+"Client Agreement" = "Client Agreement";
+"Trade copying terms and conditions" = "Trade copying terms and conditions";
+"Best Execution Policy" = "Best Execution Policy";
+"Privacy Policy" = "Privacy Policy";
+"Risk disclosure notice" = "Risk disclosure notice";
+
 // Profile
 
 "Profile" = "Profile";

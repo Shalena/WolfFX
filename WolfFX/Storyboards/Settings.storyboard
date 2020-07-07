@@ -368,6 +368,7 @@
                         <outlet property="languageHeaderView" destination="TId-Qc-YPT" id="Nce-hR-hNh"/>
                         <outlet property="languageView" destination="3Ii-H6-He6" id="aBS-27-kRe"/>
                         <outlet property="legalInformation" destination="BJo-wq-waL" id="OiM-6W-8yS"/>
+                        <outlet property="legalInformationView" destination="rHe-9l-JlV" id="V05-E1-QRZ"/>
                         <outlet property="loginAndSighOutLabel" destination="92w-93-z5B" id="iWd-4a-tAY"/>
                         <outlet property="profileData" destination="8cM-NS-arP" id="nwI-BG-eSJ"/>
                         <outlet property="profileDataView" destination="2T9-8M-RvT" id="y7q-Sd-sY2"/>

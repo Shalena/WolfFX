@@ -28,6 +28,8 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var legalInformationTitle: UILabel!
+    
     var presenter: HomeEvents?
     var infoView = UIView()
     var timer: Timer?
@@ -80,6 +82,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         expiryTimeLabel.text = R.string.localizable.expiryTime().localized()
         assetLabel.text = R.string.localizable.asset().localized()
         playButton.setTitle(R.string.localizable.inTrade().uppercased().localized(), for: .normal)
+        legalInformationTitle.text = R.string.localizable.legalInformation().localized()
     }
      
     func updateAssetsTable() {

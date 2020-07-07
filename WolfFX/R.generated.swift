@@ -217,7 +217,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 61 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 67 localization keys.
     struct localizable {
       /// en translation: * Bank name
       /// 
@@ -247,6 +247,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let password = Rswift.StringResource(key: "Password", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: About us
+      /// 
+      /// Locales: en, zh-Hans
+      static let aboutUs = Rswift.StringResource(key: "About us", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Amount (available %@)
       /// 
       /// Locales: en, zh-Hans
@@ -263,6 +267,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let balance = Rswift.StringResource(key: "Balance", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Best Execution Policy
+      /// 
+      /// Locales: en, zh-Hans
+      static let bestExecutionPolicy = Rswift.StringResource(key: "Best Execution Policy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Billing data
       /// 
       /// Locales: en, zh-Hans
@@ -283,6 +291,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let clickHereToAcceptOurClientAgreement = Rswift.StringResource(key: "Click here to accept our client agreement", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Client Agreement
+      /// 
+      /// Locales: en, zh-Hans
+      static let clientAgreement = Rswift.StringResource(key: "Client Agreement", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Commodities
       /// 
       /// Locales: en, zh-Hans
@@ -379,6 +391,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let pleaseConfirmYourPaymentMethodFromTheListBelow = Rswift.StringResource(key: "Please confirm your payment method from the list below", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Privacy Policy
+      /// 
+      /// Locales: en, zh-Hans
+      static let privacyPolicy = Rswift.StringResource(key: "Privacy Policy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Profile
       /// 
       /// Locales: en, zh-Hans
@@ -411,6 +427,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let restorePassword = Rswift.StringResource(key: "Restore password", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Risk disclosure notice
+      /// 
+      /// Locales: en, zh-Hans
+      static let riskDisclosureNotice = Rswift.StringResource(key: "Risk disclosure notice", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Save
       /// 
       /// Locales: en, zh-Hans
@@ -439,6 +459,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let support = Rswift.StringResource(key: "Support", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Trade copying terms and conditions
+      /// 
+      /// Locales: en, zh-Hans
+      static let tradeCopyingTermsAndConditions = Rswift.StringResource(key: "Trade copying terms and conditions", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: United states pound
       /// 
       /// Locales: en
@@ -513,6 +537,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Password", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: About us
+      /// 
+      /// Locales: en, zh-Hans
+      static func aboutUs(_: Void = ()) -> String {
+        return NSLocalizedString("About us", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Amount (available %@)
       /// 
       /// Locales: en, zh-Hans
@@ -539,6 +570,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func balance(_: Void = ()) -> String {
         return NSLocalizedString("Balance", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Best Execution Policy
+      /// 
+      /// Locales: en, zh-Hans
+      static func bestExecutionPolicy(_: Void = ()) -> String {
+        return NSLocalizedString("Best Execution Policy", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Billing data
@@ -574,6 +612,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func clickHereToAcceptOurClientAgreement(_: Void = ()) -> String {
         return NSLocalizedString("Click here to accept our client agreement", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Client Agreement
+      /// 
+      /// Locales: en, zh-Hans
+      static func clientAgreement(_: Void = ()) -> String {
+        return NSLocalizedString("Client Agreement", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Commodities
@@ -744,6 +789,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Please confirm your payment method from the list below", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Privacy Policy
+      /// 
+      /// Locales: en, zh-Hans
+      static func privacyPolicy(_: Void = ()) -> String {
+        return NSLocalizedString("Privacy Policy", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Profile
       /// 
       /// Locales: en, zh-Hans
@@ -800,6 +852,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Restore password", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Risk disclosure notice
+      /// 
+      /// Locales: en, zh-Hans
+      static func riskDisclosureNotice(_: Void = ()) -> String {
+        return NSLocalizedString("Risk disclosure notice", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Save
       /// 
       /// Locales: en, zh-Hans
@@ -847,6 +906,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func support(_: Void = ()) -> String {
         return NSLocalizedString("Support", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Trade copying terms and conditions
+      /// 
+      /// Locales: en, zh-Hans
+      static func tradeCopyingTermsAndConditions(_: Void = ()) -> String {
+        return NSLocalizedString("Trade copying terms and conditions", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: United states pound

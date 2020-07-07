@@ -82,6 +82,7 @@ class SettingsPresenter: NSObject, SettingsEvents {
     }
     
     private func logout() {
+        WSManager.shared.stop()
         networkManager?.logout(success: { successfully in
             self.router?.logout()
         }, failure: { error in

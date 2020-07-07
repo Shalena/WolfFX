@@ -17,8 +17,10 @@ class OrderExecutorJSONAcception: JsonAcception {
             keys.append(key)
         }
         if containSameElements(firstArray: actionKeys, secondArray: keys) {
-           
-            return true
+           let payload: JSON? = json["payload"] as? JSON
+           let message: String? = payload?["message"] as? String
+           let messageType: String? = payload?["messageType"] as? String
+           return true
         } else {
             return false
         }

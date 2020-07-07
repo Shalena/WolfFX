@@ -89,6 +89,15 @@
 "Sign in" = "登入";
 "Sign out" = "登出";
 
+// Legal information
+
+"About us" = "关于我们";
+"Client Agreement" = "客户协议";
+"Trade copying terms and conditions" = "交易复制条款和条件";
+"Best Execution Policy" = "最佳执行政策";
+"Privacy Policy" = "隐私政策";
+"Risk disclosure notice" = "风险披露通知";
+
 // Profile
 
 "Profile" = "档案";
