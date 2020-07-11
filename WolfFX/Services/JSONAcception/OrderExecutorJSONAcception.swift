@@ -20,6 +20,14 @@ class OrderExecutorJSONAcception: JsonAcception {
            let payload: JSON? = json["payload"] as? JSON
            let message: String? = payload?["message"] as? String
            let messageType: String? = payload?["messageType"] as? String
+           var success: Bool?
+            if messageType == Status.success.rawValue {
+                success = true
+            } else if messageType == Status.error.rawValue {
+                success = false
+            }
+            let tradeStatus = TradeStatus(message: message, success: success)
+            DataReceiver.shared?.tradeStatus = tradeStatus
            return true
         } else {
             return false

@@ -26,6 +26,7 @@ class HomePresenter: NSObject, HomeEvents {
     var priceHistoryObservation: NSKeyValueObservation?
     var priceObservation: NSKeyValueObservation?
     var rangeObservation: NSKeyValueObservation?
+    var tradeStatusObservation: NSKeyValueObservation?
     var assets: [Asset]?
     var tableDataSource: AssetsDataSource?
     var timer: Timer?
@@ -76,12 +77,23 @@ class HomePresenter: NSObject, HomeEvents {
         observePriceHistory()
         observePrice()
         observeRange()
+        observeTradeStatus()
     }
     
     func tradeAction() {
         orderExecutor()
     }
 
+    private func observeTradeStatus() {
+        tradeStatusObservation = observe(\.dataReceiver?.tradeStatus, options: [.old, .new]) { object, change in
+            if let tradeStatus = change.newValue, let message = tradeStatus?.message {
+                DispatchQueue.main.async {
+                    self.view?.showAlertWith(text: message)
+                }
+            }
+        }
+    }
+    
    private func observeAssets() {
     assetsObservation = observe(\.dataReceiver?.assets, options: [.old, .new]) { object, change in
         if let assets = change.newValue {

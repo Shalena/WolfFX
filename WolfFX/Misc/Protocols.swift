@@ -115,7 +115,7 @@ protocol SignupTransitions {
 
 // Home Screen
 
-protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen {
+protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable {
     var presenter: HomeEvents? {get set}
     func updateAssetsTable()
     func updateAssetButton(with title: String)

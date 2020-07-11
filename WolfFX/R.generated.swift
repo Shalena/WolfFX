@@ -217,7 +217,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 67 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 68 localization keys.
     struct localizable {
       /// en translation: * Bank name
       /// 
@@ -459,6 +459,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let support = Rswift.StringResource(key: "Support", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Terms and conditions
+      /// 
+      /// Locales: en, zh-Hans
+      static let termsAndConditions = Rswift.StringResource(key: "Terms and conditions", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Trade copying terms and conditions
       /// 
       /// Locales: en, zh-Hans
@@ -906,6 +910,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func support(_: Void = ()) -> String {
         return NSLocalizedString("Support", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Terms and conditions
+      /// 
+      /// Locales: en, zh-Hans
+      static func termsAndConditions(_: Void = ()) -> String {
+        return NSLocalizedString("Terms and conditions", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Trade copying terms and conditions

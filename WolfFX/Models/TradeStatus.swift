@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum Status: String {
+    case success = "SUCCESS"
+    case error = "ERROR"
+}
+
 class TradeStatus: NSObject {
     var message: String?
     var success: Bool?
