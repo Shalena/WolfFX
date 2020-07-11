@@ -314,7 +314,7 @@
                                                                     <constraint firstItem="nWZ-hY-Nw1" firstAttribute="leading" secondItem="pg6-uk-IW7" secondAttribute="leading" id="99a-g0-LsE"/>
                                                                     <constraint firstAttribute="bottom" secondItem="nWZ-hY-Nw1" secondAttribute="bottom" id="CfU-ub-GeZ"/>
                                                                     <constraint firstItem="nWZ-hY-Nw1" firstAttribute="top" secondItem="pg6-uk-IW7" secondAttribute="top" id="Nrx-Vc-KAh"/>
-                                                                    <constraint firstAttribute="height" priority="750" constant="500" id="tpX-sK-fUO"/>
+                                                                    <constraint firstAttribute="height" priority="750" constant="600" id="tpX-sK-fUO"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QPe-qb-eBN" userLabel="Sign Out View">
@@ -431,6 +431,7 @@
                         <outlet property="supportHeaderView" destination="h0y-Ug-Ktr" id="6Li-Ss-oUS"/>
                         <outlet property="supportView" destination="hv2-mK-QT9" id="NwY-1w-yd7"/>
                         <outlet property="suppportArrow" destination="mP0-PY-IQd" id="M3V-0N-raH"/>
+                        <outlet property="tableView" destination="nWZ-hY-Nw1" id="b3f-uS-sET"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="REc-R8-c9h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -29,6 +29,7 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
     @IBOutlet weak var supportView: UIView!
     @IBOutlet weak var supportHeaderView: UIView!
     @IBOutlet weak var suppportArrow: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
     
     var languageViewIsHidden = true
     var supportViewIsHidden = true
@@ -142,6 +143,7 @@ extension SettingsViewController: UICollectionViewDelegateFlowLayout {
         if let systemLanguageName = selectedLanguage?.systemName {
             Bundle.setLanguage(lang: systemLanguageName)
             localize()
+            tableView.reloadData()
             if let tabBar = tabBarController?.tabBar {
                 TabbarConfigurator().localizeForce(tabBar: tabBar)
             }

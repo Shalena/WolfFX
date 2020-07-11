@@ -43,7 +43,7 @@ enum LegalInformation {
         case .privacyPolicy:
             return R.string.localizable.privacyPolicy().localized()
         case .riskDisclosureNotice:
-                 return R.string.localizable.riskDisclosureNotice().localized()
+            return R.string.localizable.riskDisclosureNotice().localized()
        
         }
     }
