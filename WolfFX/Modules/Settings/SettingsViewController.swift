@@ -23,14 +23,17 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
     @IBOutlet weak var language: UILabel!
     @IBOutlet weak var support: UILabel!
     @IBOutlet weak var howToTrade: UILabel!
-    @IBOutlet weak var legalInformationView: UIView!
+    @IBOutlet weak var legalInformationTitleView: UIView!
     @IBOutlet weak var legalInformation: UILabel!
+    @IBOutlet weak var legalInfoView: UIView!
+    @IBOutlet weak var legalArrow: UIImageView!
     @IBOutlet weak var supportView: UIView!
     @IBOutlet weak var supportHeaderView: UIView!
     @IBOutlet weak var suppportArrow: UIImageView!
     
     var languageViewIsHidden = true
     var supportViewIsHidden = true
+    var legalInfoIsHidden = true
     
     var presenter: SettingsEvents?
     
@@ -52,7 +55,7 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
         let supportTap = UITapGestureRecognizer(target: self, action: #selector(self.supportTapped(_:)))
         supportHeaderView.addGestureRecognizer(supportTap)
         let legalInfoTap = UITapGestureRecognizer(target: self, action: #selector(self.legalInfoTapped(_:)))
-        legalInformationView.addGestureRecognizer(legalInfoTap)
+        legalInformationTitleView.addGestureRecognizer(legalInfoTap)
     }
     
     func localize() {
@@ -98,12 +101,15 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
     }
     
     @objc private func legalInfoTapped(_ sender: UITapGestureRecognizer? = nil) {
-        if let string = LegalInformation.clientAgreement.link, let url = URL(string: string) {
-               let config = SFSafariViewController.Configuration()
-               config.entersReaderIfAvailable = true
-               let vc = SFSafariViewController(url: url, configuration: config)
-               present(vc, animated: true)
-           }
+        legalInfoIsHidden = !legalInfoIsHidden
+        legalInfoView.isHidden = legalInfoIsHidden
+        var angle = CGFloat(0.0)
+        if legalInfoIsHidden {
+            angle = .pi / -2
+        } else {
+            angle = .pi / 2
+        }
+        legalArrow.transform = legalArrow.transform.rotated(by: angle)
     }
     
     func updateloginAndSighOutLabel(with text: String) {
