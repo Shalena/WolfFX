@@ -29,7 +29,8 @@ class SettingsPresenter: NSObject, SettingsEvents {
     @objc dynamic var dataReceiver: DataReceiver?
     var observation: NSKeyValueObservation?
     var currentLoginState: LoginState?
-    var languages = Language.all
+    var languageDataSource = Language.all
+    var legalInfoDataSource = LegalInformation.all
     
     init (with view: SettingsViewProtocol, networkManager: NetworkAccess, router: SettingsTransitions) {
         self.view = view
@@ -68,8 +69,20 @@ class SettingsPresenter: NSObject, SettingsEvents {
     }
     
     func configure(cell: LanguageCell, at index: Int) {
-        let language = languages[index]
+        let language = languageDataSource[index]
         cell.title.text = language.title
+    }
+    
+    func configure(cell: LegalInfoCell, at index: Int) {
+        let legalInfoItem = legalInfoDataSource[index]
+        cell.title.text = legalInfoItem.title
+    }
+    
+    func showLegalInfoItem(at index: Int) {
+        if let urlString = legalInfoDataSource[index].link,
+           let url = URL.init(string: urlString) {
+           router?.goToSafariWith(url: url)
+        }
     }
     
     private func setupLoginLogoutState() {

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SafariServices
 
 class SettingsRouter: BaseRouter, SettingsTransitions {
     func goToHome() {
@@ -20,6 +21,13 @@ class SettingsRouter: BaseRouter, SettingsTransitions {
             configurator.configure(viewController: profileDetailsController, with: assembler)
             sourceController.navigationController?.pushViewController(profileDetailsController, animated: true)
         }
+    }
+    
+    func goToSafariWith(url: URL) {
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        let vc = SFSafariViewController(url: url, configuration: config)
+        sourceController.present(vc, animated: true)
     }
     
     func logout() {

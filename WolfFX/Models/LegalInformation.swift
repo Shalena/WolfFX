@@ -41,9 +41,9 @@ enum LegalInformation {
         case .bestExecutionPolicy:
             return R.string.localizable.bestExecutionPolicy().localized()
         case .privacyPolicy:
-            return R.string.localizable.clientAgreement().localized()
+            return R.string.localizable.privacyPolicy().localized()
         case .riskDisclosureNotice:
-                 return R.string.localizable.clientAgreement().localized()
+                 return R.string.localizable.riskDisclosureNotice().localized()
        
         }
     }
@@ -68,6 +68,6 @@ enum LegalInformation {
         }
     }
     
-    static let all: [LegalInformation] = [.aboutUs, .clientAgreement, .tradeCopyingTermsAndConditions, .bestExecutionPolicy, .privacyPolicy, .riskDisclosureNotice]
+    static let all: [LegalInformation] = [.aboutUs, .clientAgreement, .termsAndConditions, .tradeCopyingTermsAndConditions, .bestExecutionPolicy, .privacyPolicy, .riskDisclosureNotice]
 }
 

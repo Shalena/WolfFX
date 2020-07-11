@@ -38,6 +38,7 @@
 		814F2ED424423C1A00E0820C /* BillingDataRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F2ED324423C1A00E0820C /* BillingDataRouter.swift */; };
 		814F2ED624438C9300E0820C /* BillingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F2ED524438C9300E0820C /* BillingData.swift */; };
 		815B66742466E1C000E4227A /* PriceHistoryJsonAcceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815B66732466E1C000E4227A /* PriceHistoryJsonAcceptor.swift */; };
+		815E533924B9F668005BFD5B /* LegalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E533824B9F668005BFD5B /* LegalInfoCell.swift */; };
 		815FD04B244F230B00EE7083 /* ExchangeRateJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815FD04A244F230B00EE7083 /* ExchangeRateJsonAcception.swift */; };
 		815FD04D244F76DB00EE7083 /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815FD04C244F76DB00EE7083 /* ExchangeRate.swift */; };
 		8160E7A5248C22B10019B2F4 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8160E7A4248C22B10019B2F4 /* LanguageCell.swift */; };
@@ -154,6 +155,7 @@
 		814F2ED324423C1A00E0820C /* BillingDataRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingDataRouter.swift; sourceTree = "<group>"; };
 		814F2ED524438C9300E0820C /* BillingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingData.swift; sourceTree = "<group>"; };
 		815B66732466E1C000E4227A /* PriceHistoryJsonAcceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceHistoryJsonAcceptor.swift; sourceTree = "<group>"; };
+		815E533824B9F668005BFD5B /* LegalInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalInfoCell.swift; sourceTree = "<group>"; };
 		815FD04A244F230B00EE7083 /* ExchangeRateJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateJsonAcception.swift; sourceTree = "<group>"; };
 		815FD04C244F76DB00EE7083 /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
 		8160E7A4248C22B10019B2F4 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				8160E7A4248C22B10019B2F4 /* LanguageCell.swift */,
+				815E533824B9F668005BFD5B /* LegalInfoCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -802,6 +805,7 @@
 			files = (
 				814D3137246479D500C092EC /* AssetCell.swift in Sources */,
 				816C17CB24050A0F00B1551A /* AppDelegate.swift in Sources */,
+				815E533924B9F668005BFD5B /* LegalInfoCell.swift in Sources */,
 				816C17CD24050A0F00B1551A /* SceneDelegate.swift in Sources */,
 				815FD04D244F76DB00EE7083 /* ExchangeRate.swift in Sources */,
 				81AF5B2E246C60070058FC03 /* RangeJsonAcception.swift in Sources */,

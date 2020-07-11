@@ -149,7 +149,7 @@
                                                                                 <size key="customSize" width="185" height="53"/>
                                                                                 <connections>
                                                                                     <outlet property="centralView" destination="CBv-mk-1dI" id="c5a-TM-1cg"/>
-                                                                                    <outlet property="title" destination="vVL-4H-R6D" id="tCt-bo-1Pu"/>
+                                                                                    <outlet property="title" destination="vVL-4H-R6D" id="niz-DN-dZU"/>
                                                                                 </connections>
                                                                             </collectionViewCell>
                                                                         </cells>
@@ -270,9 +270,51 @@
                                                             </view>
                                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pg6-uk-IW7" userLabel="Legal Info View">
                                                                 <rect key="frame" x="0.0" y="400" width="394" height="0.0"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <subviews>
+                                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nWZ-hY-Nw1">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="0.0"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <prototypes>
+                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LegalInfoCell" id="jss-ol-2Ye" customClass="LegalInfoCell" customModule="WolfFX" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="28" width="394" height="44"/>
+                                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jss-ol-2Ye" id="PiV-72-4Ed">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="394" height="44"/>
+                                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                                    <subviews>
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqW-s4-Mgs">
+                                                                                            <rect key="frame" x="10" y="22" width="374" height="0.0"/>
+                                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                            <nil key="highlightedColor"/>
+                                                                                        </label>
+                                                                                    </subviews>
+                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstItem="RqW-s4-Mgs" firstAttribute="centerY" secondItem="PiV-72-4Ed" secondAttribute="centerY" id="H1z-bR-gzp"/>
+                                                                                        <constraint firstAttribute="trailing" secondItem="RqW-s4-Mgs" secondAttribute="trailing" constant="10" id="M5v-Vk-oco"/>
+                                                                                        <constraint firstItem="RqW-s4-Mgs" firstAttribute="leading" secondItem="PiV-72-4Ed" secondAttribute="leading" constant="10" id="UYy-2q-Bei"/>
+                                                                                    </constraints>
+                                                                                </tableViewCellContentView>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <connections>
+                                                                                    <outlet property="title" destination="RqW-s4-Mgs" id="TzS-OX-JMc"/>
+                                                                                </connections>
+                                                                            </tableViewCell>
+                                                                        </prototypes>
+                                                                        <connections>
+                                                                            <outlet property="dataSource" destination="Ier-5M-mDR" id="3mI-tx-Ctr"/>
+                                                                            <outlet property="delegate" destination="Ier-5M-mDR" id="0Lg-4C-wgH"/>
+                                                                        </connections>
+                                                                    </tableView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" priority="750" constant="400" id="tpX-sK-fUO"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="nWZ-hY-Nw1" secondAttribute="trailing" id="0ev-l3-11D"/>
+                                                                    <constraint firstItem="nWZ-hY-Nw1" firstAttribute="leading" secondItem="pg6-uk-IW7" secondAttribute="leading" id="99a-g0-LsE"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="nWZ-hY-Nw1" secondAttribute="bottom" id="CfU-ub-GeZ"/>
+                                                                    <constraint firstItem="nWZ-hY-Nw1" firstAttribute="top" secondItem="pg6-uk-IW7" secondAttribute="top" id="Nrx-Vc-KAh"/>
+                                                                    <constraint firstAttribute="height" priority="750" constant="500" id="tpX-sK-fUO"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QPe-qb-eBN" userLabel="Sign Out View">

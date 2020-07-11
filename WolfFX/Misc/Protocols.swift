@@ -192,16 +192,20 @@ protocol SettingsViewProtocol: ShowErrorCapable, LocalizableScreen {
 }
 
 protocol SettingsEvents {
-    var languages: [Language] {get set}
+    var languageDataSource: [Language] {get set}
+    var legalInfoDataSource: [LegalInformation] {get set}
     func settingsViewIsReady()
     func profileChosen()
     func configure(cell: LanguageCell, at index: Int)
+    func configure(cell: LegalInfoCell, at index: Int)
+    func showLegalInfoItem(at index: Int)
     func lastSectionTapped()
 }
 
 protocol SettingsTransitions {
     func goToProfile()
     func goToHome()
+    func goToSafariWith(url: URL)
     func logout()
 }
 

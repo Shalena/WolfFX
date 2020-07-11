@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SafariServices
 
 class SettingsViewController: UIViewController, NavigationDesign, SettingsViewProtocol  {
   
@@ -121,7 +120,7 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
 
 extension SettingsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return presenter?.languageDataSource.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -139,7 +138,7 @@ extension SettingsViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedLanguage = presenter?.languages[indexPath.row]
+        let selectedLanguage = presenter?.languageDataSource[indexPath.row]
         if let systemLanguageName = selectedLanguage?.systemName {
             Bundle.setLanguage(lang: systemLanguageName)
             localize()
@@ -149,3 +148,22 @@ extension SettingsViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
+
+extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter?.legalInfoDataSource.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "LegalInfoCell", for: indexPath) as? LegalInfoCell {
+            presenter?.configure(cell: cell, at: indexPath.row)
+            return cell
+        }
+        fatalError()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.showLegalInfoItem(at: indexPath.row)
+    }
+}
+
