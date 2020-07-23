@@ -25,7 +25,6 @@ class WebsocketJsonCreator {
     }
     
     func orderExecutor(leverage: Int64, rangeId: String, min: Double, max: Double, currency: String) -> [String : Any] {
-        let uuid = generateVersionOneAkaTimeBasedUUID()
         return ["type": "send",
         "address": "OrderExecutor",
         "headers": [:],
@@ -35,7 +34,7 @@ class WebsocketJsonCreator {
                     "currency": currency,
                     "min": min,
                     "max":max]],
-        "replyAddress": uuid]
+        "replyAddress": ""]
     }
     
     private func generateVersionOneAkaTimeBasedUUID() -> String {

@@ -19,10 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let assembler = Assembler()
             assembler.initFlow()
             DataReceiver.shared?.assembler = assembler
-            guard let settingScreen = R.storyboard.settings.settingsViewController() else { return }
-            let configurator = SettingsConfigurator()
-            configurator.configure(viewController: settingScreen, with: assembler)
-            window.rootViewController = settingScreen
+            guard let loginScreen = R.storyboard.login.loginViewController() else { return }
+            let configurator = LoginConfigurator()
+            configurator.configure(viewController: loginScreen, with: assembler)
+            window.rootViewController = loginScreen
             self.window = window
             window.makeKeyAndVisible()
         }

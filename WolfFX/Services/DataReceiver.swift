@@ -41,7 +41,7 @@ class DataReceiver: NSObject {
     @objc dynamic var priceHistory: [PriceEntry]?
     @objc dynamic var range: Range?
     @objc dynamic var tradeStatus: TradeStatus?
-    
+  
     func clean() {
         DataReceiver.shared = nil
     }

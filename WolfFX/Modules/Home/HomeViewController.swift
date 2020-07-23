@@ -82,7 +82,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         expiryTimeLabel.text = R.string.localizable.expiryTime().localized()
         assetLabel.text = R.string.localizable.asset().localized()
         playButton.setTitle(R.string.localizable.inTrade().uppercased().localized(), for: .normal)
-        legalInformationTitle.text = R.string.localizable.legalInformation().localized()
     }
      
     func updateAssetsTable() {

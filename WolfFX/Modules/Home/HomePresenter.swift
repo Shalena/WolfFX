@@ -88,6 +88,7 @@ class HomePresenter: NSObject, HomeEvents {
         tradeStatusObservation = observe(\.dataReceiver?.tradeStatus, options: [.old, .new]) { object, change in
             if let tradeStatus = change.newValue, let message = tradeStatus?.message {
                 DispatchQueue.main.async {
+                    self.view?.hideHud()
                     self.view?.showAlertWith(text: message)
                 }
             }
@@ -125,15 +126,14 @@ class HomePresenter: NSObject, HomeEvents {
                 self.axisValueFormatter = IndexAxisValueFormatter(values: self.axisLabels)
                  DispatchQueue.main.async {
                      self.view?.updateChart(with: priceEntries)
-                 }
-                 self.getPrice()
+                 }             
+                self.getPrice()
              }
          }
      }
      
       private func observePrice() {
          priceObservation = observe(\.dataReceiver?.assetPrice, options: [.old, .new]) { object, change in
-            self.view?.hideHud()
              if let assetPrice = change.newValue as? AssetPrice, let axisLabel = assetPrice.label {
                  DispatchQueue.main.async {
                     self.axisLabels.append(axisLabel)
@@ -144,34 +144,41 @@ class HomePresenter: NSObject, HomeEvents {
          }
      }
     
+    private func observeRange() {
+           rangeObservation = observe(\.dataReceiver?.range, options: [.old, .new]) { object, change in
+               if let range = change.newValue as? Range {
+                    self.view?.hideHud()
+                   self.currentRange = range
+               }
+           }
+       }
+    
     private func getPriceHistory() {
         WSManager.shared.connect()
         WSManager.shared.getPriceHistory()
     }
     
-    private func getPrice() {
-        DispatchQueue.main.async {
-            self.timer?.invalidate()
-            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self]  (_) in
-                WSManager.shared.connect()
-                WSManager.shared.getAssetPrice()
-            })
+     private func getPrice() {
+        WSManager.shared.connect()
+        WSManager.shared.getAssetPrice()         
+          DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.getPrice()
+          }
         }
-    }
+      
   
     private func getAssetRange() {
-        guard let leverageValue = selectedLeverage?.value else {return}
-        let leverageParameter = leverageValue * leverageMultiplier
-        guard let timeDuration = selectedExpiry?.value else {return}
-        let type = currentType
-        guard let assedId = selectedAsset?.id else {return}
-        guard let stake = selectedInvestment?.value else {return}
-      
         DispatchQueue.main.async {
-            WSManager.shared.getAssetRange(leverage: leverageParameter, timeDuration: timeDuration, type: type, assetId: assedId, stake: stake)
             self.assetTimer?.invalidate()
-            self.assetTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self]  (_) in
-                self?.getAssetRange()
+            self.assetTimer = nil
+            self.assetTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self]  (_) in
+                guard let leverageValue = self?.selectedLeverage?.value else {return}
+                let leverageParameter = leverageValue * leverageMultiplier
+                guard let timeDuration = self?.selectedExpiry?.value else {return}
+                let type = currentType
+                guard let assedId = self?.selectedAsset?.id else {return}
+                guard let stake = self?.selectedInvestment?.value else {return}
+                WSManager.shared.getAssetRange(leverage: leverageParameter, timeDuration: timeDuration, type: type, assetId: assedId, stake: stake)
             })
         }
     }
@@ -182,15 +189,9 @@ class HomePresenter: NSObject, HomeEvents {
         guard let rangeId = currentRange?.rangeId else {return}
         guard let min = currentRange?.min else {return}
         guard let max = currentRange?.max else {return}
-        WSManager.shared.orderExecutor(leverage: leverageParameter, rangeId: rangeId, min: min, max: max)
-    }
-    
-
-    private func observeRange() {
-        rangeObservation = observe(\.dataReceiver?.range, options: [.old, .new]) { object, change in
-            if let range = change.newValue as? Range {
-                self.currentRange = range
-            }
+        DispatchQueue.main.async {
+            self.view?.showHud()
+            WSManager.shared.orderExecutor(leverage: leverageParameter, rangeId: rangeId, min: min, max: max)
         }
     }
     

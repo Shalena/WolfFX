@@ -11,6 +11,7 @@ target 'WolfFX' do
         pod 'Locksmith'
         pod 'Swinject'
         pod 'Charts'
+        pod 'CocoaAsyncSocket'
        
   # Pods for HomeSolutionsCustomer
 

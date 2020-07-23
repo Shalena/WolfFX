@@ -30,6 +30,7 @@ protocol WebsocketAccess {
 }
 
 let baseUrlString = "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket"
+let registerJson : [String: Any] = ["type": "register", "address":"2test@test.com", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 let userInfoJson: [String: Any] = ["type": "send", "address": "client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 let getBalanceJson: [String: Any] = ["type":"send", "address": "CurrentBalance", "headers": [String:String](), "body": ["currency": "%@"], "replyAddress": ""]
 let readAllStatusesJson: [String: Any] = ["type":"send", "address": "ReadAllStatuses", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
@@ -95,6 +96,11 @@ class WSManager: WebsocketAccess {
             send(messageString: messageString)
         }
     }
+    func register() {
+        if let messageString = Converter().jsonToString(json: registerJson) {
+            send(messageString: messageString)
+        }
+    }
   
     func getBalance() {
         let user = DataReceiver.shared?.user
@@ -148,19 +154,18 @@ class WSManager: WebsocketAccess {
             send(messageString: messageString)
         }
     }
-    
+        
     func ping() {
         webSocketTask?.sendPing { (error) in
-            if let error = error {
-                print("Ping failed: \(error)")
-            } else {
-                print("Ping success")
-            }
-            let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                self.ping()
-            }
-            timer.fire()
+        if let error = error {
+          print("Sending PING failed: \(error)")
+        } else {
+            print("Sending PING ok")
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+          self.ping()
+        }
+      }
     }
     
    func stop() {

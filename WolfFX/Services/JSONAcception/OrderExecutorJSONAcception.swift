@@ -18,12 +18,13 @@ class OrderExecutorJSONAcception: JsonAcception {
         }
         if containSameElements(firstArray: actionKeys, secondArray: keys) {
            let payload: JSON? = json["payload"] as? JSON
-           let message: String? = payload?["message"] as? String
+           var message: String? = payload?["message"] as? String
            let messageType: String? = payload?["messageType"] as? String
            var success: Bool?
             if messageType == Status.success.rawValue {
                 success = true
             } else if messageType == Status.error.rawValue {
+                message = "Error"
                 success = false
             }
             let tradeStatus = TradeStatus(message: message, success: success)

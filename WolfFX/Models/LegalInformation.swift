@@ -44,7 +44,6 @@ enum LegalInformation {
             return R.string.localizable.privacyPolicy().localized()
         case .riskDisclosureNotice:
             return R.string.localizable.riskDisclosureNotice().localized()
-       
         }
     }
     
