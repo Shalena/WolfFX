@@ -71,6 +71,7 @@
 		817E5D29243B73FE0088E60A /* UserJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817E5D28243B73FE0088E60A /* UserJsonAcception.swift */; };
 		817E5D2C243B74EA0088E60A /* BalanceJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817E5D2B243B74EA0088E60A /* BalanceJsonAcception.swift */; };
 		8184269E240D534200713BF5 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184269D240D534200713BF5 /* LoginPresenter.swift */; };
+		818B2C6624C9F0A900896A1B /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B2C6524C9F0A900896A1B /* SocketIOManager.swift */; };
 		81A4B35024105D98004A02CB /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B34F24105D98004A02CB /* SignupViewController.swift */; };
 		81A4B352241129DB004A02CB /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B351241129DB004A02CB /* Assembler.swift */; };
 		81A4B354241129FC004A02CB /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B353241129FC004A02CB /* Repository.swift */; };
@@ -195,6 +196,7 @@
 		817E5D28243B73FE0088E60A /* UserJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJsonAcception.swift; sourceTree = "<group>"; };
 		817E5D2B243B74EA0088E60A /* BalanceJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceJsonAcception.swift; sourceTree = "<group>"; };
 		8184269D240D534200713BF5 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		818B2C6524C9F0A900896A1B /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		81A4B34F24105D98004A02CB /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		81A4B351241129DB004A02CB /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		81A4B353241129FC004A02CB /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 				817324C82437CC4B000DFB86 /* Converter.swift */,
 				81AF5B29246C2EB10058FC03 /* WebsocketJsonCreator.swift */,
 				81188ED624BF780D005763F4 /* UDPManager.swift */,
+				818B2C6524C9F0A900896A1B /* SocketIOManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				8103B185242EB161008D7D5B /* ProfileDetailsConfigurator.swift in Sources */,
 				81AF5B2C246C35D00058FC03 /* Range.swift in Sources */,
 				815FD04B244F230B00EE7083 /* ExchangeRateJsonAcception.swift in Sources */,
+				818B2C6624C9F0A900896A1B /* SocketIOManager.swift in Sources */,
 				81A4B3562413A3CF004A02CB /* LoginConfigurator.swift in Sources */,
 				816F67EA240857F50016AA95 /* LoginViewController.swift in Sources */,
 				814F2ED624438C9300E0820C /* BillingData.swift in Sources */,

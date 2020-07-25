@@ -116,4 +116,12 @@ extension String {
     func localizeWithFormat(arguments: CVarArg...) -> String{
         return String(format: self.localized(), arguments: arguments)
     }
+    
+    func strstr(needle: String, beforeNeedle: Bool = false) -> String? {
+        guard let range = self.range(of: needle) else { return nil }
+            if beforeNeedle {
+                  return self.substring(to: range.lowerBound)
+              }
+        return self.substring(from: range.upperBound)
+    }
 }

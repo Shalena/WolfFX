@@ -30,7 +30,8 @@ protocol WebsocketAccess {
 }
 
 let baseUrlString = "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket"
-let registerJson : [String: Any] = ["type": "register", "address":"2test@test.com", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
+let sendPingJson: [String: Any] = ["type": "ping"]
+let registerJson : [String: Any] = ["type": "register", "address":"client-2test@test.com", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 let userInfoJson: [String: Any] = ["type": "send", "address": "client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 let getBalanceJson: [String: Any] = ["type":"send", "address": "CurrentBalance", "headers": [String:String](), "body": ["currency": "%@"], "replyAddress": ""]
 let readAllStatusesJson: [String: Any] = ["type":"send", "address": "ReadAllStatuses", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
@@ -52,7 +53,7 @@ class WSManager: WebsocketAccess {
             webSocketTask?.resume()
             self.receiveData()
         }
-        ping()
+        sendPing()
     }
     
     func send(messageString: String) {
@@ -79,16 +80,16 @@ class WSManager: WebsocketAccess {
                         print(bodyDictionary)
                         for acceptor in self.arrayOfAcceptors {
                             if acceptor.acceptJson(json: bodyDictionary) {
-                                return
+                                continue
                             }
                         }
                     }
               @unknown default:
               debugPrint("Unknown message")
             }
+            self.receiveData()
         }
-            self.receiveData()        
-      }          
+      }
     }
     
     func getUserInfo() {
@@ -155,6 +156,15 @@ class WSManager: WebsocketAccess {
         }
     }
         
+    private func sendPing() {
+        if let messageString = Converter().jsonToString(json: sendPingJson) {
+            send(messageString: messageString)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.sendPing()
+        }
+    }
+    
     func ping() {
         webSocketTask?.sendPing { (error) in
         if let error = error {

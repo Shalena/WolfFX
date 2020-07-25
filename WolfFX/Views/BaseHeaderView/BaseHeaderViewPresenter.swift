@@ -18,14 +18,10 @@ class BaseHeaderViewPresenter: NSObject {
     }
     
     func observe() {      
-             observation = observe(\.dataReceiver?.realBalanceString,
-                        options: [.old, .new]
-                    ) { object, change in
-                        if let realBalanceString = change.newValue as? String {
-                            self.view?.updateWith(realBalance: realBalanceString)
-                        }
-                        WSManager.shared.connect()
-                        WSManager.shared.readAllStatuses()
-                    }
-         }
+        observation = observe(\.dataReceiver?.realBalanceString, options: [.old, .new]) { object, change in
+            if let realBalanceString = change.newValue as? String {
+                self.view?.updateWith(realBalance: realBalanceString)
+            }
+        }
+    }
 }

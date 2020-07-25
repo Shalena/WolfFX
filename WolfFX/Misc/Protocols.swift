@@ -86,15 +86,13 @@ protocol LoginViewProtocol: ShowErrorCapable, ShowHudCapable, LocalizableScreen 
 }
 
 protocol LoginEvents {
-    func observe()
     func signIn(email: String, password: String)
     func signUpPressed()
-    func userDetailsHadReceived()
     func closeScreen()
 }
 
 protocol LoginTransitions {
-    func userDetailsHadReceived()
+    func loginFirstStepFinishedSuccessfully()
     func signUpPressed()
     func closeScreen()
 }

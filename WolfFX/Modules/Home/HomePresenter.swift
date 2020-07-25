@@ -22,6 +22,7 @@ class HomePresenter: NSObject, HomeEvents {
     var networkManager: NetworkAccess
     @objc dynamic var dataReceiver: DataReceiver?
     var userObservation: NSKeyValueObservation?
+    var balanceObservation: NSKeyValueObservation?
     var assetsObservation: NSKeyValueObservation?
     var priceHistoryObservation: NSKeyValueObservation?
     var priceObservation: NSKeyValueObservation?
@@ -71,19 +72,41 @@ class HomePresenter: NSObject, HomeEvents {
     }
     
     func homeViewIsReady() {
-        WSManager.shared.connect()
-        WSManager.shared.getBalance()
+        observeUser()
+        observeBalance()
         observeAssets()
         observePriceHistory()
         observePrice()
         observeRange()
         observeTradeStatus()
+   //     SocketIOManager.shared.connectSocket()
+     //   SocketIOManager.shared.socket.on(clientEvent: .connect) {data, ack in
+     //       print("socket connected")
+      
+   //     }
+        WSManager.shared.connect()
+        WSManager.shared.register()
+        WSManager.shared.getUserInfo()
     }
     
     func tradeAction() {
         orderExecutor()
     }
 
+    private func observeUser() {
+        userObservation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
+               if change.newValue != nil {
+                  WSManager.shared.getBalance()
+               }
+           }
+       }
+    
+    private func observeBalance() {
+        balanceObservation = observe(\.dataReceiver?.realBalanceString, options: [.old, .new]) { object, change in
+            WSManager.shared.readAllStatuses()
+        }
+    }
+    
     private func observeTradeStatus() {
         tradeStatusObservation = observe(\.dataReceiver?.tradeStatus, options: [.old, .new]) { object, change in
             if let tradeStatus = change.newValue, let message = tradeStatus?.message {
@@ -154,12 +177,10 @@ class HomePresenter: NSObject, HomeEvents {
        }
     
     private func getPriceHistory() {
-        WSManager.shared.connect()
         WSManager.shared.getPriceHistory()
     }
     
      private func getPrice() {
-        WSManager.shared.connect()
         WSManager.shared.getAssetPrice()         
           DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.getPrice()

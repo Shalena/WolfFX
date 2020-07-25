@@ -22,20 +22,11 @@ class LoginPresenter: NSObject, LoginEvents {
         dataReceiver = DataReceiver.shared
     }
 
-    func observe() {
-        observation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
-            if change.newValue != nil {
-                self.userDetailsHadReceived()
-            }
-        }
-    }
-    
     func signIn(email: String, password: String) {
         view?.showHud()
         networkManager?.login(email: email, password: password, success: { (successfully: Bool) in
                     if successfully {
-                        WSManager.shared.connect()
-                        WSManager.shared.getUserInfo()
+                        self.loginFirstStepFinishedSuccessfully()
                     }
                 }, failure: { [weak self] error in
                     self?.view?.hideHud()
@@ -49,8 +40,8 @@ class LoginPresenter: NSObject, LoginEvents {
         router?.signUpPressed ()
     }
     
-    func userDetailsHadReceived() {
-        router?.userDetailsHadReceived()
+    private func loginFirstStepFinishedSuccessfully() {
+        router?.loginFirstStepFinishedSuccessfully()
     }
        
     func closeScreen() {

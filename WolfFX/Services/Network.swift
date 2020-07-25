@@ -127,6 +127,10 @@ class NetwokManager: NetworkAccess {
                 switch result {
                     case .success(let response):
                         print(response.headers)
+                        let cookieString = response.headers["Set-Cookie"] as! String
+                        let dirtyCookieValue = cookieString.strstr(needle: "vertx-web.session=")
+                        let cleanCookieValue = dirtyCookieValue?.strstr(needle: "; Path=/", beforeNeedle: true)
+                        DataReceiver.shared?.cookieValue = cleanCookieValue
                         success(true)
                     case .failure(let error):
                         print(error.fullResponse)

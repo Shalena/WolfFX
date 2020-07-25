@@ -135,15 +135,79 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9A2D81F2-F715-43DA-8185-EAE519087796"
+            uuid = "DA3503D3-CE6F-4523-87C6-871F69F10CBB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WolfFX/Services/WSManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "ping()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DA3503D3-CE6F-4523-87C6-871F69F10CBB - 61884056c99274d9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WolfFX.WSManager.ping() -&gt; ()"
+                  moduleName = "WolfFX"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olenaostrozhynska/Projects/WolfFX/WolfFX/Services/WSManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "169"
+                  endingLineNumber = "169"
+                  offsetFromSymbolStart = "50">
+               </Location>
+               <Location
+                  uuid = "DA3503D3-CE6F-4523-87C6-871F69F10CBB - e315630bc97c2ba0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in WolfFX.WSManager.ping() -&gt; ()"
+                  moduleName = "WolfFX"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olenaostrozhynska/Projects/WolfFX/WolfFX/Services/WSManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "170"
+                  endingLineNumber = "170"
+                  offsetFromSymbolStart = "264">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "47BD4217-68CE-487F-972E-274B569B6AA3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WolfFX/Services/JSONAcception/OrderExecutorJSONAcception.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "acceptJson(json:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "79D88017-545A-4965-9474-9044B3AB8599"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WolfFX/Services/JSONAcception/OrderExecutorJSONAcception.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "acceptJson(json:)"
             landmarkType = "7">
          </BreakpointContent>

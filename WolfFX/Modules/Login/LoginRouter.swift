@@ -19,7 +19,7 @@ class LoginRouter: BaseRouter, LoginTransitions {
         }
     }
     
-    func userDetailsHadReceived() {
+    func loginFirstStepFinishedSuccessfully() {
         DispatchQueue.main.async {
             self.showTabbar()
         }       

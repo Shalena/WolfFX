@@ -24,7 +24,9 @@ class OrderExecutorJSONAcception: JsonAcception {
             if messageType == Status.success.rawValue {
                 success = true
             } else if messageType == Status.error.rawValue {
-                message = "Error"
+                if message?.count == 0 || message == nil {
+                    message = "Error"
+                }
                 success = false
             }
             let tradeStatus = TradeStatus(message: message, success: success)
