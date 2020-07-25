@@ -19,6 +19,8 @@ class LoginRouter: BaseRouter, LoginTransitions {
         }
     }
     
+    // Login has 2 steps: http call is first. If it returns 200OK, then websocket connection starts
+    
     func loginFirstStepFinishedSuccessfully() {
         DispatchQueue.main.async {
             self.showTabbar()

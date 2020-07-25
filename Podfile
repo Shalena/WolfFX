@@ -11,8 +11,6 @@ target 'WolfFX' do
         pod 'Locksmith'
         pod 'Swinject'
         pod 'Charts'
-        pod 'CocoaAsyncSocket'
-        pod 'Socket.IO-Client-Swift'
        
   # Pods for HomeSolutionsCustomer
 

@@ -9,7 +9,7 @@
 import Foundation
 import Charts
 
-let currentType = "IN"  // In trade is implemented only
+let currentType = "IN"  // In trade is implemented only for the first version of the app
 let leverageMultiplier: Int64 = 100
 let investmentArray: [Int64] = [1, 5, 10, 20, 100]
 let leverageArray: [Int64] = [2, 3, 4, 5]
@@ -79,13 +79,7 @@ class HomePresenter: NSObject, HomeEvents {
         observePrice()
         observeRange()
         observeTradeStatus()
-   //     SocketIOManager.shared.connectSocket()
-     //   SocketIOManager.shared.socket.on(clientEvent: .connect) {data, ack in
-     //       print("socket connected")
-      
-   //     }
         WSManager.shared.connect()
-        WSManager.shared.register()
         WSManager.shared.getUserInfo()
     }
     
@@ -177,7 +171,9 @@ class HomePresenter: NSObject, HomeEvents {
        }
     
     private func getPriceHistory() {
-        WSManager.shared.getPriceHistory()
+        if let assetId = selectedAsset?.id {
+            WSManager.shared.getPriceHistory(for: assetId)
+        }
     }
     
      private func getPrice() {
@@ -186,8 +182,7 @@ class HomePresenter: NSObject, HomeEvents {
             self.getPrice()
           }
         }
-      
-  
+        
     private func getAssetRange() {
         DispatchQueue.main.async {
             self.assetTimer?.invalidate()

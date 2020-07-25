@@ -22,7 +22,6 @@
 		81066A3C241FBA6700CA8829 /* WSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81066A3B241FBA6700CA8829 /* WSManager.swift */; };
 		81066A3E2420BF3F00CA8829 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 81066A3D2420BF3F00CA8829 /* Podfile */; };
 		810886A924A4E48700265862 /* OrderExecutorJSONAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810886A824A4E48700265862 /* OrderExecutorJSONAcception.swift */; };
-		81188ED724BF780D005763F4 /* UDPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81188ED624BF780D005763F4 /* UDPManager.swift */; };
 		811ED6C024191A120002F559 /* SignupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6BF24191A120002F559 /* SignupPresenter.swift */; };
 		811ED6C2241921880002F559 /* SignupConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C1241921880002F559 /* SignupConfigurator.swift */; };
 		811ED6C4241926410002F559 /* SignupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C3241926410002F559 /* SignupRouter.swift */; };
@@ -71,7 +70,6 @@
 		817E5D29243B73FE0088E60A /* UserJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817E5D28243B73FE0088E60A /* UserJsonAcception.swift */; };
 		817E5D2C243B74EA0088E60A /* BalanceJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817E5D2B243B74EA0088E60A /* BalanceJsonAcception.swift */; };
 		8184269E240D534200713BF5 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184269D240D534200713BF5 /* LoginPresenter.swift */; };
-		818B2C6624C9F0A900896A1B /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B2C6524C9F0A900896A1B /* SocketIOManager.swift */; };
 		81A4B35024105D98004A02CB /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B34F24105D98004A02CB /* SignupViewController.swift */; };
 		81A4B352241129DB004A02CB /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B351241129DB004A02CB /* Assembler.swift */; };
 		81A4B354241129FC004A02CB /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B353241129FC004A02CB /* Repository.swift */; };
@@ -140,7 +138,6 @@
 		81066A3B241FBA6700CA8829 /* WSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSManager.swift; sourceTree = "<group>"; };
 		81066A3D2420BF3F00CA8829 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		810886A824A4E48700265862 /* OrderExecutorJSONAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderExecutorJSONAcception.swift; sourceTree = "<group>"; };
-		81188ED624BF780D005763F4 /* UDPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDPManager.swift; sourceTree = "<group>"; };
 		811E060A07A0606C5423FA73 /* Pods-WolfFX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFX.release.xcconfig"; path = "Target Support Files/Pods-WolfFX/Pods-WolfFX.release.xcconfig"; sourceTree = "<group>"; };
 		811ED6BF24191A120002F559 /* SignupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPresenter.swift; sourceTree = "<group>"; };
 		811ED6C1241921880002F559 /* SignupConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupConfigurator.swift; sourceTree = "<group>"; };
@@ -196,7 +193,6 @@
 		817E5D28243B73FE0088E60A /* UserJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserJsonAcception.swift; sourceTree = "<group>"; };
 		817E5D2B243B74EA0088E60A /* BalanceJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceJsonAcception.swift; sourceTree = "<group>"; };
 		8184269D240D534200713BF5 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
-		818B2C6524C9F0A900896A1B /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		81A4B34F24105D98004A02CB /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		81A4B351241129DB004A02CB /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		81A4B353241129FC004A02CB /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -526,8 +522,6 @@
 				817324C6243674EB000DFB86 /* DataReceiver.swift */,
 				817324C82437CC4B000DFB86 /* Converter.swift */,
 				81AF5B29246C2EB10058FC03 /* WebsocketJsonCreator.swift */,
-				81188ED624BF780D005763F4 /* UDPManager.swift */,
-				818B2C6524C9F0A900896A1B /* SocketIOManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -819,7 +813,6 @@
 				8103B185242EB161008D7D5B /* ProfileDetailsConfigurator.swift in Sources */,
 				81AF5B2C246C35D00058FC03 /* Range.swift in Sources */,
 				815FD04B244F230B00EE7083 /* ExchangeRateJsonAcception.swift in Sources */,
-				818B2C6624C9F0A900896A1B /* SocketIOManager.swift in Sources */,
 				81A4B3562413A3CF004A02CB /* LoginConfigurator.swift in Sources */,
 				816F67EA240857F50016AA95 /* LoginViewController.swift in Sources */,
 				814F2ED624438C9300E0820C /* BillingData.swift in Sources */,
@@ -865,7 +858,6 @@
 				814D3131245C53B200C092EC /* Asset.swift in Sources */,
 				81A4B3602413BCA5004A02CB /* HomeRouter.swift in Sources */,
 				811ED6C9241971110002F559 /* Validation.swift in Sources */,
-				81188ED724BF780D005763F4 /* UDPManager.swift in Sources */,
 				816C17FF24050AE900B1551A /* TabbarConfigurator.swift in Sources */,
 				816C181824056BAE00B1551A /* R.generated.swift in Sources */,
 				814D3133245C563600C092EC /* AssetsJsonAcception.swift in Sources */,

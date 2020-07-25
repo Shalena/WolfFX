@@ -8,6 +8,8 @@
 
 import Foundation
 
+let priceHistoryDuration: Int64 = 300
+
 class WebsocketJsonCreator {
     func assetRange(rangeId: String, leverage: Int64, timeDuration: Int64, type: String, currency: String, assetId: Int64, stake: Int64, username: String) -> [String : Any] {
         return ["type": "send",
@@ -37,30 +39,13 @@ class WebsocketJsonCreator {
         "replyAddress": ""]
     }
     
-    private func generateVersionOneAkaTimeBasedUUID() -> String {
-           // figure out the sizes
-
-           let uuidSize = MemoryLayout<uuid_t>.size
-           let uuidStringSize = MemoryLayout<uuid_string_t>.size
-
-           // get some ram
-
-           let uuidPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: uuidSize)
-           let uuidStringPointer = UnsafeMutablePointer<Int8>.allocate(capacity: uuidStringSize)
-
-           // do the work in C
-
-           uuid_generate_time(uuidPointer)
-           uuid_unparse(uuidPointer, uuidStringPointer)
-
-           // make a Swift string while we still have the C stuff
-
-          let uuidString = NSString(utf8String: uuidStringPointer) as String?
-
-           // avoid leaks
-
-           assert(uuidString != nil, "uuid (V1 style) failed")
-           return uuidString ?? ""
+    func getPriceHistoryJSON(assetId: Int64) -> [String : Any] {
+           return ["type": "send",
+           "address": "PriceHistoryRequests",
+           "headers": [:],
+           "body" : ["assetId": assetId,
+                     "durationSec": priceHistoryDuration],
+           "replyAddress": ""]
        }
 }
 

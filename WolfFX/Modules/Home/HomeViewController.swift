@@ -54,6 +54,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dirtyFixForTopOffset()
         setupBaseNavigationDesign()
         setupTextFieldsDesign()
         if let title = presenter?.selectedAsset?.name {
@@ -187,6 +188,11 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         DispatchQueue.main.async {
             self.changeAssetButton.setTitle(title, for: .normal)
         }
+    }
+    
+    private func dirtyFixForTopOffset() {
+        tabBarController?.selectedIndex = 1
+        tabBarController?.selectedIndex = 0
     }
     
     @IBAction func changeAssetPressed(_ sender: Any) {
