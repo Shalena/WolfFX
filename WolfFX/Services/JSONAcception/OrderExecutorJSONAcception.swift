@@ -17,7 +17,20 @@ class OrderExecutorJSONAcception: JsonAcception {
             keys.append(key)
         }
         if containSameElements(firstArray: actionKeys, secondArray: keys) {
+           let action = json["action"] as? String
            let payload: JSON? = json["payload"] as? JSON
+           if action == "newBalance" {
+              if let newBalanceJSON = payload {
+                 let accepted = BalanceJsonAcception().acceptJson(json: newBalanceJSON)
+                 print(accepted)
+              }
+           }
+            if action == "updateLiveOrder" {
+                print(payload)
+            }
+            if action == "showExpiredOrder" {
+                print(payload)
+            }
            var message: String? = payload?["message"] as? String
            let messageType: String? = payload?["messageType"] as? String
            var success: Bool?

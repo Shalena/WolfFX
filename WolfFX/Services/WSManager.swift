@@ -30,6 +30,7 @@ protocol WebsocketAccess {
 
 let baseUrlString = "wss://staging.cuboidlogic.com:8100/mt1/eventbus/websocket"
 let sendPingJson: [String: Any] = ["type": "ping"]
+let registerJson : [String: Any] = ["type": "register", "address":"client-2test@test.com", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 let userInfoJson: [String: Any] = ["type": "send", "address": "client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 let getBalanceJson: [String: Any] = ["type":"send", "address": "CurrentBalance", "headers": [String:String](), "body": ["currency": "%@"], "replyAddress": ""]
 let readAllStatusesJson: [String: Any] = ["type":"send", "address": "ReadAllStatuses", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
@@ -89,6 +90,12 @@ class WSManager: WebsocketAccess {
       }
     }
     
+    func register() {
+        if let messageString = Converter().jsonToString(json: registerJson) {
+            send(messageString: messageString)
+        }
+    }
+
     func getUserInfo() {
         if let messageString = Converter().jsonToString(json: userInfoJson) {
             send(messageString: messageString)

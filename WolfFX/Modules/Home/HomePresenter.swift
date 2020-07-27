@@ -80,6 +80,7 @@ class HomePresenter: NSObject, HomeEvents {
         observeRange()
         observeTradeStatus()
         WSManager.shared.connect()
+        WSManager.shared.register()
         WSManager.shared.getUserInfo()
     }
     
