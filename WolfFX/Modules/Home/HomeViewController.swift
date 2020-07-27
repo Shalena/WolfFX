@@ -276,7 +276,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        lineChartView.clear()
+        infoView.removeFromSuperview()
+        infoLabel.removeFromSuperview()
         tableView.isHidden = true
         let asset = presenter?.tableDataSource?.grouppedAssets[indexPath.section]?[indexPath.row]
         changeAssetButton.setTitle(asset?.name, for: .normal)

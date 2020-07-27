@@ -60,6 +60,10 @@ class HomePresenter: NSObject, HomeEvents {
             if let title = selectedAsset?.name {
                 view?.updateAssetButton(with: title)
             }
+            if let id = selectedAsset?.id {
+                view?.showHud()
+                WSManager.shared.getPriceHistory(for: id)
+            }
         }
     }
     
