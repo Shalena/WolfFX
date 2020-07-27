@@ -40,8 +40,7 @@ class SignupPresenter: NSObject, SignupEvents {
             view?.showHud()
             networkManager.signup(firstname: form.firstName ?? "", currency: form.currency ?? "", emails: form.emails ?? [String](), password: form.password ?? "", tenantId: form.tenantId ?? "", username: form.email ?? "", success: { (successfully: Bool) in
                     if successfully {
-                        self.websocketManager.connect()
-                        self.websocketManager.getUserInfo()
+                        self.registrationFinishedSuccessfully()
                     }
                 }, failure: { [weak self] error in
                     self?.view?.hideHud()
@@ -86,5 +85,9 @@ class SignupPresenter: NSObject, SignupEvents {
             return false
         }
         return true
+    }
+    
+    private func registrationFinishedSuccessfully() {
+        router?.registrationFinishedSuccessfully()
     }
 }

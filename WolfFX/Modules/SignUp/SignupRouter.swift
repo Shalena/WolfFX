@@ -7,7 +7,20 @@
 //
 
 import Foundation
+import UIKit
 
 class SignupRouter: BaseRouter, SignupTransitions {
-   
+    func registrationFinishedSuccessfully() {
+        DispatchQueue.main.async {
+            self.showTabbar()
+        }
+    }
+    
+   private func showTabbar() {
+           let tabBar = TabbarView()
+           let tabBarConfigurator = TabbarConfigurator()
+           tabBarConfigurator.configure(tabBar: tabBar, with: 0, assembler: assembler)
+           let window = UIApplication.shared.windows[0]
+           window.rootViewController = tabBar
+       }
 }

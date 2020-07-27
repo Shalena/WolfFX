@@ -32,7 +32,6 @@ class SettingsRouter: BaseRouter, SettingsTransitions {
     
     func logout() {
         DataReceiver.shared?.user = nil
-        DataReceiver.shared?.clean()
         let window = UIApplication.shared.windows[0]
         guard let loginScreen = R.storyboard.login.loginViewController() else { return }
         let configurator = LoginConfigurator()

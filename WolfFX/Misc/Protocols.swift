@@ -108,7 +108,7 @@ protocol SignupEvents {
 }
 
 protocol SignupTransitions {
-  
+  func registrationFinishedSuccessfully()
 }
 
 // Home Screen

@@ -42,8 +42,9 @@ class DataReceiver: NSObject {
     @objc dynamic var range: Range?
     @objc dynamic var tradeStatus: TradeStatus?
     @objc dynamic var cookieValue: String?
+    @objc dynamic var connectionClosed = false
     
     func clean() {
-        DataReceiver.shared = nil
+        DataReceiver.shared = DataReceiver()
     }
 }

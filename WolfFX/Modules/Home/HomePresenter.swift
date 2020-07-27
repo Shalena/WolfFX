@@ -21,6 +21,7 @@ class HomePresenter: NSObject, HomeEvents {
     var router: HomeTransitions?
     var networkManager: NetworkAccess
     @objc dynamic var dataReceiver: DataReceiver?
+    var connectionObservation: NSKeyValueObservation?
     var userObservation: NSKeyValueObservation?
     var balanceObservation: NSKeyValueObservation?
     var assetsObservation: NSKeyValueObservation?
@@ -84,6 +85,7 @@ class HomePresenter: NSObject, HomeEvents {
         observeRange()
         observeTradeStatus()
         WSManager.shared.connect()
+        DataReceiver.shared?.connectionClosed = true
         WSManager.shared.register()
         WSManager.shared.getUserInfo()
     }
@@ -91,7 +93,7 @@ class HomePresenter: NSObject, HomeEvents {
     func tradeAction() {
         orderExecutor()
     }
-
+    
     private func observeUser() {
         userObservation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
                if change.newValue != nil {
@@ -182,6 +184,9 @@ class HomePresenter: NSObject, HomeEvents {
     }
     
      private func getPrice() {
+        if DataReceiver.shared?.connectionClosed == true {
+            return
+        }
         WSManager.shared.getAssetPrice()         
           DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.getPrice()
@@ -189,6 +194,10 @@ class HomePresenter: NSObject, HomeEvents {
         }
         
     private func getAssetRange() {
+        if DataReceiver.shared?.connectionClosed == true {
+              self.assetTimer?.invalidate()
+              self.assetTimer = nil
+        }
         DispatchQueue.main.async {
             self.assetTimer?.invalidate()
             self.assetTimer = nil

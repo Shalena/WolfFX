@@ -63,7 +63,7 @@ class SettingsPresenter: NSObject, SettingsEvents {
         case .userIsLoggedIn:
             logout()
         case .userIsLoggedOut:
-            logout()
+            print("sign in")
         case .none: return
         }
     }
@@ -95,8 +95,9 @@ class SettingsPresenter: NSObject, SettingsEvents {
     }
     
     private func logout() {
-        WSManager.shared.stop()
         networkManager?.logout(success: { successfully in
+            WSManager.shared.stop()
+            DataReceiver.shared?.connectionClosed = true
             self.router?.logout()
         }, failure: { error in
             if let error = error {

@@ -47,8 +47,10 @@ class ProfileDetailsViewController: UIViewController, ProfileDetailsViewProtocol
    private func configureTextFields() {
         firstNameTextField.text = presenter?.textFor(textField: UserDetailsTextFields.name)
         emailTextField.text = presenter?.textFor(textField: UserDetailsTextFields.email)
-        passwordTextField.text = presenter?.textFor(textField: UserDetailsTextFields.password)
+        passwordTextField.text = presenter?.textFor(textField: UserDetailsTextFields.password)       
         confirmPasswordTextfield.placeholder = presenter?.textFor(textField: UserDetailsTextFields.confirmPassword)
+        passwordTextField.autocorrectionType = .no
+        confirmPasswordTextfield.autocorrectionType = .no
         currencyTextfield.text = presenter?.textFor(textField: UserDetailsTextFields.currency)
     }
 }
