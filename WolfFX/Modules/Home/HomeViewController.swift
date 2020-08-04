@@ -154,7 +154,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         lineChartView.notifyDataSetChanged()
         lineChartView.setVisibleXRangeMaximum(20)
         lineChartView.moveViewToX(currentIndex)
- 
         let highlight = Highlight(x: currentIndex, y: newValue, dataSetIndex: 0)
         lineChartView.highlightValue(highlight, callDelegate: true)
     }
@@ -190,6 +189,16 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         }
     }
     
+    private func showTradeInInfoView() {
+       let alert = UIAlertController(title: title,
+            message: "Executing your order, please be patient",
+            preferredStyle: UIAlertController.Style.alert)
+        self.present(alert, animated: true, completion: nil)
+        _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: { [weak self]  (_) in
+            alert.dismiss(animated: true, completion: nil)
+        })        
+    }
+    
     private func dirtyFixForTopOffset() {
         tabBarController?.selectedIndex = 1
         tabBarController?.selectedIndex = 0
@@ -200,6 +209,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     }
     
     @IBAction func tradeAction(_ sender: Any) {
+        showTradeInInfoView()
         presenter?.tradeAction()
     }
 }
