@@ -68,7 +68,6 @@ class WSManager: WebsocketAccess {
         switch result {
             case .failure(let error):
               print("Error in receiving message: \(error)")
-              DataReceiver.shared?.connectionClosed = true
             case .success(let message):
               switch message {
               case .string(let text):
@@ -92,7 +91,8 @@ class WSManager: WebsocketAccess {
     }
     
     func register() {
-        if let messageString = Converter().jsonToString(json: registerJson) {
+        if let json = websocketJsonCreator.registerJSON(),
+            let messageString = Converter().jsonToString(json: json) {
             send(messageString: messageString)
         }
     }

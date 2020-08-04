@@ -85,7 +85,7 @@ class HomePresenter: NSObject, HomeEvents {
         observeRange()
         observeTradeStatus()
         WSManager.shared.connect()
-        DataReceiver.shared?.connectionClosed = true
+        DataReceiver.shared?.connectionClosed = false
         WSManager.shared.register()
         WSManager.shared.getUserInfo()
     }
@@ -220,7 +220,6 @@ class HomePresenter: NSObject, HomeEvents {
         guard let min = currentRange?.min else {return}
         guard let max = currentRange?.max else {return}
         DispatchQueue.main.async {
-            self.view?.showHud()
             WSManager.shared.orderExecutor(leverage: leverageParameter, rangeId: rangeId, min: min, max: max)
         }
     }

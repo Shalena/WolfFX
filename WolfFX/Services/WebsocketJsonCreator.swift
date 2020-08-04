@@ -11,6 +11,17 @@ import Foundation
 let priceHistoryDuration: Int64 = 300
 
 class WebsocketJsonCreator {
+    
+    func registerJSON()  -> [String : Any]? {
+        guard let email = DataReceiver.shared?.user?.email else {return nil}
+        let clientString = String(format: "client-%@", email)
+        return ["type": "register",
+                "address": clientString,
+                "headers": [:],
+                "body" : [:],
+                "replyAddress": ""]
+    }
+    
     func assetRange(rangeId: String, leverage: Int64, timeDuration: Int64, type: String, currency: String, assetId: Int64, stake: Int64, username: String) -> [String : Any] {
         return ["type": "send",
                 "address": "AssetRange",
