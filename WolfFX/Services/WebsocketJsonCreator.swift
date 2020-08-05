@@ -58,6 +58,17 @@ class WebsocketJsonCreator {
                      "durationSec": priceHistoryDuration],
            "replyAddress": ""]
        }
+    
+    func getPriceJSON(assetId: Int64) -> [String : Any] {
+        let assetPriceString = "AssetPrice-%@-00000000-0000-0000-0000-000000000000"
+        let assetIdString  = "\(assetId)"
+        let stringWithFormat = String(format: assetPriceString, assetIdString)
+        return ["type": "register",
+             "address": stringWithFormat,
+             "headers": [:],
+                "body": [:],
+        "replyAddress": ""]
+    }
 }
 
 

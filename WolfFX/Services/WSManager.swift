@@ -22,7 +22,7 @@ protocol WebsocketAccess {
     func getBalance()
     func readAllStatuses()
     func getPriceHistory(for assetId: Int64) 
-    func getAssetPrice()
+    func getAssetPrice(for assetId: Int64)
     func getAssetRange(leverage: Int64, timeDuration: Int64, type: String, assetId: Int64, stake: Int64)
     func orderExecutor(leverage: Int64, rangeId: String, min: Double, max: Double)
     func getBanks()
@@ -34,7 +34,6 @@ let registerJson : [String: Any] = ["type": "register", "address":"client-2test@
 let userInfoJson: [String: Any] = ["type": "send", "address": "client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 let getBalanceJson: [String: Any] = ["type":"send", "address": "CurrentBalance", "headers": [String:String](), "body": ["currency": "%@"], "replyAddress": ""]
 let readAllStatusesJson: [String: Any] = ["type":"send", "address": "ReadAllStatuses", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
-let assetPriceJson: [String: Any] = ["type": "register", "address": "AssetPrice-13-00000000-0000-0000-0000-000000000000", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 let banksJson: [String: Any] = ["type": "send", "address": "payapi.withdraw.china.banks", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]
 
 class WSManager: WebsocketAccess {
@@ -125,14 +124,15 @@ class WSManager: WebsocketAccess {
       }
     
     func getPriceHistory(for assetId: Int64) {
-        let json = WebsocketJsonCreator().getPriceHistoryJSON(assetId: assetId)
+        let json = websocketJsonCreator.getPriceHistoryJSON(assetId: assetId)
         if let messageString = Converter().jsonToString(json: json) {
             send(messageString: messageString)
         }
     }
     
-    func getAssetPrice() {
-        if let messageString = Converter().jsonToString(json: assetPriceJson) {
+    func getAssetPrice(for assetId: Int64) {
+        let json = websocketJsonCreator.getPriceJSON(assetId: assetId)
+        if let messageString = Converter().jsonToString(json: json) {
             send(messageString: messageString)
         }
     }

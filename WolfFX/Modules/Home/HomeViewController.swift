@@ -28,8 +28,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var legalInformationTitle: UILabel!
-    
     var presenter: HomeEvents?
     var infoView = UIView()
     var timer: Timer?
@@ -119,7 +117,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
            lineChartView.xAxis.labelTextColor = UIColor.white
            lineChartView.leftAxis.labelTextColor = UIColor.white
            lineChartView.rightAxis.enabled = false
-           lineChartView.xAxis.setLabelCount(3, force: true)
+           lineChartView.xAxis.setLabelCount(2, force: true)
            lineChartView.xAxis.labelFont = UIFont.systemFont(ofSize: 18)
            lineChartView.legend.enabled = false
            lineChartView.data = lineChartViewData

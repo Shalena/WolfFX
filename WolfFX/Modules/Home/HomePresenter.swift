@@ -31,7 +31,7 @@ class HomePresenter: NSObject, HomeEvents {
     var tradeStatusObservation: NSKeyValueObservation?
     var assets: [Asset]?
     var tableDataSource: AssetsDataSource?
-    var timer: Timer?
+    var priceTimer: Timer?
     var assetTimer: Timer?
     var currentRange: Range?
     var axisValueFormatter: IAxisValueFormatter?
@@ -61,10 +61,13 @@ class HomePresenter: NSObject, HomeEvents {
             if let title = selectedAsset?.name {
                 view?.updateAssetButton(with: title)
             }
-            if let id = selectedAsset?.id {
+           
+                stopPriceTimer()
+                stopAsserRangeTimer()
                 view?.showHud()
-                WSManager.shared.getPriceHistory(for: id)
-            }
+                getPriceHistory()
+                getAssetRange()
+            
         }
     }
     
@@ -139,7 +142,6 @@ class HomePresenter: NSObject, HomeEvents {
                 }
             }
             self.getAssetRange()
-            self.getPriceHistory()
         }
     }
 }
@@ -184,31 +186,33 @@ class HomePresenter: NSObject, HomeEvents {
     }
     
      private func getPrice() {
+        stopPriceTimer()
         if DataReceiver.shared?.connectionClosed == true {
             return
         }
-        WSManager.shared.getAssetPrice()         
-          DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.getPrice()
-          }
-        }
+        guard let assetId = self.selectedAsset?.id else { return }
+        WSManager.shared.getAssetPrice(for: assetId)
+//        DispatchQueue.main.async {
+            self.priceTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self]  (_) in
+                self?.getPrice()
+            })
+ //       }
+    }
         
     private func getAssetRange() {
-        if DataReceiver.shared?.connectionClosed == true {
-              self.assetTimer?.invalidate()
-              self.assetTimer = nil
-        }
-        DispatchQueue.main.async {
-            self.assetTimer?.invalidate()
-            self.assetTimer = nil
+         stopAsserRangeTimer()
+         if DataReceiver.shared?.connectionClosed == true {
+            return
+         }
+          DispatchQueue.main.async {
             self.assetTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self]  (_) in
-                guard let leverageValue = self?.selectedLeverage?.value else {return}
-                let leverageParameter = leverageValue * leverageMultiplier
-                guard let timeDuration = self?.selectedExpiry?.value else {return}
-                let type = currentType
-                guard let assedId = self?.selectedAsset?.id else {return}
-                guard let stake = self?.selectedInvestment?.value else {return}
-                WSManager.shared.getAssetRange(leverage: leverageParameter, timeDuration: timeDuration, type: type, assetId: assedId, stake: stake)
+            guard let leverageValue = self?.selectedLeverage?.value else {return}
+            let leverageParameter = leverageValue * leverageMultiplier
+            guard let timeDuration = self?.selectedExpiry?.value else {return}
+            let type = currentType
+            guard let assedId = self?.selectedAsset?.id else {return}
+            guard let stake = self?.selectedInvestment?.value else {return}
+            WSManager.shared.getAssetRange(leverage: leverageParameter, timeDuration: timeDuration, type: type, assetId: assedId, stake: stake)
             })
         }
     }
@@ -223,7 +227,16 @@ class HomePresenter: NSObject, HomeEvents {
             WSManager.shared.orderExecutor(leverage: leverageParameter, rangeId: rangeId, min: min, max: max)
         }
     }
+
+    private func stopPriceTimer() {
+        priceTimer?.invalidate()
+        priceTimer = nil
+    }
     
+    private func stopAsserRangeTimer() {
+        assetTimer?.invalidate()
+        assetTimer = nil
+    }
     func textForInfoLabel() -> String? {
         if let investment = selectedInvestment, let leverage = selectedLeverage {
             let product: Double = Double(investment.value * leverage.value)
