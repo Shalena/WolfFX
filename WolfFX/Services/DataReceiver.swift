@@ -37,11 +37,11 @@ class DataReceiver: NSObject {
     var rate: Double?
     var withdrawRate: Double?
     @objc dynamic var assets: [Asset]?
+    @objc dynamic var selectedAsset: Asset?
     @objc dynamic var assetPrice: AssetPrice?
     @objc dynamic var priceHistory: [PriceEntry]?
     @objc dynamic var range: Range?
     @objc dynamic var tradeStatus: TradeStatus?
-    @objc dynamic var cookieValue: String?
     @objc dynamic var connectionClosed = false
     
     func clean() {

@@ -61,13 +61,12 @@ class HomePresenter: NSObject, HomeEvents {
             if let title = selectedAsset?.name {
                 view?.updateAssetButton(with: title)
             }
-           
-                stopPriceTimer()
-                stopAsserRangeTimer()
-                view?.showHud()
-                getPriceHistory()
-                getAssetRange()
-            
+            DataReceiver.shared?.selectedAsset = self.selectedAsset
+            stopPriceTimer()
+            stopAsserRangeTimer()
+            view?.showHud()
+            getPriceHistory()
+            getAssetRange()            
         }
     }
     
@@ -193,7 +192,7 @@ class HomePresenter: NSObject, HomeEvents {
         guard let assetId = self.selectedAsset?.id else { return }
         WSManager.shared.getAssetPrice(for: assetId)
 //        DispatchQueue.main.async {
-            self.priceTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self]  (_) in
+            self.priceTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self]  (_) in
                 self?.getPrice()
             })
  //       }

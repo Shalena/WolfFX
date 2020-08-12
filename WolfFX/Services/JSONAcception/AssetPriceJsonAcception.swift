@@ -20,6 +20,9 @@ class AssetPriceJsonAcception: JsonAcception {
             let bid = json["bid"] as? Double
             let price = json["price"] as? Double
             let assetId = json["assetId"] as? Int64
+            if assetId != DataReceiver.shared?.selectedAsset?.id {  // fix for the situation when you change asset, but still are subscribed to the previous asset, so price for previuous asset continues to come
+                return false
+            }
             let priceTime = json["priceTime"] as? Int64
             let status = json["status"] as? Bool
             let ask = json["ask"] as? Double
