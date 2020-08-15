@@ -38,6 +38,8 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     let leveragePicker = UIPickerView()
     let expiryPicker = UIPickerView()
     
+    var shapshots = [Snapshot]()
+    
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -52,6 +54,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupChartDesign()
         dirtyFixForTopOffset()
         setupBaseNavigationDesign()
         setupTextFieldsDesign()
@@ -93,7 +96,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     }
     
     func updateChart(with entries: [PriceEntry]) {
-           setupChartDesign()
            lineChartEntries = [ChartDataEntry]()
            let values = entries.map({$0.value})
            for i in 0..<values.count {
@@ -118,7 +120,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
            lineChartView.leftAxis.labelTextColor = UIColor.white
            lineChartView.rightAxis.enabled = false
            lineChartView.xAxis.setLabelCount(2, force: true)
-           lineChartView.xAxis.labelFont = UIFont.systemFont(ofSize: 18)
+           lineChartView.xAxis.labelFont = UIFont.systemFont(ofSize: 15)
            lineChartView.legend.enabled = false
            lineChartView.data = lineChartViewData
            lineChartView.delegate = self
@@ -150,7 +152,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         xAxis.valueFormatter = presenter?.axisValueFormatter
         lineChartView.data?.notifyDataChanged()
         lineChartView.notifyDataSetChanged()
-        lineChartView.setVisibleXRangeMaximum(20)
+        lineChartView.setVisibleXRangeMaximum(40)
         lineChartView.moveViewToX(currentIndex)
         let highlight = Highlight(x: currentIndex, y: newValue, dataSetIndex: 0)
         lineChartView.highlightValue(highlight, callDelegate: true)
@@ -161,11 +163,16 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
            guard let chartView = chartView as? LineChartView else {return}
            let transform = chartView.getTransformer(forAxis: chartDataSet.axisDependency)
            let pt = transform.pixelForValues(x: highlight.x, y: highlight.y)
-           print(pt)
            let frame = CGRect(x: pt.x, y: pt.y - 25, width: 50, height: 50)
            infoView.frame = frame
+           for snapshot in shapshots {
+                let snapshotEntry = snapshot.entry
+                let snapPixel = transform.pixelForValues(x: snapshotEntry.x, y: snapshotEntry.y)
+                let snapFrame = CGRect(x: snapPixel.x, y:snapPixel.y - 25, width: 50, height: 50)
+                snapshot.snapshotView.frame = snapFrame
+           }
     }
-    
+     
     private func setupTextFieldsDesign() {
         let textFields = [investmentTextField, leverageTextField, expiryTimeTextField]
                for textField in textFields {
@@ -192,7 +199,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
             message: "Executing your order, please be patient",
             preferredStyle: UIAlertController.Style.alert)
         self.present(alert, animated: true, completion: nil)
-        _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: { [weak self]  (_) in
+        _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: { _ in
             alert.dismiss(animated: true, completion: nil)
         })        
     }
@@ -202,11 +209,23 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         tabBarController?.selectedIndex = 0
     }
     
+    private func makeShoot() {
+        guard let chartDataSet = lineChartView.data?.dataSets[0] else { return }
+        guard let entry = chartDataSet.entryForIndex(chartDataSet.entryCount - 1) else { return }
+        let snapshot = Snapshot(entry: entry, color: UIColor.green)
+        shapshots.append(snapshot)
+        snapshot.snapshotView.backgroundColor = UIColor.clear
+        snapshot.snapshotView.layer.borderWidth = 2.0
+        snapshot.snapshotView.layer.borderColor = UIColor.green.cgColor
+        lineChartView.addSubview(snapshot.snapshotView)
+    }
+    
     @IBAction func changeAssetPressed(_ sender: Any) {
         tableView.isHidden = false
     }
     
     @IBAction func tradeAction(_ sender: Any) {
+        makeShoot()
         showTradeInInfoView()
         presenter?.tradeAction()
     }
