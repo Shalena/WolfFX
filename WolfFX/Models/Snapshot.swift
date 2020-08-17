@@ -11,7 +11,7 @@ import UIKit
 import Charts
 
 struct Snapshot {
-      var entry: ChartDataEntry
+      var index: Int
       var color: UIColor
       let snapshotView = UIView()
   }

@@ -38,6 +38,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     let leveragePicker = UIPickerView()
     let expiryPicker = UIPickerView()
     
+    var maskView = UIView()
     var shapshots = [Snapshot]()
     
     private let infoLabel: UILabel = {
@@ -111,7 +112,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                lineSet.fill = Fill(linearGradient: gradient, angle: 90.0)
                lineSet.drawFilledEnabled = true
            }
-      
            let lineChartViewData = LineChartData(dataSets: [lineSet])
            lineChartViewData.setDrawValues(false)
            lineChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
@@ -125,14 +125,15 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
            lineChartView.data = lineChartViewData
            lineChartView.delegate = self
            lineChartView.xAxis.avoidFirstLastClippingEnabled = true
+           setupChartMask()
        }
        
     private func setupChartDesign() {
+        lineChartView.isUserInteractionEnabled = false
         infoView.backgroundColor = UIColor.clear
         infoView.layer.borderWidth = 2.0
         infoView.layer.borderColor = UIColor.yellow.cgColor
         chartConteinerView.addSubview(infoView)
-        
         chartConteinerView.addSubview(infoLabel)
         NSLayoutConstraint.activate([
             infoView.topAnchor.constraint(equalTo: infoLabel.topAnchor),
@@ -144,35 +145,45 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         
     func updateChartWithNewValue(assetPrice: AssetPrice) {
         guard let newValue = assetPrice.price else { return }
-        let currentSet = lineChartView.data?.getDataSetByIndex(0)
-        currentIndex =  Double(currentSet?.entryCount ?? 0)
+        guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
+        currentIndex = Double(dataSet.entryCount ?? 0)
         let chartEntry = ChartDataEntry(x: currentIndex, y: newValue)
-        currentSet?.addEntry(chartEntry)
+        dataSet.addEntry(chartEntry)
         let xAxis = self.lineChartView.xAxis 
         xAxis.valueFormatter = presenter?.axisValueFormatter
         lineChartView.data?.notifyDataChanged()
         lineChartView.notifyDataSetChanged()
-        lineChartView.setVisibleXRangeMaximum(40)
+        lineChartView.setVisibleXRangeMaximum(100)
         lineChartView.moveViewToX(currentIndex)
-        let highlight = Highlight(x: currentIndex, y: newValue, dataSetIndex: 0)
-        lineChartView.highlightValue(highlight, callDelegate: true)
-    }
-
-    internal func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-           guard let chartDataSet = lineChartView.data?.dataSets[0] else {return} // get dataSet used by chart
-           guard let chartView = chartView as? LineChartView else {return}
-           let transform = chartView.getTransformer(forAxis: chartDataSet.axisDependency)
-           let pt = transform.pixelForValues(x: highlight.x, y: highlight.y)
-           let frame = CGRect(x: pt.x, y: pt.y - 25, width: 50, height: 50)
-           infoView.frame = frame
-           for snapshot in shapshots {
-                let snapshotEntry = snapshot.entry
-                let snapPixel = transform.pixelForValues(x: snapshotEntry.x, y: snapshotEntry.y)
-                let snapFrame = CGRect(x: snapPixel.x, y:snapPixel.y - 25, width: 50, height: 50)
-                snapshot.snapshotView.frame = snapFrame
-           }
-    }
+        let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
+        let pt = transform.pixelForValues(x: chartEntry.x, y: chartEntry.y)
+        let frame = CGRect(x: pt.x, y: pt.y - 25, width: 50, height: 50)
+        infoView.frame = frame
+            for snapshot in shapshots {
+                snapshot.snapshotView.removeFromSuperview()
+                if let snapshotEntry = dataSet.entryForIndex(snapshot.index) {
+                    let snapPixel = transform.pixelForValues(x: snapshotEntry.x, y: snapshotEntry.y)
+                    let snapFrame = CGRect(x: snapPixel.x, y:snapPixel.y - 25, width: 50, height: 50)
+                    snapshot.snapshotView.frame = snapFrame
+                    chartConteinerView.addSubview(snapshot.snapshotView)
+                }
+            }
+       }
      
+     
+    private func setupChartMask() {
+        // we should detect the visible part of the chart because the snapshot can cross the Y axis
+        guard let chartDataSet = lineChartView.data?.dataSets[0] else {return}
+        guard let firstEntry = chartDataSet.entryForIndex(0) else {return}
+        let transform = lineChartView.getTransformer(forAxis: chartDataSet.axisDependency)
+        let firstEntryPosition = transform.pixelForValues(x: firstEntry.x, y: firstEntry.y)
+        lineChartView.addSubview(maskView)
+        let contentframe = lineChartView.viewPortHandler.contentRect
+        let maskFrame = CGRect(x: firstEntryPosition.x, y: 0, width: contentframe.size.width, height: contentframe.size.height)
+        maskView.frame = maskFrame
+        maskView.backgroundColor = UIColor.clear
+    }
+    
     private func setupTextFieldsDesign() {
         let textFields = [investmentTextField, leverageTextField, expiryTimeTextField]
                for textField in textFields {
@@ -210,14 +221,11 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     }
     
     private func makeShoot() {
-        guard let chartDataSet = lineChartView.data?.dataSets[0] else { return }
-        guard let entry = chartDataSet.entryForIndex(chartDataSet.entryCount - 1) else { return }
-        let snapshot = Snapshot(entry: entry, color: UIColor.green)
-        shapshots.append(snapshot)
+        let snapshot = Snapshot(index: Int(currentIndex), color: UIColor.green)
         snapshot.snapshotView.backgroundColor = UIColor.clear
         snapshot.snapshotView.layer.borderWidth = 2.0
         snapshot.snapshotView.layer.borderColor = UIColor.green.cgColor
-        lineChartView.addSubview(snapshot.snapshotView)
+        shapshots.append(snapshot)
     }
     
     @IBAction func changeAssetPressed(_ sender: Any) {
