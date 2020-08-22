@@ -160,16 +160,31 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         let frame = CGRect(x: pt.x, y: pt.y - 25, width: 50, height: 50)
         infoView.frame = frame
             for snapshot in shapshots {
-                snapshot.snapshotView.removeFromSuperview()
+                snapshot.view.removeFromSuperview()
                 if let snapshotEntry = dataSet.entryForIndex(snapshot.index) {
                     let snapPixel = transform.pixelForValues(x: snapshotEntry.x, y: snapshotEntry.y)
-                    let snapFrame = CGRect(x: snapPixel.x, y:snapPixel.y - 25, width: 50, height: 50)
-                    snapshot.snapshotView.frame = snapFrame
-                    chartConteinerView.addSubview(snapshot.snapshotView)
+                    let snapFrame = CGRect(x: snapPixel.x, y: snapPixel.y - 25, width: 50, height: 50)
+                    snapshot.view.frame = snapFrame
+                    chartConteinerView.addSubview(snapshot.view)
+                    compareWithMaskAndUpdateFrame(snapshot: snapshot)
                 }
             }
        }
      
+    private func compareWithMaskAndUpdateFrame(snapshot: Snapshot) {
+        if snapshot.view.frame.origin.x < maskView.frame.origin.x {
+            let difference = maskView.frame.origin.x - snapshot.view.frame.origin.x
+            if difference > 50 {
+                snapshot.view.removeFromSuperview()
+                shapshots.removeFirst()
+            }
+            snapshot.view.frame = CGRect(x: maskView.frame.origin.x,
+                                y: snapshot.view.frame.origin.y,
+                            width: snapshot.view.frame.width - difference,
+                           height: snapshot.view.frame.height)
+            
+        }
+    }
      
     private func setupChartMask() {
         // we should detect the visible part of the chart because the snapshot can cross the Y axis
@@ -222,9 +237,9 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     
     private func makeShoot() {
         let snapshot = Snapshot(index: Int(currentIndex), color: UIColor.green)
-        snapshot.snapshotView.backgroundColor = UIColor.clear
-        snapshot.snapshotView.layer.borderWidth = 2.0
-        snapshot.snapshotView.layer.borderColor = UIColor.green.cgColor
+        snapshot.view.backgroundColor = UIColor.clear
+        snapshot.view.layer.borderWidth = 2.0
+        snapshot.view.layer.borderColor = UIColor.green.cgColor
         shapshots.append(snapshot)
     }
     

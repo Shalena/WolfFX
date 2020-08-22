@@ -58,7 +58,7 @@ class HomePresenter: NSObject, HomeEvents {
     
     var selectedAsset: Asset? {
         didSet {
-            if selectedAsset?.id != oldValue?.id {
+            if selectedAsset?.id != oldValue?.id {     // TODO: needs refactor
                 if let title = selectedAsset?.name {
                     view?.updateAssetButton(with: title)
                 }
