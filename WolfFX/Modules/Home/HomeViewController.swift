@@ -9,11 +9,13 @@
 import UIKit
 import Charts
 
+let defaultWindowHeight = CGFloat(50.00)
+
 class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, ChartViewDelegate {
    
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var chartConteinerView: UIView!
-    
+    @IBOutlet weak var expireTimeView: UIView!
     @IBOutlet weak var investmentLabel: UILabel!
     @IBOutlet weak var leverageLabel: UILabel!
     @IBOutlet weak var expiryTimeLabel: UILabel!
@@ -27,6 +29,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var progressView: UIProgressView!
     
     var presenter: HomeEvents?
     var infoView = UIView()
@@ -40,6 +43,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     
     var maskView = UIView()
     var shapshots = [Snapshot]()
+    var currentWindowWidth = CGFloat(0.0)
     
     private let infoLabel: UILabel = {
         let label = UILabel()
@@ -56,6 +60,8 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChartDesign()
+        setupProgressBar()
+        setupWindowHeight()
         dirtyFixForTopOffset()
         setupBaseNavigationDesign()
         setupTextFieldsDesign()
@@ -125,6 +131,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
            lineChartView.data = lineChartViewData
            lineChartView.delegate = self
            lineChartView.xAxis.avoidFirstLastClippingEnabled = true
+           lineChartView.minOffset = 0.0
            setupChartMask()
        }
        
@@ -133,6 +140,8 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         infoView.backgroundColor = UIColor.clear
         infoView.layer.borderWidth = 2.0
         infoView.layer.borderColor = UIColor.yellow.cgColor
+        let width = expireTimeView.frame.size.width / CGFloat (presenter?.expiryDataSource.count ?? 0)
+        let frame = CGRect(x: 0, y: 0 - 25, width: width, height: defaultWindowHeight)
         chartConteinerView.addSubview(infoView)
         chartConteinerView.addSubview(infoLabel)
         NSLayoutConstraint.activate([
@@ -157,13 +166,21 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         lineChartView.moveViewToX(currentIndex)
         let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
         let pt = transform.pixelForValues(x: chartEntry.x, y: chartEntry.y)
-        let frame = CGRect(x: pt.x, y: pt.y - 25, width: 50, height: 50)
+        let frame = CGRect(x: pt.x,
+                           y: pt.y - defaultWindowHeight / 2,
+                       width: currentWindowWidth,
+                      height: defaultWindowHeight)
+        UIView.animate(withDuration: 0.5) {
+            self.infoView.frame = frame
+        }
         infoView.frame = frame
             for snapshot in shapshots {
                 snapshot.view.removeFromSuperview()
                 if let snapshotEntry = dataSet.entryForIndex(snapshot.index) {
                     let snapPixel = transform.pixelForValues(x: snapshotEntry.x, y: snapshotEntry.y)
-                    let snapFrame = CGRect(x: snapPixel.x, y: snapPixel.y - 25, width: 50, height: 50)
+                    let snapFrame = CGRect(x: snapPixel.x,
+                                           y: snapPixel.y - defaultWindowHeight / 2,
+                                       width: currentWindowWidth, height: defaultWindowHeight)
                     snapshot.view.frame = snapFrame
                     chartConteinerView.addSubview(snapshot.view)
                     compareWithMaskAndUpdateFrame(snapshot: snapshot)
@@ -189,12 +206,19 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     private func setupChartMask() {
         // we should detect the visible part of the chart because the snapshot can cross the Y axis
         guard let chartDataSet = lineChartView.data?.dataSets[0] else {return}
-        guard let firstEntry = chartDataSet.entryForIndex(0) else {return}
         let transform = lineChartView.getTransformer(forAxis: chartDataSet.axisDependency)
-        let firstEntryPosition = transform.pixelForValues(x: firstEntry.x, y: firstEntry.y)
+        let minX = lineChartView.xAxis.axisMinimum
+        let minY = lineChartView.leftAxis.axisMinimum
+        let maxY = lineChartView.leftAxis.axisMaximum
+        
+        let leftTopPixel = transform.pixelForValues(x: minX, y: maxY)
+        let width = lineChartView.frame.size.width - leftTopPixel.x
+        
+        let leftBottomPixel = transform.pixelForValues(x: minX, y: minY)
+        let height = leftBottomPixel.y - leftTopPixel.y
+       
+        let maskFrame = CGRect(x: leftTopPixel.x, y: leftTopPixel.y, width: width, height: height )
         lineChartView.addSubview(maskView)
-        let contentframe = lineChartView.viewPortHandler.contentRect
-        let maskFrame = CGRect(x: firstEntryPosition.x, y: 0, width: contentframe.size.width, height: contentframe.size.height)
         maskView.frame = maskFrame
         maskView.backgroundColor = UIColor.clear
     }
@@ -235,11 +259,22 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         tabBarController?.selectedIndex = 0
     }
     
+    private func setupProgressBar() {
+        guard let max = presenter?.expiryDataSource.count else {return}
+        let ratio = Float(1) / Float(max)
+        progressView.setProgress(Float(ratio), animated: true)
+    }
+    
+    private func setupWindowHeight() {
+        guard let count = presenter?.expiryDataSource.count else {return}
+        currentWindowWidth = expireTimeView.frame.size.width / CGFloat(count)
+    }
+    
     private func makeShoot() {
         let snapshot = Snapshot(index: Int(currentIndex), color: UIColor.green)
         snapshot.view.backgroundColor = UIColor.clear
-        snapshot.view.layer.borderWidth = 2.0
-        snapshot.view.layer.borderColor = UIColor.green.cgColor
+        snapshot.view.layer.borderWidth = 1.0
+        snapshot.view.layer.borderColor = UIColor.green.withAlphaComponent(0.5).cgColor
         shapshots.append(snapshot)
     }
     
@@ -296,6 +331,10 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             let selectedExpiry = presenter?.expiryDataSource[row]
             expiryTimeTextField.text = selectedExpiry?.title
             presenter?.selectedExpiry = selectedExpiry
+            guard let count = presenter?.expiryDataSource.count else {return}
+            let ratio = Float(row + 1) / Float(count)
+            progressView.setProgress(Float(ratio), animated: true)
+            currentWindowWidth = expireTimeView.frame.size.width / CGFloat(count) * CGFloat(row + 1)
         }
         infoLabel.text = presenter?.textForInfoLabel()
         self.view.endEditing(true)
