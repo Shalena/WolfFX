@@ -140,8 +140,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         infoView.backgroundColor = UIColor.clear
         infoView.layer.borderWidth = 2.0
         infoView.layer.borderColor = UIColor.yellow.cgColor
-        let width = expireTimeView.frame.size.width / CGFloat (presenter?.expiryDataSource.count ?? 0)
-        let frame = CGRect(x: 0, y: 0 - 25, width: width, height: defaultWindowHeight)
         chartConteinerView.addSubview(infoView)
         chartConteinerView.addSubview(infoLabel)
         NSLayoutConstraint.activate([
@@ -155,7 +153,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     func updateChartWithNewValue(assetPrice: AssetPrice) {
         guard let newValue = assetPrice.price else { return }
         guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
-        currentIndex = Double(dataSet.entryCount ?? 0)
+        currentIndex = Double(dataSet.entryCount)
         let chartEntry = ChartDataEntry(x: currentIndex, y: newValue)
         dataSet.addEntry(chartEntry)
         let xAxis = self.lineChartView.xAxis 
@@ -215,12 +213,17 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         let width = lineChartView.frame.size.width - leftTopPixel.x
         
         let leftBottomPixel = transform.pixelForValues(x: minX, y: minY)
-        let height = leftBottomPixel.y - leftTopPixel.y
-       
-        let maskFrame = CGRect(x: leftTopPixel.x, y: leftTopPixel.y, width: width, height: height )
-        lineChartView.addSubview(maskView)
+        let maskFrame = CGRect(x: leftTopPixel.x, y: 0, width: width, height: leftBottomPixel.y)
         maskView.frame = maskFrame
-        maskView.backgroundColor = UIColor.clear
+        chartConteinerView.addSubview(maskView)
+        maskView.backgroundColor = UIColor.purple.withAlphaComponent(0.5)
+      //  fixProgressViewFrame()
+    }
+     
+    private func fixProgressViewFrame() {
+        NSLayoutConstraint.activate([
+            progressView.bottomAnchor.constraint(equalTo: maskView.bottomAnchor)
+        ])
     }
     
     private func setupTextFieldsDesign() {
