@@ -85,7 +85,7 @@ class NetwokManager: NetworkAccess {
     }
     
     func withdraw(amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url: String, billingServer: String, tenantId: String, currency: String, name: String, method: String, bankName: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void) {
-        performRequestSuccessfully(endpoint: Endpoint.withdraw(amount: amount, beneficiaryBankAccount: beneficiaryBankAccount, beneficiaryName: beneficiaryName, accountNumber: accountNumber, broker: broker, url: url, billingServer: billingServer, currency: currency, name: name), success: { (successfully: Bool) in
+        performRequestSuccessfully(endpoint: Endpoint.withdraw(amount: amount, bankName: bankName, beneficiaryBankAccount: beneficiaryBankAccount, beneficiaryName: beneficiaryName, accountNumber: accountNumber, broker: broker, url: url, billingServer: billingServer, currency: currency, name: name, tenantId: tenantId, method: method), success: { (successfully: Bool) in
                 success (successfully)
             }, failure: { error in
                 failure (error)

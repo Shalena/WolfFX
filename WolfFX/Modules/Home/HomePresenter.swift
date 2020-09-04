@@ -192,11 +192,9 @@ class HomePresenter: NSObject, HomeEvents {
         }
         guard let assetId = self.selectedAsset?.id else { return }
         WSManager.shared.getAssetPrice(for: assetId)
-//        DispatchQueue.main.async {
-            self.priceTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self]  (_) in
-                self?.getPrice()
-            })
- //       }
+        self.priceTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self]  (_) in
+            self?.getPrice()
+        })
     }
         
     private func getAssetRange() {

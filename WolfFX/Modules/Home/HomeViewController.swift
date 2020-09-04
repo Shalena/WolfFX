@@ -216,8 +216,8 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         let maskFrame = CGRect(x: leftTopPixel.x, y: 0, width: width, height: leftBottomPixel.y)
         maskView.frame = maskFrame
         chartConteinerView.addSubview(maskView)
-        maskView.backgroundColor = UIColor.purple.withAlphaComponent(0.5)
-      //  fixProgressViewFrame()
+        maskView.backgroundColor = UIColor.clear
+        fixProgressViewFrame()
     }
      
     private func fixProgressViewFrame() {

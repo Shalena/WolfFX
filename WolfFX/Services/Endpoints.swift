@@ -21,7 +21,7 @@ enum Endpoint {
     case signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String)
     case billingHistory
     case exchangeRate (broker: String)
-    case withdraw (amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url: String, billingServer: String, currency: String, name: String)
+    case withdraw (amount: Double, bankName: String, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url: String, billingServer: String, currency: String, name: String, tenantId: String, method: String)
     case logout
     
     var path: String {
@@ -70,14 +70,15 @@ enum Endpoint {
             "tenantId":tenantId]
     case .exchangeRate(let broker):
         return ["broker": broker]
-    case .withdraw (let amount, let beneficiaryBankAccount, let beneficiaryName, let accountNumber, let broker, let url, let billingServe, let currency, let name):
+    case .withdraw (let amount, let bankName, let beneficiaryBankAccount, let beneficiaryName, let accountNumber, let broker, let url, let billingServer, let currency, let name, let tenantId, let method):
         return ["amount" :amount,
+                "bankName": bankName,
                 "beneficiaryBankAccount": beneficiaryBankAccount,
                 "beneficiaryName": beneficiaryName,
                 "accountNumber": accountNumber,
                 "broker": broker,
                 "url": url,
-                "billingServe": billingServe,
+                "billingServer": billingServer,
                 "currency": currency,
                 "name": name]
     case .logout, .billingHistory:
