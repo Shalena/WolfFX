@@ -12,6 +12,18 @@ import Charts
 
 struct Snapshot {
       var index: Int
-      var color: UIColor
-      let view = UIView()
+      let width: CGFloat
+      var view = UIView()
+     
+    func paintWinColor () {
+        view.layer.borderColor = UIColor.green.withAlphaComponent(0.7).cgColor
+        view.backgroundColor = UIColor.green.withAlphaComponent(0.2)
+    }
+    
+    func paintLooseColor () {
+           view.layer.borderColor = UIColor.red.withAlphaComponent(0.7).cgColor
+           view.backgroundColor = UIColor.red.withAlphaComponent(0.2)
+       }
   }
+
+

@@ -27,7 +27,14 @@ extension UIView {
          NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: container, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
          NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: container, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
      }
+    
+    func overlap(_ view: UIView) -> Bool {
+        let firstViewRange = self.frame.minY ... self.frame.maxY
+        let secondViewRange = view.frame.minY ... view.frame.maxY
+        return firstViewRange.overlaps(secondViewRange)
+    }
 }
+
 
 extension Double {
     func truncate(places : Int)-> Double {
@@ -36,15 +43,6 @@ extension Double {
 }
 
 extension UIViewController {
-
-    func removeChild() {
-        self.children.forEach {
-            $0.willMove(toParent: nil)
-            $0.view.removeFromSuperview()
-            $0.removeFromParent()
-        }
-    }
-    
     func languageFlowLayout () -> CGSize {
         let width = (UIScreen.main.bounds.width - 40) / 2 // 40 = 4 paddings with value 10
         let height = CGFloat(50.00) // good looking for 2 languages, should be calcalated when we have more languages

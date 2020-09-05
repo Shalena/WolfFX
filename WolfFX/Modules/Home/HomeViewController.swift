@@ -125,7 +125,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
            lineChartView.xAxis.labelTextColor = UIColor.white
            lineChartView.leftAxis.labelTextColor = UIColor.white
            lineChartView.rightAxis.enabled = false
-           lineChartView.xAxis.setLabelCount(2, force: true)
+           lineChartView.xAxis.setLabelCount(3, force: true)
            lineChartView.xAxis.labelFont = UIFont.systemFont(ofSize: 15)
            lineChartView.legend.enabled = false
            lineChartView.data = lineChartViewData
@@ -138,8 +138,8 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     private func setupChartDesign() {
         lineChartView.isUserInteractionEnabled = false
         infoView.backgroundColor = UIColor.clear
-        infoView.layer.borderWidth = 2.0
-        infoView.layer.borderColor = UIColor.yellow.cgColor
+        infoView.layer.borderWidth = 1.0
+        infoView.layer.borderColor = UIColor.yellow.withAlphaComponent(0.8).cgColor
         chartConteinerView.addSubview(infoView)
         chartConteinerView.addSubview(infoLabel)
         NSLayoutConstraint.activate([
@@ -168,7 +168,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                            y: pt.y - defaultWindowHeight / 2,
                        width: currentWindowWidth,
                       height: defaultWindowHeight)
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.1) {
             self.infoView.frame = frame
         }
         infoView.frame = frame
@@ -178,20 +178,27 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                     let snapPixel = transform.pixelForValues(x: snapshotEntry.x, y: snapshotEntry.y)
                     let snapFrame = CGRect(x: snapPixel.x,
                                            y: snapPixel.y - defaultWindowHeight / 2,
-                                       width: currentWindowWidth, height: defaultWindowHeight)
+                                           width: snapshot.width, height: defaultWindowHeight)
                     snapshot.view.frame = snapFrame
                     chartConteinerView.addSubview(snapshot.view)
                     compareWithMaskAndUpdateFrame(snapshot: snapshot)
+                    if snapshot.view.overlap(infoView) {
+                        snapshot.paintWinColor()
+                    } else {
+                        snapshot.paintLooseColor()
+                    }
                 }
             }
+         lineChartView.setVisibleYRangeMaximum(100, axis: YAxis.AxisDependency.left)
        }
      
     private func compareWithMaskAndUpdateFrame(snapshot: Snapshot) {
         if snapshot.view.frame.origin.x < maskView.frame.origin.x {
             let difference = maskView.frame.origin.x - snapshot.view.frame.origin.x
-            if difference > 50 {
+            if difference > snapshot.width {
                 snapshot.view.removeFromSuperview()
                 shapshots.removeFirst()
+                return
             }
             snapshot.view.frame = CGRect(x: maskView.frame.origin.x,
                                 y: snapshot.view.frame.origin.y,
@@ -273,11 +280,10 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         currentWindowWidth = expireTimeView.frame.size.width / CGFloat(count)
     }
     
-    private func makeShoot() {
-        let snapshot = Snapshot(index: Int(currentIndex), color: UIColor.green)
-        snapshot.view.backgroundColor = UIColor.clear
-        snapshot.view.layer.borderWidth = 1.0
-        snapshot.view.layer.borderColor = UIColor.green.withAlphaComponent(0.5).cgColor
+    private func makeSnapshot() {
+        let snapshot = Snapshot(index: Int(currentIndex), width: currentWindowWidth)
+        snapshot.view.layer.borderWidth = 0.5
+        snapshot.paintWinColor()
         shapshots.append(snapshot)
     }
     
@@ -286,7 +292,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     }
     
     @IBAction func tradeAction(_ sender: Any) {
-        makeShoot()
+        makeSnapshot()
         showTradeInInfoView()
         presenter?.tradeAction()
     }
