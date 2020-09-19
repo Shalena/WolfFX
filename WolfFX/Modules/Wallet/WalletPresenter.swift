@@ -94,7 +94,9 @@ class WalletPresenter: WalletEvents {
     }
        
     func getExchangeRate() {
+        view?.showHud()
         networkManager?.getExchangeRate(with: defaultBroker, success: { successfully in
+            self.view?.hideHud()
             self.rate = DataReceiver.shared?.rate
             self.withdrawRate = DataReceiver.shared?.withdrawRate
         }, failure: { error in

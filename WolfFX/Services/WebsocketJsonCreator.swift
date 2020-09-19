@@ -8,7 +8,7 @@
 
 import Foundation
 
-let priceHistoryDuration: Int64 = 300
+let priceHistoryDuration: Int64 = 200
 
 class WebsocketJsonCreator {
     

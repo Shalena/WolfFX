@@ -31,6 +31,9 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressView: UIProgressView!
     
+    @IBOutlet weak var minValueLabel: UILabel!
+    @IBOutlet weak var maxValueLabel: UILabel!
+    
     var presenter: HomeEvents?
     var infoView = UIView()
     var timer: Timer?
@@ -160,7 +163,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         xAxis.valueFormatter = presenter?.axisValueFormatter
         lineChartView.data?.notifyDataChanged()
         lineChartView.notifyDataSetChanged()
-        lineChartView.setVisibleXRangeMaximum(100)
+        lineChartView.setVisibleXRangeMaximum(50)
         lineChartView.moveViewToX(currentIndex)
         let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
         let pt = transform.pixelForValues(x: chartEntry.x, y: chartEntry.y)
@@ -189,9 +192,23 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                     }
                 }
             }
-         lineChartView.setVisibleYRangeMaximum(100, axis: YAxis.AxisDependency.left)
+        // lineChartView.setVisibleYRangeMaximum(200, axis: YAxis.AxisDependency.left)
        }
-     
+    
+    func updateAssetButton(with title: String) {
+        DispatchQueue.main.async {
+            self.changeAssetButton.setTitle(title, for: .normal)
+        }
+    }
+    
+    func updateMinValue(with string: String) {
+        minValueLabel.text = string
+    }
+    
+    func updateMaxValue(with string: String) {
+        maxValueLabel.text = string
+    }
+    
     private func compareWithMaskAndUpdateFrame(snapshot: Snapshot) {
         if snapshot.view.frame.origin.x < maskView.frame.origin.x {
             let difference = maskView.frame.origin.x - snapshot.view.frame.origin.x
@@ -247,13 +264,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         leverageTextField.text = presenter?.selectedLeverage?.title
         expiryTimeTextField.text = presenter?.selectedExpiry?.title
     }
-    
-    func updateAssetButton(with title: String) {
-        DispatchQueue.main.async {
-            self.changeAssetButton.setTitle(title, for: .normal)
-        }
-    }
-    
+
     private func showTradeInInfoView() {
        let alert = UIAlertController(title: title,
             message: "Executing your order, please be patient",

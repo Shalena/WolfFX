@@ -11,10 +11,10 @@ import Foundation
 
 class ExchangeRateJsonAcception {
     func accept(json: JSON) {
-        if let rateString = json["rate"] as? String, let rateDouble = Double (rateString),
-            let withdrawRateString = json["withdrawRate"] as? String, let withdrawRateDouble = Double (withdrawRateString) {
-            DataReceiver.shared?.rate = rateDouble
-            DataReceiver.shared?.withdrawRate = withdrawRateDouble
+        if let rate = json["rate"] as? Double,
+            let withdraw = json["withdrawRate"] as? Double {
+            DataReceiver.shared?.rate = rate
+            DataReceiver.shared?.withdrawRate = withdraw
         }  
     }
 }

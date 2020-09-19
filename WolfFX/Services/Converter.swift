@@ -75,5 +75,15 @@ class Converter {
         }
         return nil
     }
+    
+    func maxString(from max: Double) -> String {
+        let valueString = String(max.truncate(places: 2))
+        return ["max:", valueString].joined(separator: " ")
+    }
+    
+    func minString(from max: Double) -> String {
+        let valueString = String(max.truncate(places: 2))
+        return ["min:", valueString].joined(separator: " ")
+    }
 }
 

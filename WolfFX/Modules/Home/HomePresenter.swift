@@ -36,6 +36,7 @@ class HomePresenter: NSObject, HomeEvents {
     var currentRange: Range?
     var axisValueFormatter: IAxisValueFormatter?
     var axisLabels = [String]()
+    let converter = Converter()
     
     let investmentDataSource: [PickerEntry] = {
         let currencySign: String = Currency(rawValue: DataReceiver.shared?.user?.currency ?? "")?.sign ?? ""
@@ -90,7 +91,6 @@ class HomePresenter: NSObject, HomeEvents {
         observeTradeStatus()
         WSManager.shared.connect()
         DataReceiver.shared?.connectionClosed = false
-        WSManager.shared.register()
         WSManager.shared.getUserInfo()
     }
     
@@ -101,13 +101,14 @@ class HomePresenter: NSObject, HomeEvents {
     private func observeUser() {
         userObservation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
                if change.newValue != nil {
-                  WSManager.shared.getBalance()
+                 WSManager.shared.getBalance()
                }
            }
        }
     
     private func observeBalance() {
         balanceObservation = observe(\.dataReceiver?.realBalanceString, options: [.old, .new]) { object, change in
+            WSManager.shared.register()
             WSManager.shared.readAllStatuses()
         }
     }
@@ -175,9 +176,17 @@ class HomePresenter: NSObject, HomeEvents {
                if let range = change.newValue as? Range {
                    self.view?.hideHud()
                    self.currentRange = range
-               }
-           }
-       }
+                   if let min = range.min, let max = range.max {
+                        let minValueString = self.converter.minString(from: min)
+                        let maxValueString = self.converter.maxString(from: max)
+                        DispatchQueue.main.async {
+                            self.view?.updateMinValue(with: minValueString)
+                            self.view?.updateMaxValue(with: maxValueString)
+                        }
+                    }
+                }
+            }
+        }
     
     private func getPriceHistory() {
         if let assetId = selectedAsset?.id {

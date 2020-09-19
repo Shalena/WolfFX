@@ -119,6 +119,8 @@ protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable {
     func updateAssetButton(with title: String)
     func updateChart(with entries: [PriceEntry])
     func updateChartWithNewValue(assetPrice: AssetPrice)
+    func updateMinValue(with string: String)
+    func updateMaxValue(with string: String)
 }
 
 protocol HomeEvents {
