@@ -92,7 +92,7 @@ protocol LoginEvents {
 }
 
 protocol LoginTransitions {
-    func loginFirstStepFinishedSuccessfully()
+    func loginFirstStepFinishedSuccessfully(with email: String, password: String)
     func signUpPressed()
     func closeScreen()
 }

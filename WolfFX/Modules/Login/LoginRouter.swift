@@ -21,9 +21,10 @@ class LoginRouter: BaseRouter, LoginTransitions {
     
     // Login has 2 steps: http call is first. If it returns 200OK, then websocket connection starts
     
-    func loginFirstStepFinishedSuccessfully() {
-        if let repository = try? assembler.resolve(StorePasswordProtocol.self) {
-            repository.password = "12345678"
+    func loginFirstStepFinishedSuccessfully(with email: String, password: String) {
+        if let repository = try? assembler.resolve(StoreCredentialsProtocol.self) {
+            repository.loginEmail = email
+            repository.password = password
         }
         DispatchQueue.main.async {
             self.showTabbar()

@@ -23,7 +23,7 @@ class LoginPresenter: NSObject, LoginEvents {
         view?.showHud()
         networkManager?.login(email: email, password: password, success: { (successfully: Bool) in
                     if successfully {
-                        self.loginFirstStepFinishedSuccessfully()
+                        self.router?.loginFirstStepFinishedSuccessfully(with: email, password: password)
                     }
                 }, failure: { [weak self] error in
                     self?.view?.hideHud()
@@ -37,10 +37,6 @@ class LoginPresenter: NSObject, LoginEvents {
         router?.signUpPressed ()
     }
     
-    private func loginFirstStepFinishedSuccessfully() {
-        router?.loginFirstStepFinishedSuccessfully()
-    }
-       
     func closeScreen() {
         router?.closeScreen()
     }

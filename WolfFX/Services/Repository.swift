@@ -9,6 +9,7 @@
 import Foundation
 import Locksmith
 
+let storedLoginEmail = "storedLoginEmail"
 let storedPassword = "storedPassword"
 let userAccount = "WolfFXUser"
 let userHadLaunched = "userHadLaunchedOnce"
@@ -21,7 +22,8 @@ protocol IsFirstLaunchProtocol: class {
     var hadAlreadyLaunched: Bool { get set }
 }
 
-protocol StorePasswordProtocol: class {
+protocol StoreCredentialsProtocol: class {
+    var loginEmail: String? { get set }
     var password: String? { get set }
 }
 
@@ -62,7 +64,25 @@ extension Repository: IsFirstLaunchProtocol {
     }
 }
 
-extension Repository: StorePasswordProtocol {
+extension Repository: StoreCredentialsProtocol {
+    var loginEmail: String? {
+       get {
+             let dictionary = Locksmith.loadDataForUserAccount(userAccount: userAccount)
+                if let loginEmailString = dictionary?[storedLoginEmail] as? String {
+                    return loginEmailString
+                } else {
+                 return nil
+             }
+         }
+         
+         set {
+            if let loginEmail = newValue {
+              updateKeychain(loginEmail: loginEmail)
+            } else {
+                cleanKeychain()
+             }
+         }
+    }
     var password: String? {
            get {
                  let dictionary = Locksmith.loadDataForUserAccount(userAccount: userAccount)
@@ -75,19 +95,32 @@ extension Repository: StorePasswordProtocol {
              
              set {
                 if let password = newValue {
-                  updateKeychain(with: password)
+                  updateKeychain(password: password)
                 } else {
                     cleanKeychain()
                  }
              }
         }
-    private func updateKeychain(with password: String) {
-        do {
-            try Locksmith.updateData(data: [storedPassword : password], forUserAccount: userAccount)
-        }
-        catch {
-            fatalError()
+    
+    private func updateKeychain(loginEmail: String) {
+        if var currentData = Locksmith.loadDataForUserAccount(userAccount: userAccount) as? [String: String] {
+            do {
+                currentData[storedLoginEmail] = loginEmail
+                try Locksmith.updateData(data: currentData, forUserAccount: userAccount)
+            } catch {
+                fatalError()
+            }
         }
     }
-
+    
+    private func updateKeychain(password: String) {
+        if var currentData = Locksmith.loadDataForUserAccount(userAccount: userAccount) as? [String: String] {
+            do {
+                currentData[storedPassword] = password
+                try Locksmith.updateData(data: currentData, forUserAccount: userAccount)
+            } catch {
+                fatalError()
+            }
+        }
+    }
 }

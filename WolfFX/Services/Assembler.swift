@@ -17,7 +17,7 @@ class Assembler {
         register(NetworkAccess.self, name: nil) { _ in NetwokManager()}
         let repository = Repository()
         register(IsFirstLaunchProtocol.self, name: nil) { _ in repository}
-        register(StorePasswordProtocol.self, name: nil) { _ in repository }
+        register(StoreCredentialsProtocol.self, name: nil) { _ in repository }
     }
         
     var hadAlreadyLaunched: Bool {
