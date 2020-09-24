@@ -22,15 +22,12 @@ class SignupPresenter: NSObject, SignupEvents {
     var view: SignupViewProtocol?
     var router: SignupTransitions?
     var networkManager: NetworkAccess
-    var websocketManager: WebsocketAccess
-    @objc dynamic var dataReceiver: DataReceiver?
+    @objc dynamic var dataReceiver = WSManager.shared.dataReceiver
     var observation: NSKeyValueObservation?
     
     init (with view: SignupViewProtocol, networkManager: NetworkAccess) {
         self.view = view
         self.networkManager = networkManager
-        self.websocketManager = WSManager.shared
-        dataReceiver = DataReceiver.shared
     }
     
     func registerUserWith(form: RegistrationForm, confirmPasswordString: String?) {

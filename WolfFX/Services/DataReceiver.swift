@@ -10,28 +10,9 @@ import Foundation
 import Swinject
 
 class DataReceiver: NSObject {
-    static var shared: DataReceiver? = DataReceiver()
+
     var assembler: Assembler?
-    @objc dynamic var user: User? {
-                set {
-                    do {
-                        let repository = try assembler?.resolve(UserAccessProtocol.self)
-                        repository?.user = newValue
-                    } catch {
-                        return
-                    }
-                }
-    
-                get {
-                    do {
-                        let repository = try assembler?.resolve(UserAccessProtocol.self)
-                        return repository?.user
-                    } catch {
-                        return nil
-                    }
-                }
-            }
-    
+    @objc dynamic var user: User?
     @objc dynamic var realBalanceString = ""
     @objc dynamic var billingData = BillingData(with: nil,  bonus: nil, amauntPendingWithdrawal: nil, dateFrom: nil, dateTo: nil)
     var rate: Double?
@@ -44,7 +25,11 @@ class DataReceiver: NSObject {
     @objc dynamic var tradeStatus: TradeStatus?
     @objc dynamic var connectionClosed = false
     
+    init( with assembler: Assembler) {
+        self.assembler = assembler
+    }
+    
     func clean() {
-        DataReceiver.shared = DataReceiver()
+     
     }
 }

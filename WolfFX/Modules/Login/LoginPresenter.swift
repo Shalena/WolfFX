@@ -12,14 +12,11 @@ class LoginPresenter: NSObject, LoginEvents {
     var view: LoginViewProtocol?
     var router: LoginTransitions?
     var networkManager: NetworkAccess?
-    @objc dynamic var dataReceiver: DataReceiver?
-    var observation: NSKeyValueObservation?
     
     init (with view: LoginViewProtocol, networkManager: NetworkAccess, router: LoginTransitions) {
         self.view = view
         self.networkManager = networkManager
         self.router = router
-        dataReceiver = DataReceiver.shared
     }
 
     func signIn(email: String, password: String) {

@@ -14,7 +14,7 @@ class BaseHeaderViewPresenter: NSObject {
     var view: BaseHeaderView?
     
     override init() {
-        dataReceiver = DataReceiver.shared
+        dataReceiver = WSManager.shared.dataReceiver
     }
     
     func observe() {      

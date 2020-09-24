@@ -11,10 +11,9 @@ import Swinject
 
 class BillingDataConfigurator {
     func configure(viewController: BillingDataViewController, with assembler: Assembler) {
-        let networkManager = assembler.resolveForced(NetworkAccess.self)
         let router = BillingDataRouter(with: viewController, assembler: assembler)
         router.sourceController = viewController
-        let presenter = BillingDataPresenter(with: viewController, networkManager: networkManager, router: router)
+        let presenter = BillingDataPresenter(with: viewController, router: router)
         viewController.presenter = presenter
     }
 }

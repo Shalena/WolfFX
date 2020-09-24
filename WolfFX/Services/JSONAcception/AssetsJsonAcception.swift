@@ -27,7 +27,7 @@ class AssetsJsonAcception: JsonAcception {
                 let asset = Asset(name: name, id: id, type: assetType)
                 assets.append(asset)
             }
-            DataReceiver.shared?.assets = assets
+            WSManager.shared.dataReceiver?.assets = assets
             return true
         } else {
             return false

@@ -11,18 +11,13 @@ import Swinject
 
 class Assembler {
     var container = Container()
-    var user: User? {
-           get {
-            DataReceiver.shared?.user
-           }
-       }
 
     
     func initFlow() {
         register(NetworkAccess.self, name: nil) { _ in NetwokManager()}
         let repository = Repository()
         register(IsFirstLaunchProtocol.self, name: nil) { _ in repository}
-        register(UserAccessProtocol.self, name: nil) { _ in repository }
+        register(StorePasswordProtocol.self, name: nil) { _ in repository }
     }
         
     var hadAlreadyLaunched: Bool {

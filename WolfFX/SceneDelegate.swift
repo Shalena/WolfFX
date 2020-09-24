@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             let assembler = Assembler()
             assembler.initFlow()
-            DataReceiver.shared?.assembler = assembler
+           
             guard let loginScreen = R.storyboard.login.loginViewController() else { return }
             let configurator = LoginConfigurator()
             configurator.configure(viewController: loginScreen, with: assembler)

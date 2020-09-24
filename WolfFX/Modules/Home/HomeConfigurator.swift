@@ -18,5 +18,9 @@ class HomeConfigurator {
         presenter.router = router
         viewController.presenter = presenter
         presenter.view = viewController
+        if let repository = try? assembler.resolve(StorePasswordProtocol.self) {
+            print(repository.password)
+            
+        }
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 import Locksmith
 
-let currentUserKey = "currentUserString"
+let storedPassword = "storedPassword"
 let userAccount = "WolfFXUser"
 let userHadLaunched = "userHadLaunchedOnce"
 
@@ -21,43 +21,12 @@ protocol IsFirstLaunchProtocol: class {
     var hadAlreadyLaunched: Bool { get set }
 }
 
-class Repository {
-    let userDefaults = UserDefaults(suiteName: userAccount)
+protocol StorePasswordProtocol: class {
+    var password: String? { get set }
 }
 
-extension Repository: UserAccessProtocol {
-    
-    var user: User? {
-        get {
-            let dictionary = Locksmith.loadDataForUserAccount(userAccount: userAccount)
-            let userJSON = dictionary?[currentUserKey] as? String
-            if let userData = userJSON?.data(using: .utf8), let user = try? JSONDecoder().decode(User.self, from: userData) {
-                return user
-            } else {
-                return nil
-            }
-        }
-        
-        set {
-            let user = newValue
-            let userData = try? JSONEncoder().encode(user)
-            if let data = userData, let userString = String(data: data, encoding: String.Encoding.utf8) {
-                updateKeychain(with: userString)
-            } else {
-                cleanKeychain()
-            }
-        }
-    }
-    
-    private func updateKeychain(with user: String) {
-        do {
-            try Locksmith.updateData(data: [currentUserKey : user], forUserAccount: userAccount)
-        }
-        catch {
-            fatalError()
-        }
-    }
-    
+class Repository {
+    let userDefaults = UserDefaults(suiteName: userAccount)
     private func cleanKeychain() {
         do {
             try Locksmith.deleteDataForUserAccount(userAccount: userAccount)
@@ -66,6 +35,7 @@ extension Repository: UserAccessProtocol {
             fatalError()
         }
     }
+
 }
 
 extension Repository: IsFirstLaunchProtocol {
@@ -90,4 +60,34 @@ extension Repository: IsFirstLaunchProtocol {
             return false
         }
     }
+}
+
+extension Repository: StorePasswordProtocol {
+    var password: String? {
+           get {
+                 let dictionary = Locksmith.loadDataForUserAccount(userAccount: userAccount)
+                    if let passwordString = dictionary?[storedPassword] as? String {
+                        return passwordString
+                    } else {
+                     return nil
+                 }
+             }
+             
+             set {
+                if let password = newValue {
+                  updateKeychain(with: password)
+                } else {
+                    cleanKeychain()
+                 }
+             }
+        }
+    private func updateKeychain(with password: String) {
+        do {
+            try Locksmith.updateData(data: [storedPassword : password], forUserAccount: userAccount)
+        }
+        catch {
+            fatalError()
+        }
+    }
+
 }

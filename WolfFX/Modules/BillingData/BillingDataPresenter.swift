@@ -11,21 +11,19 @@ import Foundation
 class BillingDataPresenter: NSObject, BillingDataEvents {
     var view: BillingDataViewProtocol?
     var router: BillingDataTransitions?
-    var networkManager: NetworkAccess?
     var websocketManager: WebsocketAccess?
     @objc dynamic var dataReceiver: DataReceiver?
     var observation: NSKeyValueObservation?
     
-    init (with view: BillingDataViewProtocol, networkManager: NetworkAccess, router: BillingDataTransitions) {
+    init (with view: BillingDataViewProtocol, router: BillingDataTransitions) {
         self.view = view
-        self.networkManager = networkManager
         self.websocketManager = WSManager.shared
         self.router = router
-        dataReceiver = DataReceiver.shared
+        dataReceiver = WSManager.shared.dataReceiver
     }
 
     func billingDataViewIsReady() {
-        if let billingData = DataReceiver.shared?.billingData {
+        if let billingData = dataReceiver?.billingData {
             view?.updateViewWith(data: billingData)
             observe()
         }

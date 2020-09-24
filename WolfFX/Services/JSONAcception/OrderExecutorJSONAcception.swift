@@ -43,7 +43,7 @@ class OrderExecutorJSONAcception: JsonAcception {
                 success = false
             }
             let tradeStatus = TradeStatus(message: message, success: success)
-            DataReceiver.shared?.tradeStatus = tradeStatus
+           WSManager.shared.dataReceiver?.tradeStatus = tradeStatus
            return true
         } else {
             return false

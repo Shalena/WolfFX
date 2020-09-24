@@ -17,7 +17,7 @@ class RangeJsonAcception: JsonAcception {
             if let jsonData = rangeJsonString?.data(using: .utf8){
                 if let range = try? JSONDecoder().decode(Range.self, from: jsonData) {
                     print(range)
-                    DataReceiver.shared?.range = range
+                    WSManager.shared.dataReceiver?.range = range
                 }
             }
             return true

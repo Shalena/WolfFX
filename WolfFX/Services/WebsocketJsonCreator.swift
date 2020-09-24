@@ -13,7 +13,7 @@ let priceHistoryDuration: Int64 = 200
 class WebsocketJsonCreator {
     
     func registerJSON()  -> [String : Any]? {
-        guard let email = DataReceiver.shared?.user?.email else {return nil}
+        guard let email = WSManager.shared.dataReceiver?.user?.email else {return nil}
         let clientString = String(format: "client-%@", email)
         return ["type": "register",
                 "address": clientString,

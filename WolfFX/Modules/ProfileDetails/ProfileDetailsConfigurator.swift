@@ -12,7 +12,7 @@ import Swinject
 class ProfileDetailsConfigurator {
     func configure(viewController: ProfileDetailsViewController, with assembler: Assembler) {
         let router = ProfileDetailsRouter(with: viewController, assembler: assembler)
-        let presenter = ProfileDetailsPresenter(with: viewController, currentUser: assembler.user, router: router)
+        let presenter = ProfileDetailsPresenter(with: viewController, router: router)
         viewController.presenter = presenter
     }
 }

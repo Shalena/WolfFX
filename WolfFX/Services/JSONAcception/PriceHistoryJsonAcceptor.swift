@@ -43,7 +43,7 @@ class PriceHistoryJsonAcception: JsonAcception {
                 let priceEntry = PriceEntry(value: value, date: date)
                 priceEntries.append(priceEntry)
             }
-            DataReceiver.shared?.priceHistory = priceEntries
+            WSManager.shared.dataReceiver?.priceHistory = priceEntries
             return true
         } else {
             return false
