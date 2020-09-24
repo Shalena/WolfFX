@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>CocoaAsyncSocket.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>KRActivityIndicatorView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -55,16 +50,6 @@
 			<false/>
 		</dict>
 		<key>R.swift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Socket.IO-Client-Swift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Starscream.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
