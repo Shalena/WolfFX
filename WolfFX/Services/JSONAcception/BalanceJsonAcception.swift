@@ -44,8 +44,8 @@ class BalanceJsonAcception: JsonAcception {
             let converter = Converter()
             let realBalanceString = converter.realBalanceString(from: balance, currencyString: currency, bonus: bonus)
             let billingData = converter.balanceData(from: balance, bonus: bonus, amauntPendingWithdraw: amauntPendingWithdrawal, dateTo: time)
-            WSManager.shared.dataReceiver?.realBalanceString = realBalanceString
-            WSManager.shared.dataReceiver?.billingData = billingData
+            WSManager.shared.dataReceiver.realBalanceString = realBalanceString
+            WSManager.shared.dataReceiver.billingData = billingData
             return true
         } else {
             return false

@@ -17,7 +17,7 @@ class UserJsonAcception: JsonAcception {
             if let jsonData = userjsonstring?.data(using: .utf8){
                 if let user = try? JSONDecoder().decode(User.self, from: jsonData) {
                     print(user)
-                    WSManager.shared.dataReceiver?.user = user
+                    WSManager.shared.dataReceiver.user = user
                 }
             }
             return true

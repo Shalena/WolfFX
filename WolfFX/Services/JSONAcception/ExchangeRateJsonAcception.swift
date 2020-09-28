@@ -13,8 +13,8 @@ class ExchangeRateJsonAcception {
     func accept(json: JSON) {
         if let rate = json["rate"] as? Double,
             let withdraw = json["withdrawRate"] as? Double {
-            WSManager.shared.dataReceiver?.rate = rate
-            WSManager.shared.dataReceiver?.withdrawRate = withdraw
+            WSManager.shared.dataReceiver.rate = rate
+            WSManager.shared.dataReceiver.withdrawRate = withdraw
         }  
     }
 }

@@ -37,7 +37,7 @@ let banksJson: [String: Any] = ["type": "send", "address": "payapi.withdraw.chin
 
 class WSManager: WebsocketAccess {
     static let shared = WSManager()
-    var dataReceiver: DataReceiver?
+    var dataReceiver = DataReceiver()
     private var webSocketTask: URLSessionWebSocketTask?
     private let arrayOfAcceptors: [JsonAcception] = [UserJsonAcception(), BalanceJsonAcception(), PriceHistoryJsonAcception(), AssetsJsonAcception(), AssetPriceJsonAcception(), RangeJsonAcception(), OrderExecutorJSONAcception()]
     private let websocketJsonCreator = WebsocketJsonCreator()
@@ -103,7 +103,7 @@ class WSManager: WebsocketAccess {
     }
  
     func getBalance() {
-        guard let user = dataReceiver?.user else { return }
+        guard let user = dataReceiver.user else { return }
         guard let currency = user.currency else { return }
         if let messageString = Converter().jsonToString(json: getBalanceJson) {
             let messageStringWithFormat = String(format: messageString, currency)
@@ -138,7 +138,7 @@ class WSManager: WebsocketAccess {
     }
     
     func getAssetRange(leverage: Int64, timeDuration: Int64, type: String, assetId: Int64, stake: Int64) {
-        guard let user = dataReceiver?.user else { return }
+        guard let user = dataReceiver.user else { return }
         guard let currency = user.currency else { return }
         guard let username = user.email else { return }
         let rangeId = generateVersionOneAkaTimeBasedUUID()
@@ -149,7 +149,7 @@ class WSManager: WebsocketAccess {
     }
     
     func orderExecutor(leverage: Int64, rangeId: String, min: Double, max: Double) {
-        guard let user = dataReceiver?.user else { return }
+        guard let user = dataReceiver.user else { return }
         guard let currency = user.currency else { return }
         let json = websocketJsonCreator.orderExecutor(leverage: leverage, rangeId: rangeId, min: min, max: max, currency: currency)
         if let messageString = Converter().jsonToString(json: json) {

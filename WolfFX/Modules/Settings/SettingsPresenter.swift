@@ -86,7 +86,7 @@ class SettingsPresenter: NSObject, SettingsEvents {
     }
     
     private func setupLoginLogoutState() {
-        if WSManager.shared.dataReceiver?.user != nil {
+        if WSManager.shared.dataReceiver.user != nil {
             self.currentLoginState = .userIsLoggedIn
         } else {
             self.currentLoginState = .userIsLoggedOut
@@ -96,7 +96,7 @@ class SettingsPresenter: NSObject, SettingsEvents {
     
     private func logout() {
         networkManager?.logout(success: { successfully in
-            WSManager.shared.dataReceiver?.connectionClosed = true
+            WSManager.shared.dataReceiver.connectionClosed = true
             WSManager.shared.stop()
             
             self.router?.logout()

@@ -23,7 +23,7 @@ class ProfileDetailsPresenter: ProfileDetailsEvents {
 var view: ProfileDetailsViewProtocol?
 var router: ProfileDetailsTransitions?
 var websocketManager: WebsocketAccess
-let currentUser = WSManager.shared.dataReceiver?.user
+let currentUser = WSManager.shared.dataReceiver.user
 
     init (with view: ProfileDetailsViewProtocol, router: ProfileDetailsTransitions) {
         self.view = view

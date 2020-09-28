@@ -39,7 +39,7 @@ class HomePresenter: NSObject, HomeEvents {
     let converter = Converter()
     
     let investmentDataSource: [PickerEntry] = {
-        let currencySign: String = Currency(rawValue: WSManager.shared.dataReceiver?.user?.currency ?? "")?.sign ?? ""
+        let currencySign: String = Currency(rawValue: WSManager.shared.dataReceiver.user?.currency ?? "")?.sign ?? ""
         return investmentArray.map({ PickerEntry(title: String ($0) + currencySign , value: $0) })
     }()
     let leverageDataSource: [PickerEntry] = {
@@ -63,7 +63,7 @@ class HomePresenter: NSObject, HomeEvents {
                 if let title = selectedAsset?.name {
                     view?.updateAssetButton(with: title)
                 }
-                WSManager.shared.dataReceiver?.selectedAsset = selectedAsset
+                WSManager.shared.dataReceiver.selectedAsset = selectedAsset
                 stopPriceTimer()
                 stopAsserRangeTimer()
                 view?.showHud()
@@ -90,7 +90,7 @@ class HomePresenter: NSObject, HomeEvents {
         observeRange()
         observeTradeStatus()
         WSManager.shared.connect()
-        WSManager.shared.dataReceiver?.connectionClosed = false
+        WSManager.shared.dataReceiver.connectionClosed = false
         WSManager.shared.getUserInfo()
     }
     
@@ -108,6 +108,7 @@ class HomePresenter: NSObject, HomeEvents {
     
     private func observeBalance() {
         balanceObservation = observe(\.dataReceiver?.realBalanceString, options: [.old, .new]) { object, change in
+            self.view?.hideHud() // remove after testing
             WSManager.shared.register()
             WSManager.shared.readAllStatuses()
         }
@@ -196,7 +197,7 @@ class HomePresenter: NSObject, HomeEvents {
     
      private func getPrice() {
         stopPriceTimer()
-        if WSManager.shared.dataReceiver?.connectionClosed == true {
+        if WSManager.shared.dataReceiver.connectionClosed == true {
             return
         }
         guard let assetId = self.selectedAsset?.id else { return }
@@ -208,7 +209,7 @@ class HomePresenter: NSObject, HomeEvents {
         
     private func getAssetRange() {
          stopAsserRangeTimer()
-         if WSManager.shared.dataReceiver?.connectionClosed == true {
+         if WSManager.shared.dataReceiver.connectionClosed == true {
             return
          }
           DispatchQueue.main.async {

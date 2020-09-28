@@ -31,7 +31,7 @@ class BaseHeaderView: UIView {
         contentView.fixInView(self)
         presenter.view = self
         presenter.observe()
-        realbalanceLabel.text = WSManager.shared.dataReceiver?.realBalanceString
+        realbalanceLabel.text = WSManager.shared.dataReceiver.realBalanceString
         setupGestes()
         localize()
     }

@@ -10,8 +10,6 @@ import Foundation
 import Swinject
 
 class DataReceiver: NSObject {
-
-    var assembler: Assembler?
     @objc dynamic var user: User?
     @objc dynamic var realBalanceString = ""
     @objc dynamic var billingData = BillingData(with: nil,  bonus: nil, amauntPendingWithdrawal: nil, dateFrom: nil, dateTo: nil)
@@ -24,11 +22,7 @@ class DataReceiver: NSObject {
     @objc dynamic var range: Range?
     @objc dynamic var tradeStatus: TradeStatus?
     @objc dynamic var connectionClosed = false
-    
-    init( with assembler: Assembler) {
-        self.assembler = assembler
-    }
-    
+        
     func clean() {
      
     }
