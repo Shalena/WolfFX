@@ -12,9 +12,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
-    @IBOutlet weak var restorePasswordButton: UIButton!
     @IBOutlet weak var orLabel: UILabel!
-    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: SubmitButton!
     @IBOutlet weak var emailTextfield: UITextField!
@@ -24,16 +22,8 @@ class LoginViewController: UIViewController, LoginViewProtocol {
       
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDesign()
-        localize()
-    }
-    
-     func setupDesign() {
-        closeButton.layer.cornerRadius = 0.5 * closeButton.bounds.size.width
-        closeButton.clipsToBounds = true
-        closeButton.setImage(R.image.close(), for: .normal)
-        closeButton.imageEdgeInsets = UIEdgeInsets(top: 10,left: 10,bottom: 10,right: 10)
         signUpButton.setup(backColor: .clear, borderColor: .darkGray, text: R.string.localizable.signUp().localized(), textColor: .white)
+        localize()
     }
     
     func localize() {
@@ -41,7 +31,6 @@ class LoginViewController: UIViewController, LoginViewProtocol {
         emailLabel.text = R.string.localizable.emailOnLogin().localized()
         passwordLabel.text = R.string.localizable.passwordOnLogin().localized()
         loginButton.setTitle(R.string.localizable.logIn().localized(), for: .normal)
-        restorePasswordButton.setTitle(R.string.localizable.restorePassword().localized(), for: .normal)
         orLabel.text = R.string.localizable.or().localized()
         signUpButton.setTitle(R.string.localizable.signUp().localized(), for: .normal)
     }
