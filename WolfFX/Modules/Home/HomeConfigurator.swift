@@ -18,10 +18,18 @@ class HomeConfigurator {
         presenter.router = router
         viewController.presenter = presenter
         presenter.view = viewController
+        if let repository = try? assembler.resolve(IsFirstLaunchProtocol.self) {
+        presenter.shouldPerformHTTPLogin = repository.hadAlreadyLaunched
+        setupCredentials(assembler: assembler, presenter: presenter)            
+        }
+    }
+    
+    private func setupCredentials(assembler: Assembler, presenter: HomePresenter) {
         if let repository = try? assembler.resolve(StoreCredentialsProtocol.self) {
-            print(repository.password)
-            print(repository.loginEmail)
-            
+            if let loginEmail = repository.loginEmail, let password = repository.password {
+                let credentials = Credentials(loginEmail: loginEmail, password: password)
+                presenter.credentials = credentials
+            }
         }
     }
 }

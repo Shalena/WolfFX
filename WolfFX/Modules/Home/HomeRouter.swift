@@ -10,5 +10,9 @@ import Foundation
 import Swinject
 
 class HomeRouter: BaseRouter, HomeTransitions {
-
+    
+    func userHadSuccessfullyLoggedIn() {
+        assembler.repository.hadAlreadyLaunched = true
+    }
+    
 }

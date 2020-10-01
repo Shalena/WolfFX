@@ -11,13 +11,12 @@ import Swinject
 
 class Assembler {
     var container = Container()
-
+    var repository = Repository()
     
     func initFlow() {
         register(NetworkAccess.self, name: nil) { _ in NetwokManager()}
-        let repository = Repository()
-        register(IsFirstLaunchProtocol.self, name: nil) { _ in repository}
-        register(StoreCredentialsProtocol.self, name: nil) { _ in repository }
+        register(IsFirstLaunchProtocol.self, name: nil) { _ in self.repository}
+        register(StoreCredentialsProtocol.self, name: nil) { _ in self.repository }
     }
         
     var hadAlreadyLaunched: Bool {
@@ -62,4 +61,9 @@ class Assembler {
             fatalError()
         }
     }
+    
+    func cleanStoredValues() {
+        repository.cleanKeychain()
+    }
+    
 }

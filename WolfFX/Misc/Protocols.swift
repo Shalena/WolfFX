@@ -113,7 +113,7 @@ protocol SignupTransitions {
 
 // Home Screen
 
-protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable {
+protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, ShowErrorCapable {
     var presenter: HomeEvents? {get set}
     func updateAssetsTable()
     func updateAssetButton(with title: String)
@@ -124,6 +124,7 @@ protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable {
 }
 
 protocol HomeEvents {
+    var shouldPerformHTTPLogin: Bool {get set}
     var investmentDataSource: [PickerEntry] {get}
     var leverageDataSource: [PickerEntry] {get}
     var expiryDataSource: [PickerEntry] {get}
@@ -140,7 +141,7 @@ protocol HomeEvents {
 }
 
 protocol HomeTransitions {
-     
+    func userHadSuccessfullyLoggedIn() 
 }
 
 // Billing Data Screen
@@ -206,6 +207,7 @@ protocol SettingsTransitions {
     func goToProfile()
     func goToHome()
     func goToSafariWith(url: URL)
+    func signIn()
     func logout()
 }
 

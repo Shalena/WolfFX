@@ -162,12 +162,15 @@ class WSManager: WebsocketAccess {
             send(messageString: messageString)
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.sendPing()
+            if self.dataReceiver.connectionClosed == false {
+                self.sendPing()
+            }
         }
     }
-    
+
    func stop() {
         webSocketTask?.cancel(with: .goingAway, reason: nil)
+        webSocketTask = nil
     }
     
 

@@ -18,16 +18,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             let assembler = Assembler()
             assembler.initFlow()
-           
-            guard let loginScreen = R.storyboard.login.loginViewController() else { return }
-            let configurator = LoginConfigurator()
-            configurator.configure(viewController: loginScreen, with: assembler)
-            window.rootViewController = loginScreen
-            self.window = window
-            window.makeKeyAndVisible()
+            if let repository = try? assembler.resolve(IsFirstLaunchProtocol.self) {
+                if repository.hadAlreadyLaunched {
+                    DispatchQueue.main.async {
+                        self.showHome(window: window, assembler: assembler)
+                    }
+                } else {
+                    showLogin(window: window, assembler: assembler)
+                }
+            }
         }
     }
 
+    private func showLogin(window: UIWindow, assembler: Assembler) {
+        guard let loginScreen = R.storyboard.login.loginViewController() else { return }
+        let configurator = LoginConfigurator()
+        configurator.configure(viewController: loginScreen, with: assembler)
+        window.rootViewController = loginScreen
+        self.window = window
+        window.makeKeyAndVisible()
+    }
+    
+    private func showHome(window: UIWindow, assembler: Assembler) {
+        let tabBar = TabbarView()
+        let tabBarConfigurator = TabbarConfigurator()
+        tabBarConfigurator.configure(tabBar: tabBar, with: 0, assembler: assembler)
+        window.rootViewController = tabBar
+        self.window = window
+        window.makeKeyAndVisible()
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

@@ -30,8 +30,16 @@ class SettingsRouter: BaseRouter, SettingsTransitions {
         sourceController.present(vc, animated: true)
     }
     
+    func signIn() {
+        let window = UIApplication.shared.windows[0]
+        guard let loginScreen = R.storyboard.login.loginViewController() else { return }
+        let configurator = LoginConfigurator()
+        configurator.configure(viewController: loginScreen, with: assembler)
+        window.rootViewController = loginScreen        
+    }
+    
     func logout() {
-        WSManager.shared.dataReceiver.user = nil
+        assembler.repository.cleanKeychain()
         let window = UIApplication.shared.windows[0]
         guard let loginScreen = R.storyboard.login.loginViewController() else { return }
         let configurator = LoginConfigurator()

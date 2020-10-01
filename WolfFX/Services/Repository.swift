@@ -29,13 +29,14 @@ protocol StoreCredentialsProtocol: class {
 
 class Repository {
     let userDefaults = UserDefaults(suiteName: userAccount)
-    private func cleanKeychain() {
+    func cleanKeychain() {
         do {
             try Locksmith.deleteDataForUserAccount(userAccount: userAccount)
         }
         catch {
             fatalError()
         }
+        hadAlreadyLaunched = false
     }
 
 }
@@ -47,14 +48,10 @@ extension Repository: IsFirstLaunchProtocol {
             return userHadLaunchedOnce()
         }
         set {
-          setUserLaunchedFirstTime()
+           userDefaults?.set(newValue, forKey: userHadLaunched)
         }
     }
-    
-   private func setUserLaunchedFirstTime() {
-        userDefaults?.set(true, forKey: userHadLaunched)
-    }
-    
+ 
     private func userHadLaunchedOnce() -> Bool {
         if let userHadLaunchedOnce = userDefaults?.object(forKey: userHadLaunched) as? Bool {
             return userHadLaunchedOnce
@@ -79,7 +76,7 @@ extension Repository: StoreCredentialsProtocol {
             if let loginEmail = newValue {
               updateKeychain(loginEmail: loginEmail)
             } else {
-                cleanKeychain()
+                fatalError()
              }
          }
     }
@@ -97,7 +94,7 @@ extension Repository: StoreCredentialsProtocol {
                 if let password = newValue {
                   updateKeychain(password: password)
                 } else {
-                    cleanKeychain()
+                    fatalError()
                  }
              }
         }
@@ -108,6 +105,13 @@ extension Repository: StoreCredentialsProtocol {
                 currentData[storedLoginEmail] = loginEmail
                 try Locksmith.updateData(data: currentData, forUserAccount: userAccount)
             } catch {
+                fatalError()
+            }
+        } else {
+            do {
+                try Locksmith.updateData(data: [loginEmail : loginEmail], forUserAccount: userAccount)
+            }
+            catch {
                 fatalError()
             }
         }

@@ -9,6 +9,11 @@
 import Foundation
 import Charts
 
+struct Credentials {
+    let loginEmail: String
+    let password: String
+}
+
 let currentType = "IN"  // In trade is implemented only for the first version of the app
 let leverageMultiplier: Int64 = 100
 let investmentArray: [Int64] = [1, 5, 10, 20, 100]
@@ -21,6 +26,8 @@ class HomePresenter: NSObject, HomeEvents {
     var router: HomeTransitions?
     var networkManager: NetworkAccess
     @objc dynamic var dataReceiver: DataReceiver?
+    var shouldPerformHTTPLogin = false
+    var credentials: Credentials?
     var connectionObservation: NSKeyValueObservation?
     var userObservation: NSKeyValueObservation?
     var balanceObservation: NSKeyValueObservation?
@@ -89,18 +96,45 @@ class HomePresenter: NSObject, HomeEvents {
         observePrice()
         observeRange()
         observeTradeStatus()
-        WSManager.shared.connect()
-        WSManager.shared.dataReceiver.connectionClosed = false
-        WSManager.shared.getUserInfo()
+        if shouldPerformHTTPLogin {
+          performHTTPLogin()
+        } else {
+            performWebsocketLogin()
+        }
     }
     
     func tradeAction() {
         orderExecutor()
     }
     
+    private func performHTTPLogin() {
+        if let credentials = credentials {
+            view?.showHud()
+            networkManager.login(email: credentials.loginEmail, password: credentials.password, success: { (successfully: Bool) in
+                if successfully {
+                    self.performWebsocketLogin()
+                } else {
+                    
+                }
+            }, failure: { [weak self] error in
+                self?.view?.hideHud()
+                if let error = error {
+                    self?.view?.showErrorAlertWith(error: error)
+                }
+            })
+        }
+    }
+    
+    private func performWebsocketLogin() {
+        WSManager.shared.dataReceiver.connectionClosed = false
+        WSManager.shared.connect()     
+        WSManager.shared.getUserInfo()
+    }
+    
     private func observeUser() {
         userObservation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
                if change.newValue != nil {
+                 self.router?.userHadSuccessfullyLoggedIn()
                  WSManager.shared.getBalance()
                }
            }
