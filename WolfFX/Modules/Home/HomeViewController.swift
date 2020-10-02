@@ -105,6 +105,18 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         }
     }
     
+    func reloadInvestmentPicker() {
+        DispatchQueue.main.async {
+            self.investmentPicker.reloadAllComponents()
+        }
+    }
+    
+    func updatePickersTextFields() {
+        investmentTextField.text = presenter?.selectedInvestment?.title
+        leverageTextField.text = presenter?.selectedLeverage?.title
+        expiryTimeTextField.text = presenter?.selectedExpiry?.title
+    }
+    
     func updateChart(with entries: [PriceEntry]) {
            lineChartEntries = [ChartDataEntry]()
            let values = entries.map({$0.value})
@@ -192,7 +204,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                     }
                 }
             }
-        // lineChartView.setVisibleYRangeMaximum(200, axis: YAxis.AxisDependency.left)
        }
     
     func updateAssetButton(with title: String) {
@@ -260,9 +271,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                    textField?.rightViewMode = .always
                    textField?.rightView = container
                }
-        investmentTextField.text = presenter?.selectedInvestment?.title
-        leverageTextField.text = presenter?.selectedLeverage?.title
-        expiryTimeTextField.text = presenter?.selectedExpiry?.title
     }
 
     private func showTradeInInfoView() {

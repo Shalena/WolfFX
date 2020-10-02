@@ -45,10 +45,12 @@ class HomePresenter: NSObject, HomeEvents {
     var axisLabels = [String]()
     let converter = Converter()
     
-    let investmentDataSource: [PickerEntry] = {
-        let currencySign: String = Currency(rawValue: WSManager.shared.dataReceiver.user?.currency ?? "")?.sign ?? ""
-        return investmentArray.map({ PickerEntry(title: String ($0) + currencySign , value: $0) })
-    }()
+    var investmentDataSource: [PickerEntry] {
+        get {
+            let currencySign: String = Currency(rawValue: WSManager.shared.dataReceiver.user?.currency ?? "")?.sign ?? ""
+            return investmentArray.map({ PickerEntry(title: String ($0) + currencySign , value: $0) })
+        }
+    }
     let leverageDataSource: [PickerEntry] = {
         return leverageArray.map({  PickerEntry(title: String($0) + "x", value: $0) })
     }()
@@ -60,7 +62,13 @@ class HomePresenter: NSObject, HomeEvents {
         }
         return pickerEntries
     }()
-    var selectedInvestment: PickerEntry?
+    var selectedInvestment: PickerEntry? {
+        didSet {
+             DispatchQueue.main.async {
+                self.view?.updatePickersTextFields()
+            }
+        }
+    }
     var selectedLeverage: PickerEntry?
     var selectedExpiry: PickerEntry?
     
@@ -83,12 +91,10 @@ class HomePresenter: NSObject, HomeEvents {
     init (with networkManager: NetworkAccess) {
         self.networkManager = networkManager
         self.dataReceiver = WSManager.shared.dataReceiver
-        self.selectedInvestment = investmentDataSource.first
-        self.selectedLeverage = leverageDataSource.first
-        self.selectedExpiry = expiryDataSource.first
     }
     
     func homeViewIsReady() {
+        setupSelectedValues()
         observeUser()
         observeBalance()
         observeAssets()
@@ -105,6 +111,12 @@ class HomePresenter: NSObject, HomeEvents {
     
     func tradeAction() {
         orderExecutor()
+    }
+    
+    private func setupSelectedValues() {
+        self.selectedInvestment = investmentDataSource.first
+        self.selectedLeverage = leverageDataSource.first
+        self.selectedExpiry = expiryDataSource.first
     }
     
     private func performHTTPLogin() {
@@ -134,7 +146,9 @@ class HomePresenter: NSObject, HomeEvents {
     private func observeUser() {
         userObservation = observe(\.dataReceiver?.user, options: [.old, .new]) { object, change in
                if change.newValue != nil {
+                 self.selectedInvestment = self.investmentDataSource.first
                  self.router?.userHadSuccessfullyLoggedIn()
+                 self.view?.reloadInvestmentPicker() // because we should show currency sign in it 
                  WSManager.shared.getBalance()
                }
            }
