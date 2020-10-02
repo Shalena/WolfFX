@@ -50,7 +50,7 @@
 
 // Billing Data Screen
 
-"Billing data" = "账户数据";
+"Billing data title" = "账户数据";
 "Balance" = "余额";
 "Real money" = "實體金錢";
 "Bonuses" = "奖金红利";

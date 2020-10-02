@@ -34,9 +34,9 @@ class Converter {
     }
     
     func balanceData(from balance: Double?, bonus: Double?, amauntPendingWithdraw: Double?, dateTo: TimeInterval?) -> BillingData {
-        var balanceString = ""
-        var bonusString = ""
-        var amauntPendingWithdrawString = ""
+        var balanceString = "0.0"
+        var bonusString = "0.0"
+        var amauntPendingWithdrawString = "0.0"
         var dateFromString = ""
         var dateToString = ""
         

@@ -11,6 +11,8 @@ import UIKit
 class BillingDataViewController: UIViewController, BillingDataViewProtocol, NavigationDesign {
     
     @IBOutlet weak var billingDataTitle: UILabel!
+    @IBOutlet weak var balanceTitle: UILabel!
+    @IBOutlet weak var balanceValue: UILabel!
     @IBOutlet weak var realMoneyTitle: UILabel!
     @IBOutlet weak var bonusesTitle: UILabel!
     @IBOutlet weak var realMoneyValue: UILabel!
@@ -32,14 +34,17 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
     }
     
     func localize() {
-        billingDataTitle.text = R.string.localizable.billingData().localized()
+        billingDataTitle.text = R.string.localizable.billingDataTitle().localized()
+        balanceTitle.text = R.string.localizable.balance().localized()
         realMoneyTitle.text = R.string.localizable.realMoney().localized()
         bonusesTitle.text = R.string.localizable.bonuses().localized()
+        amauntPendingWithdrawTitle.text = R.string.localizable.amountPendingWithdrawal().localized()
         dateFromTitle.text = R.string.localizable.dateFrom().localized()
         dateToTitle.text = R.string.localizable.dateTo().localized()
     }
     
     func updateViewWith(data: BillingData) {
+        balanceValue.text = WSManager.shared.dataReceiver.realBalanceString
         realMoneyValue.text = data.balance
         bonusesValue.text = data.bonus
         amauntPendingWithdrawValue.text = data.amauntPendingWithdrawal
