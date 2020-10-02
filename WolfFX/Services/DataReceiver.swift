@@ -22,8 +22,5 @@ class DataReceiver: NSObject {
     @objc dynamic var range: Range?
     @objc dynamic var tradeStatus: TradeStatus?
     @objc dynamic var connectionClosed = false
-        
-    func clean() {
-     
-    }
+    @objc dynamic var userCanPlay = false
 }

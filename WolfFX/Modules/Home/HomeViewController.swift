@@ -149,7 +149,16 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
            lineChartView.minOffset = 0.0
            setupChartMask()
        }
-       
+    
+    func setupPlayButtonDesign(userCanPlay: Bool) {
+        playButton.isEnabled = userCanPlay
+        if userCanPlay {
+            playButton.backgroundColor = UIColor.red
+        } else {
+            playButton.backgroundColor = UIColor.gray
+        }
+    }
+    
     private func setupChartDesign() {
         lineChartView.isUserInteractionEnabled = false
         infoView.backgroundColor = UIColor.clear

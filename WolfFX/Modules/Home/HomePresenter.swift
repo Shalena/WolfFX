@@ -156,12 +156,16 @@ class HomePresenter: NSObject, HomeEvents {
     
     private func observeBalance() {
         balanceObservation = observe(\.dataReceiver?.realBalanceString, options: [.old, .new]) { object, change in
-            self.view?.hideHud() // remove after testing
+            if let userCanPlay = self.dataReceiver?.userCanPlay {
+                DispatchQueue.main.async {
+                    self.view?.setupPlayButtonDesign(userCanPlay: userCanPlay)
+                }
+            }
             WSManager.shared.register()
             WSManager.shared.readAllStatuses()
         }
     }
-    
+
     private func observeTradeStatus() {
         tradeStatusObservation = observe(\.dataReceiver?.tradeStatus, options: [.old, .new]) { object, change in
             if let tradeStatus = change.newValue, let message = tradeStatus?.message {

@@ -115,6 +115,7 @@ protocol SignupTransitions {
 
 protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, ShowErrorCapable {
     var presenter: HomeEvents? {get set}
+    func setupPlayButtonDesign(userCanPlay: Bool)
     func updateAssetsTable()
     func reloadInvestmentPicker()
     func updatePickersTextFields()
