@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignupViewController: UIViewController, SignupViewProtocol {
+class SignupViewController: UIViewController, SignupViewProtocol, NavigationBackButtonDesign {
     
     @IBOutlet weak var firstnameTextfield: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -25,6 +25,7 @@ class SignupViewController: UIViewController, SignupViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDesign()
+        setupBackButton()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         let pickerView = UIPickerView()
         pickerView.delegate = self
@@ -34,9 +35,6 @@ class SignupViewController: UIViewController, SignupViewProtocol {
     }
     
     func setupDesign() {
-        let image = R.image.billingTab()?.withRenderingMode(.alwaysOriginal)
-        let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: Selector(("didBarButtonbBackTapped")))
-        navigationItem.leftBarButtonItem = barButtonItem
         saveButton.layer.cornerRadius = 5
         saveButton.layer.cornerRadius = 5
         saveButton.layer.borderWidth = 2

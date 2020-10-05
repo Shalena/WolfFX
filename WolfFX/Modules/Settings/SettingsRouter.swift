@@ -44,6 +44,7 @@ class SettingsRouter: BaseRouter, SettingsTransitions {
         guard let loginScreen = R.storyboard.login.loginViewController() else { return }
         let configurator = LoginConfigurator()
         configurator.configure(viewController: loginScreen, with: assembler)
-        window.rootViewController = loginScreen
+        let loginNavController = UINavigationController(rootViewController: loginScreen)
+        window.rootViewController = loginNavController
     }
 }

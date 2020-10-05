@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, LoginViewProtocol {
+class LoginViewController: UIViewController, NavigationDesign, LoginViewProtocol {
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
@@ -22,6 +22,7 @@ class LoginViewController: UIViewController, LoginViewProtocol {
       
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBaseNavigationDesign()
         signUpButton.setup(backColor: .clear, borderColor: .darkGray, text: R.string.localizable.signUp().localized(), textColor: .white)
         localize()
     }

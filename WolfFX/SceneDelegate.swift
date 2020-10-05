@@ -34,7 +34,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let loginScreen = R.storyboard.login.loginViewController() else { return }
         let configurator = LoginConfigurator()
         configurator.configure(viewController: loginScreen, with: assembler)
-        window.rootViewController = loginScreen
+        let navLoginController = UINavigationController(rootViewController: loginScreen)
+        window.rootViewController = navLoginController
         self.window = window
         window.makeKeyAndVisible()
     }
