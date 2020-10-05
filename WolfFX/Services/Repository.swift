@@ -30,15 +30,16 @@ protocol StoreCredentialsProtocol: class {
 class Repository {
     let userDefaults = UserDefaults(suiteName: userAccount)
     func cleanKeychain() {
-        do {
-            try Locksmith.deleteDataForUserAccount(userAccount: userAccount)
-        }
-        catch {
-            fatalError()
+        if Locksmith.loadDataForUserAccount(userAccount: userAccount) != nil {
+            do {
+                try Locksmith.deleteDataForUserAccount(userAccount: userAccount)
+            }
+                catch {
+                    fatalError()
+            }
         }
         hadAlreadyLaunched = false
     }
-
 }
 
 extension Repository: IsFirstLaunchProtocol {

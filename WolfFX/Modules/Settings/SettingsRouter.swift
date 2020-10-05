@@ -31,15 +31,15 @@ class SettingsRouter: BaseRouter, SettingsTransitions {
     }
     
     func signIn() {
-        let window = UIApplication.shared.windows[0]
-        guard let loginScreen = R.storyboard.login.loginViewController() else { return }
-        let configurator = LoginConfigurator()
-        configurator.configure(viewController: loginScreen, with: assembler)
-        window.rootViewController = loginScreen        
+       setupLoginScreen()
     }
     
     func logout() {
         assembler.repository.cleanKeychain()
+        setupLoginScreen()
+    }
+    
+    private func setupLoginScreen() {
         let window = UIApplication.shared.windows[0]
         guard let loginScreen = R.storyboard.login.loginViewController() else { return }
         let configurator = LoginConfigurator()
