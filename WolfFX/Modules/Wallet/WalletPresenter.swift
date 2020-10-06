@@ -141,13 +141,16 @@ class WalletPresenter: WalletEvents {
     }
     
     func deposit(with amount: String) {
-        if let amountValue = Double(amount) {
-            networkManager?.deposit(with: amountValue, success: { string in
+        guard let user = WSManager.shared.dataReceiver.user else {return}
+        if let amountValue = Double(amount),let currency = user.currency, let accountNumber = user.email, let rate = rate {
+            networkManager?.deposit(with: amountValue, currency: currency, accountNumber: accountNumber, exchangeRate: rate, success: { string in
                 DispatchQueue.main.async {
                      self.view?.loadWebView(string: string)
                 }
             }, failure: { error in
-                
+                if let error = error {
+                    self.view?.showErrorAlertWith(error: error)
+                }
             })
         }
     }

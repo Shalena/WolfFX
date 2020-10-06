@@ -6,6 +6,9 @@
 //  Copyright © 2020 Елена Острожинская. All rights reserved.
 //
 
+let depositRedirectUrl = "https://staging.cuboidlogic.com/wolffx/wallet/deposit"
+let chinaUnionPaydefault = "CNY"
+
 typealias Parameters = [String: Any]
 typealias Headers = [String: String]
 
@@ -21,6 +24,7 @@ enum Endpoint {
     case signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String)
     case billingHistory
     case exchangeRate (broker: String)
+    case deposit(amount: Double, currency: String, accountNumber: String, exchangeRate: Double)
     case withdraw (amount: Double, bankName: String, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url: String, billingServer: String, currency: String, name: String, tenantId: String, method: String)
     case logout
     
@@ -38,6 +42,8 @@ enum Endpoint {
         return "/payapi/v1/withdrawal"
     case .exchangeRate:
         return "/payapi/v1/payins/GBP/exchangeRate"
+    case .deposit:
+        return "/payapi/v1/swiftpay/payins"
         }
     }
         
@@ -45,6 +51,8 @@ enum Endpoint {
     switch self {
     case .login, .signup, .billingHistory, .exchangeRate, .logout:
         return nil
+    case .deposit:
+        return ["Content-Type": "application/x-www-form-urlencoded"]
     case .withdraw:
         let username = "withdrawuser"
         let password = "aKSmUtinsNfnfM"
@@ -83,12 +91,19 @@ enum Endpoint {
                 "name": name]
     case .logout, .billingHistory:
         return nil
+    case .deposit(let amount, let currency, let accountNumber, let exchangeRate):
+        return ["a": amount,
+                "c": chinaUnionPaydefault,
+                "a_n": accountNumber,
+                "r_u": depositRedirectUrl,
+                "e_r": exchangeRate,
+                "a_c": currency]
         }
     }
         
     var method: httpMethod {
     switch self {
-    case .login, .signup, .withdraw, .logout:
+    case .login, .signup, .deposit, .withdraw, .logout:
         return .post
     case .billingHistory,  .exchangeRate:
         return .get

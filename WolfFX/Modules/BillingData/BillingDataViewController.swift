@@ -44,12 +44,14 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
     }
     
     func updateViewWith(data: BillingData) {
-        balanceValue.text = WSManager.shared.dataReceiver.realBalanceString
-        realMoneyValue.text = data.balance
-        bonusesValue.text = data.bonus
-        amauntPendingWithdrawValue.text = data.amauntPendingWithdrawal
-        dateFromValue.text = data.dateFrom
-        dateToValue.text = data.dateTo
+        DispatchQueue.main.async {
+            self.balanceValue.text = WSManager.shared.dataReceiver.realBalanceString
+            self.realMoneyValue.text = data.balance
+            self.bonusesValue.text = data.bonus
+            self.amauntPendingWithdrawValue.text = data.amauntPendingWithdrawal
+            self.dateFromValue.text = data.dateFrom
+            self.dateToValue.text = data.dateTo
+        }
     }
 }
 

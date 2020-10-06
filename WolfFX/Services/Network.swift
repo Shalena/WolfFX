@@ -21,7 +21,7 @@ protocol NetworkAccess {
   func signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func getBillingHistory(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func getExchangeRate(with broker: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
-  func deposit(with amountFee: Double, success: @escaping (String) -> Void, failure: @escaping (WolfError?) -> Void) 
+  func deposit(with amount: Double, currency: String, accountNumber: String, exchangeRate: Double, success: @escaping (String) -> Void, failure: @escaping (WolfError?) -> Void)
   func withdraw(amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url : String, billingServer: String, tenantId: String, currency: String, name: String, method: String, bankName: String , success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
   func logout(success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void)
 }
@@ -60,28 +60,14 @@ class NetwokManager: NetworkAccess {
         })
     }
     
-    func deposit(with amountFee: Double, success: @escaping (String) -> Void, failure: @escaping (WolfError?) -> Void) {
-        let session = URLSession.shared
-        let url = URL(string: "https://staging.cuboidlogic.com/payapi/v1/swiftpay/payins?a=10&c=CNY&a_n=2test@test.com&r_u=https://staging.cuboidlogic.com/wolffx/wallet/deposit&e_r=9.48930&a_c=GBP")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        session.dataTask(with: request) { (data, response, error) in
-            if let response = response {
-                print(response)
-            }
-            if let data = data {
-                do {
-                    if let content = String(data: data, encoding: .utf8) {
-                        success(content)
-                    }
-                } catch {
-                    let description = error.localizedDescription
-                    let wolfError = WolfError(description: description)
-                    failure(wolfError)
-                }
-            }
-        }.resume()
+    func deposit(with amount: Double, currency: String, accountNumber: String, exchangeRate: Double, success: @escaping (String) -> Void, failure: @escaping (WolfError?) -> Void) {
+        performRequest(endpoint: Endpoint.deposit(amount: amount, currency: currency, accountNumber: accountNumber, exchangeRate: exchangeRate), success: { data in
+            print(data)
+            let string = "Success"
+            success(string)
+        }) { error in
+            failure(error)
+        }
     }
     
     func withdraw(amount: Double, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url: String, billingServer: String, tenantId: String, currency: String, name: String, method: String, bankName: String, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void) {
@@ -114,10 +100,6 @@ class NetwokManager: NetworkAccess {
     lazy var baseUrl: String = {
         return BaseUrl.stage.rawValue
     }()
-    
-    lazy var payBaseUrl: String = {
-          return "https://staging.cuboidlogic.com/payapi/v1/swiftpay/payins?a=10&c=CNY&a_n=2test@test.com&r_u=https://staging.cuboidlogic.com/wolffx/wallet/deposit&e_r=9.48930&a_c=GBP"
-      }()
     
     func performRequestSuccessfully(endpoint: Endpoint, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void) {
     networking.headerFields = endpoint.headers
@@ -159,6 +141,27 @@ class NetwokManager: NetworkAccess {
         return
     }
 }
+    //        let url = URL(string: "https://staging.cuboidlogic.com/payapi/v1/swiftpay/payins?a=10&c=CNY&a_n=2test@test.com&r_u=https://staging.cuboidlogic.com/wolffx/wallet/deposit&e_r=9.48930&a_c=GBP")!
+        func performRequest(endpoint: Endpoint, success: @escaping (Data) -> Void, failure: @escaping (WolfError?) -> Void) {
+        networking.headerFields = endpoint.headers
+        switch endpoint.method {
+            case .post:
+                networking.post(endpoint.path, parameters: endpoint.parameters) { result in
+                    switch result {
+                        case .success(let response):
+                            print(response.headers)
+                            success(response.data)
+                        case .failure(let error):
+                            print(error.fullResponse)
+                            let description = error.error.localizedDescription
+                            let hsError = WolfError(description: description)
+                            failure(hsError)
+                    }
+                }
+            case .get,.patch, .put:
+            return
+        }
+    }
 }
     
 
