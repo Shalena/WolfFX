@@ -49,10 +49,8 @@ enum Endpoint {
         
     var headers: Headers? {
     switch self {
-    case .login, .signup, .billingHistory, .exchangeRate, .logout:
+    case .login, .signup, .billingHistory, .exchangeRate, .deposit, .logout:
         return nil
-    case .deposit:
-        return ["Content-Type": "application/x-www-form-urlencoded"]
     case .withdraw:
         let username = "withdrawuser"
         let password = "aKSmUtinsNfnfM"
