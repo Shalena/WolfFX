@@ -30,7 +30,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 14 images.
+  /// This `R.image` struct is generated, and contains static references to 15 images.
   struct image {
     /// Image `arrow left`.
     static let arrowLeft = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow left")
@@ -50,6 +50,8 @@ struct R: Rswift.Validatable {
     static let homeTab = Rswift.ImageResource(bundle: R.hostingBundle, name: "homeTab")
     /// Image `left-right`.
     static let leftRight = Rswift.ImageResource(bundle: R.hostingBundle, name: "left-right")
+    /// Image `logo`.
+    static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "logo")
     /// Image `selectedCheckBox`.
     static let selectedCheckBox = Rswift.ImageResource(bundle: R.hostingBundle, name: "selectedCheckBox")
     /// Image `settings`.
@@ -104,6 +106,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "left-right", bundle: ..., traitCollection: ...)`
     static func leftRight(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.leftRight, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "logo", bundle: ..., traitCollection: ...)`
+    static func logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.logo, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "selectedCheckBox", bundle: ..., traitCollection: ...)`
@@ -1085,6 +1092,7 @@ struct _R: Rswift.Validatable {
       let name = "LaunchScreen"
       
       static func validate() throws {
+        if UIKit.UIImage(named: "logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'logo' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
       }
