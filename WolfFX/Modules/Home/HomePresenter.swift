@@ -132,6 +132,7 @@ class HomePresenter: NSObject, HomeEvents {
                 self?.view?.hideHud()
                 if let error = error {
                     self?.view?.showErrorAlertWith(error: error)
+                    self?.router?.loginFailed()
                 }
             })
         }

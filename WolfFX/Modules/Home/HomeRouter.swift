@@ -15,4 +15,17 @@ class HomeRouter: BaseRouter, HomeTransitions {
         assembler.repository.hadAlreadyLaunched = true
     }
     
+    func loginFailed() {
+        assembler.repository.cleanKeychain()
+        setupLoginScreen()
+    }
+    
+    private func setupLoginScreen() {
+        let window = UIApplication.shared.windows[0]
+        guard let loginScreen = R.storyboard.login.loginViewController() else { return }
+        let configurator = LoginConfigurator()
+        configurator.configure(viewController: loginScreen, with: assembler)
+        let loginNavController = UINavigationController(rootViewController: loginScreen)
+        window.rootViewController = loginNavController
+    }
 }

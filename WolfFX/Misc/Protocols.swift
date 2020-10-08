@@ -144,7 +144,8 @@ protocol HomeEvents {
 }
 
 protocol HomeTransitions {
-    func userHadSuccessfullyLoggedIn() 
+    func userHadSuccessfullyLoggedIn()
+    func loginFailed()
 }
 
 // Billing Data Screen
