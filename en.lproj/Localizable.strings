@@ -9,7 +9,7 @@
 // Tabs
 
 "Home" = "Home";
-"Billing data" = "Billing data";
+"Billing data" = "Account data";
 "Wallet" = "Wallet";
 
 // Log in screen
@@ -50,7 +50,7 @@
 
 // Billing Data Screen
 
-"Billing data title" = "BILLING DATA";
+"Billing data title" = "ACCOUNT DATA";
 "Balance" = "Balance";
 "Real money" = "Real money";
 "Bonuses" = "Bonuses";

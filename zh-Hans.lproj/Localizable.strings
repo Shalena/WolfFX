@@ -9,7 +9,7 @@
 // Tabs
 
 "Home" = "主页";
-"Billing data" = "账单资料";
+"Billing data" = "账户资料";
 "Wallet" = "钱包";
 
 // Login screen
@@ -50,7 +50,7 @@
 
 // Billing Data Screen
 
-"Billing data title" = "账户数据";
+"Billing data title" = "账户资料";
 "Balance" = "余额";
 "Real money" = "實體金錢";
 "Bonuses" = "奖金红利";

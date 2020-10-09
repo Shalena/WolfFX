@@ -256,10 +256,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let password = Rswift.StringResource(key: "Password", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: ACCOUNT DATA
+      /// 
+      /// Locales: en, zh-Hans
+      static let billingDataTitle = Rswift.StringResource(key: "Billing data title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: About us
       /// 
       /// Locales: en, zh-Hans
       static let aboutUs = Rswift.StringResource(key: "About us", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Account data
+      /// 
+      /// Locales: en, zh-Hans
+      static let billingData = Rswift.StringResource(key: "Billing data", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Amount (available %@)
       /// 
       /// Locales: en, zh-Hans
@@ -272,10 +280,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let asset = Rswift.StringResource(key: "Asset", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: BILLING DATA
-      /// 
-      /// Locales: en, zh-Hans
-      static let billingDataTitle = Rswift.StringResource(key: "Billing data title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Balance
       /// 
       /// Locales: en, zh-Hans
@@ -284,10 +288,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let bestExecutionPolicy = Rswift.StringResource(key: "Best Execution Policy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Billing data
-      /// 
-      /// Locales: en, zh-Hans
-      static let billingData = Rswift.StringResource(key: "Billing data", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Bonuses
       /// 
       /// Locales: en, zh-Hans
@@ -554,11 +554,25 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Password", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: ACCOUNT DATA
+      /// 
+      /// Locales: en, zh-Hans
+      static func billingDataTitle(_: Void = ()) -> String {
+        return NSLocalizedString("Billing data title", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: About us
       /// 
       /// Locales: en, zh-Hans
       static func aboutUs(_: Void = ()) -> String {
         return NSLocalizedString("About us", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Account data
+      /// 
+      /// Locales: en, zh-Hans
+      static func billingData(_: Void = ()) -> String {
+        return NSLocalizedString("Billing data", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Amount (available %@)
@@ -582,13 +596,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Asset", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: BILLING DATA
-      /// 
-      /// Locales: en, zh-Hans
-      static func billingDataTitle(_: Void = ()) -> String {
-        return NSLocalizedString("Billing data title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Balance
       /// 
       /// Locales: en, zh-Hans
@@ -601,13 +608,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func bestExecutionPolicy(_: Void = ()) -> String {
         return NSLocalizedString("Best Execution Policy", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Billing data
-      /// 
-      /// Locales: en, zh-Hans
-      static func billingData(_: Void = ()) -> String {
-        return NSLocalizedString("Billing data", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Bonuses
