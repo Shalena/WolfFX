@@ -23,7 +23,7 @@ class TabbarConfigurator {
             let billingConfigurator = BillingDataConfigurator()
             billingConfigurator.configure(viewController: billingController, with: assembler)
             let billingNavigationController = UINavigationController(rootViewController: billingController)
-            billingNavigationController.tabBarItem = UITabBarItem(title: R.string.localizable.billingData().localized(), image: R.image.billingTab()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.billingTab()?.withTintColor(UIColor.red))
+            billingNavigationController.tabBarItem = UITabBarItem(title: R.string.localizable.accountData().localized(), image: R.image.billingTab()?.withRenderingMode(.alwaysOriginal), selectedImage: R.image.billingTab()?.withTintColor(UIColor.red))
             navControllers.append(billingNavigationController)
         }
         if let walletController = R.storyboard.wallet.walletViewController() {
@@ -49,7 +49,7 @@ class TabbarConfigurator {
             let billingData = tabBar.items?[1],
             let wallet = tabBar.items?[2] {
                 home.title = R.string.localizable.home().localized()
-                billingData.title = R.string.localizable.billingData().localized()
+                billingData.title = R.string.localizable.accountData().localized()
                 wallet.title = R.string.localizable.wallet().localized()
         }
     }

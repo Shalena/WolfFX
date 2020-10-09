@@ -267,7 +267,7 @@ struct R: Rswift.Validatable {
       /// en translation: Account data
       /// 
       /// Locales: en, zh-Hans
-      static let billingData = Rswift.StringResource(key: "Billing data", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let accountData = Rswift.StringResource(key: "Account data", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Amount (available %@)
       /// 
       /// Locales: en, zh-Hans
@@ -571,8 +571,8 @@ struct R: Rswift.Validatable {
       /// en translation: Account data
       /// 
       /// Locales: en, zh-Hans
-      static func billingData(_: Void = ()) -> String {
-        return NSLocalizedString("Billing data", bundle: R.hostingBundle, comment: "")
+      static func accountData(_: Void = ()) -> String {
+        return NSLocalizedString("Account data", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Amount (available %@)
