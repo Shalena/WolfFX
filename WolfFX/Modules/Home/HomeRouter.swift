@@ -9,6 +9,8 @@
 import Foundation
 import Swinject
 
+let depositTab = 2
+
 class HomeRouter: BaseRouter, HomeTransitions {
     
     func userHadSuccessfullyLoggedIn() {
@@ -27,5 +29,10 @@ class HomeRouter: BaseRouter, HomeTransitions {
         configurator.configure(viewController: loginScreen, with: assembler)
         let loginNavController = UINavigationController(rootViewController: loginScreen)
         window.rootViewController = loginNavController
+    }
+    
+    func goToDeposit() {
+        let tabbar = sourceController.tabBarController
+        tabbar?.selectedIndex = depositTab
     }
 }

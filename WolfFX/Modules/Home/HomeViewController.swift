@@ -150,8 +150,8 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
            setupChartMask()
        }
     
-    func setupPlayButtonDesign(userCanPlay: Bool) {
-        playButton.isEnabled = userCanPlay
+    func setupPlayButtonDesign() {
+        guard let userCanPlay = presenter?.userCanPlay else {return}
         if userCanPlay {
             playButton.backgroundColor = UIColor.red
         } else {
@@ -320,8 +320,11 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     }
     
     @IBAction func tradeAction(_ sender: Any) {
-        makeSnapshot()
-        showTradeInInfoView()
+        guard let userCanPlay = presenter?.userCanPlay else { return }
+        if userCanPlay {
+            makeSnapshot()
+            showTradeInInfoView()
+        }
         presenter?.tradeAction()
     }
 }

@@ -115,7 +115,7 @@ protocol SignupTransitions {
 
 protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, ShowErrorCapable {
     var presenter: HomeEvents? {get set}
-    func setupPlayButtonDesign(userCanPlay: Bool)
+    func setupPlayButtonDesign()
     func updateAssetsTable()
     func reloadInvestmentPicker()
     func updatePickersTextFields()
@@ -127,6 +127,7 @@ protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, 
 }
 
 protocol HomeEvents {
+    var userCanPlay: Bool {get set}
     var shouldPerformHTTPLogin: Bool {get set}
     var investmentDataSource: [PickerEntry] {get}
     var leverageDataSource: [PickerEntry] {get}
@@ -145,6 +146,7 @@ protocol HomeEvents {
 
 protocol HomeTransitions {
     func userHadSuccessfullyLoggedIn()
+    func goToDeposit()
     func loginFailed()
 }
 

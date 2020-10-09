@@ -26,6 +26,7 @@ class HomePresenter: NSObject, HomeEvents {
     var router: HomeTransitions?
     var networkManager: NetworkAccess
     @objc dynamic var dataReceiver: DataReceiver?
+    var userCanPlay = false
     var shouldPerformHTTPLogin = false
     var credentials: Credentials?
     var connectionObservation: NSKeyValueObservation?
@@ -110,7 +111,11 @@ class HomePresenter: NSObject, HomeEvents {
     }
     
     func tradeAction() {
-        orderExecutor()
+        if userCanPlay {
+            orderExecutor()            
+        } else {
+            router?.goToDeposit()
+        }
     }
     
     private func setupSelectedValues() {
@@ -159,7 +164,8 @@ class HomePresenter: NSObject, HomeEvents {
         balanceObservation = observe(\.dataReceiver?.realBalanceString, options: [.old, .new]) { object, change in
             if let userCanPlay = self.dataReceiver?.userCanPlay {
                 DispatchQueue.main.async {
-                    self.view?.setupPlayButtonDesign(userCanPlay: userCanPlay)
+                    self.userCanPlay = userCanPlay
+                    self.view?.setupPlayButtonDesign()
                 }
             }
             WSManager.shared.register()
