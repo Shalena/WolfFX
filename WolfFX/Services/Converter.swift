@@ -9,13 +9,13 @@
 import Foundation
 
 class Converter {
-    func realBalanceString(from balance: Double?, currencyString: String?, bonus: Double?) -> String {
+     private func realBalanceHeaderString(from realMoney: Double?, currencyString: String?, bonus: Double?) -> String {
         var currencySign = ""
-        var balancePart: Double = 0.00
+        var realMoneyPart: Double = 0.00
         var bonusPart: Double = 0.00
         
-        if let balance = balance {
-            balancePart = balance
+        if let realMoney = realMoney {
+            realMoneyPart = realMoney
         }
         
         if let bonus = bonus {
@@ -26,22 +26,22 @@ class Converter {
             currencySign = sign
         }
       
-        let realBalance = balancePart + bonusPart
+        let realBalance = realMoneyPart + bonusPart
         let realBalanceTruncate = realBalance.truncate(places: 2)
         let realBalanceString = String(realBalanceTruncate)
         let resultString = [currencySign, realBalanceString].joined(separator: " ")
         return resultString
     }
     
-    func balanceData(from balance: Double?, bonus: Double?, amauntPendingWithdraw: Double?, dateTo: TimeInterval?) -> BillingData {
-        var balanceString = "0.0"
+    func accountData(from realMoney: Double?, bonus: Double?, amauntPendingWithdraw: Double?, dateTo: TimeInterval?, currencyString: String?) -> AccountData {
+        var realMoneyString = "0.0"
         var bonusString = "0.0"
         var amauntPendingWithdrawString = "0.0"
         var dateFromString = ""
         var dateToString = ""
         
-        if let balance = balance {
-            balanceString = String(balance.truncate(places: 2))
+        if let realMoney = realMoney {
+            realMoneyString = String(realMoney.truncate(places: 2))
         }
         
         if let bonus = bonus {
@@ -60,8 +60,17 @@ class Converter {
             let dateFrom = date.startOfMonth()
             dateFromString = dateFormatter.string(from: dateFrom)
         }
-        let billingData = BillingData(with: balanceString,  bonus: bonusString, amauntPendingWithdrawal: amauntPendingWithdrawString, dateFrom: dateFromString, dateTo: dateToString)
-            return billingData
+        
+        let balanceHeaderString = realBalanceHeaderString(from: realMoney, currencyString: currencyString, bonus: bonus)
+        let viewModel = AccountDataViewModel(with: balanceHeaderString, realMoney: realMoneyString, bonus: bonusString, amauntPendingWithdrawal: amauntPendingWithdrawString, dateFrom: dateFromString, dateTo: dateToString)
+        let userCanPlay: Bool?
+        if let realMoney = realMoney, realMoney > 0.0 {
+            userCanPlay = true
+        } else {
+            userCanPlay = false
+        }
+        let accountData = AccountData(with: viewModel, realBalanceHeaderString: balanceHeaderString, userCanPlay: userCanPlay)
+        return accountData
     }
     
     func jsonToString(json: JSON) -> String? {

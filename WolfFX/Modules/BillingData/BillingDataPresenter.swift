@@ -23,16 +23,16 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
     }
 
     func billingDataViewIsReady() {
-        if let billingData = dataReceiver?.billingData {
-            view?.updateViewWith(data: billingData)
+        if let accountData = dataReceiver?.accountData, let viewModel = accountData.viewModel {
+            view?.updateViewWith(viewModel: viewModel)
             observe()
         }
     }
     
     private func observe() {
-        observation = observe(\.dataReceiver?.billingData, options: [.old, .new]) { object, change in
-            if let billingData = change.newValue as? BillingData {
-                self.view?.updateViewWith(data: billingData)
+        observation = observe(\.dataReceiver?.accountData, options: [.old, .new]) { object, change in
+            if let accountData = change.newValue as? AccountData, let viewModel = accountData.viewModel{
+                self.view?.updateViewWith(viewModel: viewModel)
             }            
         }
     }

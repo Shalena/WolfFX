@@ -154,7 +154,7 @@ protocol HomeTransitions {
 
 protocol BillingDataViewProtocol: LocalizableScreen {
     var presenter: BillingDataEvents? {get set}
-    func updateViewWith(data: BillingData)
+    func updateViewWith(viewModel: AccountDataViewModel)
 }
 
 protocol BillingDataEvents {

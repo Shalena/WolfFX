@@ -43,14 +43,14 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
         dateToTitle.text = R.string.localizable.dateTo().localized()
     }
     
-    func updateViewWith(data: BillingData) {
+    func updateViewWith(viewModel: AccountDataViewModel) {
         DispatchQueue.main.async {
-            self.balanceValue.text = WSManager.shared.dataReceiver.realBalanceString
-            self.realMoneyValue.text = data.balance
-            self.bonusesValue.text = data.bonus
-            self.amauntPendingWithdrawValue.text = data.amauntPendingWithdrawal
-            self.dateFromValue.text = data.dateFrom
-            self.dateToValue.text = data.dateTo
+            self.balanceValue.text = viewModel.balance
+            self.realMoneyValue.text = viewModel.realMoney
+            self.bonusesValue.text = viewModel.bonus
+            self.amauntPendingWithdrawValue.text = viewModel.amauntPendingWithdrawal
+            self.dateFromValue.text = viewModel.dateFrom
+            self.dateToValue.text = viewModel.dateTo
         }
     }
 }

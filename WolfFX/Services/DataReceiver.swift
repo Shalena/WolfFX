@@ -11,8 +11,7 @@ import Swinject
 
 class DataReceiver: NSObject {
     @objc dynamic var user: User?
-    @objc dynamic var realBalanceString = ""
-    @objc dynamic var billingData = BillingData(with: nil,  bonus: nil, amauntPendingWithdrawal: nil, dateFrom: nil, dateTo: nil)
+    @objc dynamic var accountData: AccountData?
     var rate: Double?
     var withdrawRate: Double?
     @objc dynamic var assets: [Asset]?
@@ -22,5 +21,4 @@ class DataReceiver: NSObject {
     @objc dynamic var range: Range?
     @objc dynamic var tradeStatus: TradeStatus?
     @objc dynamic var connectionClosed = false
-    @objc dynamic var userCanPlay = false
 }

@@ -31,7 +31,7 @@ class HomePresenter: NSObject, HomeEvents {
     var credentials: Credentials?
     var connectionObservation: NSKeyValueObservation?
     var userObservation: NSKeyValueObservation?
-    var balanceObservation: NSKeyValueObservation?
+    var accountDataObservation: NSKeyValueObservation?
     var assetsObservation: NSKeyValueObservation?
     var priceHistoryObservation: NSKeyValueObservation?
     var priceObservation: NSKeyValueObservation?
@@ -97,7 +97,7 @@ class HomePresenter: NSObject, HomeEvents {
     func homeViewIsReady() {
         setupSelectedValues()
         observeUser()
-        observeBalance()
+        observeAccountData()
         observeAssets()
         observePriceHistory()
         observePrice()
@@ -160,9 +160,10 @@ class HomePresenter: NSObject, HomeEvents {
            }
        }
     
-    private func observeBalance() {
-        balanceObservation = observe(\.dataReceiver?.realBalanceString, options: [.old, .new]) { object, change in
-            if let userCanPlay = self.dataReceiver?.userCanPlay {
+    private func observeAccountData() {
+        accountDataObservation = observe(\.dataReceiver?.accountData, options: [.old, .new]) { object, change in
+            if let accountData = change.newValue as? AccountData,
+                let userCanPlay = accountData.userCanPlay {
                 DispatchQueue.main.async {
                     self.userCanPlay = userCanPlay
                     self.view?.setupPlayButtonDesign()

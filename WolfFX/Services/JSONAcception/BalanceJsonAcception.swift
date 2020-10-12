@@ -8,6 +8,8 @@
 
 import Foundation
 
+// Information for Account Data Screen, Real Balance Header and User availability to play
+
 let balanceKey = "balance"
 let currencyKey = "currency"
 let bonusKey = "bonus"
@@ -42,14 +44,8 @@ class BalanceJsonAcception: JsonAcception {
                 }
             }
             let converter = Converter()
-            let realBalanceString = converter.realBalanceString(from: balance, currencyString: currency, bonus: bonus)
-            let billingData = converter.balanceData(from: balance, bonus: bonus, amauntPendingWithdraw: amauntPendingWithdrawal, dateTo: time)
-            WSManager.shared.dataReceiver.realBalanceString = realBalanceString
-            WSManager.shared.dataReceiver.billingData = billingData
-            if let realMoney = balance {
-                let userCanPlay = realMoney > 0.0
-                WSManager.shared.dataReceiver.userCanPlay = userCanPlay
-            }
+            let accountData = converter.accountData(from: balance, bonus: bonus, amauntPendingWithdraw: amauntPendingWithdrawal, dateTo: time, currencyString: currency)
+            WSManager.shared.dataReceiver.accountData = accountData           
             return true
         } else {
             return false

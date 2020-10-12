@@ -134,7 +134,7 @@ class WalletPresenter: WalletEvents {
     
     func textForAvailableAmount() -> String {
         var balance = ""
-        if let balanceValue = WSManager.shared.dataReceiver.billingData.balance {
+        if let balanceValue = WSManager.shared.dataReceiver.accountData?.viewModel?.balance {
             balance = balanceValue
         }
         return String(format: R.string.localizable.amountAvailable(balance))
