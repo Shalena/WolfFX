@@ -21,4 +21,5 @@ class DataReceiver: NSObject {
     @objc dynamic var range: Range?
     @objc dynamic var tradeStatus: TradeStatus?
     @objc dynamic var connectionClosed = false
+    @objc dynamic var balanceHistoryItems: [BalanceHistoryItem]?
 }

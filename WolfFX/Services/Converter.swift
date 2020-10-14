@@ -52,12 +52,15 @@ class Converter {
             amauntPendingWithdrawString = String(amauntPendingWithdraw.truncate(places: 2))
         }
         
+        var timeIntervalFrom: Double?
+        
         if let time = dateTo {
             let date = Date(timeIntervalSince1970: (time / 1000.0))
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd-MMM-yyyy"
             dateToString = dateFormatter.string(from: date)
             let dateFrom = date.startOfMonth()
+            timeIntervalFrom = dateFrom.timeIntervalSince1970
             dateFromString = dateFormatter.string(from: dateFrom)
         }
         
@@ -69,7 +72,8 @@ class Converter {
         } else {
             userCanPlay = false
         }
-        let accountData = AccountData(with: viewModel, realBalanceHeaderString: balanceHeaderString, userCanPlay: userCanPlay)
+        
+        let accountData = AccountData(with: viewModel, realBalanceHeaderString: balanceHeaderString, userCanPlay: userCanPlay, timeIntervalFrom: timeIntervalFrom, timeIntervalTo: dateTo)
         return accountData
     }
     

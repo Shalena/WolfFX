@@ -27,6 +27,9 @@
 		811ED6C4241926410002F559 /* SignupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C3241926410002F559 /* SignupRouter.swift */; };
 		811ED6C7241935530002F559 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C6241935530002F559 /* CheckboxButton.swift */; };
 		811ED6C9241971110002F559 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C8241971110002F559 /* Validation.swift */; };
+		8145C4B02535D030003D8423 /* BalanceHistoryJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C4AF2535D030003D8423 /* BalanceHistoryJsonAcception.swift */; };
+		8145C4B22535D437003D8423 /* BalanceHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C4B12535D437003D8423 /* BalanceHistoryItem.swift */; };
+		8145C4B42535E520003D8423 /* BalanceHistoryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C4B32535E520003D8423 /* BalanceHistoryItemViewModel.swift */; };
 		8145C8A32405DD5700414AE2 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C8A22405DD5700414AE2 /* Protocols.swift */; };
 		8145C8A52405DD8300414AE2 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C8A42405DD8300414AE2 /* Design.swift */; };
 		814D3131245C53B200C092EC /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814D3130245C53B200C092EC /* Asset.swift */; };
@@ -145,6 +148,9 @@
 		811ED6C3241926410002F559 /* SignupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRouter.swift; sourceTree = "<group>"; };
 		811ED6C6241935530002F559 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 		811ED6C8241971110002F559 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		8145C4AF2535D030003D8423 /* BalanceHistoryJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHistoryJsonAcception.swift; sourceTree = "<group>"; };
+		8145C4B12535D437003D8423 /* BalanceHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHistoryItem.swift; sourceTree = "<group>"; };
+		8145C4B32535E520003D8423 /* BalanceHistoryItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHistoryItemViewModel.swift; sourceTree = "<group>"; };
 		8145C8A22405DD5700414AE2 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		8145C8A42405DD8300414AE2 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		814D3130245C53B200C092EC /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
@@ -497,6 +503,7 @@
 				815B66732466E1C000E4227A /* PriceHistoryJsonAcceptor.swift */,
 				81AF5B2D246C60070058FC03 /* RangeJsonAcception.swift */,
 				810886A824A4E48700265862 /* OrderExecutorJSONAcception.swift */,
+				8145C4AF2535D030003D8423 /* BalanceHistoryJsonAcception.swift */,
 			);
 			path = JSONAcception;
 			sourceTree = "<group>";
@@ -543,6 +550,8 @@
 				81FAA37E24B3AE59006B9140 /* TradeStatus.swift */,
 				81FAA38024B4647C006B9140 /* LegalInformation.swift */,
 				81992CFB24E7E89600D1229F /* Snapshot.swift */,
+				8145C4B12535D437003D8423 /* BalanceHistoryItem.swift */,
+				8145C4B32535E520003D8423 /* BalanceHistoryItemViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -825,6 +834,7 @@
 				816C17FD24050ACD00B1551A /* TabbarView.swift in Sources */,
 				8103B187242EB196008D7D5B /* ProfileDetailsRouter.swift in Sources */,
 				81D8825D2409D8880030C78B /* User.swift in Sources */,
+				8145C4B22535D437003D8423 /* BalanceHistoryItem.swift in Sources */,
 				814F2ED024423A7700E0820C /* BillingDataPresenter.swift in Sources */,
 				811ED6C024191A120002F559 /* SignupPresenter.swift in Sources */,
 				814F2ED224423A9000E0820C /* BillingDataConfigurator.swift in Sources */,
@@ -842,7 +852,9 @@
 				8145C8A32405DD5700414AE2 /* Protocols.swift in Sources */,
 				81A4B35E2413ADDC004A02CB /* HomePresenter.swift in Sources */,
 				817324CB2437CFE4000DFB86 /* Currency.swift in Sources */,
+				8145C4B42535E520003D8423 /* BalanceHistoryItemViewModel.swift in Sources */,
 				8160E7A5248C22B10019B2F4 /* LanguageCell.swift in Sources */,
+				8145C4B02535D030003D8423 /* BalanceHistoryJsonAcception.swift in Sources */,
 				81BA2A462465D72000C13F64 /* AssetPrice.swift in Sources */,
 				816C17CF24050A0F00B1551A /* ContentView.swift in Sources */,
 				8103B18C242EC2EE008D7D5B /* Extensions.swift in Sources */,

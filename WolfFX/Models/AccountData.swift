@@ -12,11 +12,15 @@ class AccountData: NSObject {
     var viewModel: AccountDataViewModel?
     var realBalanceHeaderString: String?
     var userCanPlay: Bool?
+    var timeIntervalFrom: TimeInterval?
+    var timeIntervalTo: TimeInterval?
     
-    init (with viewModel: AccountDataViewModel?, realBalanceHeaderString: String?, userCanPlay: Bool?) {
+    init (with viewModel: AccountDataViewModel?, realBalanceHeaderString: String?, userCanPlay: Bool?, timeIntervalFrom: Double?, timeIntervalTo: Double?) {
         self.viewModel = viewModel
         self.realBalanceHeaderString = realBalanceHeaderString
         self.userCanPlay = userCanPlay
+        self.timeIntervalFrom = timeIntervalFrom
+        self.timeIntervalTo = timeIntervalTo
     }
 }
 

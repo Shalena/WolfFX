@@ -155,9 +155,11 @@ protocol HomeTransitions {
 protocol BillingDataViewProtocol: LocalizableScreen {
     var presenter: BillingDataEvents? {get set}
     func updateViewWith(viewModel: AccountDataViewModel)
+    func reloadBalanceHistory()
 }
 
 protocol BillingDataEvents {
+    var balanceHistoryDataSource: [BalanceHistoryItemViewModel]? {get set}
     func billingDataViewIsReady()
 }
 

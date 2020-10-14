@@ -9,7 +9,6 @@
 import UIKit
 
 class BillingDataViewController: UIViewController, BillingDataViewProtocol, NavigationDesign {
-    
     @IBOutlet weak var billingDataTitle: UILabel!
     @IBOutlet weak var balanceTitle: UILabel!
     @IBOutlet weak var balanceValue: UILabel!
@@ -52,6 +51,10 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
             self.dateFromValue.text = viewModel.dateFrom
             self.dateToValue.text = viewModel.dateTo
         }
+    }
+    
+    func reloadBalanceHistory() {
+//        self.tableView.reloadData()
     }
 }
 

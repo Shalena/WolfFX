@@ -39,7 +39,7 @@ class WSManager: WebsocketAccess {
     static let shared = WSManager()
     var dataReceiver = DataReceiver()
     private var webSocketTask: URLSessionWebSocketTask?
-    private let arrayOfAcceptors: [JsonAcception] = [UserJsonAcception(), BalanceJsonAcception(), PriceHistoryJsonAcception(), AssetsJsonAcception(), AssetPriceJsonAcception(), RangeJsonAcception(), OrderExecutorJSONAcception()]
+    private let arrayOfAcceptors: [JsonAcception] = [UserJsonAcception(), BalanceJsonAcception(), BalanceHistoryJsonAcception(), PriceHistoryJsonAcception(), AssetsJsonAcception(), AssetPriceJsonAcception(), RangeJsonAcception(), OrderExecutorJSONAcception()]
     private let websocketJsonCreator = WebsocketJsonCreator()
     private var timer: Timer?
 
@@ -109,6 +109,17 @@ class WSManager: WebsocketAccess {
             let messageStringWithFormat = String(format: messageString, currency)
             send(messageString: messageStringWithFormat)
         }
+    }
+    
+    func getBalanceHistory() {
+        guard let accountData = dataReceiver.accountData else { return }
+        guard let from = accountData.timeIntervalFrom else { return }
+        guard let to = accountData.timeIntervalTo else { return }
+        let json = websocketJsonCreator.balanceiHistoryJSON(from: from, to: to)
+            if let messageString = Converter().jsonToString(json: json) {
+                   let messageStringWithFormat = String(format: messageString, from, to)
+                   send(messageString: messageStringWithFormat)
+            }        
     }
     
     func getBanks() {
