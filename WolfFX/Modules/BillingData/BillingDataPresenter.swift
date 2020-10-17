@@ -15,7 +15,7 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
     @objc dynamic var dataReceiver: DataReceiver?
     var balanceObservation: NSKeyValueObservation?
     var balanceHistoryObservation: NSKeyValueObservation?
-    var balanceHistoryDataSource: [BalanceHistoryItemViewModel]?
+    var dataSource: [[BalanceHistoryItemViewModel]]?
     
     init (with view: BillingDataViewProtocol, router: BillingDataTransitions) {
         self.view = view
@@ -31,6 +31,27 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
             observeBalanceHistory()
             WSManager.shared.getBalanceHistory()
         }
+    }
+    
+    func numberOfSections() -> Int {
+        return dataSource?.count ?? 0
+    }
+    
+    func numberOfRows(in section: Int) -> Int {
+        return dataSource?[section].count ?? 0
+    }
+    
+    func configure(cell: BalanceHistoryCell, at index: IndexPath) {
+        let array = dataSource?[index.section]
+        let viewModel = array?[index.row]
+        cell.time.text = viewModel?.hoursMinutes
+        cell.status.text = viewModel?.descriptionString
+        if viewModel?.transactionStatus == .win {
+            cell.inAmount.text = viewModel?.amount
+        } else if viewModel?.transactionStatus == .loose {
+            cell.outAmount.text = viewModel?.amount
+        }
+        cell.balance.text = viewModel?.balance
     }
     
     private func observeBalance() {
@@ -50,19 +71,21 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
        }
     
     private func createDataSource(from array: [BalanceHistoryItem]) {
-       let viewModels = array.map({BalanceHistoryItemViewModel(item: $0)})
-       let flatted = array.compactMap({$0.date})
-       let sorted = flatted.sorted(by: { $0 > $1 })
-       let convertedToDate = sorted.map{Date(timeIntervalSince1970: $0 / 1000)}
+       let clean = array.filter {$0.date != nil}
+       let sorted = clean.sorted(by: { $0.date! > $1.date! })
+       let viewModels = sorted.map({BalanceHistoryItemViewModel(item: $0)})
+       let flatted = sorted.compactMap({$0.date})
+       let convertedToDate = flatted.map{Date(timeIntervalSince1970: $0 / 1000)}
        let dateFormatter = DateFormatter()
        dateFormatter.dateFormat = "dd-MMM-yyyy"
        let convertedToString = convertedToDate.map{dateFormatter.string(from: $0)}
-       let uniq = Array(Set(convertedToString))
+       let uniq = convertedToString.unique
        var conteiner = [[BalanceHistoryItemViewModel]()]
        for date in uniq {
             let filtered = viewModels.filter { $0.calendarDay == date }
             conteiner.append(filtered)
        }
-        
+        dataSource = conteiner
+        view?.reloadBalanceHistory()
     }
 }

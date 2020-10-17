@@ -22,6 +22,7 @@
 		81066A3C241FBA6700CA8829 /* WSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81066A3B241FBA6700CA8829 /* WSManager.swift */; };
 		81066A3E2420BF3F00CA8829 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 81066A3D2420BF3F00CA8829 /* Podfile */; };
 		810886A924A4E48700265862 /* OrderExecutorJSONAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810886A824A4E48700265862 /* OrderExecutorJSONAcception.swift */; };
+		811614DB2539D7660094DC1F /* BalanceHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811614DA2539D7660094DC1F /* BalanceHistoryCell.swift */; };
 		811ED6C024191A120002F559 /* SignupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6BF24191A120002F559 /* SignupPresenter.swift */; };
 		811ED6C2241921880002F559 /* SignupConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C1241921880002F559 /* SignupConfigurator.swift */; };
 		811ED6C4241926410002F559 /* SignupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C3241926410002F559 /* SignupRouter.swift */; };
@@ -142,6 +143,7 @@
 		81066A3B241FBA6700CA8829 /* WSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSManager.swift; sourceTree = "<group>"; };
 		81066A3D2420BF3F00CA8829 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		810886A824A4E48700265862 /* OrderExecutorJSONAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderExecutorJSONAcception.swift; sourceTree = "<group>"; };
+		811614DA2539D7660094DC1F /* BalanceHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHistoryCell.swift; sourceTree = "<group>"; };
 		811E060A07A0606C5423FA73 /* Pods-WolfFX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFX.release.xcconfig"; path = "Target Support Files/Pods-WolfFX/Pods-WolfFX.release.xcconfig"; sourceTree = "<group>"; };
 		811ED6BF24191A120002F559 /* SignupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPresenter.swift; sourceTree = "<group>"; };
 		811ED6C1241921880002F559 /* SignupConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupConfigurator.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			children = (
 				8160E7A4248C22B10019B2F4 /* LanguageCell.swift */,
 				815E533824B9F668005BFD5B /* LegalInfoCell.swift */,
+				811614DA2539D7660094DC1F /* BalanceHistoryCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -874,6 +877,7 @@
 				814D3131245C53B200C092EC /* Asset.swift in Sources */,
 				81A4B3602413BCA5004A02CB /* HomeRouter.swift in Sources */,
 				811ED6C9241971110002F559 /* Validation.swift in Sources */,
+				811614DB2539D7660094DC1F /* BalanceHistoryCell.swift in Sources */,
 				816C17FF24050AE900B1551A /* TabbarConfigurator.swift in Sources */,
 				816C181824056BAE00B1551A /* R.generated.swift in Sources */,
 				814D3133245C563600C092EC /* AssetsJsonAcception.swift in Sources */,

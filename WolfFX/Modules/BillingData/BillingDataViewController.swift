@@ -22,6 +22,8 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
     @IBOutlet weak var dateFromValue: UILabel!
     @IBOutlet weak var dateToTitle: UILabel!
     @IBOutlet weak var dateToValue: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var rangeButton: UIButton!
     
     var presenter: BillingDataEvents?
     
@@ -54,7 +56,35 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
     }
     
     func reloadBalanceHistory() {
-//        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 
+extension BillingDataViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return presenter?.numberOfSections() ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter?.numberOfRows(in: section) ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let viewModels = presenter?.dataSource?[section], viewModels.count > 0 {
+            return viewModels[0].calendarDay
+        } else {
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "BalanceHistoryCell", for: indexPath) as? BalanceHistoryCell {
+            presenter?.configure(cell: cell, at: indexPath)
+            return cell
+        }
+        fatalError()
+    }
+}
