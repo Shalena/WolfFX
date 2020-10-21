@@ -48,3 +48,8 @@ class BalanceHistoryItemViewModel: NSObject {
         }
     }
 }
+
+struct CombinedBalanceHistoryItem {
+    var date: Date
+    var viewModel: BalanceHistoryItemViewModel
+}

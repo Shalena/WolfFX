@@ -159,11 +159,11 @@ protocol BillingDataViewProtocol: LocalizableScreen {
 }
 
 protocol BillingDataEvents {
-    var dataSource: [[BalanceHistoryItemViewModel]]? {get set}
+    var dataSource: [[[(Date, BalanceHistoryItemViewModel)]]] {get set}
     func billingDataViewIsReady()
-    func numberOfSections() -> Int
-    func numberOfRows(in section: Int) -> Int
-    func configure(cell: BalanceHistoryCell, at index: IndexPath) 
+    func numberOfSections(for currentIndex: Int) -> Int
+    func numberOfRows(in section: Int, currentIndex: Int) -> Int
+    func configure(cell: BalanceHistoryCell, at index: IndexPath, currentIndex: Int)
 }
 
 protocol BillingDataTransitions {
