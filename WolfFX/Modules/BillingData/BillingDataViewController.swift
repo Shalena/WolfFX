@@ -6,6 +6,8 @@
 //  Copyright © 2020 Елена Острожинская. All rights reserved.
 //
 
+typealias TableReloadedCompletion = (() -> (Void))
+
 import UIKit
 
 class BillingDataViewController: UIViewController, BillingDataViewProtocol, NavigationDesign {
@@ -56,9 +58,11 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
         }
     }
     
-    func reloadBalanceHistory() {
+    func reloadBalanceHistory(completion:@escaping TableReloadedCompletion) {
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.tableView.reloadData {
+                completion()
+            }
         }
     }
     

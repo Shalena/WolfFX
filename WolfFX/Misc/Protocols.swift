@@ -152,10 +152,10 @@ protocol HomeTransitions {
 
 // Billing Data Screen
 
-protocol BillingDataViewProtocol: LocalizableScreen {
+protocol BillingDataViewProtocol: LocalizableScreen, ShowHudCapable {
     var presenter: BillingDataEvents? {get set}
     func updateViewWith(viewModel: AccountDataViewModel)
-    func reloadBalanceHistory()
+    func reloadBalanceHistory(completion:@escaping TableReloadedCompletion) 
     func makeRangeButtonDisabled()
 }
 

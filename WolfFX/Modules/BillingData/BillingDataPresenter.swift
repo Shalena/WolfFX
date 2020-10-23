@@ -32,6 +32,7 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
             view?.updateViewWith(viewModel: viewModel)
             observeBalance()
             observeBalanceHistory()
+            view?.showHud()
             WSManager.shared.getBalanceHistory()
         }
     }
@@ -58,10 +59,13 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
     }
     
     func showNextRangePressed() {
+        view?.showHud()
         currentDataSource = currentDataSource + globalDataSource[monthsAmount]
         monthsAmount+=1        
         if monthsAmount <= globalDataSource.count {
-            view?.reloadBalanceHistory()
+            view?.reloadBalanceHistory(completion: {
+                self.view?.hideHud()
+            })
         }
         if monthsAmount == globalDataSource.count {
             view?.makeRangeButtonDisabled()
@@ -127,6 +131,8 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
         }
         globalDataSource = accum
         currentDataSource = globalDataSource[0]
-        view?.reloadBalanceHistory()
+        view?.reloadBalanceHistory(completion: { 
+            self.view?.hideHud()
+        })
     }
 }

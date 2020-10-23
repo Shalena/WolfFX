@@ -53,6 +53,13 @@ extension UIViewController {
     }
 }
 
+extension UITableView {
+    func reloadData(completion: @escaping () -> ()) {
+        UIView.animate(withDuration: 0, animations: { self.reloadData()})
+        {_ in completion() }
+    }
+}
+
 extension Date {
     func startOfMonth() -> Date {
         return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: self)))!
