@@ -77,25 +77,25 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmy-Pq-MKj">
-                                                                <rect key="frame" x="0.0" y="120" width="197" height="60"/>
+                                                                <rect key="frame" x="0.0" y="120" width="197" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQ3-cI-G9b">
-                                                                <rect key="frame" x="207" y="150" width="187" height="0.0"/>
+                                                                <rect key="frame" x="207" y="120" width="187" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeW-25-46w">
-                                                                <rect key="frame" x="50" y="220" width="137" height="0.0"/>
+                                                                <rect key="frame" x="50" y="160" width="137" height="60"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBE-yO-KPa">
-                                                                <rect key="frame" x="207" y="220" width="187" height="0.0"/>
+                                                                <rect key="frame" x="207" y="190" width="187" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -176,7 +176,7 @@
                                                         <rect key="frame" x="0.0" y="300" width="394" height="715"/>
                                                         <subviews>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8ZX-29-DmF">
-                                                                <rect key="frame" x="0.0" y="0.0" width="394" height="615"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="394" height="605"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BalanceHistoryCell" rowHeight="100" id="fw0-vf-Det" customClass="BalanceHistoryCell" customModule="WolfFX" customModuleProvider="target">
@@ -253,24 +253,27 @@
                                                                     <outlet property="delegate" destination="oFO-BB-Rru" id="Aw1-la-Cyp"/>
                                                                 </connections>
                                                             </tableView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZP-XI-KL7">
-                                                                <rect key="frame" x="50" y="615" width="294" height="50"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZP-XI-KL7" customClass="SubmitButton" customModule="WolfFX" customModuleProvider="target">
+                                                                <rect key="frame" x="50" y="635" width="294" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="5ip-wc-bLV"/>
                                                                 </constraints>
-                                                                <state key="normal">
+                                                                <state key="normal" title="Show range">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="showRangeButtonPressed:" destination="oFO-BB-Rru" eventType="touchUpInside" id="KiK-JM-vJM"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="gZP-XI-KL7" firstAttribute="leading" secondItem="2no-gz-guf" secondAttribute="leading" constant="50" id="DUQ-Y9-mBF"/>
                                                             <constraint firstAttribute="trailing" secondItem="8ZX-29-DmF" secondAttribute="trailing" id="Eno-hn-1ge"/>
-                                                            <constraint firstItem="gZP-XI-KL7" firstAttribute="top" secondItem="8ZX-29-DmF" secondAttribute="bottom" id="UqQ-oQ-Qe4"/>
+                                                            <constraint firstItem="gZP-XI-KL7" firstAttribute="top" secondItem="8ZX-29-DmF" secondAttribute="bottom" constant="30" id="UqQ-oQ-Qe4"/>
                                                             <constraint firstAttribute="trailing" secondItem="gZP-XI-KL7" secondAttribute="trailing" constant="50" id="Xf2-3J-X4s"/>
                                                             <constraint firstItem="8ZX-29-DmF" firstAttribute="leading" secondItem="2no-gz-guf" secondAttribute="leading" id="Yba-4x-Cc7"/>
-                                                            <constraint firstAttribute="bottom" secondItem="gZP-XI-KL7" secondAttribute="bottom" constant="50" id="b49-hi-0Fd"/>
+                                                            <constraint firstAttribute="bottom" secondItem="gZP-XI-KL7" secondAttribute="bottom" constant="30" id="b49-hi-0Fd"/>
                                                             <constraint firstItem="8ZX-29-DmF" firstAttribute="top" secondItem="2no-gz-guf" secondAttribute="top" id="xXp-r2-1fV"/>
                                                         </constraints>
                                                     </view>

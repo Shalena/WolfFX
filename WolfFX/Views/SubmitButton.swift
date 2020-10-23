@@ -23,4 +23,9 @@ override func awakeFromNib() {
         setTitle(text, for: .normal)
         setTitleColor(textColor, for: .normal)
     }
+    
+    func setup(backColor: UIColor, borderColor: UIColor) {
+        backgroundColor = backColor
+        layer.borderColor = borderColor.cgColor
+    }
 }

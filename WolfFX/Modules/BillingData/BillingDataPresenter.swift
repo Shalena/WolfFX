@@ -17,6 +17,7 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
     var balanceObservation: NSKeyValueObservation?
     var balanceHistoryObservation: NSKeyValueObservation?
     var dataSource = [[[(Date, BalanceHistoryItemViewModel)]]]()
+    var monthsAmount = 1
     
     init (with view: BillingDataViewProtocol, router: BillingDataTransitions) {
         self.view = view
@@ -62,6 +63,16 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
                 cell.outAmount.text = viewModel.amount
             }
             cell.balance.text = viewModel.balance
+        }
+    }
+    
+    func showNextRangePressed() {
+        monthsAmount+=1
+        if monthsAmount <= dataSource.count {
+            view?.reloadBalanceHistory()
+        }
+        if monthsAmount == dataSource.count {
+            view?.makeRangeButtonDisabled()
         }
     }
     

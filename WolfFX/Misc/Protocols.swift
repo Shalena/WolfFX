@@ -156,11 +156,13 @@ protocol BillingDataViewProtocol: LocalizableScreen {
     var presenter: BillingDataEvents? {get set}
     func updateViewWith(viewModel: AccountDataViewModel)
     func reloadBalanceHistory()
+    func makeRangeButtonDisabled()
 }
 
 protocol BillingDataEvents {
     var dataSource: [[[(Date, BalanceHistoryItemViewModel)]]] {get set}
     func billingDataViewIsReady()
+    func showNextRangePressed() 
     func numberOfSections(for currentIndex: Int) -> Int
     func numberOfRows(in section: Int, currentIndex: Int) -> Int
     func configure(cell: BalanceHistoryCell, at index: IndexPath, currentIndex: Int)

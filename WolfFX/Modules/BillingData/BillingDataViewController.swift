@@ -23,7 +23,7 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
     @IBOutlet weak var dateToTitle: UILabel!
     @IBOutlet weak var dateToValue: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var rangeButton: UIButton!
+    @IBOutlet weak var rangeButton: SubmitButton!
     
     var presenter: BillingDataEvents?
     
@@ -31,6 +31,7 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
         super.viewDidLoad()
         setupBaseNavigationDesign()
         presenter?.billingDataViewIsReady()
+        rangeButton.setup(backColor: .clear, borderColor: .red, text: "", textColor: .white)
         localize()
     }
     
@@ -59,6 +60,15 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    func makeRangeButtonDisabled() {
+        rangeButton.isEnabled = false
+        rangeButton.setup(backColor: .clear, borderColor: .gray)
+    }
+    
+    @IBAction func showRangeButtonPressed(_ sender: Any) {
+        presenter?.showNextRangePressed()
     }
 }
 
