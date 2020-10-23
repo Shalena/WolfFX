@@ -60,10 +60,11 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
     
     func showNextRangePressed() {
         view?.showHud()
+        let lastIndex = currentDataSource.count 
         currentDataSource = currentDataSource + globalDataSource[monthsAmount]
         monthsAmount+=1        
         if monthsAmount <= globalDataSource.count {
-            view?.reloadBalanceHistory(completion: {
+            view?.reloadBalanceHistory(scrollIndex: lastIndex, completion: {
                 self.view?.hideHud()
             })
         }
@@ -131,7 +132,7 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
         }
         globalDataSource = accum
         currentDataSource = globalDataSource[0]
-        view?.reloadBalanceHistory(completion: { 
+        view?.reloadBalanceHistory(scrollIndex: 0, completion: {
             self.view?.hideHud()
         })
     }

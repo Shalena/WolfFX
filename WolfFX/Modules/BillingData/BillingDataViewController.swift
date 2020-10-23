@@ -33,7 +33,7 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
         super.viewDidLoad()
         setupBaseNavigationDesign()
         presenter?.billingDataViewIsReady()
-        rangeButton.setup(backColor: .clear, borderColor: .red, text: "", textColor: .white)
+        rangeButton.setup(backColor: .clear, borderColor: .red, text: "Show previous month", textColor: .white)
         localize()
     }
     
@@ -58,9 +58,10 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
         }
     }
     
-    func reloadBalanceHistory(completion:@escaping TableReloadedCompletion) {
+    func reloadBalanceHistory(scrollIndex: Int, completion:@escaping TableReloadedCompletion) {
         DispatchQueue.main.async {
             self.tableView.reloadData {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: scrollIndex), at: .top, animated: true)
                 completion()
             }
         }
