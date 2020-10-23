@@ -16,7 +16,8 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
     @objc dynamic var dataReceiver: DataReceiver?
     var balanceObservation: NSKeyValueObservation?
     var balanceHistoryObservation: NSKeyValueObservation?
-    var dataSource = [[[(Date, BalanceHistoryItemViewModel)]]]()
+    var globalDataSource = [[[(Date, BalanceHistoryItemViewModel)]]]() // months
+    var currentDataSource = [[(Date, BalanceHistoryItemViewModel)]]()  // days
     var monthsAmount = 1
     
     init (with view: BillingDataViewProtocol, router: BillingDataTransitions) {
@@ -35,43 +36,34 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
         }
     }
     
-    func numberOfSections(for currentIndex: Int) -> Int {
-        if currentIndex < dataSource.count {
-            return dataSource[currentIndex].count
-        } else {
-            return  0
-        }
+    func numberOfSections() -> Int {
+        return currentDataSource.count
     }
     
-    func numberOfRows(in section: Int, currentIndex: Int) -> Int {
-        if currentIndex < dataSource.count {
-            return dataSource[currentIndex][section].count
-        } else {
-            return 0
-        }
+    func numberOfRows(in section: Int) -> Int {
+        return currentDataSource[section].count
     }
     
-    func configure(cell: BalanceHistoryCell, at index: IndexPath, currentIndex: Int) {
-        if currentIndex < dataSource.count {
-            let array = dataSource[currentIndex][index.section]
-            let viewModel = array[index.row].1
-            cell.time.text = viewModel.hoursMinutes
-            cell.status.text = viewModel.descriptionString
-            if viewModel.transactionStatus == .win {
-                cell.inAmount.text = viewModel.amount
-            } else if viewModel.transactionStatus == .loose {
-                cell.outAmount.text = viewModel.amount
-            }
+    func configure(cell: BalanceHistoryCell, at index: IndexPath) {
+        let array = currentDataSource[index.section]
+        let viewModel = array[index.row].1
+        cell.time.text = viewModel.hoursMinutes
+        cell.status.text = viewModel.descriptionString
+        if viewModel.transactionStatus == .win {
+            cell.inAmount.text = viewModel.amount
+        } else if viewModel.transactionStatus == .loose {
+            cell.outAmount.text = viewModel.amount
+        }
             cell.balance.text = viewModel.balance
-        }
     }
     
     func showNextRangePressed() {
-        monthsAmount+=1
-        if monthsAmount <= dataSource.count {
+        currentDataSource = currentDataSource + globalDataSource[monthsAmount]
+        monthsAmount+=1        
+        if monthsAmount <= globalDataSource.count {
             view?.reloadBalanceHistory()
         }
-        if monthsAmount == dataSource.count {
+        if monthsAmount == globalDataSource.count {
             view?.makeRangeButtonDisabled()
         }
     }
@@ -110,7 +102,6 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
             let filteredByYear = combined.filter{calendar.component(.year, from: $0.0) == year}
             sortedByYear.append(filteredByYear)
         }
-        
         var commonArray = [[[(Date, BalanceHistoryItemViewModel)]]]()
         for array in sortedByYear {
             var sortedByMonth = [[(Date, BalanceHistoryItemViewModel)]]()
@@ -123,8 +114,6 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
             commonArray.append(sortedByMonth)
         }
         let monthForAllYears = commonArray.reduce([], +)
-        
-        
         var accum = [[[(Date, BalanceHistoryItemViewModel)]]]()
         for month in monthForAllYears {
             var monthAccum = [[(Date, BalanceHistoryItemViewModel)]]()
@@ -136,7 +125,8 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
             }
             accum.append(monthAccum)
         }
-        dataSource = accum
+        globalDataSource = accum
+        currentDataSource = globalDataSource[0]
         view?.reloadBalanceHistory()
     }
 }

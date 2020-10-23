@@ -77,25 +77,25 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmy-Pq-MKj">
-                                                                <rect key="frame" x="0.0" y="120" width="197" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="120" width="197" height="60"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQ3-cI-G9b">
-                                                                <rect key="frame" x="207" y="120" width="187" height="0.0"/>
+                                                                <rect key="frame" x="207" y="150" width="187" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeW-25-46w">
-                                                                <rect key="frame" x="50" y="160" width="137" height="60"/>
+                                                                <rect key="frame" x="50" y="220" width="137" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBE-yO-KPa">
-                                                                <rect key="frame" x="207" y="190" width="187" height="0.0"/>
+                                                                <rect key="frame" x="207" y="220" width="187" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -273,7 +273,7 @@
                                                             <constraint firstItem="gZP-XI-KL7" firstAttribute="top" secondItem="8ZX-29-DmF" secondAttribute="bottom" constant="30" id="UqQ-oQ-Qe4"/>
                                                             <constraint firstAttribute="trailing" secondItem="gZP-XI-KL7" secondAttribute="trailing" constant="50" id="Xf2-3J-X4s"/>
                                                             <constraint firstItem="8ZX-29-DmF" firstAttribute="leading" secondItem="2no-gz-guf" secondAttribute="leading" id="Yba-4x-Cc7"/>
-                                                            <constraint firstAttribute="bottom" secondItem="gZP-XI-KL7" secondAttribute="bottom" constant="30" id="b49-hi-0Fd"/>
+                                                            <constraint firstAttribute="bottom" secondItem="gZP-XI-KL7" secondAttribute="bottom" priority="750" constant="30" id="b49-hi-0Fd"/>
                                                             <constraint firstItem="8ZX-29-DmF" firstAttribute="top" secondItem="2no-gz-guf" secondAttribute="top" id="xXp-r2-1fV"/>
                                                         </constraints>
                                                     </view>

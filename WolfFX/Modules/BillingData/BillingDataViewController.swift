@@ -75,16 +75,16 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
 extension BillingDataViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return presenter?.numberOfSections(for: 1) ?? 0
+        return presenter?.numberOfSections() ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.numberOfRows(in: section, currentIndex: 1) ?? 0
+        return presenter?.numberOfRows(in: section) ?? 0
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let items = presenter?.dataSource[1][section], items.count > 0 {
-            return items[1].1.calendarDay
+        if let items = presenter?.currentDataSource {
+            return items[section][0].1.calendarDay
         } else {
             return nil
         }
@@ -92,7 +92,7 @@ extension BillingDataViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "BalanceHistoryCell", for: indexPath) as? BalanceHistoryCell {
-            presenter?.configure(cell: cell, at: indexPath, currentIndex: 1)
+            presenter?.configure(cell: cell, at: indexPath)
             return cell
         }
         fatalError()
