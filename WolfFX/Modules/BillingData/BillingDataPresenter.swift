@@ -52,8 +52,10 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
         cell.status.text = viewModel.descriptionString
         if viewModel.transactionStatus == .win {
             cell.inAmount.text = viewModel.amount
+            cell.outAmount.text = nil
         } else if viewModel.transactionStatus == .loose {
             cell.outAmount.text = viewModel.amount
+            cell.inAmount.text = nil
         }
             cell.balance.text = viewModel.balance
     }

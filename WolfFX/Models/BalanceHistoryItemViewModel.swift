@@ -41,7 +41,8 @@ class BalanceHistoryItemViewModel: NSObject {
             self.transactionStatus = .loose
         }
         if let amout = item.amount {
-            self.amount = String(amout.truncate(places: 2))
+            let absoluteValue = abs(amout)
+            self.amount = String(absoluteValue.truncate(places: 2))
         }
         if let balance = item.newBalance {
             self.balance = String(balance.truncate(places: 2))
