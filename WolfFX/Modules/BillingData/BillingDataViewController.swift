@@ -58,10 +58,12 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
         }
     }
     
-    func reloadBalanceHistory(scrollIndex: Int, completion:@escaping TableReloadedCompletion) {
+    func reloadBalanceHistory(scrollIndex: Int, completion:@escaping TableReloadedCompletion, scrolling: Bool) {
         DispatchQueue.main.async {
             self.tableView.reloadData {
-                self.tableView.scrollToRow(at: IndexPath(row: 0, section: scrollIndex), at: .top, animated: true)
+                if scrolling {
+                    self.tableView.scrollToRow(at: IndexPath(row: 0, section: scrollIndex), at: .top, animated: true)
+                }
                 completion()
             }
         }

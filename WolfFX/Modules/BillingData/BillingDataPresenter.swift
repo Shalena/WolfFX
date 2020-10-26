@@ -66,7 +66,7 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
         if monthsAmount <= globalDataSource.count {
             view?.reloadBalanceHistory(scrollIndex: lastIndex, completion: {
                 self.view?.hideHud()
-            })
+            }, scrolling: true)
         }
         if monthsAmount == globalDataSource.count {
             view?.makeRangeButtonDisabled()
@@ -134,6 +134,6 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
         currentDataSource = globalDataSource[0]
         view?.reloadBalanceHistory(scrollIndex: 0, completion: {
             self.view?.hideHud()
-        })
+        }, scrolling: false)
     }
 }
