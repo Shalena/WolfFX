@@ -35,3 +35,10 @@ class BalanceHistoryItem: NSObject, Codable {
         case transactionType
        }
 }
+
+
+struct Metadata: Codable {
+    var asset: String?
+    var key: String?
+    var status: String?
+}

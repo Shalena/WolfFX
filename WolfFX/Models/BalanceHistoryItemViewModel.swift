@@ -9,8 +9,8 @@
 import Foundation
 
 enum TransactionStatus {
-    case win
-    case loose
+    case positive
+    case negative
 }
 
 class BalanceHistoryItemViewModel: NSObject {
@@ -27,18 +27,25 @@ class BalanceHistoryItemViewModel: NSObject {
             let hoursMinutesDateFormatter = DateFormatter()
             hoursMinutesDateFormatter.dateFormat = "HH:mm"
             let hoursMinutesString = hoursMinutesDateFormatter.string(from: pureDate)
-            self.hoursMinutes = hoursMinutesString
-            
+            self.hoursMinutes = hoursMinutesString            
             let calendarDayFormatter = DateFormatter()
             calendarDayFormatter.dateFormat = "dd-MMM-yyyy"
             let calendarDayString = calendarDayFormatter.string(from: pureDate)
             self.calendarDay = calendarDayString
         }
-        self.descriptionString = item.descriptionString
-        if item.transactionType == "WIN" {
-            self.transactionStatus = .win
-        } else if item.transactionType == "STAKE" {
-            self.transactionStatus = .loose
+        var assetString: String?
+        if let metadataString = item.metadata {
+            let data = metadataString.data(using: .utf8)!
+            let metadata = try? JSONDecoder().decode(Metadata.self, from: data)
+            if let asset = metadata?.asset {
+                assetString = asset
+            }
+        }
+            self.descriptionString = (assetString ?? "") + " " + (item.transactionType ?? "")
+        if item.transactionType == "WIN" || item.transactionType == "DEPOSIT" {
+            self.transactionStatus = .positive
+        } else if item.transactionType == "STAKE" || item.transactionType == "HOLD" {
+            self.transactionStatus = .negative
         }
         if let amout = item.amount {
             let absoluteValue = abs(amout)

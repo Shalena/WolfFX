@@ -50,10 +50,10 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
         let viewModel = array[index.row].1
         cell.time.text = viewModel.hoursMinutes
         cell.status.text = viewModel.descriptionString
-        if viewModel.transactionStatus == .win {
+        if viewModel.transactionStatus == .positive {
             cell.inAmount.text = viewModel.amount
             cell.outAmount.text = nil
-        } else if viewModel.transactionStatus == .loose {
+        } else if viewModel.transactionStatus == .negative {
             cell.outAmount.text = viewModel.amount
             cell.inAmount.text = nil
         }

@@ -89,19 +89,25 @@ extension BillingDataViewController: UITableViewDelegate, UITableViewDataSource 
         return presenter?.numberOfRows(in: section) ?? 0
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let items = presenter?.currentDataSource {
-            return items[section][0].1.calendarDay
-        } else {
-            return nil
-        }
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "BalanceHistoryCell", for: indexPath) as? BalanceHistoryCell {
             presenter?.configure(cell: cell, at: indexPath)
             return cell
         }
         fatalError()
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
+        let label = UILabel(frame: CGRect(x: 10, y: 5, width: tableView.frame.size.width - 20, height: 20))
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.red
+        label.backgroundColor = UIColor.black
+        if let items = presenter?.currentDataSource {
+            label.text = items[section][0].1.calendarDay
+        }
+        view.addSubview(label)
+        view.backgroundColor = UIColor(red: 31.0/255.0, green: 33.0/255.0, blue: 36.0/255.0, alpha: 1)
+        return view
     }
 }
