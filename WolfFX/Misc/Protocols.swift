@@ -156,7 +156,9 @@ protocol BillingDataViewProtocol: LocalizableScreen, ShowHudCapable {
     var presenter: BillingDataEvents? {get set}
     func updateViewWith(viewModel: AccountDataViewModel)
     func reloadBalanceHistory(scrollIndex: Int, completion:@escaping TableReloadedCompletion, scrolling: Bool)
-    func makeRangeButtonDisabled()
+    func showFooterButton()
+    func hideFooterButton()
+    func updateFooterButton(title: String)
 }
 
 protocol BillingDataEvents {
@@ -171,6 +173,10 @@ protocol BillingDataEvents {
 
 protocol BillingDataTransitions {
      
+}
+
+protocol RangeButtonDelegate {
+    func showRangePressed()
 }
 
 // Wallet Screen

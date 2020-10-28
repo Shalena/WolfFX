@@ -99,6 +99,8 @@
 		81D90BAA244B3A320074E2A3 /* WalletPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D90BA9244B3A320074E2A3 /* WalletPresenter.swift */; };
 		81D90BAC244B3A7C0074E2A3 /* WalletRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D90BAB244B3A7C0074E2A3 /* WalletRouter.swift */; };
 		81D90BAE244B3A860074E2A3 /* WalletConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D90BAD244B3A860074E2A3 /* WalletConfigurator.swift */; };
+		81F97D6A254865DD009936BC /* BalanceHistoryFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F97D69254865DC009936BC /* BalanceHistoryFooterView.xib */; };
+		81F97D6C254865FA009936BC /* BalanceHistoryFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F97D6B254865FA009936BC /* BalanceHistoryFooterView.swift */; };
 		81FAA37F24B3AE59006B9140 /* TradeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FAA37E24B3AE59006B9140 /* TradeStatus.swift */; };
 		81FAA38124B4647C006B9140 /* LegalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FAA38024B4647C006B9140 /* LegalInformation.swift */; };
 		EE1C659B0C94D7015423A68C /* Pods_WolfFXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5C99F36564DA7BA05FD685 /* Pods_WolfFXTests.framework */; };
@@ -229,6 +231,8 @@
 		81D90BA9244B3A320074E2A3 /* WalletPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletPresenter.swift; sourceTree = "<group>"; };
 		81D90BAB244B3A7C0074E2A3 /* WalletRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRouter.swift; sourceTree = "<group>"; };
 		81D90BAD244B3A860074E2A3 /* WalletConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConfigurator.swift; sourceTree = "<group>"; };
+		81F97D69254865DC009936BC /* BalanceHistoryFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BalanceHistoryFooterView.xib; sourceTree = "<group>"; };
+		81F97D6B254865FA009936BC /* BalanceHistoryFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHistoryFooterView.swift; sourceTree = "<group>"; };
 		81FAA37E24B3AE59006B9140 /* TradeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeStatus.swift; sourceTree = "<group>"; };
 		81FAA38024B4647C006B9140 /* LegalInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalInformation.swift; sourceTree = "<group>"; };
 		93A4C600226894C900513681 /* Pods-WolfFXUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFXUITests.release.xcconfig"; path = "Target Support Files/Pods-WolfFXUITests/Pods-WolfFXUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -300,6 +304,7 @@
 		811ED6C5241933C80002F559 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				81F97D68254865AE009936BC /* BalanceHistoryFooterView */,
 				8103B188242EC047008D7D5B /* BaseHeaderView */,
 				811ED6C6241935530002F559 /* CheckboxButton.swift */,
 				8103B1912430CC18008D7D5B /* SubmitButton.swift */,
@@ -559,6 +564,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		81F97D68254865AE009936BC /* BalanceHistoryFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				81F97D69254865DC009936BC /* BalanceHistoryFooterView.xib */,
+				81F97D6B254865FA009936BC /* BalanceHistoryFooterView.swift */,
+			);
+			path = BalanceHistoryFooterView;
+			sourceTree = "<group>";
+		};
 		B5B38560DD3AC51588305943 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -690,6 +704,7 @@
 				816C180724055D4900B1551A /* Wallet.storyboard in Resources */,
 				816C180924055D6F00B1551A /* Settings.storyboard in Resources */,
 				8103B18E242EC3C7008D7D5B /* BaseHeaderView.xib in Resources */,
+				81F97D6A254865DD009936BC /* BalanceHistoryFooterView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,6 +839,7 @@
 				816C17CD24050A0F00B1551A /* SceneDelegate.swift in Sources */,
 				815FD04D244F76DB00EE7083 /* ExchangeRate.swift in Sources */,
 				81AF5B2E246C60070058FC03 /* RangeJsonAcception.swift in Sources */,
+				81F97D6C254865FA009936BC /* BalanceHistoryFooterView.swift in Sources */,
 				814D31352464414E00C092EC /* AssetsDataSource.swift in Sources */,
 				8103B185242EB161008D7D5B /* ProfileDetailsConfigurator.swift in Sources */,
 				81AF5B2C246C35D00058FC03 /* Range.swift in Sources */,

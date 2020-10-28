@@ -141,15 +141,27 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
   struct nib {
+    /// Nib `BalanceHistoryFooterView`.
+    static let balanceHistoryFooterView = _R.nib._BalanceHistoryFooterView()
     /// Nib `BaseHeaderView`.
     static let baseHeaderView = _R.nib._BaseHeaderView()
+    
+    /// `UINib(name: "BalanceHistoryFooterView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.balanceHistoryFooterView) instead")
+    static func balanceHistoryFooterView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.balanceHistoryFooterView)
+    }
     
     /// `UINib(name: "BaseHeaderView", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.baseHeaderView) instead")
     static func baseHeaderView(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.baseHeaderView)
+    }
+    
+    static func balanceHistoryFooterView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.balanceHistoryFooterView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
     
     static func baseHeaderView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
@@ -1018,6 +1030,17 @@ struct _R: Rswift.Validatable {
   struct nib: Rswift.Validatable {
     static func validate() throws {
       try _BaseHeaderView.validate()
+    }
+    
+    struct _BalanceHistoryFooterView: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "BalanceHistoryFooterView"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+      
+      fileprivate init() {}
     }
     
     struct _BaseHeaderView: Rswift.NibResourceType, Rswift.Validatable {

@@ -18,7 +18,7 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
     var balanceHistoryObservation: NSKeyValueObservation?
     var globalDataSource = [[[(Date, BalanceHistoryItemViewModel)]]]() // months
     var currentDataSource = [[(Date, BalanceHistoryItemViewModel)]]()  // days
-    var monthsAmount = 1
+    var monthsAmount = 1 // how many month you see at the current moment
     
     init (with view: BillingDataViewProtocol, router: BillingDataTransitions) {
         self.view = view
@@ -68,10 +68,11 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
         if monthsAmount <= globalDataSource.count {
             view?.reloadBalanceHistory(scrollIndex: lastIndex, completion: {
                 self.view?.hideHud()
+                self.updateFooterButtonTitle()
             }, scrolling: true)
         }
         if monthsAmount == globalDataSource.count {
-            view?.makeRangeButtonDisabled()
+            view?.hideFooterButton()
         }
     }
     
@@ -136,6 +137,21 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
         currentDataSource = globalDataSource[0]
         view?.reloadBalanceHistory(scrollIndex: 0, completion: {
             self.view?.hideHud()
+            self.view?.showFooterButton()
+            self.updateFooterButtonTitle()
         }, scrolling: false)
+    }
+    
+    func updateFooterButtonTitle() {
+        let nextMonthArray = globalDataSource[monthsAmount]
+        let firstDateArray = nextMonthArray.first
+        let firstDate = firstDateArray?.first
+        guard let date = firstDate?.0 else { return }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "LLLL"
+        let nameOfMonth = dateFormatter.string(from: date)
+        let numberOfDaysInMonth = date.numberOfDaysInMonth()
+        let title = "Show range " + nameOfMonth + " 1 to " + String(numberOfDaysInMonth)
+        view?.updateFooterButton(title: title)
     }
 }

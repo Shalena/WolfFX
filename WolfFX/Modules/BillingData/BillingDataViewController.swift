@@ -6,11 +6,13 @@
 //  Copyright © 2020 Елена Острожинская. All rights reserved.
 //
 
+let footerHeight = CGFloat(100.00)
 typealias TableReloadedCompletion = (() -> (Void))
 
 import UIKit
 
-class BillingDataViewController: UIViewController, BillingDataViewProtocol, NavigationDesign {
+class BillingDataViewController: UIViewController, BillingDataViewProtocol, NavigationDesign, RangeButtonDelegate {
+   
     @IBOutlet weak var billingDataTitle: UILabel!
     @IBOutlet weak var balanceTitle: UILabel!
     @IBOutlet weak var balanceValue: UILabel!
@@ -25,15 +27,14 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
     @IBOutlet weak var dateToTitle: UILabel!
     @IBOutlet weak var dateToValue: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var rangeButton: SubmitButton!
-    
+    var footerView: BalanceHistoryFooterView?
     var presenter: BillingDataEvents?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBaseNavigationDesign()
+        footerView = BalanceHistoryFooterView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: footerHeight), sender: self)
         presenter?.billingDataViewIsReady()
-        rangeButton.setup(backColor: .clear, borderColor: .red, text: "Show previous month", textColor: .white)
         localize()
     }
     
@@ -69,13 +70,20 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
         }
     }
     
-    func makeRangeButtonDisabled() {
-        rangeButton.isEnabled = false
-        rangeButton.setup(backColor: .clear, borderColor: .gray)
+    func showFooterButton() {
+        tableView.tableFooterView = footerView
+    }
+      
+    func hideFooterButton() {
+        tableView.tableFooterView = nil
     }
     
-    @IBAction func showRangeButtonPressed(_ sender: Any) {
+    func showRangePressed() {
         presenter?.showNextRangePressed()
+    }
+    
+    func updateFooterButton(title: String) {
+        footerView?.setButton(title: title)
     }
 }
 

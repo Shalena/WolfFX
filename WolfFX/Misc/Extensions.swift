@@ -68,6 +68,15 @@ extension Date {
     func endOfMonth() -> Date {
         return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth())!
     }
+    
+    func numberOfDaysInMonth() -> Int{
+        let calendar = Calendar.current
+        let dateComponents = DateComponents(year: calendar.component(.year, from: self), month: calendar.component(.month, from: self))
+        let date = calendar.date(from: dateComponents)!
+        let range = calendar.range(of: .day, in: .month, for: date)!
+        let numDays = range.count
+        return numDays
+    }
 }
 
 extension UISegmentedControl {
