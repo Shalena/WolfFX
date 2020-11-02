@@ -68,6 +68,7 @@
 		816C181824056BAE00B1551A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C181724056BAD00B1551A /* R.generated.swift */; };
 		816F67EA240857F50016AA95 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816F67E9240857F50016AA95 /* LoginViewController.swift */; };
 		816F67ED2408585A0016AA95 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 816F67EC2408585A0016AA95 /* Login.storyboard */; };
+		817097B12550547800CA3CAB /* ChartXaxisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817097B02550547800CA3CAB /* ChartXaxisFormatter.swift */; };
 		817324C7243674EB000DFB86 /* DataReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817324C6243674EB000DFB86 /* DataReceiver.swift */; };
 		817324C92437CC4B000DFB86 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817324C82437CC4B000DFB86 /* Converter.swift */; };
 		817324CB2437CFE4000DFB86 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817324CA2437CFE4000DFB86 /* Currency.swift */; };
@@ -198,6 +199,7 @@
 		816C181724056BAD00B1551A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = WolfFX/R.generated.swift; sourceTree = "<group>"; };
 		816F67E9240857F50016AA95 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		816F67EC2408585A0016AA95 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		817097B02550547800CA3CAB /* ChartXaxisFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartXaxisFormatter.swift; sourceTree = "<group>"; };
 		817324C6243674EB000DFB86 /* DataReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceiver.swift; sourceTree = "<group>"; };
 		817324C82437CC4B000DFB86 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		817324CA2437CFE4000DFB86 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				811ED6C8241971110002F559 /* Validation.swift */,
 				8103B18B242EC2EE008D7D5B /* Extensions.swift */,
 				817324CA2437CFE4000DFB86 /* Currency.swift */,
+				817097B02550547800CA3CAB /* ChartXaxisFormatter.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -866,6 +869,7 @@
 				8145C8A52405DD8300414AE2 /* Design.swift in Sources */,
 				817E5D29243B73FE0088E60A /* UserJsonAcception.swift in Sources */,
 				817324C92437CC4B000DFB86 /* Converter.swift in Sources */,
+				817097B12550547800CA3CAB /* ChartXaxisFormatter.swift in Sources */,
 				81A4B35A2413A4BC004A02CB /* LoginRouter.swift in Sources */,
 				81A4B35024105D98004A02CB /* SignupViewController.swift in Sources */,
 				8145C8A32405DD5700414AE2 /* Protocols.swift in Sources */,

@@ -137,7 +137,6 @@ protocol HomeEvents {
     var selectedExpiry: PickerEntry? {get set}
     var selectedAsset: Asset? {get set}
     var tableDataSource: AssetsDataSource? {get set}
-    var axisValueFormatter: IAxisValueFormatter? {get set}
     func homeViewIsReady()
     func textForInfoLabel() -> String?
     func update(cell: AssetCell, with text: String)

@@ -42,7 +42,6 @@ class HomePresenter: NSObject, HomeEvents {
     var priceTimer: Timer?
     var assetTimer: Timer?
     var currentRange: Range?
-    var axisValueFormatter: IAxisValueFormatter?
     var axisLabels = [String]()
     let converter = Converter()
     
@@ -210,8 +209,6 @@ class HomePresenter: NSObject, HomeEvents {
     private func observePriceHistory() {
          priceHistoryObservation = observe(\.dataReceiver?.priceHistory, options: [.old, .new]) { object, change in
              if let priceEntries = change.newValue as? [PriceEntry] {
-                self.axisLabels = priceEntries.map({$0.label})
-                self.axisValueFormatter = IndexAxisValueFormatter(values: self.axisLabels)
                  DispatchQueue.main.async {
                      self.view?.updateChart(with: priceEntries)
                  }             
@@ -222,11 +219,10 @@ class HomePresenter: NSObject, HomeEvents {
      
       private func observePrice() {
          priceObservation = observe(\.dataReceiver?.assetPrice, options: [.old, .new]) { object, change in
-             if let assetPrice = change.newValue as? AssetPrice, let axisLabel = assetPrice.label {
+             if let assetPrice = change.newValue as? AssetPrice {
                  DispatchQueue.main.async {
-                    self.axisLabels.append(axisLabel)
-                    self.axisValueFormatter = IndexAxisValueFormatter(values: self.axisLabels)
                     self.view?.updateChartWithNewValue(assetPrice: assetPrice)
+                    self.view?.hideHud()
                  }
              }
          }
@@ -235,7 +231,6 @@ class HomePresenter: NSObject, HomeEvents {
     private func observeRange() {
            rangeObservation = observe(\.dataReceiver?.range, options: [.old, .new]) { object, change in
                if let range = change.newValue as? Range {
-                   self.view?.hideHud()
                    self.currentRange = range
                    if let min = range.min, let max = range.max {
                         let minValueString = self.converter.minString(from: min)
