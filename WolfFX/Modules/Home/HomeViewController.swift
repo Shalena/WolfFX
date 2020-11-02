@@ -118,21 +118,15 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     }
     
     func updateChart(with entries: [PriceEntry]) {
-           lineChartEntries = [ChartDataEntry]()
-           let values = entries.map({$0.value})
-           for i in 0..<values.count {
-               let chartDataEntry = ChartDataEntry(x: Double(i), y: values[i])
-               lineChartEntries.append(chartDataEntry)
-           }
+           let lineChartEntries = entries.map{ ChartDataEntry(x: $0.timesTemp, y: $0.value)}
            let lineSet = LineChartDataSet(entries: lineChartEntries, label: nil)
            lineSet.colors = [UIColor.red]
            lineSet.drawCirclesEnabled = false
-           let gradColors = [UIColor.red.cgColor, UIColor.clear.cgColor]
-           let colorLocations:[CGFloat] = [0.0, 1.0]
-           if let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradColors as CFArray, locations: colorLocations) {
-               lineSet.fill = Fill(linearGradient: gradient, angle: 90.0)
-               lineSet.drawFilledEnabled = true
-           }
+           let gradColors = [UIColor.red.cgColor, UIColor.clear.cgColor] as CFArray
+           let colorLocations: [CGFloat] = [1.0, 0.0]
+           let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradColors, locations: colorLocations)
+           lineSet.fill = Fill(linearGradient: gradient!, angle: 90.0)
+           lineSet.drawFilledEnabled = true
            let lineChartViewData = LineChartData(dataSets: [lineSet])
            lineChartViewData.setDrawValues(false)
            lineChartView.xAxis.labelPosition = XAxis.LabelPosition.bottom
@@ -175,44 +169,79 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     }
         
     func updateChartWithNewValue(assetPrice: AssetPrice) {
-        guard let newValue = assetPrice.price else { return }
+        guard let price = assetPrice.price else { return }
+        guard let priceTime = assetPrice.priceTime else { return }
         guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
-        currentIndex = Double(dataSet.entryCount)
-        let chartEntry = ChartDataEntry(x: currentIndex, y: newValue)
+        let newTime = Double(priceTime / 1000)
+        let chartEntry = ChartDataEntry(x: newTime, y: price)
         dataSet.addEntry(chartEntry)
         let xAxis = self.lineChartView.xAxis 
         xAxis.valueFormatter = presenter?.axisValueFormatter
         lineChartView.data?.notifyDataChanged()
         lineChartView.notifyDataSetChanged()
-        lineChartView.setVisibleXRangeMaximum(50)
-        lineChartView.moveViewToX(currentIndex)
-        let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
-        let pt = transform.pixelForValues(x: chartEntry.x, y: chartEntry.y)
-        let frame = CGRect(x: pt.x,
-                           y: pt.y - defaultWindowHeight / 2,
-                       width: currentWindowWidth,
-                      height: defaultWindowHeight)
-        UIView.animate(withDuration: 0.1) {
-            self.infoView.frame = frame
+        if dataSet.entryCount > 200 {
+            dataSet.removeFirst()
         }
-        infoView.frame = frame
-            for snapshot in shapshots {
-                snapshot.view.removeFromSuperview()
-                if let snapshotEntry = dataSet.entryForIndex(snapshot.index) {
-                    let snapPixel = transform.pixelForValues(x: snapshotEntry.x, y: snapshotEntry.y)
-                    let snapFrame = CGRect(x: snapPixel.x,
-                                           y: snapPixel.y - defaultWindowHeight / 2,
-                                           width: snapshot.width, height: defaultWindowHeight)
-                    snapshot.view.frame = snapFrame
-                    chartConteinerView.addSubview(snapshot.view)
-                    compareWithMaskAndUpdateFrame(snapshot: snapshot)
-                    if snapshot.view.overlap(infoView) {
-                        snapshot.paintWinColor()
-                    } else {
-                        snapshot.paintLooseColor()
-                    }
+        
+        let average = (lineChartView.leftAxis.axisMaximum + lineChartView.leftAxis.axisMinimum) / 2
+        let difference = price - average
+        if difference > 0 {
+            lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum + difference
+            lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum + difference
+        } else if difference < 0 {
+            lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum - abs(difference)
+            lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum - abs(difference)
+        }
+        var yArray = [Double]()
+            for i in 0..<dataSet.entryCount - 1 {
+                if let value = dataSet.entryForIndex(i)?.y {
+                    yArray.append(value)
                 }
             }
+        var max: Double?
+        var min: Double?
+        let higherArray = yArray.filter({$0 > lineChartView.leftAxis.axisMaximum})
+        max = higherArray.max() ?? nil
+        let lowerArray = yArray.filter({$0 < lineChartView.leftAxis.axisMinimum})
+        min = lowerArray.min() ?? nil
+        let peaks = [max, min].compactMap ({ $0 })
+        let peak = peaks.map{abs($0)}.max()
+        let multiplier = [((peak ?? lineChartView.leftAxis.axisMaximum) / lineChartView.leftAxis.axisMaximum), ( (peak ?? lineChartView.leftAxis.axisMinimum) / lineChartView.leftAxis.axisMinimum)].max() ?? 1.0
+        lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum * multiplier
+        lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum * multiplier
+        
+//        let peak = [((max ?? 0) / lineChartView.leftAxis.axisMaximum), ((min ?? 0) / lineChartView.leftAxis.axisMaximum)].max()
+//        if peak > 0.0 {
+//            multiplier = [(peak! / lineChartView.leftAxis.axisMaximum), (peak! / lineChartView.leftAxis.axisMinimum)].max()
+//        }
+        
+//        let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
+//        let pt = transform.pixelForValues(x: chartEntry.x, y: chartEntry.y)
+//        let frame = CGRect(x: pt.x,
+//                           y: pt.y - defaultWindowHeight / 2,
+//                       width: currentWindowWidth,
+//                      height: defaultWindowHeight)
+//        UIView.animate(withDuration: 0.1) {
+//            self.infoView.frame = frame
+//        }
+//        infoView.frame = frame
+//            for snapshot in shapshots {
+//                snapshot.view.removeFromSuperview()
+//                if let snapshotEntry = dataSet.entryForIndex(snapshot.index) {
+//                    let snapPixel = transform.pixelForValues(x: snapshotEntry.x, y: snapshotEntry.y)
+//                    let snapFrame = CGRect(x: snapPixel.x,
+//                                           y: snapPixel.y - defaultWindowHeight / 2,
+//                                           width: snapshot.width, height: defaultWindowHeight)
+//                    snapshot.view.frame = snapFrame
+//                    chartConteinerView.addSubview(snapshot.view)
+//                    compareWithMaskAndUpdateFrame(snapshot: snapshot)
+//                    if snapshot.view.overlap(infoView) {
+//                        snapshot.paintWinColor()
+//                    } else {
+//                        snapshot.paintLooseColor()
+//                    }
+//                }
+//            }
        }
     
     func updateAssetButton(with title: String) {

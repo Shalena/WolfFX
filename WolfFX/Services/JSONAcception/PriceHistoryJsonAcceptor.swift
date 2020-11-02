@@ -10,18 +10,18 @@ import Foundation
 
 class PriceEntry: NSObject {
 var value: Double
-var date: Date
+var timesTemp: TimeInterval
 var label: String
 
 init(value: Double,
       date: Int64) {
     self.value = value
     let dateValue = Date(timeIntervalSince1970: TimeInterval(date / 1000))
-    self.date = dateValue
     let formatter = DateFormatter()
     formatter.dateFormat = "HH:mm"
     let label = formatter.string(from: dateValue)
     self.label = label
+    self.timesTemp = TimeInterval(date / 1000) 
    }
 }
 
