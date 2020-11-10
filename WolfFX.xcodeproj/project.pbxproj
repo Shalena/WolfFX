@@ -47,6 +47,8 @@
 		815FD04D244F76DB00EE7083 /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815FD04C244F76DB00EE7083 /* ExchangeRate.swift */; };
 		8160E7A5248C22B10019B2F4 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8160E7A4248C22B10019B2F4 /* LanguageCell.swift */; };
 		8160E7A7248DF0490019B2F4 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8160E7A6248DF0490019B2F4 /* Language.swift */; };
+		816B47A92559FBA3002C9CBB /* OrdersJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B47A82559FBA3002C9CBB /* OrdersJsonAcception.swift */; };
+		816B47AB255A000A002C9CBB /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B47AA255A000A002C9CBB /* Order.swift */; };
 		816C17CB24050A0F00B1551A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C17CA24050A0F00B1551A /* AppDelegate.swift */; };
 		816C17CD24050A0F00B1551A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C17CC24050A0F00B1551A /* SceneDelegate.swift */; };
 		816C17CF24050A0F00B1551A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C17CE24050A0F00B1551A /* ContentView.swift */; };
@@ -172,6 +174,8 @@
 		815FD04C244F76DB00EE7083 /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
 		8160E7A4248C22B10019B2F4 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		8160E7A6248DF0490019B2F4 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		816B47A82559FBA3002C9CBB /* OrdersJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersJsonAcception.swift; sourceTree = "<group>"; };
+		816B47AA255A000A002C9CBB /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		816C17C724050A0F00B1551A /* WolfFX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WolfFX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		816C17CA24050A0F00B1551A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		816C17CC24050A0F00B1551A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -515,6 +519,7 @@
 				81AF5B2D246C60070058FC03 /* RangeJsonAcception.swift */,
 				810886A824A4E48700265862 /* OrderExecutorJSONAcception.swift */,
 				8145C4AF2535D030003D8423 /* BalanceHistoryJsonAcception.swift */,
+				816B47A82559FBA3002C9CBB /* OrdersJsonAcception.swift */,
 			);
 			path = JSONAcception;
 			sourceTree = "<group>";
@@ -563,6 +568,7 @@
 				81992CFB24E7E89600D1229F /* Snapshot.swift */,
 				8145C4B12535D437003D8423 /* BalanceHistoryItem.swift */,
 				8145C4B32535E520003D8423 /* BalanceHistoryItemViewModel.swift */,
+				816B47AA255A000A002C9CBB /* Order.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -842,6 +848,7 @@
 				816C17CD24050A0F00B1551A /* SceneDelegate.swift in Sources */,
 				815FD04D244F76DB00EE7083 /* ExchangeRate.swift in Sources */,
 				81AF5B2E246C60070058FC03 /* RangeJsonAcception.swift in Sources */,
+				816B47AB255A000A002C9CBB /* Order.swift in Sources */,
 				81F97D6C254865FA009936BC /* BalanceHistoryFooterView.swift in Sources */,
 				814D31352464414E00C092EC /* AssetsDataSource.swift in Sources */,
 				8103B185242EB161008D7D5B /* ProfileDetailsConfigurator.swift in Sources */,
@@ -873,6 +880,7 @@
 				81A4B35A2413A4BC004A02CB /* LoginRouter.swift in Sources */,
 				81A4B35024105D98004A02CB /* SignupViewController.swift in Sources */,
 				8145C8A32405DD5700414AE2 /* Protocols.swift in Sources */,
+				816B47A92559FBA3002C9CBB /* OrdersJsonAcception.swift in Sources */,
 				81A4B35E2413ADDC004A02CB /* HomePresenter.swift in Sources */,
 				817324CB2437CFE4000DFB86 /* Currency.swift in Sources */,
 				8145C4B42535E520003D8423 /* BalanceHistoryItemViewModel.swift in Sources */,

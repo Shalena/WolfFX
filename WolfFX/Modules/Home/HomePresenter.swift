@@ -37,6 +37,7 @@ class HomePresenter: NSObject, HomeEvents {
     var priceObservation: NSKeyValueObservation?
     var rangeObservation: NSKeyValueObservation?
     var tradeStatusObservation: NSKeyValueObservation?
+    var ordersObservation: NSKeyValueObservation?
     var assets: [Asset]?
     var tableDataSource: AssetsDataSource?
     var priceTimer: Timer?
@@ -102,6 +103,7 @@ class HomePresenter: NSObject, HomeEvents {
         observePrice()
         observeRange()
         observeTradeStatus()
+        observeOrders()
         if shouldPerformHTTPLogin {
           performHTTPLogin()
         } else {
@@ -115,6 +117,14 @@ class HomePresenter: NSObject, HomeEvents {
         } else {
             router?.goToDeposit()
         }
+    }
+    
+    func maxForSnapshot() -> Double? {
+        return currentRange?.max
+    }
+    
+    func minForSnapshot() -> Double? {
+        return currentRange?.min
     }
     
     private func setupSelectedValues() {
@@ -211,8 +221,12 @@ class HomePresenter: NSObject, HomeEvents {
              if let priceEntries = change.newValue as? [PriceEntry] {
                  DispatchQueue.main.async {
                      self.view?.updateChart(with: priceEntries)
-                 }             
+                }             
                 self.getPrice()
+                let minDate = priceEntries[0].timesTemp
+                if let id = self.selectedAsset?.id {
+                    WSManager.shared.getOrderHistoryForChart(assetId: id, minDate: minDate)
+                }
              }
          }
      }
@@ -238,11 +252,20 @@ class HomePresenter: NSObject, HomeEvents {
                         DispatchQueue.main.async {
                             self.view?.updateMinValue(with: minValueString)
                             self.view?.updateMaxValue(with: maxValueString)
+                            //self.view?.updateInfoViewFrame(from: max, min: min)
                         }
                     }
                 }
             }
         }
+    
+    private func observeOrders() {
+        ordersObservation = observe(\.dataReceiver?.orders, options: [.old, .new]) { object, change in
+            if let orders = change.newValue as? [Order] {
+            
+            }
+        }
+    }
     
     private func getPriceHistory() {
         if let assetId = selectedAsset?.id {
@@ -301,7 +324,7 @@ class HomePresenter: NSObject, HomeEvents {
     func textForInfoLabel() -> String? {
         if let investment = selectedInvestment, let leverage = selectedLeverage {
             let product: Double = Double(investment.value * leverage.value)
-            let text = leverage.title + "\n" + String(product)
+            let text = leverage.title + " " + String(product)
             return text
         } else {
           return nil

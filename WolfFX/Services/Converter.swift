@@ -25,10 +25,11 @@ class Converter {
         if let currency = currencyString, let sign = Currency(rawValue: currency)?.sign {
             currencySign = sign
         }
-      
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 2
         let realBalance = realMoneyPart + bonusPart
-        let realBalanceTruncate = realBalance.truncate(places: 2)
-        let realBalanceString = String(realBalanceTruncate)
+        let realBalanceString =  formatter.string(from: NSNumber(value: realBalance.truncate(places: 2))) ?? ""
         let resultString = [currencySign, realBalanceString].joined(separator: " ")
         return resultString
     }
@@ -40,16 +41,20 @@ class Converter {
         var dateFromString = ""
         var dateToString = ""
         
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 2
+ 
         if let realMoney = realMoney {
-            realMoneyString = String(realMoney.truncate(places: 2))
+            realMoneyString = formatter.string(from: (NSNumber(value: realMoney.truncate(places: 2)))) ?? ""
         }
         
         if let bonus = bonus {
-            bonusString = String(bonus.truncate(places: 2))
+            bonusString = formatter.string(from: (NSNumber(value: bonus.truncate(places: 2)))) ?? ""
         }
         
         if let amauntPendingWithdraw = amauntPendingWithdraw {
-            amauntPendingWithdrawString = String(amauntPendingWithdraw.truncate(places: 2))
+            amauntPendingWithdrawString = formatter.string(from: (NSNumber(value: amauntPendingWithdraw.truncate(places: 2)))) ?? ""
         }
         
         var timeIntervalFrom: Double?

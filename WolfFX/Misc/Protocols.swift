@@ -124,6 +124,7 @@ protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, 
     func updateChartWithNewValue(assetPrice: AssetPrice)
     func updateMinValue(with string: String)
     func updateMaxValue(with string: String)
+    func updateInfoViewFrame(from max: Double, min: Double )
 }
 
 protocol HomeEvents {
@@ -141,6 +142,8 @@ protocol HomeEvents {
     func textForInfoLabel() -> String?
     func update(cell: AssetCell, with text: String)
     func tradeAction()
+    func maxForSnapshot() -> Double?
+    func minForSnapshot() -> Double?
 }
 
 protocol HomeTransitions {

@@ -11,9 +11,12 @@ import UIKit
 import Charts
 
 struct Snapshot {
-      var index: Int
+      var entry: ChartDataEntry
+      var max: Double 
+      var min: Double
       let width: CGFloat
       var view = UIView()
+      var duration: Int64
      
     func paintWinColor () {
         view.layer.borderColor = UIColor.green.withAlphaComponent(0.7).cgColor

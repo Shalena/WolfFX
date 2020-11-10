@@ -39,7 +39,7 @@ class WSManager: WebsocketAccess {
     static let shared = WSManager()
     var dataReceiver = DataReceiver()
     private var webSocketTask: URLSessionWebSocketTask?
-    private let arrayOfAcceptors: [JsonAcception] = [UserJsonAcception(), BalanceJsonAcception(), BalanceHistoryJsonAcception(), PriceHistoryJsonAcception(), AssetsJsonAcception(), AssetPriceJsonAcception(), RangeJsonAcception(), OrderExecutorJSONAcception()]
+    private let arrayOfAcceptors: [JsonAcception] = [UserJsonAcception(), BalanceJsonAcception(), BalanceHistoryJsonAcception(), PriceHistoryJsonAcception(), AssetsJsonAcception(), AssetPriceJsonAcception(), RangeJsonAcception(), OrderExecutorJSONAcception(), OrdersJsonAcception()]
     private let websocketJsonCreator = WebsocketJsonCreator()
     private var timer: Timer?
 
@@ -154,6 +154,15 @@ class WSManager: WebsocketAccess {
         guard let username = user.email else { return }
         let rangeId = generateVersionOneAkaTimeBasedUUID()
         let json = websocketJsonCreator.assetRange(rangeId: rangeId, leverage: leverage, timeDuration: timeDuration, type: type, currency: currency, assetId: assetId, stake: stake, username: username)
+        if let messageString = Converter().jsonToString(json: json) {
+            send(messageString: messageString)
+        }
+    }
+    
+    func getOrderHistoryForChart(assetId: Int64, minDate: Double) {
+        guard let email = dataReceiver.user?.email else { return }
+        let maxDate = Date().timeIntervalSince1970 * 1000
+        let json = websocketJsonCreator.getOrdersHistoryJson(email: email, assetId: assetId, minDate: minDate, maxDate: maxDate)
         if let messageString = Converter().jsonToString(json: json) {
             send(messageString: messageString)
         }

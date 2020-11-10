@@ -27,12 +27,6 @@ extension UIView {
          NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: container, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
          NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: container, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
      }
-    
-    func overlap(_ view: UIView) -> Bool {
-        let firstViewRange = self.frame.minY ... self.frame.maxY
-        let secondViewRange = view.frame.minY ... view.frame.maxY
-        return firstViewRange.overlaps(secondViewRange)
-    }
 }
 
 
@@ -147,4 +141,8 @@ extension String {
     }
 }
 
-
+extension CGPoint {
+    func distance(to point: CGPoint) -> CGFloat {
+        return sqrt(pow(x - point.x, 2) + pow(y - point.y, 2))
+    }
+}
