@@ -115,6 +115,7 @@ protocol SignupTransitions {
 
 protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, ShowErrorCapable {
     var presenter: HomeEvents? {get set}
+    var shapshots: [Snapshot] {get set}
     func setupPlayButtonDesign()
     func updateAssetsTable()
     func reloadInvestmentPicker()
@@ -124,7 +125,8 @@ protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, 
     func updateChartWithNewValue(assetPrice: AssetPrice)
     func updateMinValue(with string: String)
     func updateMaxValue(with string: String)
-    func updateInfoViewFrame(from max: Double, min: Double )
+    func updateInfoViewFrame(from max: Double, min: Double)
+    func initialXvalue() -> Double?
 }
 
 protocol HomeEvents {

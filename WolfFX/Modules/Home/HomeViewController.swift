@@ -14,7 +14,6 @@ let valueViewHeight = CGFloat(30.00)
 let valueViewWidth = CGFloat(70.00)
 
 class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, ChartViewDelegate {
-   
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var chartConteinerView: UIView!
     @IBOutlet weak var expireTimeView: UIView!
@@ -35,6 +34,9 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     
     @IBOutlet weak var minValueLabel: UILabel!
     @IBOutlet weak var maxValueLabel: UILabel!
+    
+    @IBOutlet weak var startDateLabel: UILabel!
+    @IBOutlet weak var expireDateLabel: UILabel!
     
     var presenter: HomeEvents?
     var infoView = UIView()
@@ -57,6 +59,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 10)
         label.textColor = UIColor.red
+        label.textAlignment = .center
         return label
     }()
     private let valueLabel: UILabel = {
@@ -72,6 +75,27 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     
     override func viewWillAppear(_ animated: Bool) {
          localize()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self]  (_) in
+            self?.getTime()
+        })
+    }
+
+    func getTime() {
+        guard let expiryValue = presenter?.selectedExpiry?.value else {return}
+        let calendar = Calendar.current
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        let startDate = Date()
+        if let expiryDate = calendar.date(byAdding: .second, value: Int(expiryValue), to: startDate) {
+            let startTimeString = formatter.string(from: startDate)
+            let expiryTimeString = formatter.string(from: expiryDate)
+            startDateLabel.text = startTimeString
+            expireDateLabel.text = expiryTimeString
+        }
     }
     
     override func viewDidLoad() {
@@ -239,10 +263,11 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
             let bottom = transform.pixelForValues(x: 0, y: snapshot.min)
             let height = top.distance(to: bottom)
             var width = CGFloat(0.0)
+            let startPixel = transform.pixelForValues(x: snapshot.entry.x, y: 0)// y is 0 because we need to know the width of chart part
             if snapshot.entry.x + Double(snapshot.duration) <= newTime {
-                width = snapshot.view.frame.size.width
-            } else {
-                let startPixel = transform.pixelForValues(x: snapshot.entry.x, y: 0)// y is 0 because we need to know the width of chart part
+                let endPixel = transform.pixelForValues(x: snapshot.entry.x + Double(snapshot.duration), y: 0)
+                width = startPixel.distance(to: endPixel)
+            } else {                
                 let borderPixel = transform.pixelForValues(x: chartEntry.x, y: 0)
                 let chartWidthPart = borderPixel.distance(to: startPixel)
                 let chartTimeDifference = newTime - snapshot.entry.x
@@ -263,9 +288,9 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                 snapshot.paintWinColor()
             } else {
                 snapshot.paintLooseColor()
-                }
             }
-       }
+        }
+    }
 
     private func checkExpireScaleRange(from timeDifference: TimeInterval) {
         if timeDifference <= 30  {
@@ -464,10 +489,16 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         guard let max = presenter?.maxForSnapshot() else {return}
         guard let min = presenter?.minForSnapshot() else {return}
         guard let duration = presenter?.selectedExpiry?.value else {return}
-        let snapshot = Snapshot( entry: entry, max: max, min: min, width: currentWindowWidth, duration: duration)
-        snapshot.view.layer.borderWidth = 0.5
+        let snapshot = Snapshot( entry: entry, max: max, min: min, width: currentWindowWidth, duration: duration, orderStatus: .live)
         snapshot.paintWinColor()
         shapshots.append(snapshot)
+    }
+    
+    func initialXvalue() -> Double? {
+        guard let chartDataSet = lineChartView.data?.dataSets[0] else {return nil}
+        guard let firstEntry = chartDataSet.entryForIndex(0) else {return nil}
+        let time = firstEntry.x
+        return time
     }
     
     @IBAction func changeAssetPressed(_ sender: Any) {
@@ -532,6 +563,27 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             let width = expireTimeView.frame.size.width / CGFloat(count) * CGFloat(row + 1)
             currentWindowWidth = width
             expireScaleRange = width
+            
+            if let value = selectedExpiry?.value {
+                let intvalue = Int(value)
+                let outsideInfoLabelRange = 0...120
+                let insideInfoLabelRange = 121...3600
+                if outsideInfoLabelRange.contains(intvalue) {
+                    NSLayoutConstraint.activate([
+                        infoView.topAnchor.constraint(equalTo: infoLabel.topAnchor),
+                        infoView.bottomAnchor.constraint(equalTo: infoLabel.bottomAnchor),
+                        infoView.trailingAnchor.constraint(equalTo: infoLabel.leadingAnchor),
+                    ])
+                } else if insideInfoLabelRange.contains(intvalue) {
+                    NSLayoutConstraint.activate([
+                        infoView.topAnchor.constraint(equalTo: infoLabel.topAnchor),
+                        infoView.bottomAnchor.constraint(equalTo: infoLabel.bottomAnchor),
+                        infoView.trailingAnchor.constraint(equalTo: infoLabel.trailingAnchor),
+                        infoView.leadingAnchor.constraint(equalTo: infoLabel.leadingAnchor)
+                    ])
+                }
+                self.view.layoutIfNeeded()
+            }
         }
         infoLabel.text = presenter?.textForInfoLabel()
         self.view.endEditing(true)

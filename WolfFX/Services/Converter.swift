@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Charts
 
 class Converter {
      private func realBalanceHeaderString(from realMoney: Double?, currencyString: String?, bonus: Double?) -> String {
@@ -102,6 +103,34 @@ class Converter {
     func minString(from max: Double) -> String {
         let valueString = String(max.truncate(places: 2))
         return ["min:", valueString].joined(separator: " ")
+    }
+    
+    func shapshotsFrom(orders: [Order], initialTime: Double) -> [Snapshot] {
+        let initialValue = initialTime * 1000 // server returns time in miliseconds, in the chart it was already /1000
+        var filtered = [Order]()
+        for order in orders {
+            if let startTime = order.startTime {
+                if startTime >= initialValue {
+                    filtered.append(order)
+                }
+            }
+        }
+        var shapshots = [Snapshot]()
+        for order in filtered {
+            if let startTime = order.startTime,
+               let resultedPrice = order.resultedPrice,
+               let max = order.upperBound,
+               let min = order.lowerBound,
+                let expiryTime = order.expiryTime,
+               let status = order.status {
+               let duration = Int64((expiryTime - startTime) / 1000)
+               let startTimeInSeconds = startTime / 1000
+               let entry = ChartDataEntry(x: startTimeInSeconds, y: resultedPrice)
+               let snapshot = Snapshot(entry: entry, max: max, min: min, width: 0.0, duration: duration, orderStatus: OrderStatus(rawValue: status) ?? .expired)
+              shapshots.append(snapshot)
+            }
+        }
+        return shapshots
     }
 }
 

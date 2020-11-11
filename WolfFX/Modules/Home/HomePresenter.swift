@@ -178,7 +178,6 @@ class HomePresenter: NSObject, HomeEvents {
                     self.view?.setupPlayButtonDesign()
                 }
             }
-            WSManager.shared.register()
             WSManager.shared.readAllStatuses()
         }
     }
@@ -252,7 +251,7 @@ class HomePresenter: NSObject, HomeEvents {
                         DispatchQueue.main.async {
                             self.view?.updateMinValue(with: minValueString)
                             self.view?.updateMaxValue(with: maxValueString)
-                            //self.view?.updateInfoViewFrame(from: max, min: min)
+                            self.view?.updateInfoViewFrame(from: max, min: min)
                         }
                     }
                 }
@@ -262,8 +261,14 @@ class HomePresenter: NSObject, HomeEvents {
     private func observeOrders() {
         ordersObservation = observe(\.dataReceiver?.orders, options: [.old, .new]) { object, change in
             if let orders = change.newValue as? [Order] {
-            
+                if let initialTime = self.view?.initialXvalue() {
+                    DispatchQueue.main.async {
+                        let snapshots = Converter().shapshotsFrom(orders: orders, initialTime: initialTime)
+                        self.view?.shapshots = snapshots
+                    }
+                }
             }
+             WSManager.shared.register()
         }
     }
     

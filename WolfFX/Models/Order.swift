@@ -14,20 +14,26 @@ class Order: NSObject, Codable {
     var expiryTime: TimeInterval?
     var failureTime: TimeInterval?
     var failureValue: Double?
-    var hasBonus: Double?
-    var holdBonuses: Double?
-    var investment: Int64?
-    var lowerBound: String?
+    var hasBonus: Bool?
+    var holdBonuses: Bool?
+    var investment: Double?
+    var lowerBound: Double?
     var orderId: String?
-    var partialWin: Double?
+    var partialWin: Bool?
     var payOut: Double?
-    var percentWin: String?
-    var resultedPrice: String?
+    var percentWin: Double?
+    var resultedPrice: Double?
     var startTime: TimeInterval?
     var status: String?
     var type: String?
-    var upperBound: String?
+    var upperBound: Double?
     var username: String?
-    var winBonusIn: String?
-    var winBonusOut: String?
+    var winBonusIn: Double?
+    var winBonusOut: Double?
+    var balanceString: String? // to check
+}
+
+enum OrderStatus: String {
+    case live = "LIVE"
+    case expired = "EXPIRED"
 }
