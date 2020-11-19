@@ -125,8 +125,9 @@ protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, 
     func updateChartWithNewValue(assetPrice: AssetPrice)
     func updateMinValue(with string: String)
     func updateMaxValue(with string: String)
-    func updateInfoViewFrame(from max: Double, min: Double)
     func initialXvalue() -> Double?
+    func update(snapshots: [Snapshot])
+    func updateSnapshots(with snapshot: Snapshot)
 }
 
 protocol HomeEvents {

@@ -118,19 +118,37 @@ class Converter {
         var shapshots = [Snapshot]()
         for order in filtered {
             if let startTime = order.startTime,
-               let resultedPrice = order.resultedPrice,
                let max = order.upperBound,
                let min = order.lowerBound,
-                let expiryTime = order.expiryTime,
-               let status = order.status {
+               let expiryTime = order.expiryTime,
+               let status = order.status,
+               let orderId = order.orderId {
                let duration = Int64((expiryTime - startTime) / 1000)
                let startTimeInSeconds = startTime / 1000
-               let entry = ChartDataEntry(x: startTimeInSeconds, y: resultedPrice)
-               let snapshot = Snapshot(entry: entry, max: max, min: min, width: 0.0, duration: duration, orderStatus: OrderStatus(rawValue: status) ?? .expired)
+               let isSuccess = order.payOut != 0.0
+                let snapshot = Snapshot(startTime: startTimeInSeconds, max: max, min: min, width: 0.0, duration: duration, orderStatus: OrderStatus(rawValue: status) ?? .expired, isSuccess: isSuccess, orderId: orderId)
               shapshots.append(snapshot)
             }
         }
         return shapshots
+    }
+    
+    func shapshotFrom(order: Order) -> Snapshot? {
+        var snapshot: Snapshot?
+        if let startTime = order.startTime,
+        let max = order.upperBound,
+        let min = order.lowerBound,
+        let expiryTime = order.expiryTime,
+        let status = order.status,
+        let orderId = order.orderId {
+        let duration = Int64((expiryTime - startTime) / 1000)
+        let startTimeInSeconds = startTime / 1000
+        let isSuccess = order.payOut != 0.0
+        DispatchQueue.main.async {
+            snapshot = Snapshot(startTime: startTimeInSeconds, max: max, min: min, width: 0.0, duration: duration, orderStatus: OrderStatus(rawValue: status) ?? .expired, isSuccess: isSuccess, orderId: orderId)
+            }          
+        }
+        return snapshot
     }
 }
 

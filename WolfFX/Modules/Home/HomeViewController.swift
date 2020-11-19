@@ -57,7 +57,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 10)
+        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = UIColor.red
         label.textAlignment = .center
         return label
@@ -191,9 +191,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         lineChartView.xAxis.avoidFirstLastClippingEnabled = true
         lineChartView.minOffset = 0.0
         setupChartMask()
-        if let last = lineSet.entryForIndex(lineSet.count - 1)?.y {
-      //      makeShift(for: last)
-        }
     }
     
     func setupPlayButtonDesign() {
@@ -218,6 +215,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
             infoView.trailingAnchor.constraint(equalTo: infoLabel.leadingAnchor),
         ])
         infoLabel.text = presenter?.textForInfoLabel()
+        updateInfoLabel()
         valueView.backgroundColor = UIColor.white
         chartConteinerView.addSubview(valueView)
         chartConteinerView.addSubview(valueLabel)
@@ -257,41 +255,66 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         let start = CGPoint(x: valueViewFrame.maxX, y: valueViewFrame.midY)
         let end = CGPoint(x: chartFrame.maxX, y: valueViewFrame.midY)
         drawDottedLine(start: start, end: end, view: self.lineChartView)
+    }
+
+    func update(snapshots: [Snapshot]) {
+        self.shapshots = snapshots
+        updateSnapshotsFrames()
+    }
+    
+    func updateSnapshots(with snapshot: Snapshot) {
+        if shapshots.count > 0 {
+            shapshots = shapshots.filter { $0.orderId != snapshot.orderId }
+        }
+        shapshots.append(snapshot)
+        updateSnapshotsFrames()
+       }
+    
+    private func updateSnapshotsFrames() {
+        guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
+        let count = dataSet.entryCount
+        guard let lastEntry = dataSet.entryForIndex( count - 1) else { return }
+        let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
         for snapshot in shapshots {
             snapshot.view.removeFromSuperview()
             let top = transform.pixelForValues(x:0, y: snapshot.max) // x is 0 because we need only calculate distance between Ymax and Y min which is the height of the snapshot(rectange)
             let bottom = transform.pixelForValues(x: 0, y: snapshot.min)
             let height = top.distance(to: bottom)
             var width = CGFloat(0.0)
-            let startPixel = transform.pixelForValues(x: snapshot.entry.x, y: 0)// y is 0 because we need to know the width of chart part
-            if snapshot.entry.x + Double(snapshot.duration) <= newTime {
-                let endPixel = transform.pixelForValues(x: snapshot.entry.x + Double(snapshot.duration), y: 0)
+            let startPixel = transform.pixelForValues(x: snapshot.startTime, y: 0)// y is 0 because we need to know the width of chart part
+            if snapshot.startTime + Double(snapshot.duration) <= lastEntry.x {
+                let endPixel = transform.pixelForValues(x: snapshot.startTime + Double(snapshot.duration), y: 0)
                 width = startPixel.distance(to: endPixel)
-            } else {                
-                let borderPixel = transform.pixelForValues(x: chartEntry.x, y: 0)
+            } else {
+                let borderPixel = transform.pixelForValues(x: lastEntry.x, y: 0)
                 let chartWidthPart = borderPixel.distance(to: startPixel)
-                let chartTimeDifference = newTime - snapshot.entry.x
+                let chartTimeDifference = lastEntry.x - snapshot.startTime
                 let expiryTimeDifference = Double(snapshot.duration) - chartTimeDifference
                 checkExpireScaleRange(from: expiryTimeDifference)
                 let expiryPart = calculateExpiryPart(from: expiryTimeDifference)
                 width = chartWidthPart + expiryPart
             }
-            let snapPt = transform.pixelForValues(x: snapshot.entry.x, y: snapshot.entry.y)
+            let snapPt = transform.pixelForValues(x: snapshot.startTime, y: snapshot.max)
             let snapFrame = CGRect(x: snapPt.x,
-                                   y: snapPt.y - height / 2,
+                                   y: snapPt.y,
                                width: width,
                               height: height)
             snapshot.view.frame = snapFrame
-            chartConteinerView.addSubview(snapshot.view)
-            compareWithMaskAndUpdateFrame(snapshot: snapshot)
-            if snapshot.max > price && price > snapshot.min  {
+            if snapshot.isSuccess {
                 snapshot.paintWinColor()
             } else {
                 snapshot.paintLooseColor()
             }
+            chartConteinerView.addSubview(snapshot.view)
+            compareWithMaskAndUpdateFrame(snapshot: snapshot)
         }
     }
-
+    
+    private func updateInfoLabel() {
+        let infoLabelWidth = infoLabel.bounds.size.width
+        infoLabel.bounds.size.width = infoLabelWidth + 20
+    }
+    
     private func checkExpireScaleRange(from timeDifference: TimeInterval) {
         if timeDifference <= 30  {
             expireScaleRange = oneDivision
@@ -356,40 +379,50 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         lineChartView.leftAxis.axisMaximum = max! + rangeRate
         lineChartView.leftAxis.axisMinimum = min! - rangeRate
         
-        if let max = presenter?.maxForSnapshot(), let min = presenter?.minForSnapshot() {
-            updateInfoViewFrame(from: max, min: min)
-            let average = (lineChartView.leftAxis.axisMaximum + lineChartView.leftAxis.axisMinimum) / 2
-            let centralvalue = (max + min) / 2
-            let difference = centralvalue - average
-            if difference > 0 {
-                lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum + difference
-                lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum + difference
-            } else if difference < 0 {
-                lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum - abs(difference)
-                lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum - abs(difference)
-            }
-        }
+//        guard let currentMax = presenter?.maxForSnapshot() else {return}
+//        guard let currentMin = presenter?.minForSnapshot() else {return}
+//        let center = (currentMax + currentMin ) / 2
+//        
+//        let average = (lineChartView.leftAxis.axisMaximum + lineChartView.leftAxis.axisMinimum) / 2
+//        let difference = center - average
+//            if difference > 0 {
+//                lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum + difference
+//                lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum + difference
+//            } else if difference < 0 {
+//                lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum - abs(difference)
+//                lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum - abs(difference)
+//            }
+//        let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
+//        let maxPt = transform.pixelForValues(x: 0, y: currentMax)
+//        let minPt = transform.pixelForValues(x: 0, y: currentMin)
+//        let currentHeigtBetweenMinMax = maxPt.distance(to: minPt)
+//    
+//        if (currentHeigtBetweenMinMax < defaultWindowHeight) {
+//            let dif = Double((defaultWindowHeight - currentHeigtBetweenMinMax) / 2)
+//            lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum  - abs(dif)
+//            lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum - abs(dif)
+//        } else if (currentHeigtBetweenMinMax > defaultWindowHeight) {
+//            let dif = Double((currentHeigtBetweenMinMax - defaultWindowHeight) / 2)
+//            lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum + abs(dif)
+//            lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum + abs(dif)
+//        }
     }
     
     func updateAssetButton(with title: String) {
+        
         DispatchQueue.main.async {
             self.changeAssetButton.setTitle(title, for: .normal)
         }
     }
     
-    func updateInfoViewFrame(from max: Double, min: Double ) {
-        guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
-        guard let lastEntry = dataSet.entryForIndex(dataSet.entryCount - 1) else { return }
-        let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
-        let maxPt = transform.pixelForValues(x: lastEntry.x, y: max)
-        let minPt = transform.pixelForValues(x: lastEntry.x, y: min)
-        let height = maxPt.distance(to: minPt)
+   private func updateInfoViewFrame() {
         let frame = CGRect(x: maskView.frame.maxX,
-                           y: maskView.frame.midY - height / 2,
-                       width: currentWindowWidth,
-                      height: height)
+                           y: maskView.frame.midY - 25,
+                               width: currentWindowWidth,
+                               height: 50)
         infoView.frame = frame
         infoLabel.text = presenter?.textForInfoLabel()
+        updateInfoLabel()
     }
     
     func updateMinValue(with string: String) {
@@ -433,6 +466,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         chartConteinerView.addSubview(maskView)
         maskView.backgroundColor = UIColor.clear
         fixProgressViewFrame()
+        updateInfoViewFrame()
     }
      
     private func fixProgressViewFrame() {
@@ -482,18 +516,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         expireScaleRange = width
     }
     
-    private func makeSnapshot() {
-        guard let chartDataSet = lineChartView.data?.dataSets[0] else {return}
-        let indexOfLast = chartDataSet.entryCount - 1
-        guard let entry = chartDataSet.entryForIndex(indexOfLast) else {return}
-        guard let max = presenter?.maxForSnapshot() else {return}
-        guard let min = presenter?.minForSnapshot() else {return}
-        guard let duration = presenter?.selectedExpiry?.value else {return}
-        let snapshot = Snapshot( entry: entry, max: max, min: min, width: currentWindowWidth, duration: duration, orderStatus: .live)
-        snapshot.paintWinColor()
-        shapshots.append(snapshot)
-    }
-    
     func initialXvalue() -> Double? {
         guard let chartDataSet = lineChartView.data?.dataSets[0] else {return nil}
         guard let firstEntry = chartDataSet.entryForIndex(0) else {return nil}
@@ -508,7 +530,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     @IBAction func tradeAction(_ sender: Any) {
         guard let userCanPlay = presenter?.userCanPlay else { return }
         if userCanPlay {
-            makeSnapshot()
             showTradeInInfoView()
         }
         presenter?.tradeAction()
@@ -586,6 +607,7 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             }
         }
         infoLabel.text = presenter?.textForInfoLabel()
+        updateInfoLabel()
         self.view.endEditing(true)
     }
 }
@@ -616,11 +638,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         lineChartView.clear()
-        infoView.removeFromSuperview()
-        infoLabel.removeFromSuperview()
         tableView.isHidden = true
         let asset = presenter?.tableDataSource?.grouppedAssets[indexPath.section]?[indexPath.row]
         changeAssetButton.setTitle(asset?.name, for: .normal)
-        presenter?.selectedAsset = asset        
+        presenter?.selectedAsset = asset
+        shapshots.removeAll()
     }
 }

@@ -38,6 +38,7 @@ class HomePresenter: NSObject, HomeEvents {
     var rangeObservation: NSKeyValueObservation?
     var tradeStatusObservation: NSKeyValueObservation?
     var ordersObservation: NSKeyValueObservation?
+    var newSnapshotObservation: NSKeyValueObservation?
     var assets: [Asset]?
     var tableDataSource: AssetsDataSource?
     var priceTimer: Timer?
@@ -104,6 +105,8 @@ class HomePresenter: NSObject, HomeEvents {
         observeRange()
         observeTradeStatus()
         observeOrders()
+        observeNewSnapshot()
+        
         if shouldPerformHTTPLogin {
           performHTTPLogin()
         } else {
@@ -251,7 +254,6 @@ class HomePresenter: NSObject, HomeEvents {
                         DispatchQueue.main.async {
                             self.view?.updateMinValue(with: minValueString)
                             self.view?.updateMaxValue(with: maxValueString)
-                            self.view?.updateInfoViewFrame(from: max, min: min)
                         }
                     }
                 }
@@ -264,11 +266,21 @@ class HomePresenter: NSObject, HomeEvents {
                 if let initialTime = self.view?.initialXvalue() {
                     DispatchQueue.main.async {
                         let snapshots = Converter().shapshotsFrom(orders: orders, initialTime: initialTime)
-                        self.view?.shapshots = snapshots
+                        self.view?.update(snapshots: snapshots)
                     }
                 }
             }
              WSManager.shared.register()
+        }
+    }
+    
+    private func observeNewSnapshot() {
+        newSnapshotObservation = observe(\.dataReceiver?.newSnapshot, options: [.old, .new]) { object, change in
+            if let snapshot = change.newValue as? Snapshot {
+                DispatchQueue.main.async {
+                    self.view?.updateSnapshots(with: snapshot)
+                }
+            }
         }
     }
     

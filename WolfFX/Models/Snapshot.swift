@@ -10,16 +10,28 @@ import Foundation
 import UIKit
 import Charts
 
-struct Snapshot {
-      var entry: ChartDataEntry
-      var max: Double 
+class Snapshot: NSObject {
+      var startTime: Double
+      var max: Double
       var min: Double
-      let width: CGFloat
+      var width: CGFloat
       var view = UIView()
       var duration: Int64
       var orderStatus: OrderStatus
-   
+      var isSuccess: Bool
+      var orderId: String
     
+    init (startTime: Double, max: Double, min: Double, width: CGFloat, duration: Int64, orderStatus: OrderStatus, isSuccess: Bool, orderId: String) {
+        self.startTime = startTime
+        self.max = max
+        self.min = min
+        self.width = width
+        self.duration = duration
+        self.orderStatus = orderStatus
+        self.isSuccess = isSuccess
+        self.orderId = orderId
+    }
+       
     func paintWinColor () {
         view.layer.borderWidth = 1.0
         view.layer.cornerRadius = 3.0

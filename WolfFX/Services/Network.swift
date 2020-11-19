@@ -12,7 +12,12 @@ typealias JSON = [String : Any]
 
 enum BaseUrl: String {
     case prod = "https://wolffxwarrior.com"
-    case stage = "https://staging.cuboidlogic.com"
+    case stage =  "https://eu.sunbeam-capital.com"
+   // "https://stage.sunbeam-capital.com"
+   // eu.sunbeam-capital.com
+  //  https://wf-stage.wolffxwarrior.com
+  //  "https://staging.cuboidlogic.com"
+ //   stage.sunbeam-capital.com
     
 }
 

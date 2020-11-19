@@ -139,6 +139,12 @@ extension String {
     func localizeWithFormat(arguments: CVarArg...) -> String{
         return String(format: self.localized(), arguments: arguments)
     }
+    
+    func widthOfString(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        let size = self.size(withAttributes: fontAttributes)
+           return size.width
+       }
 }
 
 extension CGPoint {

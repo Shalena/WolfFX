@@ -25,25 +25,52 @@ class OrderExecutorJSONAcception: JsonAcception {
                  print(accepted)
               }
            }
-            if action == "updateLiveOrder" {
-                print(payload)
+           if action == "showNewOrder" {
+            if let payloadJSON = json["payload"] as? JSON, let jsonstring = payloadJSON["order"] as? String {
+                    if let jsonData = jsonstring.data(using: .utf8) {
+                        if let order = try? JSONDecoder().decode(Order.self, from: jsonData) {
+                            let snapshot = Converter().shapshotFrom(order: order)
+                            WSManager.shared.dataReceiver.newSnapshot = snapshot
+                        }
+                    }
+                 }
             }
-            if action == "showExpiredOrder" {
-                print(payload)
+            
+           if action == "updateLiveOrder" {
+                 if let payloadJSON = json["payload"] as? JSON, let jsonstring = payloadJSON["order"] as? String {
+                                 if let jsonData = jsonstring.data(using: .utf8) {
+                                     if let order = try? JSONDecoder().decode(Order.self, from: jsonData) {
+                                         let snapshot = Converter().shapshotFrom(order: order)
+                                         WSManager.shared.dataReceiver.newSnapshot = snapshot
+                                     }
+                                 }
+                              }
             }
-           var message: String? = payload?["message"] as? String
-           let messageType: String? = payload?["messageType"] as? String
-           var success: Bool?
+           if action == "showExpiredOrder" {
+                if let payloadJSON = json["payload"] as? JSON, let jsonstring = payloadJSON["order"] as? String {
+                                                if let jsonData = jsonstring.data(using: .utf8) {
+                                                    if let order = try? JSONDecoder().decode(Order.self, from: jsonData) {
+                                                        let snapshot = Converter().shapshotFrom(order: order)
+                                                        WSManager.shared.dataReceiver.newSnapshot = snapshot
+                                                    }
+                                                }
+                                             }
+            }
+           if action == "showMessage" {
+            var message: String? = payload?["message"] as? String
+            let messageType: String? = payload?["messageType"] as? String
+            var success: Bool?
             if messageType == Status.success.rawValue {
                 success = true
             } else if messageType == Status.error.rawValue {
-                if message?.count == 0 || message == nil {
-                    message = "Error"
-                }
+            if message?.count == 0 || message == nil {
+                message = "Error"
+            }
                 success = false
             }
             let tradeStatus = TradeStatus(message: message, success: success)
-           WSManager.shared.dataReceiver.tradeStatus = tradeStatus
+            WSManager.shared.dataReceiver.tradeStatus = tradeStatus
+            }
            return true
         } else {
             return false
