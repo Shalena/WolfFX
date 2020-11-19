@@ -37,12 +37,13 @@ class HomePresenter: NSObject, HomeEvents {
     var priceObservation: NSKeyValueObservation?
     var rangeObservation: NSKeyValueObservation?
     var tradeStatusObservation: NSKeyValueObservation?
+    var ordersObservation: NSKeyValueObservation?
+    var newSnapshotObservation: NSKeyValueObservation?
     var assets: [Asset]?
     var tableDataSource: AssetsDataSource?
     var priceTimer: Timer?
     var assetTimer: Timer?
     var currentRange: Range?
-    var axisValueFormatter: IAxisValueFormatter?
     var axisLabels = [String]()
     let converter = Converter()
     
@@ -103,6 +104,9 @@ class HomePresenter: NSObject, HomeEvents {
         observePrice()
         observeRange()
         observeTradeStatus()
+        observeOrders()
+        observeNewSnapshot()
+        
         if shouldPerformHTTPLogin {
           performHTTPLogin()
         } else {
@@ -116,6 +120,14 @@ class HomePresenter: NSObject, HomeEvents {
         } else {
             router?.goToDeposit()
         }
+    }
+    
+    func maxForSnapshot() -> Double? {
+        return currentRange?.max
+    }
+    
+    func minForSnapshot() -> Double? {
+        return currentRange?.min
     }
     
     private func setupSelectedValues() {
@@ -169,7 +181,6 @@ class HomePresenter: NSObject, HomeEvents {
                     self.view?.setupPlayButtonDesign()
                 }
             }
-            WSManager.shared.register()
             WSManager.shared.readAllStatuses()
         }
     }
@@ -210,23 +221,24 @@ class HomePresenter: NSObject, HomeEvents {
     private func observePriceHistory() {
          priceHistoryObservation = observe(\.dataReceiver?.priceHistory, options: [.old, .new]) { object, change in
              if let priceEntries = change.newValue as? [PriceEntry] {
-                self.axisLabels = priceEntries.map({$0.label})
-                self.axisValueFormatter = IndexAxisValueFormatter(values: self.axisLabels)
                  DispatchQueue.main.async {
                      self.view?.updateChart(with: priceEntries)
-                 }             
+                }             
                 self.getPrice()
+                let minDate = priceEntries[0].timesTemp
+                if let id = self.selectedAsset?.id {
+                    WSManager.shared.getOrderHistoryForChart(assetId: id, minDate: minDate)
+                }
              }
          }
      }
      
       private func observePrice() {
          priceObservation = observe(\.dataReceiver?.assetPrice, options: [.old, .new]) { object, change in
-             if let assetPrice = change.newValue as? AssetPrice, let axisLabel = assetPrice.label {
+             if let assetPrice = change.newValue as? AssetPrice {
                  DispatchQueue.main.async {
-                    self.axisLabels.append(axisLabel)
-                    self.axisValueFormatter = IndexAxisValueFormatter(values: self.axisLabels)
                     self.view?.updateChartWithNewValue(assetPrice: assetPrice)
+                    self.view?.hideHud()
                  }
              }
          }
@@ -235,7 +247,6 @@ class HomePresenter: NSObject, HomeEvents {
     private func observeRange() {
            rangeObservation = observe(\.dataReceiver?.range, options: [.old, .new]) { object, change in
                if let range = change.newValue as? Range {
-                   self.view?.hideHud()
                    self.currentRange = range
                    if let min = range.min, let max = range.max {
                         let minValueString = self.converter.minString(from: min)
@@ -248,6 +259,30 @@ class HomePresenter: NSObject, HomeEvents {
                 }
             }
         }
+    
+    private func observeOrders() {
+        ordersObservation = observe(\.dataReceiver?.orders, options: [.old, .new]) { object, change in
+            if let orders = change.newValue as? [Order] {
+                if let initialTime = self.view?.initialXvalue() {
+                    DispatchQueue.main.async {
+                        let snapshots = Converter().shapshotsFrom(orders: orders, initialTime: initialTime)
+                        self.view?.update(snapshots: snapshots)
+                    }
+                }
+            }
+             WSManager.shared.register()
+        }
+    }
+    
+    private func observeNewSnapshot() {
+        newSnapshotObservation = observe(\.dataReceiver?.newSnapshot, options: [.old, .new]) { object, change in
+            if let snapshot = change.newValue as? Snapshot {
+                DispatchQueue.main.async {
+                    self.view?.updateSnapshots(with: snapshot)
+                }
+            }
+        }
+    }
     
     private func getPriceHistory() {
         if let assetId = selectedAsset?.id {
@@ -306,7 +341,7 @@ class HomePresenter: NSObject, HomeEvents {
     func textForInfoLabel() -> String? {
         if let investment = selectedInvestment, let leverage = selectedLeverage {
             let product: Double = Double(investment.value * leverage.value)
-            let text = leverage.title + "\n" + String(product)
+            let text = leverage.title + " " + String(product)
             return text
         } else {
           return nil

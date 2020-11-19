@@ -40,8 +40,11 @@ class BalanceHistoryItemViewModel: NSObject {
             if let asset = metadata?.asset {
                 assetString = asset
             }
-        }
             self.descriptionString = (assetString ?? "") + " " + (item.transactionType ?? "")
+        } else {
+            self.descriptionString = item.descriptionString
+        }
+           
         if item.transactionType == "WIN" || item.transactionType == "DEPOSIT" {
             self.transactionStatus = .positive
         } else if item.transactionType == "STAKE" || item.transactionType == "HOLD" {
@@ -52,7 +55,10 @@ class BalanceHistoryItemViewModel: NSObject {
             self.amount = String(absoluteValue.truncate(places: 2))
         }
         if let balance = item.newBalance {
-            self.balance = String(balance.truncate(places: 2))
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            formatter.minimumFractionDigits = 2
+            self.balance = formatter.string(from: (NSNumber(value: balance.truncate(places: 2))))
         }
     }
 }

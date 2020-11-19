@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Charts
 
 class Converter {
      private func realBalanceHeaderString(from realMoney: Double?, currencyString: String?, bonus: Double?) -> String {
@@ -25,10 +26,11 @@ class Converter {
         if let currency = currencyString, let sign = Currency(rawValue: currency)?.sign {
             currencySign = sign
         }
-      
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 2
         let realBalance = realMoneyPart + bonusPart
-        let realBalanceTruncate = realBalance.truncate(places: 2)
-        let realBalanceString = String(realBalanceTruncate)
+        let realBalanceString =  formatter.string(from: NSNumber(value: realBalance.truncate(places: 2))) ?? ""
         let resultString = [currencySign, realBalanceString].joined(separator: " ")
         return resultString
     }
@@ -40,16 +42,20 @@ class Converter {
         var dateFromString = ""
         var dateToString = ""
         
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 2
+ 
         if let realMoney = realMoney {
-            realMoneyString = String(realMoney.truncate(places: 2))
+            realMoneyString = formatter.string(from: (NSNumber(value: realMoney.truncate(places: 2)))) ?? ""
         }
         
         if let bonus = bonus {
-            bonusString = String(bonus.truncate(places: 2))
+            bonusString = formatter.string(from: (NSNumber(value: bonus.truncate(places: 2)))) ?? ""
         }
         
         if let amauntPendingWithdraw = amauntPendingWithdraw {
-            amauntPendingWithdrawString = String(amauntPendingWithdraw.truncate(places: 2))
+            amauntPendingWithdrawString = formatter.string(from: (NSNumber(value: amauntPendingWithdraw.truncate(places: 2)))) ?? ""
         }
         
         var timeIntervalFrom: Double?
@@ -97,6 +103,52 @@ class Converter {
     func minString(from max: Double) -> String {
         let valueString = String(max.truncate(places: 2))
         return ["min:", valueString].joined(separator: " ")
+    }
+    
+    func shapshotsFrom(orders: [Order], initialTime: Double) -> [Snapshot] {
+        let initialValue = initialTime * 1000 // server returns time in miliseconds, in the chart it was already /1000
+        var filtered = [Order]()
+        for order in orders {
+            if let startTime = order.startTime {
+                if startTime >= initialValue {
+                    filtered.append(order)
+                }
+            }
+        }
+        var shapshots = [Snapshot]()
+        for order in filtered {
+            if let startTime = order.startTime,
+               let max = order.upperBound,
+               let min = order.lowerBound,
+               let expiryTime = order.expiryTime,
+               let status = order.status,
+               let orderId = order.orderId {
+               let duration = Int64((expiryTime - startTime) / 1000)
+               let startTimeInSeconds = startTime / 1000
+               let isSuccess = order.payOut != 0.0
+                let snapshot = Snapshot(startTime: startTimeInSeconds, max: max, min: min, width: 0.0, duration: duration, orderStatus: OrderStatus(rawValue: status) ?? .expired, isSuccess: isSuccess, orderId: orderId)
+              shapshots.append(snapshot)
+            }
+        }
+        return shapshots
+    }
+    
+    func shapshotFrom(order: Order) -> Snapshot? {
+        var snapshot: Snapshot?
+        if let startTime = order.startTime,
+        let max = order.upperBound,
+        let min = order.lowerBound,
+        let expiryTime = order.expiryTime,
+        let status = order.status,
+        let orderId = order.orderId {
+        let duration = Int64((expiryTime - startTime) / 1000)
+        let startTimeInSeconds = startTime / 1000
+        let isSuccess = order.payOut != 0.0
+        DispatchQueue.main.async {
+            snapshot = Snapshot(startTime: startTimeInSeconds, max: max, min: min, width: 0.0, duration: duration, orderStatus: OrderStatus(rawValue: status) ?? .expired, isSuccess: isSuccess, orderId: orderId)
+            }          
+        }
+        return snapshot
     }
 }
 

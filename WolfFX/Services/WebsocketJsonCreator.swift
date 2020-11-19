@@ -78,6 +78,17 @@ class WebsocketJsonCreator {
                 "body": [:],
         "replyAddress": ""]
     }
+    
+    func getOrdersHistoryJson(email: String,  assetId: Int64, minDate: Double, maxDate: Double) -> [String : Any] {        
+        return ["type": "send",
+             "address": "OrdersByUserAssetsTimes",
+             "headers": [:],
+                "body" : ["username": email,
+                           "assetId": assetId,
+                           "minDate": minDate,
+                           "maxDate": maxDate],
+         "replyAddress": ""]
+    }
 }
 
 

@@ -22,4 +22,6 @@ class DataReceiver: NSObject {
     @objc dynamic var tradeStatus: TradeStatus?
     @objc dynamic var connectionClosed = false
     @objc dynamic var balanceHistoryItems: [BalanceHistoryItem]?
+    @objc dynamic var orders: [Order]?
+    @objc dynamic var newSnapshot: Snapshot?
 }
