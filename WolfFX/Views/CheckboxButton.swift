@@ -11,7 +11,7 @@ import UIKit
 
 class CheckboxButton: UIButton {
     override func awakeFromNib() {
-        super.awakeFromNib();
+        super.awakeFromNib()
         setImage(R.image.selectedCheckBox(), for: .selected)
         setImage(R.image.unselectedCheckBox(), for: .normal)
         addTarget(self, action: #selector(checkBoxPressed(_:)), for: .touchUpInside)

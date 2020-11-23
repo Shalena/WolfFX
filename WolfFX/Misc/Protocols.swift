@@ -128,6 +128,7 @@ protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, 
     func initialXvalue() -> Double?
     func update(snapshots: [Snapshot])
     func updateSnapshots(with snapshot: Snapshot)
+    func makeShift()
 }
 
 protocol HomeEvents {

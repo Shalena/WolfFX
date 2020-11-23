@@ -29,8 +29,10 @@ class OrderExecutorJSONAcception: JsonAcception {
             if let payloadJSON = json["payload"] as? JSON, let jsonstring = payloadJSON["order"] as? String {
                     if let jsonData = jsonstring.data(using: .utf8) {
                         if let order = try? JSONDecoder().decode(Order.self, from: jsonData) {
-                            let snapshot = Converter().shapshotFrom(order: order)
-                            WSManager.shared.dataReceiver.newSnapshot = snapshot
+                            DispatchQueue.main.async {
+                                let snapshot = Converter().shapshotFrom(order: order)
+                                WSManager.shared.dataReceiver.newSnapshot = snapshot
+                            }
                         }
                     }
                  }
@@ -40,21 +42,29 @@ class OrderExecutorJSONAcception: JsonAcception {
                  if let payloadJSON = json["payload"] as? JSON, let jsonstring = payloadJSON["order"] as? String {
                                  if let jsonData = jsonstring.data(using: .utf8) {
                                      if let order = try? JSONDecoder().decode(Order.self, from: jsonData) {
-                                         let snapshot = Converter().shapshotFrom(order: order)
-                                         WSManager.shared.dataReceiver.newSnapshot = snapshot
+                                         DispatchQueue.main.async {
+                                            let snapshot = Converter().shapshotFrom(order: order)
+                                            WSManager.shared.dataReceiver.newSnapshot = snapshot
+                                        }
                                      }
                                  }
                               }
             }
            if action == "showExpiredOrder" {
                 if let payloadJSON = json["payload"] as? JSON, let jsonstring = payloadJSON["order"] as? String {
-                                                if let jsonData = jsonstring.data(using: .utf8) {
-                                                    if let order = try? JSONDecoder().decode(Order.self, from: jsonData) {
-                                                        let snapshot = Converter().shapshotFrom(order: order)
-                                                        WSManager.shared.dataReceiver.newSnapshot = snapshot
-                                                    }
-                                                }
-                                             }
+                        if let jsonData = jsonstring.data(using: .utf8) {
+                            if let order = try? JSONDecoder().decode(Order.self, from: jsonData) {
+                                DispatchQueue.main.async {
+                                    let snapshot = Converter().shapshotFrom(order: order)
+                                    WSManager.shared.dataReceiver.newSnapshot = snapshot
+                                }
+                            }
+                        }
+                    if let message = payloadJSON["message"] as? String {
+                        let tradeStatus = TradeStatus(message: message, success: nil)
+                        WSManager.shared.dataReceiver.tradeStatus = tradeStatus
+                    }
+                }
             }
            if action == "showMessage" {
             var message: String? = payload?["message"] as? String

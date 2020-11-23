@@ -126,7 +126,9 @@ class Converter {
                let duration = Int64((expiryTime - startTime) / 1000)
                let startTimeInSeconds = startTime / 1000
                let isSuccess = order.payOut != 0.0
+                let view = SnapshotView()
                 let snapshot = Snapshot(startTime: startTimeInSeconds, max: max, min: min, width: 0.0, duration: duration, orderStatus: OrderStatus(rawValue: status) ?? .expired, isSuccess: isSuccess, orderId: orderId)
+                snapshot.view = view
               shapshots.append(snapshot)
             }
         }
@@ -144,11 +146,12 @@ class Converter {
         let duration = Int64((expiryTime - startTime) / 1000)
         let startTimeInSeconds = startTime / 1000
         let isSuccess = order.payOut != 0.0
-        DispatchQueue.main.async {
-            snapshot = Snapshot(startTime: startTimeInSeconds, max: max, min: min, width: 0.0, duration: duration, orderStatus: OrderStatus(rawValue: status) ?? .expired, isSuccess: isSuccess, orderId: orderId)
-            }          
+        let view = SnapshotView()
+        snapshot = Snapshot(startTime: startTimeInSeconds, max: max, min: min, width: 0.0, duration: duration, orderStatus: OrderStatus(rawValue: status) ?? .expired, isSuccess: isSuccess, orderId: orderId)
+            snapshot?.view = view
         }
         return snapshot
     }
+    
 }
 

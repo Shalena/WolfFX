@@ -240,9 +240,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         if dataSet.entryCount > 200 {
             dataSet.removeFirst()
         }
-        makeShift(for: price)
-        lineChartView.data?.notifyDataChanged()
-        lineChartView.notifyDataSetChanged()
+        normilize(for: price)
         let chartFrame = lineChartView.frame
         let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
         let firstEntry = dataSet.entryForIndex(0)
@@ -255,19 +253,20 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         let start = CGPoint(x: valueViewFrame.maxX, y: valueViewFrame.midY)
         let end = CGPoint(x: chartFrame.maxX, y: valueViewFrame.midY)
         drawDottedLine(start: start, end: end, view: self.lineChartView)
+        updateSnapshotsFrames()
     }
 
     func update(snapshots: [Snapshot]) {
         self.shapshots = snapshots
-        updateSnapshotsFrames()
+        self.shapshots.forEach{chartConteinerView.addSubview($0.view!)}
     }
     
     func updateSnapshots(with snapshot: Snapshot) {
-        if shapshots.count > 0 {
-            shapshots = shapshots.filter { $0.orderId != snapshot.orderId }
+        let idArray = shapshots.map{$0.orderId}
+        if !idArray.contains(snapshot.orderId) {
+            shapshots.append(snapshot)
+            chartConteinerView.addSubview(snapshot.view!)
         }
-        shapshots.append(snapshot)
-        updateSnapshotsFrames()
        }
     
     private func updateSnapshotsFrames() {
@@ -276,7 +275,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         guard let lastEntry = dataSet.entryForIndex( count - 1) else { return }
         let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
         for snapshot in shapshots {
-            snapshot.view.removeFromSuperview()
             let top = transform.pixelForValues(x:0, y: snapshot.max) // x is 0 because we need only calculate distance between Ymax and Y min which is the height of the snapshot(rectange)
             let bottom = transform.pixelForValues(x: 0, y: snapshot.min)
             let height = top.distance(to: bottom)
@@ -299,13 +297,13 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                                    y: snapPt.y,
                                width: width,
                               height: height)
-            snapshot.view.frame = snapFrame
+            
+            snapshot.view?.frame = snapFrame
             if snapshot.isSuccess {
-                snapshot.paintWinColor()
+                snapshot.view?.paintWinColor()
             } else {
-                snapshot.paintLooseColor()
+                snapshot.view?.paintLooseColor()
             }
-            chartConteinerView.addSubview(snapshot.view)
             compareWithMaskAndUpdateFrame(snapshot: snapshot)
         }
     }
@@ -361,7 +359,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         view.layer.addSublayer(shapeLayer)
     }
     
-    private func makeShift(for price: Double) {
+    private func normilize(for price: Double) {
        guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
        var yArray = [Double]()
             for i in 0..<dataSet.entryCount - 1 {
@@ -378,38 +376,40 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         let rangeRate = (max! - min!) * 1.5
         lineChartView.leftAxis.axisMaximum = max! + rangeRate
         lineChartView.leftAxis.axisMinimum = min! - rangeRate
-        
-//        guard let currentMax = presenter?.maxForSnapshot() else {return}
-//        guard let currentMin = presenter?.minForSnapshot() else {return}
-//        let center = (currentMax + currentMin ) / 2
-//        
-//        let average = (lineChartView.leftAxis.axisMaximum + lineChartView.leftAxis.axisMinimum) / 2
-//        let difference = center - average
-//            if difference > 0 {
-//                lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum + difference
-//                lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum + difference
-//            } else if difference < 0 {
-//                lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum - abs(difference)
-//                lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum - abs(difference)
-//            }
-//        let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
-//        let maxPt = transform.pixelForValues(x: 0, y: currentMax)
-//        let minPt = transform.pixelForValues(x: 0, y: currentMin)
-//        let currentHeigtBetweenMinMax = maxPt.distance(to: minPt)
-//    
-//        if (currentHeigtBetweenMinMax < defaultWindowHeight) {
-//            let dif = Double((defaultWindowHeight - currentHeigtBetweenMinMax) / 2)
-//            lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum  - abs(dif)
-//            lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum - abs(dif)
-//        } else if (currentHeigtBetweenMinMax > defaultWindowHeight) {
-//            let dif = Double((currentHeigtBetweenMinMax - defaultWindowHeight) / 2)
-//            lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum + abs(dif)
-//            lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum + abs(dif)
-//        }
+    }
+    
+     func makeShift() {
+        guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
+        guard let currentMax = presenter?.maxForSnapshot() else {return}
+        guard let currentMin = presenter?.minForSnapshot() else {return}
+        let center = (currentMax + currentMin ) / 2
+        let average = (lineChartView.leftAxis.axisMaximum + lineChartView.leftAxis.axisMinimum) / 2
+        let difference = center - average
+            if difference > 0 {
+                lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum + difference
+                lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum + difference
+            } else if difference < 0 {
+                lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum - abs(difference)
+                lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum - abs(difference)
+            }
+        let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
+        let maxPt = transform.pixelForValues(x: 0, y: currentMax)
+        let minPt = transform.pixelForValues(x: 0, y: currentMin)
+        let currentHeigtBetweenMinMax = maxPt.distance(to: minPt)
+        if (currentHeigtBetweenMinMax < defaultWindowHeight) {
+            let dif = Double((defaultWindowHeight - currentHeigtBetweenMinMax) / 2)
+            lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum  - abs(dif)
+            lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum + abs(dif)
+        } else if (currentHeigtBetweenMinMax > defaultWindowHeight) {
+            let dif = Double((currentHeigtBetweenMinMax - defaultWindowHeight) / 2)
+            lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum + abs(dif)
+            lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum - abs(dif)
+        }
+        lineChartView.data?.notifyDataChanged()
+        lineChartView.notifyDataSetChanged()
     }
     
     func updateAssetButton(with title: String) {
-        
         DispatchQueue.main.async {
             self.changeAssetButton.setTitle(title, for: .normal)
         }
@@ -434,17 +434,18 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     }
     
     private func compareWithMaskAndUpdateFrame(snapshot: Snapshot) {
-        if snapshot.view.frame.origin.x < maskView.frame.origin.x {
-            let difference = maskView.frame.origin.x - snapshot.view.frame.origin.x
+        guard let snapshotView = snapshot.view else {return}
+        if snapshotView.frame.origin.x < maskView.frame.origin.x {
+            let difference = maskView.frame.origin.x - snapshotView.frame.origin.x
             if difference > snapshot.width {
-                snapshot.view.removeFromSuperview()
+                snapshot.view?.removeFromSuperview()
                 shapshots.removeFirst()
                 return
             }
-            snapshot.view.frame = CGRect(x: maskView.frame.origin.x,
-                                y: snapshot.view.frame.origin.y,
-                            width: snapshot.view.frame.width - difference,
-                           height: snapshot.view.frame.height)
+            snapshot.view?.frame = CGRect(x: maskView.frame.origin.x,
+                                y: snapshotView.frame.origin.y,
+                            width: snapshotView.frame.width - difference,
+                           height: snapshotView.frame.height)
             
         }
     }
