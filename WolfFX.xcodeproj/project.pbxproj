@@ -28,6 +28,13 @@
 		811ED6C4241926410002F559 /* SignupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C3241926410002F559 /* SignupRouter.swift */; };
 		811ED6C7241935530002F559 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C6241935530002F559 /* CheckboxButton.swift */; };
 		811ED6C9241971110002F559 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C8241971110002F559 /* Validation.swift */; };
+		812F9385256BA9E8007E67BE /* Carousel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 812F9384256BA9E8007E67BE /* Carousel.storyboard */; };
+		812F9388256BAE54007E67BE /* CarouselMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F9387256BAE54007E67BE /* CarouselMainController.swift */; };
+		812F938E256BB239007E67BE /* FirstPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F938D256BB239007E67BE /* FirstPageController.swift */; };
+		812F9390256BB2C4007E67BE /* SecondPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F938F256BB2C4007E67BE /* SecondPageController.swift */; };
+		812F9392256BB2D4007E67BE /* ThirdPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F9391256BB2D4007E67BE /* ThirdPageController.swift */; };
+		812F9393256BB60E007E67BE /* CarouselConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F938B256BB193007E67BE /* CarouselConfigurator.swift */; };
+		812F9394256BBB9E007E67BE /* PageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F9389256BAFF2007E67BE /* PageController.swift */; };
 		8145C4B02535D030003D8423 /* BalanceHistoryJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C4AF2535D030003D8423 /* BalanceHistoryJsonAcception.swift */; };
 		8145C4B22535D437003D8423 /* BalanceHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C4B12535D437003D8423 /* BalanceHistoryItem.swift */; };
 		8145C4B42535E520003D8423 /* BalanceHistoryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C4B32535E520003D8423 /* BalanceHistoryItemViewModel.swift */; };
@@ -156,6 +163,13 @@
 		811ED6C3241926410002F559 /* SignupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRouter.swift; sourceTree = "<group>"; };
 		811ED6C6241935530002F559 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 		811ED6C8241971110002F559 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		812F9384256BA9E8007E67BE /* Carousel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Carousel.storyboard; sourceTree = "<group>"; };
+		812F9387256BAE54007E67BE /* CarouselMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselMainController.swift; sourceTree = "<group>"; };
+		812F9389256BAFF2007E67BE /* PageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageController.swift; sourceTree = "<group>"; };
+		812F938B256BB193007E67BE /* CarouselConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselConfigurator.swift; sourceTree = "<group>"; };
+		812F938D256BB239007E67BE /* FirstPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPageController.swift; sourceTree = "<group>"; };
+		812F938F256BB2C4007E67BE /* SecondPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPageController.swift; sourceTree = "<group>"; };
+		812F9391256BB2D4007E67BE /* ThirdPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPageController.swift; sourceTree = "<group>"; };
 		8145C4AF2535D030003D8423 /* BalanceHistoryJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHistoryJsonAcception.swift; sourceTree = "<group>"; };
 		8145C4B12535D437003D8423 /* BalanceHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHistoryItem.swift; sourceTree = "<group>"; };
 		8145C4B32535E520003D8423 /* BalanceHistoryItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHistoryItemViewModel.swift; sourceTree = "<group>"; };
@@ -322,6 +336,19 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		812F9386256BAE2F007E67BE /* Carousel */ = {
+			isa = PBXGroup;
+			children = (
+				812F9387256BAE54007E67BE /* CarouselMainController.swift */,
+				812F9389256BAFF2007E67BE /* PageController.swift */,
+				812F938B256BB193007E67BE /* CarouselConfigurator.swift */,
+				812F938D256BB239007E67BE /* FirstPageController.swift */,
+				812F938F256BB2C4007E67BE /* SecondPageController.swift */,
+				812F9391256BB2D4007E67BE /* ThirdPageController.swift */,
+			);
+			path = Carousel;
+			sourceTree = "<group>";
+		};
 		8145C8A12405DD2F00414AE2 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,7 +449,7 @@
 		816C17FA24050AA900B1551A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				8103B17F242EAC8F008D7D5B /* ProfileDetails */,
+				812F9386256BAE2F007E67BE /* Carousel */,
 				81A4B34E24105D62004A02CB /* SignUp */,
 				816F67EB240858010016AA95 /* Login */,
 				816C18132405620500B1551A /* Settings */,
@@ -451,6 +478,8 @@
 				816C180624055D4900B1551A /* Wallet.storyboard */,
 				816C180824055D6F00B1551A /* Settings.storyboard */,
 				816F67EC2408585A0016AA95 /* Login.storyboard */,
+				812F9384256BA9E8007E67BE /* Carousel.storyboard */,
+				8103B17F242EAC8F008D7D5B /* ProfileDetails */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -711,6 +740,7 @@
 				816C17D724050A1100B1551A /* LaunchScreen.storyboard in Resources */,
 				816F67ED2408585A0016AA95 /* Login.storyboard in Resources */,
 				816C17D424050A1100B1551A /* Preview Assets.xcassets in Resources */,
+				812F9385256BA9E8007E67BE /* Carousel.storyboard in Resources */,
 				816C17D124050A1100B1551A /* Assets.xcassets in Resources */,
 				816C180324055D0D00B1551A /* Home.storyboard in Resources */,
 				816C180724055D4900B1551A /* Wallet.storyboard in Resources */,
@@ -866,6 +896,7 @@
 				815B66742466E1C000E4227A /* PriceHistoryJsonAcceptor.swift in Sources */,
 				816C17FD24050ACD00B1551A /* TabbarView.swift in Sources */,
 				8103B187242EB196008D7D5B /* ProfileDetailsRouter.swift in Sources */,
+				812F9393256BB60E007E67BE /* CarouselConfigurator.swift in Sources */,
 				81D8825D2409D8880030C78B /* User.swift in Sources */,
 				8145C4B22535D437003D8423 /* BalanceHistoryItem.swift in Sources */,
 				814F2ED024423A7700E0820C /* BillingDataPresenter.swift in Sources */,
@@ -875,6 +906,7 @@
 				81D8825A2409D6AA0030C78B /* Endpoints.swift in Sources */,
 				81A4B35C2413A527004A02CB /* BaseRouter.swift in Sources */,
 				81D90BAC244B3A7C0074E2A3 /* WalletRouter.swift in Sources */,
+				812F9394256BBB9E007E67BE /* PageController.swift in Sources */,
 				81D8825F2409D9070030C78B /* WolfError.swift in Sources */,
 				8160E7A7248DF0490019B2F4 /* Language.swift in Sources */,
 				8145C8A52405DD8300414AE2 /* Design.swift in Sources */,
@@ -882,8 +914,10 @@
 				817324C92437CC4B000DFB86 /* Converter.swift in Sources */,
 				817097B12550547800CA3CAB /* ChartXaxisFormatter.swift in Sources */,
 				81A4B35A2413A4BC004A02CB /* LoginRouter.swift in Sources */,
+				812F9392256BB2D4007E67BE /* ThirdPageController.swift in Sources */,
 				81A4B35024105D98004A02CB /* SignupViewController.swift in Sources */,
 				8145C8A32405DD5700414AE2 /* Protocols.swift in Sources */,
+				812F938E256BB239007E67BE /* FirstPageController.swift in Sources */,
 				816B47A92559FBA3002C9CBB /* OrdersJsonAcception.swift in Sources */,
 				81A4B35E2413ADDC004A02CB /* HomePresenter.swift in Sources */,
 				817324CB2437CFE4000DFB86 /* Currency.swift in Sources */,
@@ -917,10 +951,12 @@
 				8103B183242EB13A008D7D5B /* ProfileDetailsPresenter.swift in Sources */,
 				811ED6C2241921880002F559 /* SignupConfigurator.swift in Sources */,
 				817324C7243674EB000DFB86 /* DataReceiver.swift in Sources */,
+				812F9388256BAE54007E67BE /* CarouselMainController.swift in Sources */,
 				810886A924A4E48700265862 /* OrderExecutorJSONAcception.swift in Sources */,
 				811ED6C4241926410002F559 /* SignupRouter.swift in Sources */,
 				816C180C24055D9D00B1551A /* HomeViewController.swift in Sources */,
 				81A4B352241129DB004A02CB /* Assembler.swift in Sources */,
+				812F9390256BB2C4007E67BE /* SecondPageController.swift in Sources */,
 				81A4B3622413BCC5004A02CB /* HomeConfigurator.swift in Sources */,
 				81AF5B2A246C2EB10058FC03 /* WebsocketJsonCreator.swift in Sources */,
 				81FAA37F24B3AE59006B9140 /* TradeStatus.swift in Sources */,

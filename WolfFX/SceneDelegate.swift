@@ -41,10 +41,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func showHome(window: UIWindow, assembler: Assembler) {
+        let carousel = R.storyboard.carousel.carouselMainController()
         let tabBar = TabbarView()
         let tabBarConfigurator = TabbarConfigurator()
         tabBarConfigurator.configure(tabBar: tabBar, with: 0, assembler: assembler)
-        window.rootViewController = tabBar
+       
+        window.rootViewController = carousel
         self.window = window
         window.makeKeyAndVisible()
     }

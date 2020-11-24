@@ -6,6 +6,25 @@
   Copyright © 2020 Елена Острожинская. All rights reserved.
 */
 
+
+// Carousel
+
+"Let's go" = "";
+// 1 page
+"First Page title" = "";
+"First Page subtitle" = "";
+// 2 page
+"how?" = "";
+"MAKE MONEY" = "";
+"START WITH PRICE" = "";
+"Predict the price" = "";
+"in trade explaination" = "";
+// 3 page
+"with red envelops" = "";
+"Get paid" = "";
+"Get paid again" = "";
+"Your winnings are the sum" = "";
+
 // Tabs
 
 "Home" = "主页";

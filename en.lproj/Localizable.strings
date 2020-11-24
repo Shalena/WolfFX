@@ -6,8 +6,23 @@
   Copyright © 2020 Елена Острожинская. All rights reserved.
 */
 
+// Carousel
+"Let's go" = "Let's go";
+// 1 page
+"First Page title" = "BET OVER 30 SECONDS UP TO ONE HOUR";
+"First Page subtitle" = "MAKE OVER 10 TIMES YOUR MONEY";
+// 2 page
+"how?" = "how?";
+"MAKE MONEY" = "MAKE MONEY IN TWO WAYS,";
+"START WITH PRICE" = "LET'S START WITH THE PRICE";
+"Predict the price" = "Predict the price at the end. Bet the price will be in a range, or outside. Only the price at the end matters for your investment.";
+"in trade explaination" = "IN TRADE means between the top and bottom value at the expiry time";
+// 3 page
+"with red envelops" = "with red envelopes";
+"Get paid" = "1) Get paid if the price breaks through the top or bottom of the range";
+"Get paid again" = "2) Get paid again if the price breaks through again.";
+"Your winnings are the sum" = "Your winnings are the sum of predicting the price and the red envelopes.";
 // Tabs
-
 "Home" = "Home";
 "Account data" = "Account data";
 "Wallet" = "Wallet";
