@@ -24,7 +24,33 @@
 "Get paid" = "";
 "Get paid again" = "";
 "Your winnings are the sum" = "";
-
+// 4 page
+"Control" = "";
+"Choose" = "";
+"How much" = "";
+"How many" = "";
+"How fast" = "";
+"Your asset" = "";
+"Your winnings" = "";
+//5 page
+"How to do it" = "";
+"Hit IN TRADE" = "";
+"Now the trade is live" = "";
+"Cash in" = "";
+"Well played" = "";
+//6 page
+"Free money" = "";
+"If we see" = "";
+"Bonus" = "";
+"Deposit $10 or more" = "";
+"Get a 100% bonus" = "";
+"Up to $500" = "";
+"Terms and conditions apply" = "";
+//7 page
+"We are sunbeam" = "";
+"We use technology" = "";
+"Your funds" = "";
+"Sunbeam Capital is" = "";
 // Tabs
 
 "Home" = "主页";

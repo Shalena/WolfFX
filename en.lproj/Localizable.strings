@@ -22,6 +22,33 @@
 "Get paid" = "1) Get paid if the price breaks through the top or bottom of the range";
 "Get paid again" = "2) Get paid again if the price breaks through again.";
 "Your winnings are the sum" = "Your winnings are the sum of predicting the price and the red envelopes.";
+// 4 page
+"Control" = "CONTROL";
+"Choose" = "Choose how you make money in 4 ways.";
+"How much" = "1) How much you invest. More reward means more risk.";
+"How many" = "2) How many times you want to grow your cash. Big win means big risk.";
+"How fast" = "3) How fast you want the trade to happen. Expiry times from 30 seconds to 1 hour.";
+"Your asset" = "4) Your asset. Dollar. Gold. Oil. You can invest all of them";
+"Your winnings" = "Your winning are the sum of predicting the price and the red envelopes.";
+//5 page
+"How to do it" = "How to do it";
+"Hit IN TRADE" = "Hit IN TRADE if you want to be in the range at the expiry time.";
+"Now the trade is live" = "Now the trade is live - win red envelopes and win with your trade.";
+"Cash in" = "Cash in. Check your account balance to see how much you made.";
+"Well played" = "WELL PLAYED - good luck with your next trade!";
+//6 page
+"Free money" = "Free money";
+"If we see" = "If we see you deposit, we will double your money";
+"Bonus" = "Bonus!";
+"Deposit $10 or more" = "Deposit $10 or more";
+"Get a 100% bonus" = "Get a 100% bonus";
+"Up to $500" = "Up to $500";
+"Terms and conditions apply" = "Terms and conditions apply (please ask for details)";
+//7 page
+"We are sunbeam" = "We are Sunbeam Capital LLC of Puerto Rico, USA";
+"We use technology" = "We use technology licensed from Cuboid Logic Ltd, Guernsey, UK.";
+"Your funds" = "Your funds are held in segregated bank accounts with $1,000,000 client fund insurance.";
+"Sunbeam Capital is" = "Sunbeam Capital LLC is an International financial Entity (IFE) which is licensedand regulated by the Office of the Commissioner of Financial Institutions pursuant to Act No. 273 of September 25, 2012, as amended (the IFE Act) and Regulation No.5653.";
 // Tabs
 "Home" = "Home";
 "Account data" = "Account data";

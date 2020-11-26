@@ -85,6 +85,7 @@
 		817E5D2C243B74EA0088E60A /* BalanceJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817E5D2B243B74EA0088E60A /* BalanceJsonAcception.swift */; };
 		8184269E240D534200713BF5 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184269D240D534200713BF5 /* LoginPresenter.swift */; };
 		81992CFC24E7E89600D1229F /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81992CFB24E7E89600D1229F /* Snapshot.swift */; };
+		819B8074256D58DF00DCADD0 /* FourthPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819B8073256D58DF00DCADD0 /* FourthPageController.swift */; };
 		81A4B35024105D98004A02CB /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B34F24105D98004A02CB /* SignupViewController.swift */; };
 		81A4B352241129DB004A02CB /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B351241129DB004A02CB /* Assembler.swift */; };
 		81A4B354241129FC004A02CB /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4B353241129FC004A02CB /* Repository.swift */; };
@@ -102,6 +103,9 @@
 		81BA2A462465D72000C13F64 /* AssetPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA2A452465D72000C13F64 /* AssetPrice.swift */; };
 		81BA2A482465D92E00C13F64 /* AssetPriceJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA2A472465D92E00C13F64 /* AssetPriceJsonAcception.swift */; };
 		81BC20322476C812000BC42B /* PickerEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BC20312476C811000BC42B /* PickerEntry.swift */; };
+		81C28ADC256E4F1A0050E2DA /* FifthPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28ADB256E4F1A0050E2DA /* FifthPageController.swift */; };
+		81C28ADE256E5E310050E2DA /* SixthPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28ADD256E5E310050E2DA /* SixthPageController.swift */; };
+		81C28AE0256EACB10050E2DA /* SeventhPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28ADF256EACB10050E2DA /* SeventhPageController.swift */; };
 		81D882582409D4F30030C78B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D882572409D4F30030C78B /* Network.swift */; };
 		81D8825A2409D6AA0030C78B /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D882592409D6AA0030C78B /* Endpoints.swift */; };
 		81D8825D2409D8880030C78B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D8825C2409D8880030C78B /* User.swift */; };
@@ -226,6 +230,7 @@
 		817E5D2B243B74EA0088E60A /* BalanceJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceJsonAcception.swift; sourceTree = "<group>"; };
 		8184269D240D534200713BF5 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		81992CFB24E7E89600D1229F /* Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshot.swift; sourceTree = "<group>"; };
+		819B8073256D58DF00DCADD0 /* FourthPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthPageController.swift; sourceTree = "<group>"; };
 		81A4B34F24105D98004A02CB /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		81A4B351241129DB004A02CB /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		81A4B353241129FC004A02CB /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -245,6 +250,9 @@
 		81BA2A452465D72000C13F64 /* AssetPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPrice.swift; sourceTree = "<group>"; };
 		81BA2A472465D92E00C13F64 /* AssetPriceJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPriceJsonAcception.swift; sourceTree = "<group>"; };
 		81BC20312476C811000BC42B /* PickerEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerEntry.swift; sourceTree = "<group>"; };
+		81C28ADB256E4F1A0050E2DA /* FifthPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifthPageController.swift; sourceTree = "<group>"; };
+		81C28ADD256E5E310050E2DA /* SixthPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SixthPageController.swift; sourceTree = "<group>"; };
+		81C28ADF256EACB10050E2DA /* SeventhPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeventhPageController.swift; sourceTree = "<group>"; };
 		81D882572409D4F30030C78B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		81D882592409D6AA0030C78B /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		81D8825C2409D8880030C78B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -345,6 +353,10 @@
 				812F938D256BB239007E67BE /* FirstPageController.swift */,
 				812F938F256BB2C4007E67BE /* SecondPageController.swift */,
 				812F9391256BB2D4007E67BE /* ThirdPageController.swift */,
+				819B8073256D58DF00DCADD0 /* FourthPageController.swift */,
+				81C28ADB256E4F1A0050E2DA /* FifthPageController.swift */,
+				81C28ADD256E5E310050E2DA /* SixthPageController.swift */,
+				81C28ADF256EACB10050E2DA /* SeventhPageController.swift */,
 			);
 			path = Carousel;
 			sourceTree = "<group>";
@@ -888,6 +900,7 @@
 				81E97D342566BAA6009BA8EE /* SnapshotView.swift in Sources */,
 				81AF5B2C246C35D00058FC03 /* Range.swift in Sources */,
 				81992CFC24E7E89600D1229F /* Snapshot.swift in Sources */,
+				81C28ADE256E5E310050E2DA /* SixthPageController.swift in Sources */,
 				815FD04B244F230B00EE7083 /* ExchangeRateJsonAcception.swift in Sources */,
 				81A4B3562413A3CF004A02CB /* LoginConfigurator.swift in Sources */,
 				816F67EA240857F50016AA95 /* LoginViewController.swift in Sources */,
@@ -898,6 +911,7 @@
 				8103B187242EB196008D7D5B /* ProfileDetailsRouter.swift in Sources */,
 				812F9393256BB60E007E67BE /* CarouselConfigurator.swift in Sources */,
 				81D8825D2409D8880030C78B /* User.swift in Sources */,
+				81C28ADC256E4F1A0050E2DA /* FifthPageController.swift in Sources */,
 				8145C4B22535D437003D8423 /* BalanceHistoryItem.swift in Sources */,
 				814F2ED024423A7700E0820C /* BillingDataPresenter.swift in Sources */,
 				811ED6C024191A120002F559 /* SignupPresenter.swift in Sources */,
@@ -919,8 +933,10 @@
 				8145C8A32405DD5700414AE2 /* Protocols.swift in Sources */,
 				812F938E256BB239007E67BE /* FirstPageController.swift in Sources */,
 				816B47A92559FBA3002C9CBB /* OrdersJsonAcception.swift in Sources */,
+				81C28AE0256EACB10050E2DA /* SeventhPageController.swift in Sources */,
 				81A4B35E2413ADDC004A02CB /* HomePresenter.swift in Sources */,
 				817324CB2437CFE4000DFB86 /* Currency.swift in Sources */,
+				819B8074256D58DF00DCADD0 /* FourthPageController.swift in Sources */,
 				8145C4B42535E520003D8423 /* BalanceHistoryItemViewModel.swift in Sources */,
 				8160E7A5248C22B10019B2F4 /* LanguageCell.swift in Sources */,
 				8145C4B02535D030003D8423 /* BalanceHistoryJsonAcception.swift in Sources */,

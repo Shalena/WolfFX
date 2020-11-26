@@ -30,7 +30,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 20 images.
+  /// This `R.image` struct is generated, and contains static references to 24 images.
   struct image {
     /// Image `arrow left`.
     static let arrowLeft = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow left")
@@ -44,6 +44,8 @@ struct R: Rswift.Validatable {
     static let billingTab = Rswift.ImageResource(bundle: R.hostingBundle, name: "billingTab")
     /// Image `close`.
     static let close = Rswift.ImageResource(bundle: R.hostingBundle, name: "close")
+    /// Image `control`.
+    static let control = Rswift.ImageResource(bundle: R.hostingBundle, name: "control")
     /// Image `dummyHome`.
     static let dummyHome = Rswift.ImageResource(bundle: R.hostingBundle, name: "dummyHome")
     /// Image `envelope`.
@@ -54,10 +56,14 @@ struct R: Rswift.Validatable {
     static let homeTab = Rswift.ImageResource(bundle: R.hostingBundle, name: "homeTab")
     /// Image `inOutHowToTrade`.
     static let inOutHowToTrade = Rswift.ImageResource(bundle: R.hostingBundle, name: "inOutHowToTrade")
+    /// Image `krisPortrait`.
+    static let krisPortrait = Rswift.ImageResource(bundle: R.hostingBundle, name: "krisPortrait")
     /// Image `left-right`.
     static let leftRight = Rswift.ImageResource(bundle: R.hostingBundle, name: "left-right")
     /// Image `logo`.
     static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "logo")
+    /// Image `money`.
+    static let money = Rswift.ImageResource(bundle: R.hostingBundle, name: "money")
     /// Image `page3`.
     static let page3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "page3")
     /// Image `redEnvelops`.
@@ -68,6 +74,8 @@ struct R: Rswift.Validatable {
     static let settings = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings")
     /// Image `speedometer`.
     static let speedometer = Rswift.ImageResource(bundle: R.hostingBundle, name: "speedometer")
+    /// Image `trade-in`.
+    static let tradeIn = Rswift.ImageResource(bundle: R.hostingBundle, name: "trade-in")
     /// Image `unselectedCheckBox`.
     static let unselectedCheckBox = Rswift.ImageResource(bundle: R.hostingBundle, name: "unselectedCheckBox")
     /// Image `walletTab`.
@@ -103,6 +111,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.close, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "control", bundle: ..., traitCollection: ...)`
+    static func control(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.control, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "dummyHome", bundle: ..., traitCollection: ...)`
     static func dummyHome(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.dummyHome, compatibleWith: traitCollection)
@@ -128,6 +141,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.inOutHowToTrade, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "krisPortrait", bundle: ..., traitCollection: ...)`
+    static func krisPortrait(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.krisPortrait, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "left-right", bundle: ..., traitCollection: ...)`
     static func leftRight(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.leftRight, compatibleWith: traitCollection)
@@ -136,6 +154,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "logo", bundle: ..., traitCollection: ...)`
     static func logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.logo, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "money", bundle: ..., traitCollection: ...)`
+    static func money(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.money, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "page3", bundle: ..., traitCollection: ...)`
@@ -161,6 +184,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "speedometer", bundle: ..., traitCollection: ...)`
     static func speedometer(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.speedometer, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "trade-in", bundle: ..., traitCollection: ...)`
+    static func tradeIn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.tradeIn, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "unselectedCheckBox", bundle: ..., traitCollection: ...)`
@@ -302,7 +330,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 81 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 104 localization keys.
     struct localizable {
       /// en translation: * Bank name
       /// 
@@ -336,10 +364,26 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let getPaid = Rswift.StringResource(key: "Get paid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 1) How much you invest. More reward means more risk.
+      /// 
+      /// Locales: en, zh-Hans
+      static let howMuch = Rswift.StringResource(key: "How much", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 2) Get paid again if the price breaks through again.
       /// 
       /// Locales: en, zh-Hans
       static let getPaidAgain = Rswift.StringResource(key: "Get paid again", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 2) How many times you want to grow your cash. Big win means big risk.
+      /// 
+      /// Locales: en, zh-Hans
+      static let howMany = Rswift.StringResource(key: "How many", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 3) How fast you want the trade to happen. Expiry times from 30 seconds to 1 hour.
+      /// 
+      /// Locales: en, zh-Hans
+      static let howFast = Rswift.StringResource(key: "How fast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 4) Your asset. Dollar. Gold. Oil. You can invest all of them
+      /// 
+      /// Locales: en, zh-Hans
+      static let yourAsset = Rswift.StringResource(key: "Your asset", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: ACCOUNT DATA
       /// 
       /// Locales: en, zh-Hans
@@ -376,6 +420,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let bestExecutionPolicy = Rswift.StringResource(key: "Best Execution Policy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Bonus!
+      /// 
+      /// Locales: en, zh-Hans
+      static let bonus = Rswift.StringResource(key: "Bonus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Bonuses
       /// 
       /// Locales: en, zh-Hans
@@ -384,10 +432,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let britishPound = Rswift.StringResource(key: "British pound", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: CONTROL
+      /// 
+      /// Locales: en, zh-Hans
+      static let control = Rswift.StringResource(key: "Control", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Cash in. Check your account balance to see how much you made.
+      /// 
+      /// Locales: en, zh-Hans
+      static let cashIn = Rswift.StringResource(key: "Cash in", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: China Union Pay
       /// 
       /// Locales: en, zh-Hans
       static let chinaUnionPay = Rswift.StringResource(key: "China Union Pay", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Choose how you make money in 4 ways.
+      /// 
+      /// Locales: en, zh-Hans
+      static let choose = Rswift.StringResource(key: "Choose", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Click here to accept our client agreement
       /// 
       /// Locales: en, zh-Hans
@@ -428,6 +488,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let deposit = Rswift.StringResource(key: "Deposit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Deposit $10 or more
+      /// 
+      /// Locales: en, zh-Hans
+      static let deposit10OrMore = Rswift.StringResource(key: "Deposit $10 or more", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Email
       /// 
       /// Locales: en, zh-Hans
@@ -444,10 +508,26 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let expiryTime = Rswift.StringResource(key: "Expiry time", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Free money
+      /// 
+      /// Locales: en, zh-Hans
+      static let freeMoney = Rswift.StringResource(key: "Free money", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Get a 100% bonus
+      /// 
+      /// Locales: en, zh-Hans
+      static let getA100Bonus = Rswift.StringResource(key: "Get a 100% bonus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Hit IN TRADE if you want to be in the range at the expiry time.
+      /// 
+      /// Locales: en, zh-Hans
+      static let hitINTRADE = Rswift.StringResource(key: "Hit IN TRADE", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Home
       /// 
       /// Locales: en, zh-Hans
       static let home = Rswift.StringResource(key: "Home", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: How to do it
+      /// 
+      /// Locales: en, zh-Hans
+      static let howToDoIt = Rswift.StringResource(key: "How to do it", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: How to trade
       /// 
       /// Locales: en, zh-Hans
@@ -456,6 +536,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let inTradeExplaination = Rswift.StringResource(key: "in trade explaination", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: If we see you deposit, we will double your money
+      /// 
+      /// Locales: en, zh-Hans
+      static let ifWeSee = Rswift.StringResource(key: "If we see", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: In trade
       /// 
       /// Locales: en, zh-Hans
@@ -504,6 +588,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let myWallet = Rswift.StringResource(key: "My wallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Now the trade is live - win red envelopes and win with your trade.
+      /// 
+      /// Locales: en, zh-Hans
+      static let nowTheTradeIsLive = Rswift.StringResource(key: "Now the trade is live", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Password
       /// 
       /// Locales: en, zh-Hans
@@ -580,6 +668,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let signUp = Rswift.StringResource(key: "Sign up", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Sunbeam Capital LLC is an International financial Entity (IFE) which is licensedand regulated by the Office of the Commissioner of Financial Institutions pursuant to Act No. 273 of September 25, 2012, as amended (the IFE Act) and Regulation No.5653.
+      /// 
+      /// Locales: en, zh-Hans
+      static let sunbeamCapitalIs = Rswift.StringResource(key: "Sunbeam Capital is", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Support
       /// 
       /// Locales: en, zh-Hans
@@ -588,6 +680,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let termsAndConditions = Rswift.StringResource(key: "Terms and conditions", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Terms and conditions apply (please ask for details)
+      /// 
+      /// Locales: en, zh-Hans
+      static let termsAndConditionsApply = Rswift.StringResource(key: "Terms and conditions apply", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Trade copying terms and conditions
       /// 
       /// Locales: en, zh-Hans
@@ -596,10 +692,26 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en
       static let unitedStatesPound = Rswift.StringResource(key: "United states pound", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Up to $500
+      /// 
+      /// Locales: en, zh-Hans
+      static let upTo500 = Rswift.StringResource(key: "Up to $500", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: WELL PLAYED - good luck with your next trade!
+      /// 
+      /// Locales: en, zh-Hans
+      static let wellPlayed = Rswift.StringResource(key: "Well played", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Wallet
       /// 
       /// Locales: en, zh-Hans
       static let wallet = Rswift.StringResource(key: "Wallet", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: We are Sunbeam Capital LLC of Puerto Rico, USA
+      /// 
+      /// Locales: en, zh-Hans
+      static let weAreSunbeam = Rswift.StringResource(key: "We are sunbeam", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: We use technology licensed from Cuboid Logic Ltd, Guernsey, UK.
+      /// 
+      /// Locales: en, zh-Hans
+      static let weUseTechnology = Rswift.StringResource(key: "We use technology", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Withdraw
       /// 
       /// Locales: en, zh-Hans
@@ -608,6 +720,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let withdrawalTo = Rswift.StringResource(key: "Withdrawal to", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Your funds are held in segregated bank accounts with $1,000,000 client fund insurance.
+      /// 
+      /// Locales: en, zh-Hans
+      static let yourFunds = Rswift.StringResource(key: "Your funds", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Your winning are the sum of predicting the price and the red envelopes.
+      /// 
+      /// Locales: en, zh-Hans
+      static let yourWinnings = Rswift.StringResource(key: "Your winnings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Your winnings are the sum of predicting the price and the red envelopes.
       /// 
       /// Locales: en, zh-Hans
@@ -685,11 +805,39 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Get paid", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 1) How much you invest. More reward means more risk.
+      /// 
+      /// Locales: en, zh-Hans
+      static func howMuch(_: Void = ()) -> String {
+        return NSLocalizedString("How much", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 2) Get paid again if the price breaks through again.
       /// 
       /// Locales: en, zh-Hans
       static func getPaidAgain(_: Void = ()) -> String {
         return NSLocalizedString("Get paid again", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 2) How many times you want to grow your cash. Big win means big risk.
+      /// 
+      /// Locales: en, zh-Hans
+      static func howMany(_: Void = ()) -> String {
+        return NSLocalizedString("How many", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 3) How fast you want the trade to happen. Expiry times from 30 seconds to 1 hour.
+      /// 
+      /// Locales: en, zh-Hans
+      static func howFast(_: Void = ()) -> String {
+        return NSLocalizedString("How fast", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 4) Your asset. Dollar. Gold. Oil. You can invest all of them
+      /// 
+      /// Locales: en, zh-Hans
+      static func yourAsset(_: Void = ()) -> String {
+        return NSLocalizedString("Your asset", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: ACCOUNT DATA
@@ -755,6 +903,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Best Execution Policy", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Bonus!
+      /// 
+      /// Locales: en, zh-Hans
+      static func bonus(_: Void = ()) -> String {
+        return NSLocalizedString("Bonus", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Bonuses
       /// 
       /// Locales: en, zh-Hans
@@ -769,11 +924,32 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("British pound", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: CONTROL
+      /// 
+      /// Locales: en, zh-Hans
+      static func control(_: Void = ()) -> String {
+        return NSLocalizedString("Control", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Cash in. Check your account balance to see how much you made.
+      /// 
+      /// Locales: en, zh-Hans
+      static func cashIn(_: Void = ()) -> String {
+        return NSLocalizedString("Cash in", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: China Union Pay
       /// 
       /// Locales: en, zh-Hans
       static func chinaUnionPay(_: Void = ()) -> String {
         return NSLocalizedString("China Union Pay", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Choose how you make money in 4 ways.
+      /// 
+      /// Locales: en, zh-Hans
+      static func choose(_: Void = ()) -> String {
+        return NSLocalizedString("Choose", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Click here to accept our client agreement
@@ -846,6 +1022,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Deposit", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Deposit $10 or more
+      /// 
+      /// Locales: en, zh-Hans
+      static func deposit10OrMore(_: Void = ()) -> String {
+        return NSLocalizedString("Deposit $10 or more", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Email
       /// 
       /// Locales: en, zh-Hans
@@ -874,11 +1057,39 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Expiry time", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Free money
+      /// 
+      /// Locales: en, zh-Hans
+      static func freeMoney(_: Void = ()) -> String {
+        return NSLocalizedString("Free money", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Get a 100% bonus
+      /// 
+      /// Locales: en, zh-Hans
+      static func getA100Bonus(_: Void = ()) -> String {
+        return NSLocalizedString("Get a 100% bonus", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Hit IN TRADE if you want to be in the range at the expiry time.
+      /// 
+      /// Locales: en, zh-Hans
+      static func hitINTRADE(_: Void = ()) -> String {
+        return NSLocalizedString("Hit IN TRADE", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Home
       /// 
       /// Locales: en, zh-Hans
       static func home(_: Void = ()) -> String {
         return NSLocalizedString("Home", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: How to do it
+      /// 
+      /// Locales: en, zh-Hans
+      static func howToDoIt(_: Void = ()) -> String {
+        return NSLocalizedString("How to do it", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: How to trade
@@ -893,6 +1104,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func inTradeExplaination(_: Void = ()) -> String {
         return NSLocalizedString("in trade explaination", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: If we see you deposit, we will double your money
+      /// 
+      /// Locales: en, zh-Hans
+      static func ifWeSee(_: Void = ()) -> String {
+        return NSLocalizedString("If we see", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: In trade
@@ -977,6 +1195,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func myWallet(_: Void = ()) -> String {
         return NSLocalizedString("My wallet", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Now the trade is live - win red envelopes and win with your trade.
+      /// 
+      /// Locales: en, zh-Hans
+      static func nowTheTradeIsLive(_: Void = ()) -> String {
+        return NSLocalizedString("Now the trade is live", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Password
@@ -1112,6 +1337,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Sign up", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Sunbeam Capital LLC is an International financial Entity (IFE) which is licensedand regulated by the Office of the Commissioner of Financial Institutions pursuant to Act No. 273 of September 25, 2012, as amended (the IFE Act) and Regulation No.5653.
+      /// 
+      /// Locales: en, zh-Hans
+      static func sunbeamCapitalIs(_: Void = ()) -> String {
+        return NSLocalizedString("Sunbeam Capital is", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Support
       /// 
       /// Locales: en, zh-Hans
@@ -1124,6 +1356,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func termsAndConditions(_: Void = ()) -> String {
         return NSLocalizedString("Terms and conditions", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Terms and conditions apply (please ask for details)
+      /// 
+      /// Locales: en, zh-Hans
+      static func termsAndConditionsApply(_: Void = ()) -> String {
+        return NSLocalizedString("Terms and conditions apply", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Trade copying terms and conditions
@@ -1140,11 +1379,39 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("United states pound", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Up to $500
+      /// 
+      /// Locales: en, zh-Hans
+      static func upTo500(_: Void = ()) -> String {
+        return NSLocalizedString("Up to $500", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: WELL PLAYED - good luck with your next trade!
+      /// 
+      /// Locales: en, zh-Hans
+      static func wellPlayed(_: Void = ()) -> String {
+        return NSLocalizedString("Well played", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Wallet
       /// 
       /// Locales: en, zh-Hans
       static func wallet(_: Void = ()) -> String {
         return NSLocalizedString("Wallet", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: We are Sunbeam Capital LLC of Puerto Rico, USA
+      /// 
+      /// Locales: en, zh-Hans
+      static func weAreSunbeam(_: Void = ()) -> String {
+        return NSLocalizedString("We are sunbeam", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: We use technology licensed from Cuboid Logic Ltd, Guernsey, UK.
+      /// 
+      /// Locales: en, zh-Hans
+      static func weUseTechnology(_: Void = ()) -> String {
+        return NSLocalizedString("We use technology", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Withdraw
@@ -1159,6 +1426,20 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func withdrawalTo(_: Void = ()) -> String {
         return NSLocalizedString("Withdrawal to", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Your funds are held in segregated bank accounts with $1,000,000 client fund insurance.
+      /// 
+      /// Locales: en, zh-Hans
+      static func yourFunds(_: Void = ()) -> String {
+        return NSLocalizedString("Your funds", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Your winning are the sum of predicting the price and the red envelopes.
+      /// 
+      /// Locales: en, zh-Hans
+      static func yourWinnings(_: Void = ()) -> String {
+        return NSLocalizedString("Your winnings", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Your winnings are the sum of predicting the price and the red envelopes.
@@ -1292,18 +1573,30 @@ struct _R: Rswift.Validatable {
       
       let bundle = R.hostingBundle
       let carouselMainController = StoryboardViewControllerResource<CarouselMainController>(identifier: "CarouselMainController")
+      let fifthPageController = StoryboardViewControllerResource<FifthPageController>(identifier: "FifthPageController")
       let firstPageController = StoryboardViewControllerResource<FirstPageController>(identifier: "FirstPageController")
+      let fourthPageController = StoryboardViewControllerResource<FourthPageController>(identifier: "FourthPageController")
       let name = "Carousel"
       let pageViewController = StoryboardViewControllerResource<PageViewController>(identifier: "PageViewController")
       let secondPageController = StoryboardViewControllerResource<WolfFX.SecondPageController>(identifier: "SecondPageController")
+      let seventhPageController = StoryboardViewControllerResource<SeventhPageController>(identifier: "SeventhPageController")
+      let sixthPageController = StoryboardViewControllerResource<SixthPageController>(identifier: "SixthPageController")
       let thirdPageController = StoryboardViewControllerResource<ThirdPageController>(identifier: "ThirdPageController")
       
       func carouselMainController(_: Void = ()) -> CarouselMainController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: carouselMainController)
       }
       
+      func fifthPageController(_: Void = ()) -> FifthPageController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: fifthPageController)
+      }
+      
       func firstPageController(_: Void = ()) -> FirstPageController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: firstPageController)
+      }
+      
+      func fourthPageController(_: Void = ()) -> FourthPageController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: fourthPageController)
       }
       
       func pageViewController(_: Void = ()) -> PageViewController? {
@@ -1314,23 +1607,39 @@ struct _R: Rswift.Validatable {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: secondPageController)
       }
       
+      func seventhPageController(_: Void = ()) -> SeventhPageController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: seventhPageController)
+      }
+      
+      func sixthPageController(_: Void = ()) -> SixthPageController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: sixthPageController)
+      }
+      
       func thirdPageController(_: Void = ()) -> ThirdPageController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: thirdPageController)
       }
       
       static func validate() throws {
         if UIKit.UIImage(named: "balanceExample", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'balanceExample' is used in storyboard 'Carousel', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "control", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'control' is used in storyboard 'Carousel', but couldn't be loaded.") }
         if UIKit.UIImage(named: "envelopes", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'envelopes' is used in storyboard 'Carousel', but couldn't be loaded.") }
         if UIKit.UIImage(named: "inOutHowToTrade", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'inOutHowToTrade' is used in storyboard 'Carousel', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "krisPortrait", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'krisPortrait' is used in storyboard 'Carousel', but couldn't be loaded.") }
         if UIKit.UIImage(named: "logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'logo' is used in storyboard 'Carousel', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "money", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'money' is used in storyboard 'Carousel', but couldn't be loaded.") }
         if UIKit.UIImage(named: "page3", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'page3' is used in storyboard 'Carousel', but couldn't be loaded.") }
         if UIKit.UIImage(named: "redEnvelops", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'redEnvelops' is used in storyboard 'Carousel', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "trade-in", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'trade-in' is used in storyboard 'Carousel', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.carousel().carouselMainController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'carouselMainController' could not be loaded from storyboard 'Carousel' as 'CarouselMainController'.") }
+        if _R.storyboard.carousel().fifthPageController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'fifthPageController' could not be loaded from storyboard 'Carousel' as 'FifthPageController'.") }
         if _R.storyboard.carousel().firstPageController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'firstPageController' could not be loaded from storyboard 'Carousel' as 'FirstPageController'.") }
+        if _R.storyboard.carousel().fourthPageController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'fourthPageController' could not be loaded from storyboard 'Carousel' as 'FourthPageController'.") }
         if _R.storyboard.carousel().pageViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'pageViewController' could not be loaded from storyboard 'Carousel' as 'PageViewController'.") }
         if _R.storyboard.carousel().secondPageController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'secondPageController' could not be loaded from storyboard 'Carousel' as 'WolfFX.SecondPageController'.") }
+        if _R.storyboard.carousel().seventhPageController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'seventhPageController' could not be loaded from storyboard 'Carousel' as 'SeventhPageController'.") }
+        if _R.storyboard.carousel().sixthPageController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'sixthPageController' could not be loaded from storyboard 'Carousel' as 'SixthPageController'.") }
         if _R.storyboard.carousel().thirdPageController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'thirdPageController' could not be loaded from storyboard 'Carousel' as 'ThirdPageController'.") }
       }
       
