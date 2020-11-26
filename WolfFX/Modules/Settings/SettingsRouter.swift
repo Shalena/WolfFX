@@ -11,6 +11,12 @@ import UIKit
 import SafariServices
 
 class SettingsRouter: BaseRouter, SettingsTransitions {
+    func showCarousel() {
+        let window = UIApplication.shared.windows[0]
+        let carousel = R.storyboard.carousel.carouselMainController()
+        window.rootViewController = carousel
+    }
+    
     func goToHome() {
         sourceController.tabBarController?.selectedIndex = 0
     }

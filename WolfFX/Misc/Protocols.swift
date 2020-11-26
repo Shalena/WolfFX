@@ -223,6 +223,7 @@ protocol SettingsEvents {
     var legalInfoDataSource: [LegalInformation] {get set}
     func settingsViewIsReady()
     func profileChosen()
+    func howToTradeTapped()
     func configure(cell: LanguageCell, at index: Int)
     func configure(cell: LegalInfoCell, at index: Int)
     func showLegalInfoItem(at index: Int)
@@ -231,6 +232,7 @@ protocol SettingsEvents {
 
 protocol SettingsTransitions {
     func goToProfile()
+    func showCarousel()
     func goToHome()
     func goToSafariWith(url: URL)
     func signIn()

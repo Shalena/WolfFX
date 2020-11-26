@@ -58,6 +58,10 @@ class SettingsPresenter: NSObject, SettingsEvents {
         }
     }
     
+    func howToTradeTapped() {
+        router?.showCarousel()
+    }
+    
     func lastSectionTapped() {
         switch currentLoginState {
         case .userIsLoggedIn:

@@ -414,6 +414,7 @@
                     <connections>
                         <outlet property="collectionView" destination="4Xe-Hc-bF5" id="0PL-cO-KNM"/>
                         <outlet property="howToTrade" destination="Jbw-6P-FtS" id="amR-fp-geZ"/>
+                        <outlet property="howToTradeView" destination="hKm-1u-4nZ" id="SEC-a1-hnp"/>
                         <outlet property="language" destination="cO5-mk-QBw" id="NcK-rD-5N5"/>
                         <outlet property="languageArrow" destination="V8M-YN-zG0" id="fk8-de-Mn9"/>
                         <outlet property="languageHeaderView" destination="TId-Qc-YPT" id="Nce-hR-hNh"/>

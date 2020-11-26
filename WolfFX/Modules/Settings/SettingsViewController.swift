@@ -20,6 +20,7 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
     @IBOutlet weak var settingsTitle: UILabel!
     @IBOutlet weak var profileData: UILabel!
     @IBOutlet weak var language: UILabel!
+    @IBOutlet weak var howToTradeView: UIView!
     @IBOutlet weak var support: UILabel!
     @IBOutlet weak var howToTrade: UILabel!
     @IBOutlet weak var legalInformationTitleView: UIView!
@@ -54,6 +55,8 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
         languageHeaderView.addGestureRecognizer(languageTap)
         let supportTap = UITapGestureRecognizer(target: self, action: #selector(self.supportTapped(_:)))
         supportHeaderView.addGestureRecognizer(supportTap)
+        let howToTradeTap = UITapGestureRecognizer(target: self, action: #selector(self.howToTradeTapped(_:)))
+        howToTradeView.addGestureRecognizer(howToTradeTap)
         let legalInfoTap = UITapGestureRecognizer(target: self, action: #selector(self.legalInfoTapped(_:)))
         legalInformationTitleView.addGestureRecognizer(legalInfoTap)
     }
@@ -98,6 +101,10 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
             angle = .pi / 2
         }
         suppportArrow.transform = suppportArrow.transform.rotated(by: angle)
+    }
+    
+    @objc private func howToTradeTapped(_ sender: UITapGestureRecognizer? = nil) {
+        presenter?.howToTradeTapped()
     }
     
     @objc private func legalInfoTapped(_ sender: UITapGestureRecognizer? = nil) {
