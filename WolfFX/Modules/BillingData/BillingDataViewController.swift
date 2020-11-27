@@ -23,9 +23,12 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
     @IBOutlet weak var amauntPendingWithdrawTitle: UILabel!
     @IBOutlet weak var amauntPendingWithdrawValue: UILabel!
     @IBOutlet weak var dateFromTitle: UILabel!
-    @IBOutlet weak var dateFromValue: UILabel!
+    @IBOutlet weak var dateFromButton: UIButton!
+    @IBOutlet weak var dateToButton: UIButton!
+    
+
     @IBOutlet weak var dateToTitle: UILabel!
-    @IBOutlet weak var dateToValue: UILabel!
+  
     @IBOutlet weak var tableView: UITableView!
     var footerView: BalanceHistoryFooterView?
     var presenter: BillingDataEvents?
@@ -54,9 +57,22 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
             self.realMoneyValue.text = viewModel.realMoney
             self.bonusesValue.text = viewModel.bonus
             self.amauntPendingWithdrawValue.text = viewModel.amauntPendingWithdrawal
-            self.dateFromValue.text = viewModel.dateFrom
-            self.dateToValue.text = viewModel.dateTo
+     //       self.dateFromValue.text = viewModel.dateFrom
+    //        self.dateToValue.text = viewModel.dateTo
         }
+    }
+    
+    @IBAction func dateFromPressed(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func dateToPressed(_ sender: UIButton) {
+        
+    }
+    
+    private func showCalendar(_ sender: UIButton) {
+        let title = "31/01/2020"
+        sender.setTitle(title, for: .normal)
     }
     
     func reloadBalanceHistory(scrollIndex: Int, completion:@escaping TableReloadedCompletion, scrolling: Bool) {

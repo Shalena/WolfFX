@@ -134,7 +134,9 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
             accum.append(monthAccum)
         }
         globalDataSource = accum
-        currentDataSource = globalDataSource[0]
+        if globalDataSource.indices.contains(0) {
+           currentDataSource = globalDataSource[0]
+        }
         view?.reloadBalanceHistory(scrollIndex: 0, completion: {
             self.view?.hideHud()
             self.view?.showFooterButton()
@@ -143,6 +145,7 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
     }
     
     func updateFooterButtonTitle() {
+        if globalDataSource.indices.contains(monthsAmount) {
         let nextMonthArray = globalDataSource[monthsAmount]
         let firstDateArray = nextMonthArray.first
         let firstDate = firstDateArray?.first
@@ -153,5 +156,6 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
         let numberOfDaysInMonth = date.numberOfDaysInMonth()
         let title = "Show range " + nameOfMonth + " 1 to " + String(numberOfDaysInMonth)
         view?.updateFooterButton(title: title)
+        }
     }
 }
