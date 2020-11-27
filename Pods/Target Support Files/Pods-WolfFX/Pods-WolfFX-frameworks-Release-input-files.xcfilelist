@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-WolfFX/Pods-WolfFX-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
+${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
 ${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework
 ${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework

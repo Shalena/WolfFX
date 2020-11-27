@@ -2,6 +2,7 @@ PODS:
   - Charts (3.4.0):
     - Charts/Core (= 3.4.0)
   - Charts/Core (3.4.0)
+  - FSCalendar (2.8.1)
   - KRActivityIndicatorView (3.0.5)
   - KRProgressHUD (3.4.5):
     - KRActivityIndicatorView (= 3.0.5)
@@ -14,6 +15,7 @@ PODS:
 
 DEPENDENCIES:
   - Charts
+  - FSCalendar
   - KRProgressHUD
   - Locksmith
   - Networking
@@ -23,6 +25,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Charts
+    - FSCalendar
     - KRActivityIndicatorView
     - KRProgressHUD
     - Locksmith
@@ -33,6 +36,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
+  FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   KRActivityIndicatorView: 912bc0413d98340f384b12a4e1e6aa8f42fb377d
   KRProgressHUD: df4cdc3a1baf708d4276a089ee34d133fa9a6f3e
   Locksmith: e9bebbaaa4cee3c511bc358a44f843c3fe00e21f
@@ -41,6 +45,6 @@ SPEC CHECKSUMS:
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: ecf9268d4c40d1553ff085d06445601378c34d1b
+PODFILE CHECKSUM: f5c440b9100490ece2fe49c0e16f1ef1ede3b5e1
 
 COCOAPODS: 1.8.0

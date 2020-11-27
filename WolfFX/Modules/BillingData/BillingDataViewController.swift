@@ -10,6 +10,9 @@ let footerHeight = CGFloat(100.00)
 typealias TableReloadedCompletion = (() -> (Void))
 
 import UIKit
+import FSCalendar
+
+typealias calendarCallback = ((String) -> Void)
 
 class BillingDataViewController: UIViewController, BillingDataViewProtocol, NavigationDesign, RangeButtonDelegate {
    
@@ -25,16 +28,25 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
     @IBOutlet weak var dateFromTitle: UILabel!
     @IBOutlet weak var dateFromButton: UIButton!
     @IBOutlet weak var dateToButton: UIButton!
-    
-
     @IBOutlet weak var dateToTitle: UILabel!
-  
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var calendarView: FSCalendar!
+    
     var footerView: BalanceHistoryFooterView?
     var presenter: BillingDataEvents?
     
+    var callback: calendarCallback?
+    
+    fileprivate let formatter: DateFormatter = {
+           let formatter = DateFormatter()
+           formatter.dateFormat = "dd/MM/yyyy"
+           return formatter
+       }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        calendarView.isHidden = true
+        calendarView.swipeToChooseGesture.isEnabled = true
         setupBaseNavigationDesign()
         footerView = BalanceHistoryFooterView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: footerHeight), sender: self)
         presenter?.billingDataViewIsReady()
@@ -57,22 +69,26 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
             self.realMoneyValue.text = viewModel.realMoney
             self.bonusesValue.text = viewModel.bonus
             self.amauntPendingWithdrawValue.text = viewModel.amauntPendingWithdrawal
-     //       self.dateFromValue.text = viewModel.dateFrom
-    //        self.dateToValue.text = viewModel.dateTo
+            self.dateFromButton.setTitle(viewModel.dateFrom, for: .normal)
+            self.dateToButton.setTitle(viewModel.dateTo, for: .normal)
         }
     }
     
     @IBAction func dateFromPressed(_ sender: UIButton) {
-        
+        calendarView.isHidden = false
+        showCalendar(sender)
     }
     
     @IBAction func dateToPressed(_ sender: UIButton) {
-        
+        calendarView.isHidden = false
+        showCalendar(sender)
     }
     
     private func showCalendar(_ sender: UIButton) {
-        let title = "31/01/2020"
-        sender.setTitle(title, for: .normal)
+        callback = { string in
+            sender.setTitle(string, for: .normal)
+            self.calendarView.isHidden = true
+        }
     }
     
     func reloadBalanceHistory(scrollIndex: Int, completion:@escaping TableReloadedCompletion, scrolling: Bool) {
@@ -134,4 +150,11 @@ extension BillingDataViewController: UITableViewDelegate, UITableViewDataSource 
         view.backgroundColor = UIColor(red: 31.0/255.0, green: 33.0/255.0, blue: 36.0/255.0, alpha: 1)
         return view
     }
+}
+
+extension BillingDataViewController: FSCalendarDelegate {
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let string = self.formatter.string(from: date)
+           callback?(string)
+       }
 }

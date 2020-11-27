@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Billing Data View Controller-->
+        <!--Data Source-->
         <scene sceneID="P2o-Mp-qNr">
             <objects>
                 <viewController storyboardIdentifier="BillingDataViewController" id="oFO-BB-Rru" customClass="BillingDataViewController" customModule="WolfFX" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,7 +31,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NWk-ci-oFj">
                                                 <rect key="frame" x="10" y="0.0" width="394" height="1015"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwW-T0-qEr">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwW-T0-qEr" userLabel="Billing data View">
                                                         <rect key="frame" x="0.0" y="0.0" width="394" height="400"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RgO-8B-hwl">
@@ -126,11 +126,20 @@
                                                                     <action selector="dateToPressed:" destination="oFO-BB-Rru" eventType="touchUpInside" id="IbC-iP-5iW"/>
                                                                 </connections>
                                                             </button>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6SR-42-mJj" userLabel="Calendar View" customClass="FSCalendar">
+                                                                <rect key="frame" x="20" y="20" width="354" height="360"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <connections>
+                                                                    <outlet property="dataSource" destination="oFO-BB-Rru" id="bWC-JE-vWk"/>
+                                                                    <outlet property="delegate" destination="oFO-BB-Rru" id="3GX-4x-OFg"/>
+                                                                </connections>
+                                                            </view>
                                                         </subviews>
                                                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="RgO-8B-hwl" firstAttribute="top" secondItem="iwW-T0-qEr" secondAttribute="top" constant="30" id="0Fx-RZ-nPa"/>
                                                             <constraint firstItem="g4J-5Z-nsI" firstAttribute="centerY" secondItem="vme-TZ-6WO" secondAttribute="centerY" id="0Ir-T8-vTs"/>
+                                                            <constraint firstItem="6SR-42-mJj" firstAttribute="top" secondItem="iwW-T0-qEr" secondAttribute="top" constant="20" id="0Yh-Ah-VWg"/>
                                                             <constraint firstItem="3aT-5q-a3X" firstAttribute="top" secondItem="RgO-8B-hwl" secondAttribute="bottom" constant="30" id="29y-qy-bAc"/>
                                                             <constraint firstItem="cXD-Bv-Dtk" firstAttribute="centerY" secondItem="xfZ-Gi-y7O" secondAttribute="centerY" id="4ju-s2-Yz2"/>
                                                             <constraint firstItem="g4J-5Z-nsI" firstAttribute="leading" secondItem="iwW-T0-qEr" secondAttribute="centerX" constant="10" id="4mR-Rg-FRO"/>
@@ -139,6 +148,7 @@
                                                             <constraint firstItem="Wmy-Pq-MKj" firstAttribute="top" secondItem="vme-TZ-6WO" secondAttribute="bottom" constant="10" id="C5y-NO-mn8"/>
                                                             <constraint firstItem="CCd-Ml-yXE" firstAttribute="centerY" secondItem="3aT-5q-a3X" secondAttribute="centerY" id="DSH-2P-uiO"/>
                                                             <constraint firstItem="e1m-0n-grQ" firstAttribute="top" secondItem="ZeW-25-46w" secondAttribute="bottom" constant="20" id="Dwn-wM-uUl"/>
+                                                            <constraint firstItem="6SR-42-mJj" firstAttribute="leading" secondItem="iwW-T0-qEr" secondAttribute="leading" constant="20" id="Fos-1C-oZg"/>
                                                             <constraint firstAttribute="trailing" secondItem="XBE-yO-KPa" secondAttribute="trailing" constant="20" id="H9u-CC-hbS"/>
                                                             <constraint firstItem="vme-TZ-6WO" firstAttribute="leading" secondItem="iwW-T0-qEr" secondAttribute="leading" id="Hct-vS-QgP"/>
                                                             <constraint firstItem="ZeW-25-46w" firstAttribute="top" secondItem="Wmy-Pq-MKj" secondAttribute="bottom" constant="40" id="K7A-Da-4aX"/>
@@ -146,6 +156,8 @@
                                                             <constraint firstItem="CCd-Ml-yXE" firstAttribute="leading" secondItem="iwW-T0-qEr" secondAttribute="centerX" constant="10" id="N7c-c5-qSF"/>
                                                             <constraint firstItem="RgO-8B-hwl" firstAttribute="leading" secondItem="iwW-T0-qEr" secondAttribute="leading" constant="30" id="O0M-Ur-AbS"/>
                                                             <constraint firstItem="ZeW-25-46w" firstAttribute="leading" secondItem="iwW-T0-qEr" secondAttribute="leading" constant="20" id="S80-S6-vMu"/>
+                                                            <constraint firstAttribute="bottom" secondItem="6SR-42-mJj" secondAttribute="bottom" constant="20" id="ShS-5H-dV9"/>
+                                                            <constraint firstAttribute="trailing" secondItem="6SR-42-mJj" secondAttribute="trailing" constant="20" id="YFZ-NV-tq2"/>
                                                             <constraint firstItem="Wmy-Pq-MKj" firstAttribute="trailing" secondItem="iwW-T0-qEr" secondAttribute="centerX" id="ahd-Ea-GfO"/>
                                                             <constraint firstItem="vme-TZ-6WO" firstAttribute="trailing" secondItem="iwW-T0-qEr" secondAttribute="centerX" constant="-10" id="b0G-LY-RBX"/>
                                                             <constraint firstItem="xfZ-Gi-y7O" firstAttribute="top" secondItem="3aT-5q-a3X" secondAttribute="bottom" constant="30" id="bDd-jH-eLi"/>
@@ -169,14 +181,6 @@
                                                             <constraint firstItem="KU7-Z4-en3" firstAttribute="trailing" secondItem="XBE-yO-KPa" secondAttribute="trailing" id="rYI-uU-ur7"/>
                                                             <constraint firstItem="e1m-0n-grQ" firstAttribute="trailing" secondItem="ZeW-25-46w" secondAttribute="trailing" id="tDp-Vg-MAH"/>
                                                             <constraint firstItem="ZeW-25-46w" firstAttribute="trailing" secondItem="iwW-T0-qEr" secondAttribute="centerX" constant="-10" id="tSq-F6-Clp"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xEW-Lr-qfa">
-                                                        <rect key="frame" x="0.0" y="290" width="394" height="110"/>
-                                                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="110" id="7tT-Kd-OhG"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2no-gz-guf" userLabel="HistoryView">
@@ -320,9 +324,6 @@
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="2no-gz-guf" firstAttribute="top" secondItem="xEW-Lr-qfa" secondAttribute="bottom" id="tEu-pS-bHl"/>
-                                                </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -367,6 +368,7 @@
                         <outlet property="billingDataTitle" destination="RgO-8B-hwl" id="6GJ-BK-HjQ"/>
                         <outlet property="bonusesTitle" destination="vme-TZ-6WO" id="NXX-Th-Lo0"/>
                         <outlet property="bonusesValue" destination="g4J-5Z-nsI" id="oDH-gH-7Vj"/>
+                        <outlet property="calendarView" destination="6SR-42-mJj" id="0sC-88-hNl"/>
                         <outlet property="dateFromButton" destination="e1m-0n-grQ" id="7g5-QX-lgw"/>
                         <outlet property="dateFromTitle" destination="ZeW-25-46w" id="Fdv-rM-pWL"/>
                         <outlet property="dateToButton" destination="KU7-Z4-en3" id="FS2-T3-5PY"/>
