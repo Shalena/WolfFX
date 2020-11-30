@@ -118,6 +118,7 @@
 		81F97D6C254865FA009936BC /* BalanceHistoryFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F97D6B254865FA009936BC /* BalanceHistoryFooterView.swift */; };
 		81FAA37F24B3AE59006B9140 /* TradeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FAA37E24B3AE59006B9140 /* TradeStatus.swift */; };
 		81FAA38124B4647C006B9140 /* LegalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FAA38024B4647C006B9140 /* LegalInformation.swift */; };
+		81FD5DFA2571490800FF7A4A /* OrderBonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FD5DF92571490800FF7A4A /* OrderBonus.swift */; };
 		EE1C659B0C94D7015423A68C /* Pods_WolfFXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5C99F36564DA7BA05FD685 /* Pods_WolfFXTests.framework */; };
 		F7A9E9C1FC3FC31A410DBD4F /* Pods_WolfFXUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B49A895A9ABBD490771AC7 /* Pods_WolfFXUITests.framework */; };
 /* End PBXBuildFile section */
@@ -265,6 +266,7 @@
 		81F97D6B254865FA009936BC /* BalanceHistoryFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHistoryFooterView.swift; sourceTree = "<group>"; };
 		81FAA37E24B3AE59006B9140 /* TradeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeStatus.swift; sourceTree = "<group>"; };
 		81FAA38024B4647C006B9140 /* LegalInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalInformation.swift; sourceTree = "<group>"; };
+		81FD5DF92571490800FF7A4A /* OrderBonus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBonus.swift; sourceTree = "<group>"; };
 		93A4C600226894C900513681 /* Pods-WolfFXUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WolfFXUITests.release.xcconfig"; path = "Target Support Files/Pods-WolfFXUITests/Pods-WolfFXUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F4DDAFBC92A8DE3EBEC85F92 /* Pods_WolfFX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WolfFX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -613,6 +615,7 @@
 				8145C4B12535D437003D8423 /* BalanceHistoryItem.swift */,
 				8145C4B32535E520003D8423 /* BalanceHistoryItemViewModel.swift */,
 				816B47AA255A000A002C9CBB /* Order.swift */,
+				81FD5DF92571490800FF7A4A /* OrderBonus.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -901,6 +904,7 @@
 				81AF5B2C246C35D00058FC03 /* Range.swift in Sources */,
 				81992CFC24E7E89600D1229F /* Snapshot.swift in Sources */,
 				81C28ADE256E5E310050E2DA /* SixthPageController.swift in Sources */,
+				81FD5DFA2571490800FF7A4A /* OrderBonus.swift in Sources */,
 				815FD04B244F230B00EE7083 /* ExchangeRateJsonAcception.swift in Sources */,
 				81A4B3562413A3CF004A02CB /* LoginConfigurator.swift in Sources */,
 				816F67EA240857F50016AA95 /* LoginViewController.swift in Sources */,

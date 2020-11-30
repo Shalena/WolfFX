@@ -24,4 +24,6 @@ class DataReceiver: NSObject {
     @objc dynamic var balanceHistoryItems: [BalanceHistoryItem]?
     @objc dynamic var orders: [Order]?
     @objc dynamic var newSnapshot: Snapshot?
+    @objc dynamic var currentOrderIdForSpeedometr: String?
+    @objc dynamic var orderBonus: OrderBonus?
 }

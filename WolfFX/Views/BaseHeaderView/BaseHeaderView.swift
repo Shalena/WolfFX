@@ -9,11 +9,15 @@
 import Foundation
 import UIKit
 
+let initialSpeedometrValueInDegrees = 180.00
+
 class BaseHeaderView: UIView {
+    @IBOutlet weak var arrowImage: UIImageView!
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var realbalanceLabel: UILabel!
     @IBOutlet weak var realBalanceTitleLabel: UILabel!
-    
+    @IBOutlet weak var bonusLabel: UILabel!
+    var previousAngle = initialSpeedometrValueInDegrees
     let presenter = BaseHeaderViewPresenter()
        
     override init(frame: CGRect) {
@@ -45,6 +49,23 @@ class BaseHeaderView: UIView {
         DispatchQueue.main.async {
             self.realbalanceLabel.text = realBalance
         }       
+    }
+    
+    func updateBonus(with string: String?) {
+        bonusLabel.text = string
+    }
+         
+    func rotateArrow(percent: Double) {
+        if percent == 0.0 { return }
+        let angle = 180 * percent
+        if angle == previousAngle {
+            return
+        }
+        let rotationAngle = (previousAngle - angle)
+        UIView.animate(withDuration: 1) {
+            self.arrowImage.transform = self.arrowImage.transform.rotated(by: CGFloat( rotationAngle * .pi/180))
+        }        
+        previousAngle = angle
     }
     
     private func setupGestes() {

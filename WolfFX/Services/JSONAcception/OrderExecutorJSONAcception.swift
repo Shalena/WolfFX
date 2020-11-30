@@ -32,6 +32,7 @@ class OrderExecutorJSONAcception: JsonAcception {
                             DispatchQueue.main.async {
                                 let snapshot = Converter().shapshotFrom(order: order)
                                 WSManager.shared.dataReceiver.newSnapshot = snapshot
+                                WSManager.shared.dataReceiver.currentOrderIdForSpeedometr = order.orderId
                             }
                         }
                     }
@@ -45,6 +46,10 @@ class OrderExecutorJSONAcception: JsonAcception {
                                          DispatchQueue.main.async {
                                             let snapshot = Converter().shapshotFrom(order: order)
                                             WSManager.shared.dataReceiver.newSnapshot = snapshot
+                                            if order.orderId == WSManager.shared.dataReceiver.currentOrderIdForSpeedometr {
+                                                let orderBonus = OrderBonus(with: order)
+                                                WSManager.shared.dataReceiver.orderBonus = orderBonus
+                                            }
                                         }
                                      }
                                  }

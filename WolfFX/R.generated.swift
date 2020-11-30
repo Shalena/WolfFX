@@ -30,7 +30,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 24 images.
+  /// This `R.image` struct is generated, and contains static references to 25 images.
   struct image {
     /// Image `arrow left`.
     static let arrowLeft = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrow left")
@@ -72,6 +72,8 @@ struct R: Rswift.Validatable {
     static let selectedCheckBox = Rswift.ImageResource(bundle: R.hostingBundle, name: "selectedCheckBox")
     /// Image `settings`.
     static let settings = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings")
+    /// Image `speed-arrow`.
+    static let speedArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "speed-arrow")
     /// Image `speedometer`.
     static let speedometer = Rswift.ImageResource(bundle: R.hostingBundle, name: "speedometer")
     /// Image `trade-in`.
@@ -179,6 +181,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "settings", bundle: ..., traitCollection: ...)`
     static func settings(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.settings, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "speed-arrow", bundle: ..., traitCollection: ...)`
+    static func speedArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.speedArrow, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "speedometer", bundle: ..., traitCollection: ...)`
@@ -1528,7 +1535,7 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "envelope", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'envelope' is used in nib 'BaseHeaderView', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "speedometer", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'speedometer' is used in nib 'BaseHeaderView', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "speed-arrow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'speed-arrow' is used in nib 'BaseHeaderView', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
       }

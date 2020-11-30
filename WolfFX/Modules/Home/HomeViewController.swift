@@ -367,7 +367,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                     yArray.append(value)
                 }
             }
-        
+
         let avg = yArray.reduce(0, +) / Double(yArray.count)
         let avrLimit = abs(avg * 0.2)
         let filtered = yArray.filter{($0 - avg) < avrLimit}
@@ -376,6 +376,8 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         let rangeRate = (max! - min!) * 1.5
         lineChartView.leftAxis.axisMaximum = max! + rangeRate
         lineChartView.leftAxis.axisMinimum = min! - rangeRate
+        lineChartView.data?.notifyDataChanged()
+        lineChartView.notifyDataSetChanged()
     }
     
      func makeShift() {
