@@ -27,8 +27,27 @@ extension UIView {
          NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: container, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
          NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: container, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
      }
-}
+    
+        func setAnchorPoint(anchorPoint: CGPoint) {
 
+            var newPoint = CGPoint(x: self.bounds.size.width * anchorPoint.x, y: self.bounds.size.height * anchorPoint.y)
+            var oldPoint = CGPoint(x: self.bounds.size.width * self.layer.anchorPoint.x, y: self.bounds.size.height * self.layer.anchorPoint.y)
+
+            newPoint = newPoint.applying(self.transform)
+            oldPoint = oldPoint.applying(self.transform)
+
+            var position : CGPoint = self.layer.position
+
+            position.x -= oldPoint.x
+            position.x += newPoint.x;
+
+            position.y -= oldPoint.y;
+            position.y += newPoint.y;
+
+            self.layer.position = position;
+            self.layer.anchorPoint = anchorPoint;
+        }
+    }
 
 extension Double {
     func truncate(places : Int)-> Double {
@@ -143,8 +162,27 @@ extension String {
     func widthOfString(usingFont font: UIFont) -> CGFloat {
         let fontAttributes = [NSAttributedString.Key.font: font]
         let size = self.size(withAttributes: fontAttributes)
-           return size.width
-       }
+        return size.width
+    }
+    
+    func cleanWinValue() -> String? {
+        guard let currency = WSManager.shared.dataReceiver.user?.currency else { return nil}
+        let checkCharacter = ","
+        if let currencyRange = self.range(of: currency) {
+            let suffix = self[currencyRange.upperBound...]
+            let suffixString = String(suffix)
+            if let checkCharacterRange = suffixString.range(of: checkCharacter) {
+                let valueString = suffixString.substring(to: checkCharacterRange.lowerBound)
+                    if let doubleValue = Double(valueString) {
+                        let truncValue = doubleValue.truncate(places: 2)
+                        let truncString = String(truncValue)
+                        let resultString = self.replacingOccurrences(of: valueString, with: truncString)
+                        return resultString
+                    }
+            }
+        }
+        return nil
+    }
 }
 
 extension CGPoint {

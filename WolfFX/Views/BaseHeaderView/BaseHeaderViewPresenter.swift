@@ -47,6 +47,10 @@ class BaseHeaderViewPresenter: NSObject {
                     self.view?.updateBonus(with: string)
                     self.view?.rotateArrow(percent: percent)
                 }
+            } else {
+                DispatchQueue.main.async {
+                    self.view?.returnSpeedometerToInitialState()
+                }
             }
         }
     }

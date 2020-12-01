@@ -32,7 +32,6 @@ class OrderExecutorJSONAcception: JsonAcception {
                             DispatchQueue.main.async {
                                 let snapshot = Converter().shapshotFrom(order: order)
                                 WSManager.shared.dataReceiver.newSnapshot = snapshot
-                                WSManager.shared.dataReceiver.currentOrderIdForSpeedometr = order.orderId
                             }
                         }
                     }
@@ -49,6 +48,8 @@ class OrderExecutorJSONAcception: JsonAcception {
                                             if order.orderId == WSManager.shared.dataReceiver.currentOrderIdForSpeedometr {
                                                 let orderBonus = OrderBonus(with: order)
                                                 WSManager.shared.dataReceiver.orderBonus = orderBonus
+                                            } else if WSManager.shared.dataReceiver.currentOrderIdForSpeedometr == nil {
+                                                WSManager.shared.dataReceiver.currentOrderIdForSpeedometr = order.orderId
                                             }
                                         }
                                      }
@@ -59,6 +60,10 @@ class OrderExecutorJSONAcception: JsonAcception {
                 if let payloadJSON = json["payload"] as? JSON, let jsonstring = payloadJSON["order"] as? String {
                         if let jsonData = jsonstring.data(using: .utf8) {
                             if let order = try? JSONDecoder().decode(Order.self, from: jsonData) {
+                                if order.orderId == WSManager.shared.dataReceiver.currentOrderIdForSpeedometr {
+                                    WSManager.shared.dataReceiver.currentOrderIdForSpeedometr = nil
+                                    WSManager.shared.dataReceiver.orderBonus = nil
+                                }
                                 DispatchQueue.main.async {
                                     let snapshot = Converter().shapshotFrom(order: order)
                                     WSManager.shared.dataReceiver.newSnapshot = snapshot
@@ -66,7 +71,8 @@ class OrderExecutorJSONAcception: JsonAcception {
                             }
                         }
                     if let message = payloadJSON["message"] as? String {
-                        let tradeStatus = TradeStatus(message: message, success: nil)
+                        let cleanMessage = message.cleanWinValue()
+                        let tradeStatus = TradeStatus(message: cleanMessage, success: nil)
                         WSManager.shared.dataReceiver.tradeStatus = tradeStatus
                     }
                 }

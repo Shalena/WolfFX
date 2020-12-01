@@ -38,6 +38,7 @@ class BaseHeaderView: UIView {
         realbalanceLabel.text = WSManager.shared.dataReceiver.accountData?.realBalanceHeaderString
         setupGestes()
         localize()
+        arrowImage.setAnchorPoint(anchorPoint: CGPoint(x: 1, y: 0.5))
     }
     
     func localize() {
@@ -60,12 +61,19 @@ class BaseHeaderView: UIView {
         let angle = 180 * percent
         if angle == previousAngle {
             return
-        }
+       }
         let rotationAngle = (previousAngle - angle)
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.5) {
             self.arrowImage.transform = self.arrowImage.transform.rotated(by: CGFloat( rotationAngle * .pi/180))
-        }        
+        }
         previousAngle = angle
+    }
+    
+    func returnSpeedometerToInitialState() {
+        UIView.animate(withDuration: 1) {
+            self.arrowImage.transform = .identity
+            self.bonusLabel.text = nil
+        }
     }
     
     private func setupGestes() {
