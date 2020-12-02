@@ -12,6 +12,7 @@
                 <outlet property="arrowImage" destination="eqB-bH-g9g" id="NE6-LS-xYO"/>
                 <outlet property="bonusLabel" destination="SQA-Vj-Nwy" id="iTW-Sz-Mz3"/>
                 <outlet property="contentView" destination="lXz-se-6mY" id="Peh-IY-zmN"/>
+                <outlet property="envelopeImage" destination="WX6-Nf-xqT" id="zSm-aG-5fI"/>
                 <outlet property="realBalanceTitleLabel" destination="Hk9-PX-Q6g" id="WT1-Ad-QRj"/>
                 <outlet property="realbalanceLabel" destination="x8s-pW-jSu" id="JC5-5D-aFK"/>
             </connections>
@@ -24,21 +25,23 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6X2-eY-kSq">
                     <rect key="frame" x="10" y="54" width="512.5" height="143"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speed-arrow" translatesAutoresizingMaskIntoConstraints="NO" id="eqB-bH-g9g">
-                            <rect key="frame" x="60" y="0.0" width="40" height="143"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speed-arrow" translatesAutoresizingMaskIntoConstraints="NO" id="eqB-bH-g9g">
+                            <rect key="frame" x="70" y="123" width="42" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="QjQ-tO-qBr"/>
+                                <constraint firstAttribute="height" constant="20" id="IrP-h1-HZ5"/>
+                                <constraint firstAttribute="width" constant="42" id="QjQ-tO-qBr"/>
                             </constraints>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="envelope" translatesAutoresizingMaskIntoConstraints="NO" id="WX6-Nf-xqT">
-                            <rect key="frame" x="0.0" y="0.0" width="20" height="143"/>
+                            <rect key="frame" x="0.0" y="83" width="40" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="82w-MU-2Sz"/>
+                                <constraint firstAttribute="width" constant="40" id="82w-MU-2Sz"/>
+                                <constraint firstAttribute="height" constant="60" id="clc-Og-Ei7"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SQA-Vj-Nwy" userLabel="Bonus Label">
-                            <rect key="frame" x="110" y="20" width="382.5" height="103"/>
+                            <rect key="frame" x="140" y="20" width="352.5" height="103"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -47,16 +50,12 @@
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="eqB-bH-g9g" firstAttribute="leading" secondItem="WX6-Nf-xqT" secondAttribute="trailing" constant="40" id="3S3-Md-5gG"/>
+                        <constraint firstItem="eqB-bH-g9g" firstAttribute="leading" secondItem="WX6-Nf-xqT" secondAttribute="trailing" constant="30" id="3S3-Md-5gG"/>
                         <constraint firstAttribute="bottom" secondItem="SQA-Vj-Nwy" secondAttribute="bottom" constant="20" id="7Zw-nh-DqO"/>
-                        <constraint firstItem="WX6-Nf-xqT" firstAttribute="centerY" secondItem="6X2-eY-kSq" secondAttribute="centerY" id="7w5-jk-kbq"/>
                         <constraint firstItem="SQA-Vj-Nwy" firstAttribute="top" secondItem="6X2-eY-kSq" secondAttribute="top" constant="20" id="CbE-jM-VO3"/>
                         <constraint firstAttribute="bottom" secondItem="WX6-Nf-xqT" secondAttribute="bottom" id="Kfa-er-sH6"/>
-                        <constraint firstItem="eqB-bH-g9g" firstAttribute="centerY" secondItem="6X2-eY-kSq" secondAttribute="centerY" id="MCI-Qq-Vb2"/>
-                        <constraint firstItem="WX6-Nf-xqT" firstAttribute="top" secondItem="6X2-eY-kSq" secondAttribute="top" id="Obt-pK-YJI"/>
                         <constraint firstItem="WX6-Nf-xqT" firstAttribute="leading" secondItem="6X2-eY-kSq" secondAttribute="leading" id="V3p-UW-Cem"/>
-                        <constraint firstItem="SQA-Vj-Nwy" firstAttribute="leading" secondItem="eqB-bH-g9g" secondAttribute="trailing" constant="10" id="ahI-hu-RaA"/>
-                        <constraint firstItem="eqB-bH-g9g" firstAttribute="top" secondItem="6X2-eY-kSq" secondAttribute="top" id="alG-w4-Khi"/>
+                        <constraint firstItem="SQA-Vj-Nwy" firstAttribute="leading" secondItem="eqB-bH-g9g" secondAttribute="trailing" constant="28" id="ahI-hu-RaA"/>
                         <constraint firstAttribute="bottom" secondItem="eqB-bH-g9g" secondAttribute="bottom" id="ow6-fW-SxH"/>
                         <constraint firstAttribute="trailing" secondItem="SQA-Vj-Nwy" secondAttribute="trailing" constant="20" id="ujQ-gz-hdF"/>
                     </constraints>
@@ -106,6 +105,6 @@
     </objects>
     <resources>
         <image name="envelope" width="90" height="140"/>
-        <image name="speed-arrow" width="42" height="152"/>
+        <image name="speed-arrow" width="42" height="10"/>
     </resources>
 </document>

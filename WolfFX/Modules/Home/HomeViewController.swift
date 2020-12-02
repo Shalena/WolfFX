@@ -53,6 +53,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     var currentWindowWidth = CGFloat(0.0)
     var oneDivision = CGFloat(0.0)
     var expireScaleRange = CGFloat(0.0) // to check where is the right part of snapshot/rectange is
+    var isBlackAndWhite = false
     
     private let infoLabel: UILabel = {
         let label = UILabel()
@@ -83,7 +84,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
             self?.getTime()
         })
     }
-
+    
     func getTime() {
         guard let expiryValue = presenter?.selectedExpiry?.value else {return}
         let calendar = Calendar.current
