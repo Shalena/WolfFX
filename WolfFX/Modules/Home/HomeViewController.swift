@@ -156,6 +156,16 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         expiryTimeTextField.text = presenter?.selectedExpiry?.title
     }
     
+    func showHowToTradeAlert() {
+          let alert = UIAlertController(title: title,
+               message: "If you want to know how to play please go to Settings - How to Trade",
+               preferredStyle: UIAlertController.Style.alert)
+           self.present(alert, animated: true, completion: nil)
+           _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: { _ in
+               alert.dismiss(animated: true, completion: nil)
+           })
+       }
+    
     func updateChart(with entries: [PriceEntry]) {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"

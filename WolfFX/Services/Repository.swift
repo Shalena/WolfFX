@@ -12,19 +12,24 @@ import Locksmith
 let storedLoginEmail = "storedLoginEmail"
 let storedPassword = "storedPassword"
 let userAccount = "WolfFXUser"
-let userHadLaunched = "userHadLaunchedOnce"
+let userHad1stLogin = "userHadFirstLogin"
+let firstLaunch = "firstLaunch"
 
 protocol UserAccessProtocol: class {
     var user: User? { get set }
 }
 
-protocol IsFirstLaunchProtocol: class {
-    var hadAlreadyLaunched: Bool { get set }
+protocol FirstLoginProtocol: class {
+    var userHadFirstLogin: Bool { get set }
 }
 
 protocol StoreCredentialsProtocol: class {
     var loginEmail: String? { get set }
     var password: String? { get set }
+}
+
+protocol AppFirstLaunch: class {
+    var appHadLaunched: Bool { get set }
 }
 
 class Repository {
@@ -38,30 +43,48 @@ class Repository {
                     fatalError()
             }
         }
-        hadAlreadyLaunched = false
+        userHadFirstLogin = false
     }
 }
 
-extension Repository: IsFirstLaunchProtocol {
+extension Repository: FirstLoginProtocol {
     
-     var hadAlreadyLaunched: Bool {
+     var userHadFirstLogin: Bool {
         get {
-            return userHadLaunchedOnce()
+            return userHadLogin()
         }
         set {
-           userDefaults?.set(newValue, forKey: userHadLaunched)
+           userDefaults?.set(newValue, forKey: userHad1stLogin)
         }
     }
  
-    private func userHadLaunchedOnce() -> Bool {
-        if let userHadLaunchedOnce = userDefaults?.object(forKey: userHadLaunched) as? Bool {
-            return userHadLaunchedOnce
+    private func userHadLogin() -> Bool {
+        if let userHadFirstLogin = userDefaults?.object(forKey: userHad1stLogin) as? Bool {
+            return userHadFirstLogin
         } else {
             return false
         }
     }
 }
-
+extension Repository: AppFirstLaunch {
+    
+     var appHadLaunched: Bool {
+        get {
+            return appLaunched()
+        }
+        set {
+           userDefaults?.set(newValue, forKey: firstLaunch)
+        }
+    }
+ 
+    private func appLaunched() -> Bool {
+        if let hadLaunched = userDefaults?.object(forKey: firstLaunch) as? Bool {
+            return hadLaunched
+        } else {
+            return false
+        }
+    }
+}
 extension Repository: StoreCredentialsProtocol {
     var loginEmail: String? {
        get {
@@ -101,20 +124,11 @@ extension Repository: StoreCredentialsProtocol {
         }
     
     private func updateKeychain(loginEmail: String) {
-        if var currentData = Locksmith.loadDataForUserAccount(userAccount: userAccount) as? [String: String] {
-            do {
-                currentData[storedLoginEmail] = loginEmail
-                try Locksmith.updateData(data: currentData, forUserAccount: userAccount)
-            } catch {
-                fatalError()
-            }
-        } else {
-            do {
-                try Locksmith.updateData(data: [loginEmail : loginEmail], forUserAccount: userAccount)
-            }
+        do {
+            try Locksmith.updateData(data: [storedLoginEmail : loginEmail], forUserAccount: userAccount)
+        }
             catch {
                 fatalError()
-            }
         }
     }
     

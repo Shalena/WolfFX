@@ -26,20 +26,20 @@ class LoginRouter: BaseRouter, LoginTransitions {
             repository.loginEmail = email
             repository.password = password
         }
-        DispatchQueue.main.async {
-            self.showTabbar()
-        }       
+        showTabbar()
     }
-
+    
     func closeScreen() {
         showTabbar()
     }
     
     func showTabbar() {
+    DispatchQueue.main.async {
         let tabBar = TabbarView()
         let tabBarConfigurator = TabbarConfigurator()
-        tabBarConfigurator.configure(tabBar: tabBar, with: 0, assembler: assembler)
+        tabBarConfigurator.configure(tabBar: tabBar, with: 0, assembler: self.assembler)
         let window = UIApplication.shared.windows[0]
         window.rootViewController = tabBar
+    }
     }
 }

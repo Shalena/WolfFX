@@ -18,9 +18,12 @@ class HomeConfigurator {
         presenter.router = router
         viewController.presenter = presenter
         presenter.view = viewController
-        if let repository = try? assembler.resolve(IsFirstLaunchProtocol.self) {
-        presenter.shouldPerformHTTPLogin = repository.hadAlreadyLaunched
-        setupCredentials(assembler: assembler, presenter: presenter)            
+        if let repository = try? assembler.resolve(FirstLoginProtocol.self) {
+            presenter.shouldPerformHTTPLogin = repository.userHadFirstLogin
+            setupCredentials(assembler: assembler, presenter: presenter)
+        }
+        if let repository = try? assembler.resolve(AppFirstLaunch.self) {
+            presenter.shouldShowHowToTrade = !repository.appHadLaunched            
         }
     }
     

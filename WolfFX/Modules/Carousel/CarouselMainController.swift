@@ -27,6 +27,6 @@ class CarouselMainController: UIViewController {
     }
     
     @IBAction func letsgoPressed(_ sender: Any) {
-        
+        self.dismiss(animated: true, completion: nil)
     }
 }

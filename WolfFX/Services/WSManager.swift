@@ -70,6 +70,7 @@ class WSManager: WebsocketAccess {
         switch result {
             case .failure(let error):
               print("Error in receiving message: \(error)")
+              self.connect()
             case .success(let message):
               switch message {
               case .string(let text):

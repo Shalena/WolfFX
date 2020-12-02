@@ -28,6 +28,7 @@ class HomePresenter: NSObject, HomeEvents {
     @objc dynamic var dataReceiver: DataReceiver?
     var userCanPlay = false
     var shouldPerformHTTPLogin = false
+    var shouldShowHowToTrade = true
     var credentials: Credentials?
     var connectionObservation: NSKeyValueObservation?
     var userObservation: NSKeyValueObservation?
@@ -106,7 +107,7 @@ class HomePresenter: NSObject, HomeEvents {
         observeTradeStatus()
         observeOrders()
         observeNewSnapshot()
-        
+    
         if shouldPerformHTTPLogin {
           performHTTPLogin()
         } else {
@@ -143,7 +144,7 @@ class HomePresenter: NSObject, HomeEvents {
                 if successfully {
                     self.performWebsocketLogin()
                 } else {
-                    
+                    self.router?.loginFailed()
                 }
             }, failure: { [weak self] error in
                 self?.view?.hideHud()
@@ -166,7 +167,7 @@ class HomePresenter: NSObject, HomeEvents {
                if change.newValue != nil {
                  self.selectedInvestment = self.investmentDataSource.first
                  self.router?.userHadSuccessfullyLoggedIn()
-                 self.view?.reloadInvestmentPicker() // because we should show currency sign in it 
+                 self.view?.reloadInvestmentPicker() // because we should show currency sign in it
                  WSManager.shared.getBalance()
                }
            }
@@ -239,6 +240,11 @@ class HomePresenter: NSObject, HomeEvents {
                  DispatchQueue.main.async {
                     self.view?.updateChartWithNewValue(assetPrice: assetPrice)
                     self.view?.hideHud()
+                    if self.shouldShowHowToTrade {
+                        self.view?.showHowToTradeAlert()
+                        self.router?.appHadFirstLaunch()
+                        self.shouldShowHowToTrade = false
+                    }
                  }
              }
          }
@@ -254,7 +260,7 @@ class HomePresenter: NSObject, HomeEvents {
                         DispatchQueue.main.async {
                             self.view?.updateMinValue(with: minValueString)
                             self.view?.updateMaxValue(with: maxValueString)
-                            self.view?.makeShift()
+                           // self.view?.makeShift()
                         }
                     }
                 }

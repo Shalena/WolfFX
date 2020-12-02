@@ -129,11 +129,13 @@ protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, 
     func update(snapshots: [Snapshot])
     func updateSnapshots(with snapshot: Snapshot)
     func makeShift()
+    func showHowToTradeAlert()
 }
 
 protocol HomeEvents {
     var userCanPlay: Bool {get set}
     var shouldPerformHTTPLogin: Bool {get set}
+    var shouldShowHowToTrade: Bool {get set}
     var investmentDataSource: [PickerEntry] {get}
     var leverageDataSource: [PickerEntry] {get}
     var expiryDataSource: [PickerEntry] {get}
@@ -154,6 +156,7 @@ protocol HomeTransitions {
     func userHadSuccessfullyLoggedIn()
     func goToDeposit()
     func loginFailed()
+    func appHadFirstLaunch()
 }
 
 // Billing Data Screen

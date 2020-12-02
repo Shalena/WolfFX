@@ -15,31 +15,9 @@ class Assembler {
     
     func initFlow() {
         register(NetworkAccess.self, name: nil) { _ in NetwokManager()}
-        register(IsFirstLaunchProtocol.self, name: nil) { _ in self.repository}
+        register(FirstLoginProtocol.self, name: nil) { _ in self.repository}
         register(StoreCredentialsProtocol.self, name: nil) { _ in self.repository }
-    }
-        
-    var hadAlreadyLaunched: Bool {
-        set {
-            do {
-                let repository = try resolve(IsFirstLaunchProtocol.self)
-                repository?.hadAlreadyLaunched = newValue
-            } catch {
-                return
-            }
-        }
-        
-        get {
-            do {
-                if let repository = try resolve(IsFirstLaunchProtocol.self) {
-                     return repository.hadAlreadyLaunched
-                } else {
-                    return false
-                }
-            } catch {
-                return false
-            }
-        }
+        register(AppFirstLaunch.self, name: nil) { _ in self.repository}
     }
     
     func register<Service>(

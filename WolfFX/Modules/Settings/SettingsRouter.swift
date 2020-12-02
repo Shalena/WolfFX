@@ -12,9 +12,8 @@ import SafariServices
 
 class SettingsRouter: BaseRouter, SettingsTransitions {
     func showCarousel() {
-        let window = UIApplication.shared.windows[0]
-        let carousel = R.storyboard.carousel.carouselMainController()
-        window.rootViewController = carousel
+        guard let carousel = R.storyboard.carousel.carouselMainController() else {return}
+        sourceController.present(carousel, animated: true, completion: nil)
     }
     
     func goToHome() {
@@ -42,6 +41,7 @@ class SettingsRouter: BaseRouter, SettingsTransitions {
     
     func logout() {
         assembler.repository.cleanKeychain()
+        assembler.repository.userHadFirstLogin = false
         setupLoginScreen()
     }
     

@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             let assembler = Assembler()
             assembler.initFlow()
-            if let repository = try? assembler.resolve(IsFirstLaunchProtocol.self) {
-                if repository.hadAlreadyLaunched {
+            if let repository = try? assembler.resolve(FirstLoginProtocol.self) {
+                if repository.userHadFirstLogin {
                     DispatchQueue.main.async {
                         self.showHome(window: window, assembler: assembler)
                     }

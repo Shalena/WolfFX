@@ -14,7 +14,7 @@ let depositTab = 2
 class HomeRouter: BaseRouter, HomeTransitions {
     
     func userHadSuccessfullyLoggedIn() {
-        assembler.repository.hadAlreadyLaunched = true
+        assembler.repository.userHadFirstLogin = true
     }
     
     func loginFailed() {
@@ -34,5 +34,11 @@ class HomeRouter: BaseRouter, HomeTransitions {
     func goToDeposit() {
         let tabbar = sourceController.tabBarController
         tabbar?.selectedIndex = depositTab
+    }
+    
+    func appHadFirstLaunch() {
+        if let repository = try? assembler.resolve(AppFirstLaunch.self) {
+            repository.appHadLaunched = true
+        }
     }
 }
