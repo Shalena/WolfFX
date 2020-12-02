@@ -13,6 +13,7 @@
                 <outlet property="bonusLabel" destination="SQA-Vj-Nwy" id="iTW-Sz-Mz3"/>
                 <outlet property="contentView" destination="lXz-se-6mY" id="Peh-IY-zmN"/>
                 <outlet property="envelopeImage" destination="WX6-Nf-xqT" id="zSm-aG-5fI"/>
+                <outlet property="envelopeImage2" destination="K4M-yQ-KEW" id="4OF-0S-QU5"/>
                 <outlet property="realBalanceTitleLabel" destination="Hk9-PX-Q6g" id="WT1-Ad-QRj"/>
                 <outlet property="realbalanceLabel" destination="x8s-pW-jSu" id="JC5-5D-aFK"/>
             </connections>
@@ -33,10 +34,17 @@
                                 <constraint firstAttribute="width" constant="42" id="QjQ-tO-qBr"/>
                             </constraints>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="envelope" translatesAutoresizingMaskIntoConstraints="NO" id="WX6-Nf-xqT">
-                            <rect key="frame" x="0.0" y="83" width="40" height="60"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="envelope" translatesAutoresizingMaskIntoConstraints="NO" id="K4M-yQ-KEW">
+                            <rect key="frame" x="10" y="73" width="30" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="82w-MU-2Sz"/>
+                                <constraint firstAttribute="height" constant="60" id="e0n-Ju-oF7"/>
+                                <constraint firstAttribute="width" constant="30" id="evn-2s-9ep"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="envelope" translatesAutoresizingMaskIntoConstraints="NO" id="WX6-Nf-xqT">
+                            <rect key="frame" x="0.0" y="83" width="30" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="82w-MU-2Sz"/>
                                 <constraint firstAttribute="height" constant="60" id="clc-Og-Ei7"/>
                             </constraints>
                         </imageView>
@@ -50,10 +58,12 @@
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="eqB-bH-g9g" firstAttribute="leading" secondItem="WX6-Nf-xqT" secondAttribute="trailing" constant="30" id="3S3-Md-5gG"/>
+                        <constraint firstItem="eqB-bH-g9g" firstAttribute="leading" secondItem="K4M-yQ-KEW" secondAttribute="trailing" constant="30" id="0r7-aa-GXI"/>
                         <constraint firstAttribute="bottom" secondItem="SQA-Vj-Nwy" secondAttribute="bottom" constant="20" id="7Zw-nh-DqO"/>
                         <constraint firstItem="SQA-Vj-Nwy" firstAttribute="top" secondItem="6X2-eY-kSq" secondAttribute="top" constant="20" id="CbE-jM-VO3"/>
+                        <constraint firstItem="K4M-yQ-KEW" firstAttribute="top" secondItem="WX6-Nf-xqT" secondAttribute="top" constant="-10" id="GJH-sy-KWs"/>
                         <constraint firstAttribute="bottom" secondItem="WX6-Nf-xqT" secondAttribute="bottom" id="Kfa-er-sH6"/>
+                        <constraint firstItem="K4M-yQ-KEW" firstAttribute="leading" secondItem="WX6-Nf-xqT" secondAttribute="leading" constant="10" id="Rad-8T-BGi"/>
                         <constraint firstItem="WX6-Nf-xqT" firstAttribute="leading" secondItem="6X2-eY-kSq" secondAttribute="leading" id="V3p-UW-Cem"/>
                         <constraint firstItem="SQA-Vj-Nwy" firstAttribute="leading" secondItem="eqB-bH-g9g" secondAttribute="trailing" constant="28" id="ahI-hu-RaA"/>
                         <constraint firstAttribute="bottom" secondItem="eqB-bH-g9g" secondAttribute="bottom" id="ow6-fW-SxH"/>

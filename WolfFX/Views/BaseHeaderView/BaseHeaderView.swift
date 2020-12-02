@@ -13,6 +13,7 @@ let initialSpeedometrValueInDegrees = 180.00
 
 class BaseHeaderView: UIView {
     @IBOutlet weak var envelopeImage: UIImageView!
+    @IBOutlet weak var envelopeImage2: UIImageView! // we did't have an image resource with 2 envelopes
     @IBOutlet weak var arrowImage: UIImageView!
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var realbalanceLabel: UILabel!
@@ -92,9 +93,15 @@ class BaseHeaderView: UIView {
                     UIView.transition(with: self.envelopeImage, duration: 1, options: .transitionCrossDissolve, animations: {
                         self.envelopeImage.image = self.envelopeImage.image?.convertToGrayScale()
                     })
+                    UIView.transition(with: self.envelopeImage2, duration: 1, options: .transitionCrossDissolve, animations: {
+                        self.envelopeImage2.image = self.envelopeImage2.image?.convertToGrayScale()
+                    })
                 } else {
                     UIView.transition(with: self.envelopeImage, duration: 1, options: .transitionCrossDissolve, animations: {
                         self.envelopeImage.image = R.image.envelope()
+                    })
+                    UIView.transition(with: self.envelopeImage, duration: 1, options: .transitionCrossDissolve, animations: {
+                        self.envelopeImage2.image = R.image.envelope()
                     })
                 }
             }           

@@ -242,7 +242,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         
     func updateChartWithNewValue(assetPrice: AssetPrice) {
         guard let price = assetPrice.price else { return }
-        valueLabel.text = String(price.truncate(places: 2))
+        valueLabel.text = String(price.truncate(places: 4))
         guard let priceTime = assetPrice.priceTime else { return }
         guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
         let newTime = Double(priceTime / 1000)
