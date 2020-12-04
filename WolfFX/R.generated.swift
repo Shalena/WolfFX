@@ -1536,6 +1536,7 @@ struct _R: Rswift.Validatable {
       static func validate() throws {
         if UIKit.UIImage(named: "envelope", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'envelope' is used in nib 'BaseHeaderView', but couldn't be loaded.") }
         if UIKit.UIImage(named: "speed-arrow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'speed-arrow' is used in nib 'BaseHeaderView', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "speedometer", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'speedometer' is used in nib 'BaseHeaderView', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
       }

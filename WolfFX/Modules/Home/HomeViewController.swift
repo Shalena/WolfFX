@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-let defaultWindowHeight = CGFloat(50.00)
+let defaultWindowHeight = CGFloat(20.00)
 let valueViewHeight = CGFloat(30.00)
 let valueViewWidth = CGFloat(70.00)
 
@@ -252,6 +252,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
             dataSet.removeFirst()
         }
         normilize(for: price)
+        makeShift()
         let chartFrame = lineChartView.frame
         let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
         let firstEntry = dataSet.entryForIndex(0)
@@ -262,7 +263,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                              height: valueViewHeight)
         self.valueView.frame = valueViewFrame
         let start = CGPoint(x: valueViewFrame.maxX, y: valueViewFrame.midY)
-        let end = CGPoint(x: chartFrame.maxX, y: valueViewFrame.midY)
+        let end = CGPoint(x: chartFrame.maxX, y: valueViewFrame.midY)      
         drawDottedLine(start: start, end: end, view: self.lineChartView)
         updateSnapshotsFrames()
     }
@@ -409,15 +410,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         let maxPt = transform.pixelForValues(x: 0, y: currentMax)
         let minPt = transform.pixelForValues(x: 0, y: currentMin)
         let currentHeigtBetweenMinMax = maxPt.distance(to: minPt)
-        if (currentHeigtBetweenMinMax < defaultWindowHeight) {
-            let dif = Double((defaultWindowHeight - currentHeigtBetweenMinMax) / 2)
-            lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum  - abs(dif)
-            lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum + abs(dif)
-        } else if (currentHeigtBetweenMinMax > defaultWindowHeight) {
-            let dif = Double((currentHeigtBetweenMinMax - defaultWindowHeight) / 2)
-            lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum + abs(dif)
-            lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum - abs(dif)
-        }
+ 
         lineChartView.data?.notifyDataChanged()
         lineChartView.notifyDataSetChanged()
     }
@@ -430,9 +423,9 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     
    private func updateInfoViewFrame() {
         let frame = CGRect(x: maskView.frame.maxX,
-                           y: maskView.frame.midY - 25,
+                           y: maskView.frame.midY - defaultWindowHeight / 2,
                                width: currentWindowWidth,
-                               height: 50)
+                               height: defaultWindowHeight)
         infoView.frame = frame
         infoLabel.text = presenter?.textForInfoLabel()
         updateInfoLabel()
@@ -598,7 +591,7 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             let width = expireTimeView.frame.size.width / CGFloat(count) * CGFloat(row + 1)
             currentWindowWidth = width
             expireScaleRange = width
-            
+            updateInfoViewFrame()
             if let value = selectedExpiry?.value {
                 let intvalue = Int(value)
                 let outsideInfoLabelRange = 0...120

@@ -260,7 +260,6 @@ class HomePresenter: NSObject, HomeEvents {
                         DispatchQueue.main.async {
                             self.view?.updateMinValue(with: minValueString)
                             self.view?.updateMaxValue(with: maxValueString)
-                           // self.view?.makeShift()
                         }
                     }
                 }

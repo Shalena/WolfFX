@@ -12,6 +12,7 @@ import UIKit
 let initialSpeedometrValueInDegrees = 180.00
 
 class BaseHeaderView: UIView {
+    @IBOutlet weak var speedometerImage: UIImageView!
     @IBOutlet weak var envelopeImage: UIImageView!
     @IBOutlet weak var envelopeImage2: UIImageView! // we did't have an image resource with 2 envelopes
     @IBOutlet weak var arrowImage: UIImageView!
@@ -42,6 +43,7 @@ class BaseHeaderView: UIView {
         setupGestes()
         localize()
         arrowImage.setAnchorPoint(anchorPoint: CGPoint(x: 1, y: 0.5))
+        speedometerImage.setAnchorPoint(anchorPoint: CGPoint(x: 0.75, y: 0.5))
         blink()
     }
     
@@ -63,9 +65,6 @@ class BaseHeaderView: UIView {
     func rotateArrow(percent: Double) {
         if percent == 0.0 { return }
         let angle = 180 * percent
-        if angle == previousAngle {
-            return
-       }
         let rotationAngle = (previousAngle - angle)
         UIView.animate(withDuration: 0.5) {
             self.arrowImage.transform = self.arrowImage.transform.rotated(by: CGFloat( rotationAngle * .pi/180))
@@ -77,6 +76,7 @@ class BaseHeaderView: UIView {
         UIView.animate(withDuration: 1) {
             self.arrowImage.transform = .identity
             self.bonusLabel.text = nil
+            self.previousAngle = initialSpeedometrValueInDegrees
         }
     }
     
