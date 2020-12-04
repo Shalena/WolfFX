@@ -87,7 +87,16 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
     private func observeBalanceHistory() {
            balanceHistoryObservation = observe(\.dataReceiver?.balanceHistoryItems, options: [.old, .new]) { object, change in
                if let array = change.newValue as? [BalanceHistoryItem] {
-                    self.createDataSource(from: array)
+                    if array.count > 0 {
+                        self.createDataSource(from: array)
+                         DispatchQueue.main.async {
+                            self.view?.hideHistoryIfNecessary(necessary: false)
+                         }
+                    } else {
+                         DispatchQueue.main.async {
+                            self.view?.hideHistoryIfNecessary(necessary: true)
+                        }
+                    }
                }
            }
        }

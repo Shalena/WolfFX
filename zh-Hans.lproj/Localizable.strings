@@ -37,6 +37,7 @@
 "Hit IN TRADE" = "";
 "Now the trade is live" = "";
 "Cash in" = "";
+"Well played good luck" = "";
 "Well played" = "";
 //6 page
 "Free money" = "";
@@ -51,6 +52,10 @@
 "We use technology" = "";
 "Your funds" = "";
 "Sunbeam Capital is" = "";
+"numerationOne" = "1)";
+"numerationTwo" = "2)";
+"numerationThree" = "3)";
+"numerationFour" = "4)";
 // Tabs
 
 "Home" = "主页";

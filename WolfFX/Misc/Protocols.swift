@@ -164,6 +164,7 @@ protocol HomeTransitions {
 protocol BillingDataViewProtocol: LocalizableScreen, ShowHudCapable {
     var presenter: BillingDataEvents? {get set}
     func updateViewWith(viewModel: AccountDataViewModel)
+    func hideHistoryIfNecessary(necessary: Bool)
     func reloadBalanceHistory(scrollIndex: Int, completion:@escaping TableReloadedCompletion, scrolling: Bool)
     func showFooterButton()
     func hideFooterButton()

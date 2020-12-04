@@ -337,7 +337,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 104 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 109 localization keys.
     struct localizable {
       /// en translation: * Bank name
       /// 
@@ -367,6 +367,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let password = Rswift.StringResource(key: "Password", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 1)
+      /// 
+      /// Locales: en, zh-Hans
+      static let numerationOne = Rswift.StringResource(key: "numerationOne", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 1) Get paid if the price breaks through the top or bottom of the range
       /// 
       /// Locales: en, zh-Hans
@@ -375,6 +379,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let howMuch = Rswift.StringResource(key: "How much", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 2)
+      /// 
+      /// Locales: en, zh-Hans
+      static let numerationTwo = Rswift.StringResource(key: "numerationTwo", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 2) Get paid again if the price breaks through again.
       /// 
       /// Locales: en, zh-Hans
@@ -383,10 +391,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let howMany = Rswift.StringResource(key: "How many", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 3)
+      /// 
+      /// Locales: en, zh-Hans
+      static let numerationThree = Rswift.StringResource(key: "numerationThree", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 3) How fast you want the trade to happen. Expiry times from 30 seconds to 1 hour.
       /// 
       /// Locales: en, zh-Hans
       static let howFast = Rswift.StringResource(key: "How fast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 4)
+      /// 
+      /// Locales: en, zh-Hans
+      static let numerationFour = Rswift.StringResource(key: "numerationFour", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 4) Your asset. Dollar. Gold. Oil. You can invest all of them
       /// 
       /// Locales: en, zh-Hans
@@ -706,7 +722,7 @@ struct R: Rswift.Validatable {
       /// en translation: WELL PLAYED - good luck with your next trade!
       /// 
       /// Locales: en, zh-Hans
-      static let wellPlayed = Rswift.StringResource(key: "Well played", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      static let wellPlayedGoodLuck = Rswift.StringResource(key: "Well played good luck", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Wallet
       /// 
       /// Locales: en, zh-Hans
@@ -719,6 +735,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let weUseTechnology = Rswift.StringResource(key: "We use technology", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Well played
+      /// 
+      /// Locales: en, zh-Hans
+      static let wellPlayed = Rswift.StringResource(key: "Well played", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Withdraw
       /// 
       /// Locales: en, zh-Hans
@@ -805,6 +825,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Password", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 1)
+      /// 
+      /// Locales: en, zh-Hans
+      static func numerationOne(_: Void = ()) -> String {
+        return NSLocalizedString("numerationOne", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 1) Get paid if the price breaks through the top or bottom of the range
       /// 
       /// Locales: en, zh-Hans
@@ -817,6 +844,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func howMuch(_: Void = ()) -> String {
         return NSLocalizedString("How much", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 2)
+      /// 
+      /// Locales: en, zh-Hans
+      static func numerationTwo(_: Void = ()) -> String {
+        return NSLocalizedString("numerationTwo", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 2) Get paid again if the price breaks through again.
@@ -833,11 +867,25 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("How many", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: 3)
+      /// 
+      /// Locales: en, zh-Hans
+      static func numerationThree(_: Void = ()) -> String {
+        return NSLocalizedString("numerationThree", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: 3) How fast you want the trade to happen. Expiry times from 30 seconds to 1 hour.
       /// 
       /// Locales: en, zh-Hans
       static func howFast(_: Void = ()) -> String {
         return NSLocalizedString("How fast", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 4)
+      /// 
+      /// Locales: en, zh-Hans
+      static func numerationFour(_: Void = ()) -> String {
+        return NSLocalizedString("numerationFour", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 4) Your asset. Dollar. Gold. Oil. You can invest all of them
@@ -1396,8 +1444,8 @@ struct R: Rswift.Validatable {
       /// en translation: WELL PLAYED - good luck with your next trade!
       /// 
       /// Locales: en, zh-Hans
-      static func wellPlayed(_: Void = ()) -> String {
-        return NSLocalizedString("Well played", bundle: R.hostingBundle, comment: "")
+      static func wellPlayedGoodLuck(_: Void = ()) -> String {
+        return NSLocalizedString("Well played good luck", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Wallet
@@ -1419,6 +1467,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func weUseTechnology(_: Void = ()) -> String {
         return NSLocalizedString("We use technology", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Well played
+      /// 
+      /// Locales: en, zh-Hans
+      static func wellPlayed(_: Void = ()) -> String {
+        return NSLocalizedString("Well played", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Withdraw

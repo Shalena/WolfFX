@@ -25,9 +25,22 @@ class FifthPageController: UIViewController {
     
     private func localize() {
         titleLabel.text = R.string.localizable.howToDoIt().uppercased()
-        firstParagraph.text = R.string.localizable.hitINTRADE()
+        
+        let hitInTradeString = R.string.localizable.hitINTRADE()
+        let inTrade = R.string.localizable.inTrade().uppercased()
+        let rangeInTrade = (hitInTradeString as NSString).range(of: inTrade)
+        let mutableAttributedStringHit = NSMutableAttributedString(string: hitInTradeString)
+        mutableAttributedStringHit.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: rangeInTrade)
+        firstParagraph.attributedText = mutableAttributedStringHit
+        
         secondParagraph.text = R.string.localizable.nowTheTradeIsLive()
         thirdParagraph.text = R.string.localizable.cashIn()
-        fourthParagraph.text = R.string.localizable.wellPlayed()
+        
+        let wellPlayedGoodLuckString = R.string.localizable.wellPlayedGoodLuck()
+        let wellPlayed = R.string.localizable.wellPlayed().uppercased()
+        let rangeWellPlayed = (wellPlayedGoodLuckString as NSString).range(of: wellPlayed)
+        let mutableAttributedStringWell = NSMutableAttributedString(string: wellPlayedGoodLuckString)
+        mutableAttributedStringWell.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: rangeWellPlayed)
+        fourthParagraph.attributedText = mutableAttributedStringWell
     }
 }

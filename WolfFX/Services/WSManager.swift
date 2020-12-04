@@ -120,10 +120,9 @@ class WSManager: WebsocketAccess {
         guard let from = accountData.timeIntervalFrom else { return }
         guard let to = accountData.timeIntervalTo else { return }
         let json = websocketJsonCreator.balanceiHistoryJSON(from: from, to: to)
-            if let messageString = Converter().jsonToString(json: json) {
-                   let messageStringWithFormat = String(format: messageString, from, to)
-                   send(messageString: messageStringWithFormat)
-            }        
+        if let messageString = Converter().jsonToString(json: json) {
+            send(messageString: messageString)
+        }                    
     }
     
     func getBanks() {

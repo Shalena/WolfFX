@@ -26,7 +26,11 @@ class SecondPageController: UIViewController {
         subtitleFirstLabel.text = R.string.localizable.makemoneY().uppercased()
         subtitleSecondLabel.text = R.string.localizable.startwithpricE().uppercased()
         mainTextLabel.text = R.string.localizable.predictThePrice()
-        inTradeExplanation.text = R.string.localizable.inTradeExplaination()
-        
+        let inTradeExplanationString = R.string.localizable.inTradeExplaination()
+        let inTradeString = R.string.localizable.inTrade().uppercased()
+        let range = (inTradeExplanationString as NSString).range(of: inTradeString)
+        let mutableAttributedString = NSMutableAttributedString(string: inTradeExplanationString)
+        mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: range)
+        inTradeExplanation.attributedText = mutableAttributedString
     }
 }

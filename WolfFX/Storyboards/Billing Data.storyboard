@@ -373,6 +373,7 @@
                         <outlet property="dateFromTitle" destination="ZeW-25-46w" id="Fdv-rM-pWL"/>
                         <outlet property="dateToButton" destination="KU7-Z4-en3" id="FS2-T3-5PY"/>
                         <outlet property="dateToTitle" destination="XBE-yO-KPa" id="ohw-I6-Vot"/>
+                        <outlet property="historyView" destination="2no-gz-guf" id="6rF-tx-eis"/>
                         <outlet property="realMoneyTitle" destination="xfZ-Gi-y7O" id="NFm-Mq-JPp"/>
                         <outlet property="realMoneyValue" destination="cXD-Bv-Dtk" id="Udj-Ul-m39"/>
                         <outlet property="tableView" destination="8ZX-29-DmF" id="wqx-Ah-1O7"/>

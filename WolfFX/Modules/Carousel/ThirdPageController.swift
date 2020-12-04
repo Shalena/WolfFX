@@ -23,8 +23,18 @@ class ThirdPageController: UIViewController {
     
     private func localize() {
         titleLabel.text = R.string.localizable.withRedEnvelops().uppercased()
-        paragraphOneLabel.text = R.string.localizable.getPaid()
-        paragraphTwoLabel.text = R.string.localizable.getPaidAgain()
+        let getPaidString = R.string.localizable.getPaid()
+        let numberOne = R.string.localizable.numerationOne()
+        let range = (getPaidString as NSString).range(of: numberOne)
+        let mutableAttributedString = NSMutableAttributedString(string: getPaidString)
+        mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: range)
+        paragraphOneLabel.attributedText = mutableAttributedString
+        let getPaidAgainString = R.string.localizable.getPaidAgain()
+        let numberTwo = R.string.localizable.numerationTwo()
+        let range2 = (getPaidAgainString as NSString).range(of: numberTwo)
+        let mutableAttributedString2 = NSMutableAttributedString(string: getPaidAgainString)
+        mutableAttributedString2.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: range2)
+        paragraphTwoLabel.attributedText = mutableAttributedString2
         bottomDescription.text = R.string.localizable.yourWinningsAreTheSum()
     }
 }

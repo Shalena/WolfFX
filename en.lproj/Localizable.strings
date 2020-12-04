@@ -35,7 +35,8 @@
 "Hit IN TRADE" = "Hit IN TRADE if you want to be in the range at the expiry time.";
 "Now the trade is live" = "Now the trade is live - win red envelopes and win with your trade.";
 "Cash in" = "Cash in. Check your account balance to see how much you made.";
-"Well played" = "WELL PLAYED - good luck with your next trade!";
+"Well played good luck" = "WELL PLAYED - good luck with your next trade!";
+"Well played" = "Well played";
 //6 page
 "Free money" = "Free money";
 "If we see" = "If we see you deposit, we will double your money";
@@ -49,6 +50,11 @@
 "We use technology" = "We use technology licensed from Cuboid Logic Ltd, Guernsey, UK.";
 "Your funds" = "Your funds are held in segregated bank accounts with $1,000,000 client fund insurance.";
 "Sunbeam Capital is" = "Sunbeam Capital LLC is an International financial Entity (IFE) which is licensedand regulated by the Office of the Commissioner of Financial Institutions pursuant to Act No. 273 of September 25, 2012, as amended (the IFE Act) and Regulation No.5653.";
+"numerationOne" = "1)";
+"numerationTwo" = "2)";
+"numerationThree" = "3)";
+"numerationFour" = "4)";
+
 // Tabs
 "Home" = "Home";
 "Account data" = "Account data";

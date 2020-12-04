@@ -31,6 +31,7 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
     @IBOutlet weak var dateToTitle: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendarView: FSCalendar!
+    @IBOutlet weak var historyView: UIView!
     
     var footerView: BalanceHistoryFooterView?
     var presenter: BillingDataEvents?
@@ -72,6 +73,10 @@ class BillingDataViewController: UIViewController, BillingDataViewProtocol, Navi
             self.dateFromButton.setTitle(viewModel.dateFrom, for: .normal)
             self.dateToButton.setTitle(viewModel.dateTo, for: .normal)
         }
+    }
+    
+    func hideHistoryIfNecessary(necessary: Bool) {
+        historyView.isHidden = necessary
     }
     
     @IBAction func dateFromPressed(_ sender: UIButton) {

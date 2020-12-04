@@ -59,11 +59,13 @@ class Converter {
         }
         
         var timeIntervalFrom: Double?
+        var timeIntervalTo: Double?
         
         if let time = dateTo {
-            let date = Date(timeIntervalSince1970: (time / 1000.0))
+            timeIntervalTo = time / 1000.0
+            let date = Date(timeIntervalSince1970: (timeIntervalTo!))
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-MMM-yyyy"
+            dateFormatter.dateFormat = "dd/MMM/yyyy"
             dateToString = dateFormatter.string(from: date)
             let dateFrom = date.startOfMonth()
             timeIntervalFrom = dateFrom.timeIntervalSince1970
@@ -79,7 +81,7 @@ class Converter {
             userCanPlay = false
         }
         
-        let accountData = AccountData(with: viewModel, realBalanceHeaderString: balanceHeaderString, userCanPlay: userCanPlay, timeIntervalFrom: timeIntervalFrom, timeIntervalTo: dateTo)
+        let accountData = AccountData(with: viewModel, realBalanceHeaderString: balanceHeaderString, userCanPlay: userCanPlay, timeIntervalFrom: timeIntervalFrom! * 1000, timeIntervalTo: dateTo)
         return accountData
     }
     
@@ -96,12 +98,12 @@ class Converter {
     }
     
     func maxString(from max: Double) -> String {
-        let valueString = String(max.truncate(places: 2))
+        let valueString = String(max.truncate(places: 4))
         return ["max:", valueString].joined(separator: " ")
     }
     
     func minString(from max: Double) -> String {
-        let valueString = String(max.truncate(places: 2))
+        let valueString = String(max.truncate(places: 4))
         return ["min:", valueString].joined(separator: " ")
     }
     
