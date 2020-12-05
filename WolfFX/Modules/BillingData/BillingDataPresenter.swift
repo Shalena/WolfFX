@@ -148,8 +148,10 @@ class BillingDataPresenter: NSObject, BillingDataEvents {
         }
         view?.reloadBalanceHistory(scrollIndex: 0, completion: {
             self.view?.hideHud()
-            self.view?.showFooterButton()
-            self.updateFooterButtonTitle()
+            if self.globalDataSource.count > 1 { // don't show Show Previous month button if we don't have previous month
+                self.view?.showFooterButton()
+                self.updateFooterButtonTitle()
+            }
         }, scrolling: false)
     }
     

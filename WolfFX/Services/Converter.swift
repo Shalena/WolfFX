@@ -75,13 +75,15 @@ class Converter {
         let balanceHeaderString = realBalanceHeaderString(from: realMoney, currencyString: currencyString, bonus: bonus)
         let viewModel = AccountDataViewModel(with: balanceHeaderString, realMoney: realMoneyString, bonus: bonusString, amauntPendingWithdrawal: amauntPendingWithdrawString, dateFrom: dateFromString, dateTo: dateToString)
         let userCanPlay: Bool?
-        if let realMoney = realMoney, realMoney > 0.0 {
+        if let realMoney = realMoney,
+            let bonusMoney = bonus,
+            realMoney > 0.0 || bonusMoney > 0.0 {
             userCanPlay = true
         } else {
             userCanPlay = false
-        }
-        
+        }        
         let accountData = AccountData(with: viewModel, realBalanceHeaderString: balanceHeaderString, userCanPlay: userCanPlay, timeIntervalFrom: timeIntervalFrom! * 1000, timeIntervalTo: dateTo)
+        
         return accountData
     }
     
