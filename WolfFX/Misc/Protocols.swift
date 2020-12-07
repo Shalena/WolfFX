@@ -58,7 +58,9 @@ protocol ShowHudCapable: class where Self: UIViewController {
 
 extension ShowHudCapable {
    func showHud() {
-        KRProgressHUD.show()
+    KRProgressHUD.set(activityIndicatorViewColors: [UIColor.red])
+    KRProgressHUD.set(style: KRProgressHUDStyle.custom(background: UIColor.clear, text: UIColor.clear, icon: UIColor.clear))
+    KRProgressHUD.show()
    }
    
    func hideHud() {
