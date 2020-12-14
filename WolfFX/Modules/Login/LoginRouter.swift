@@ -29,6 +29,14 @@ class LoginRouter: BaseRouter, LoginTransitions {
         showTabbar()
     }
     
+    func gotoResetPassword() {
+        if let restoreController = R.storyboard.login.resetPasswordController() {
+            let configurator = ResetPasswordConfigurator()
+            configurator.configure(viewController: restoreController, with: assembler)
+            sourceController.navigationController?.pushViewController(restoreController, animated: true)
+        }
+    }
+    
     func closeScreen() {
         showTabbar()
     }

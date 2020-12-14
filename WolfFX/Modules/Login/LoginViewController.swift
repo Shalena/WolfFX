@@ -17,6 +17,7 @@ class LoginViewController: UIViewController, NavigationDesign, LoginViewProtocol
     @IBOutlet weak var signUpButton: SubmitButton!
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
+    @IBOutlet weak var restorePasswordButton: UIButton!
     
     var presenter: LoginEvents?
       
@@ -32,6 +33,7 @@ class LoginViewController: UIViewController, NavigationDesign, LoginViewProtocol
         emailLabel.text = R.string.localizable.emailOnLogin().localized()
         passwordLabel.text = R.string.localizable.passwordOnLogin().localized()
         loginButton.setTitle(R.string.localizable.logIn().localized(), for: .normal)
+        restorePasswordButton.setTitle(R.string.localizable.restorePassword(), for: .normal)
         orLabel.text = R.string.localizable.or().localized()
         signUpButton.setTitle(R.string.localizable.signUp().localized(), for: .normal)
     }
@@ -40,6 +42,10 @@ class LoginViewController: UIViewController, NavigationDesign, LoginViewProtocol
         if let login = emailTextfield.text, let password = passwordTextfield.text {
             presenter?.signIn(email: login, password: password)
         }
+    }
+    
+    @IBAction func restorePasswordAction(_ sender: Any) {
+        presenter?.resetPasswordPressed()
     }
     
     @IBAction func signUpAction(_ sender: Any) {

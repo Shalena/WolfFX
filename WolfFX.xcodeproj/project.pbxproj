@@ -35,6 +35,10 @@
 		812F9392256BB2D4007E67BE /* ThirdPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F9391256BB2D4007E67BE /* ThirdPageController.swift */; };
 		812F9393256BB60E007E67BE /* CarouselConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F938B256BB193007E67BE /* CarouselConfigurator.swift */; };
 		812F9394256BBB9E007E67BE /* PageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F9389256BAFF2007E67BE /* PageController.swift */; };
+		813C91B5257E2F7700149BE8 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813C91B4257E2F7700149BE8 /* ResetPasswordController.swift */; };
+		813C91B7257E2FDB00149BE8 /* ResetPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813C91B6257E2FDB00149BE8 /* ResetPasswordPresenter.swift */; };
+		813C91B9257E2FEF00149BE8 /* ResetPasswordConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813C91B8257E2FEF00149BE8 /* ResetPasswordConfigurator.swift */; };
+		813C91BB257E301900149BE8 /* ResetPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813C91BA257E301900149BE8 /* ResetPasswordRouter.swift */; };
 		8145C4B02535D030003D8423 /* BalanceHistoryJsonAcception.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C4AF2535D030003D8423 /* BalanceHistoryJsonAcception.swift */; };
 		8145C4B22535D437003D8423 /* BalanceHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C4B12535D437003D8423 /* BalanceHistoryItem.swift */; };
 		8145C4B42535E520003D8423 /* BalanceHistoryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145C4B32535E520003D8423 /* BalanceHistoryItemViewModel.swift */; };
@@ -175,6 +179,10 @@
 		812F938D256BB239007E67BE /* FirstPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPageController.swift; sourceTree = "<group>"; };
 		812F938F256BB2C4007E67BE /* SecondPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPageController.swift; sourceTree = "<group>"; };
 		812F9391256BB2D4007E67BE /* ThirdPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPageController.swift; sourceTree = "<group>"; };
+		813C91B4257E2F7700149BE8 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
+		813C91B6257E2FDB00149BE8 /* ResetPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordPresenter.swift; sourceTree = "<group>"; };
+		813C91B8257E2FEF00149BE8 /* ResetPasswordConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordConfigurator.swift; sourceTree = "<group>"; };
+		813C91BA257E301900149BE8 /* ResetPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordRouter.swift; sourceTree = "<group>"; };
 		8145C4AF2535D030003D8423 /* BalanceHistoryJsonAcception.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHistoryJsonAcception.swift; sourceTree = "<group>"; };
 		8145C4B12535D437003D8423 /* BalanceHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHistoryItem.swift; sourceTree = "<group>"; };
 		8145C4B32535E520003D8423 /* BalanceHistoryItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceHistoryItemViewModel.swift; sourceTree = "<group>"; };
@@ -363,6 +371,17 @@
 			path = Carousel;
 			sourceTree = "<group>";
 		};
+		813C91B3257E2F4E00149BE8 /* Reset Password */ = {
+			isa = PBXGroup;
+			children = (
+				813C91B4257E2F7700149BE8 /* ResetPasswordController.swift */,
+				813C91B6257E2FDB00149BE8 /* ResetPasswordPresenter.swift */,
+				813C91B8257E2FEF00149BE8 /* ResetPasswordConfigurator.swift */,
+				813C91BA257E301900149BE8 /* ResetPasswordRouter.swift */,
+			);
+			path = "Reset Password";
+			sourceTree = "<group>";
+		};
 		8145C8A12405DD2F00414AE2 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
@@ -463,6 +482,7 @@
 		816C17FA24050AA900B1551A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				813C91B3257E2F4E00149BE8 /* Reset Password */,
 				812F9386256BAE2F007E67BE /* Carousel */,
 				81A4B34E24105D62004A02CB /* SignUp */,
 				816F67EB240858010016AA95 /* Login */,
@@ -922,6 +942,8 @@
 				814F2ED224423A9000E0820C /* BillingDataConfigurator.swift in Sources */,
 				81066A3C241FBA6700CA8829 /* WSManager.swift in Sources */,
 				81D8825A2409D6AA0030C78B /* Endpoints.swift in Sources */,
+				813C91B5257E2F7700149BE8 /* ResetPasswordController.swift in Sources */,
+				813C91B9257E2FEF00149BE8 /* ResetPasswordConfigurator.swift in Sources */,
 				81A4B35C2413A527004A02CB /* BaseRouter.swift in Sources */,
 				81D90BAC244B3A7C0074E2A3 /* WalletRouter.swift in Sources */,
 				812F9394256BBB9E007E67BE /* PageController.swift in Sources */,
@@ -943,11 +965,13 @@
 				819B8074256D58DF00DCADD0 /* FourthPageController.swift in Sources */,
 				8145C4B42535E520003D8423 /* BalanceHistoryItemViewModel.swift in Sources */,
 				8160E7A5248C22B10019B2F4 /* LanguageCell.swift in Sources */,
+				813C91BB257E301900149BE8 /* ResetPasswordRouter.swift in Sources */,
 				8145C4B02535D030003D8423 /* BalanceHistoryJsonAcception.swift in Sources */,
 				81BA2A462465D72000C13F64 /* AssetPrice.swift in Sources */,
 				816C17CF24050A0F00B1551A /* ContentView.swift in Sources */,
 				8103B18C242EC2EE008D7D5B /* Extensions.swift in Sources */,
 				816C180F24055F6C00B1551A /* BillingDataViewController.swift in Sources */,
+				813C91B7257E2FDB00149BE8 /* ResetPasswordPresenter.swift in Sources */,
 				816C1812240560AD00B1551A /* WalletViewController.swift in Sources */,
 				81D90BAA244B3A320074E2A3 /* WalletPresenter.swift in Sources */,
 				8184269E240D534200713BF5 /* LoginPresenter.swift in Sources */,

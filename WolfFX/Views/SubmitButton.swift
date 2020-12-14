@@ -28,4 +28,16 @@ override func awakeFromNib() {
         backgroundColor = backColor
         layer.borderColor = borderColor.cgColor
     }
+    
+    func setupActiveState() {
+        layer.borderColor = UIColor.red.cgColor
+        setTitleColor(UIColor.white, for: .normal)
+        isEnabled = true
+    }
+    
+    func setupInactiveState() {
+        layer.borderColor = UIColor.gray.cgColor
+        setTitleColor(UIColor.gray, for: .normal)
+        isEnabled = false
+    }
 }

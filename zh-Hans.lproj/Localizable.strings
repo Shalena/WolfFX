@@ -71,6 +71,13 @@
 "or" = "或者";
 "Sign up" = "开立账户";
 
+// Reset password screen
+"Reset password" = "";
+"Your email" = "";
+"Send" = "";
+"We've sent you email" = "";
+"Please check your spam" = "";
+
 // Sign up screen
 
 "Create your account" = "创建您的账户";
@@ -81,6 +88,8 @@
 "British pound" = "";
 "United states dollar" = "";
 "Euro" = "";
+"Enter your password" = "";
+"Confirm password" = "";
 
 // Header view
 

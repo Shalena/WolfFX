@@ -21,6 +21,7 @@ enum httpMethod {
 
 enum Endpoint {
     case login(email: String, password: String)
+    case restorePassword(email: String)
     case signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String)
     case billingHistory
     case exchangeRate (broker: String)
@@ -30,8 +31,10 @@ enum Endpoint {
     
     var path: String {
     switch self {
-        case .login:
+    case .login:
         return "/mt1/login"
+    case .restorePassword:
+        return "/rp/otp"
     case .signup:
         return "/mt1/createUser"
     case .logout:
@@ -49,7 +52,7 @@ enum Endpoint {
         
     var headers: Headers? {
     switch self {
-    case .login, .signup, .billingHistory, .exchangeRate, .deposit, .logout:
+    case .login, .restorePassword, .signup, .billingHistory, .exchangeRate, .deposit, .logout:
         return nil
     case .withdraw:
         let username = "withdrawuser"
@@ -64,9 +67,11 @@ enum Endpoint {
         
     var parameters: Parameters? {
     switch self {
-        case .login (let email, let password):
+    case .login (let email, let password):
         return ["username": email,
              "password": password]
+    case .restorePassword (let email):
+        return ["username": email]
     case .signup(let firstname, let currency, let emails, let password, let tenantId, let username):
         return ["firstName": firstname,
             "password": password,
@@ -101,7 +106,7 @@ enum Endpoint {
         
     var method: httpMethod {
     switch self {
-    case .login, .signup, .deposit, .withdraw, .logout:
+    case .login, .restorePassword, .signup, .deposit, .withdraw, .logout:
         return .post
     case .billingHistory,  .exchangeRate:
         return .get

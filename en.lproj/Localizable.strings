@@ -69,16 +69,25 @@
 "or" = "or";
 "Sign up" = "Sign up";
 
+// Reset password screen
+"Reset password" = "Reset password";
+"Your email" = "*Your email";
+"Send" = "Send";
+"We've sent you email" = "We've sent you email containing a link that will allow you to reset your password.";
+"Please check your spam" = "Please check your spam folder if the email doesn't appear within a few minutes.";
+
 // Sign up screen
 
 "Create your account" = "Create your account";
-"First name" = "First name";
+"First name" = "*First name";
 "Currency" = "Currency";
-"Click here to accept our client agreement" = "Click here to accept our client agreement";
+"Click here to accept our client agreement" = "Click here to accept our Client Agreement";
 "Save" = "Save";
 "British pound" = "British pound";
 "United states pound" = "United states pound";
 "Euro" = "Euro";
+"Enter your password" = "Enter your password";
+"Confirm password" = "Confirm password";
 
 // Header view
 

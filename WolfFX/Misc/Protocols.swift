@@ -90,18 +90,34 @@ protocol LoginViewProtocol: ShowErrorCapable, ShowHudCapable, LocalizableScreen 
 protocol LoginEvents {
     func signIn(email: String, password: String)
     func signUpPressed()
+    func resetPasswordPressed()
     func closeScreen()
 }
 
 protocol LoginTransitions {
     func loginFirstStepFinishedSuccessfully(with email: String, password: String)
     func signUpPressed()
+    func gotoResetPassword()
     func closeScreen()
+}
+
+// Reset Password Screen
+
+protocol ResetPasswordViewProtocol: ShowErrorCapable, ShowHudCapable, ShowAlertCapable {
+    
+}
+
+protocol ResetPasswordEvents {
+    func resetPasswordWith(email: String)
+}
+
+protocol ResetPasswordTransitions {
+    func resetWasSentSuccessfully()
 }
 
 // Signup Screen
 
-protocol SignupViewProtocol: ShowErrorCapable, ShowHudCapable {
+protocol SignupViewProtocol: LocalizableScreen, ShowErrorCapable, ShowHudCapable {
     var presenter: SignupEvents? {get set}
 }
 

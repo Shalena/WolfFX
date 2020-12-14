@@ -337,7 +337,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 109 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 115 localization keys.
     struct localizable {
       /// en translation: * Bank name
       /// 
@@ -367,6 +367,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let password = Rswift.StringResource(key: "Password", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: *Your email
+      /// 
+      /// Locales: en, zh-Hans
+      static let yourEmail = Rswift.StringResource(key: "Your email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 1)
       /// 
       /// Locales: en, zh-Hans
@@ -471,7 +475,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let choose = Rswift.StringResource(key: "Choose", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Click here to accept our client agreement
+      /// en translation: Click here to accept our Client Agreement
       /// 
       /// Locales: en, zh-Hans
       static let clickHereToAcceptOurClientAgreement = Rswift.StringResource(key: "Click here to accept our client agreement", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
@@ -523,6 +527,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let enterAmount = Rswift.StringResource(key: "Enter amount", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Enter your password
+      /// 
+      /// Locales: en, zh-Hans
+      static let enterYourPassword = Rswift.StringResource(key: "Enter your password", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Euro
       /// 
       /// Locales: en, zh-Hans
@@ -619,6 +627,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let passwordOnLogin = Rswift.StringResource(key: "PasswordOnLogin", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Please check your spam folder if the email doesn't appear within a few minutes.
+      /// 
+      /// Locales: en, zh-Hans
+      static let pleaseCheckYourSpam = Rswift.StringResource(key: "Please check your spam", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Please confirm your payment method from the list below
       /// 
       /// Locales: en, zh-Hans
@@ -659,6 +671,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let requestWithdrawal = Rswift.StringResource(key: "Request withdrawal", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Reset password
+      /// 
+      /// Locales: en, zh-Hans
+      static let resetPassword = Rswift.StringResource(key: "Reset password", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Restore password
       /// 
       /// Locales: en, zh-Hans
@@ -671,6 +687,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let save = Rswift.StringResource(key: "Save", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Send
+      /// 
+      /// Locales: en, zh-Hans
+      static let send = Rswift.StringResource(key: "Send", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Sentiments
       /// 
       /// Locales: en, zh-Hans
@@ -735,6 +755,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let weUseTechnology = Rswift.StringResource(key: "We use technology", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: We've sent you email containing a link that will allow you to reset your password.
+      /// 
+      /// Locales: en, zh-Hans
+      static let weVeSentYouEmail = Rswift.StringResource(key: "We've sent you email", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Well played
       /// 
       /// Locales: en, zh-Hans
@@ -823,6 +847,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func password(_: Void = ()) -> String {
         return NSLocalizedString("Password", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: *Your email
+      /// 
+      /// Locales: en, zh-Hans
+      static func yourEmail(_: Void = ()) -> String {
+        return NSLocalizedString("Your email", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 1)
@@ -1007,7 +1038,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Choose", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Click here to accept our client agreement
+      /// en translation: Click here to accept our Client Agreement
       /// 
       /// Locales: en, zh-Hans
       static func clickHereToAcceptOurClientAgreement(_: Void = ()) -> String {
@@ -1096,6 +1127,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func enterAmount(_: Void = ()) -> String {
         return NSLocalizedString("Enter amount", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Enter your password
+      /// 
+      /// Locales: en, zh-Hans
+      static func enterYourPassword(_: Void = ()) -> String {
+        return NSLocalizedString("Enter your password", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Euro
@@ -1266,6 +1304,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("PasswordOnLogin", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Please check your spam folder if the email doesn't appear within a few minutes.
+      /// 
+      /// Locales: en, zh-Hans
+      static func pleaseCheckYourSpam(_: Void = ()) -> String {
+        return NSLocalizedString("Please check your spam", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Please confirm your payment method from the list below
       /// 
       /// Locales: en, zh-Hans
@@ -1336,6 +1381,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Request withdrawal", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Reset password
+      /// 
+      /// Locales: en, zh-Hans
+      static func resetPassword(_: Void = ()) -> String {
+        return NSLocalizedString("Reset password", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Restore password
       /// 
       /// Locales: en, zh-Hans
@@ -1355,6 +1407,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func save(_: Void = ()) -> String {
         return NSLocalizedString("Save", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Send
+      /// 
+      /// Locales: en, zh-Hans
+      static func send(_: Void = ()) -> String {
+        return NSLocalizedString("Send", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Sentiments
@@ -1467,6 +1526,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func weUseTechnology(_: Void = ()) -> String {
         return NSLocalizedString("We use technology", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: We've sent you email containing a link that will allow you to reset your password.
+      /// 
+      /// Locales: en, zh-Hans
+      static func weVeSentYouEmail(_: Void = ()) -> String {
+        return NSLocalizedString("We've sent you email", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Well played
@@ -1748,10 +1814,15 @@ struct _R: Rswift.Validatable {
       let bundle = R.hostingBundle
       let loginViewController = StoryboardViewControllerResource<LoginViewController>(identifier: "LoginViewController")
       let name = "Login"
+      let resetPasswordController = StoryboardViewControllerResource<ResetPasswordController>(identifier: "ResetPasswordController")
       let signupViewController = StoryboardViewControllerResource<SignupViewController>(identifier: "SignupViewController")
       
       func loginViewController(_: Void = ()) -> LoginViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: loginViewController)
+      }
+      
+      func resetPasswordController(_: Void = ()) -> ResetPasswordController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: resetPasswordController)
       }
       
       func signupViewController(_: Void = ()) -> SignupViewController? {
@@ -1762,6 +1833,7 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.login().loginViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'loginViewController' could not be loaded from storyboard 'Login' as 'LoginViewController'.") }
+        if _R.storyboard.login().resetPasswordController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'resetPasswordController' could not be loaded from storyboard 'Login' as 'ResetPasswordController'.") }
         if _R.storyboard.login().signupViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'signupViewController' could not be loaded from storyboard 'Login' as 'SignupViewController'.") }
       }
       

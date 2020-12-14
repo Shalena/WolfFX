@@ -37,6 +37,10 @@ class LoginPresenter: NSObject, LoginEvents {
         router?.signUpPressed ()
     }
     
+    func resetPasswordPressed() {
+        router?.gotoResetPassword()
+    }
+    
     func closeScreen() {
         router?.closeScreen()
     }

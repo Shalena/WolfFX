@@ -9,13 +9,13 @@
 import Foundation
 
 struct RegistrationForm {
-    var firstName: String?
-    var email: String?
-    var emails: [String]?
-    var password: String?
+    var firstName: String
+    var email: String
+    var emails: [String]
+    var password: String
     var isTerms: Bool
-    var currency: String?
-    var tenantId: String?
+    var currency: String
+    var tenantId: String
 }
 
 class SignupPresenter: NSObject, SignupEvents {
@@ -33,9 +33,9 @@ class SignupPresenter: NSObject, SignupEvents {
     func registerUserWith(form: RegistrationForm, confirmPasswordString: String?) {
         //confirmPassword is not send to the backend, so it is separate from the common form
         
-        if validatedSuccessfully(form: form) && passwordsMatch(password: form.password ?? "", confirmPassword: confirmPasswordString ?? "") {
+        if validatedSuccessfully(form: form) && passwordsMatch(password: form.password , confirmPassword: confirmPasswordString ?? "") {
             view?.showHud()
-            networkManager.signup(firstname: form.firstName ?? "", currency: form.currency ?? "", emails: form.emails ?? [String](), password: form.password ?? "", tenantId: form.tenantId ?? "", username: form.email ?? "", success: { (successfully: Bool) in
+            networkManager.signup(firstname: form.firstName , currency: form.currency , emails: form.emails , password: form.password , tenantId: form.tenantId , username: form.email , success: { (successfully: Bool) in
                     if successfully {
                         self.registrationFinishedSuccessfully()
                     }

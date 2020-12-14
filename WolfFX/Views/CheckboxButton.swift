@@ -9,7 +9,11 @@
 import Foundation
 import UIKit
 
+typealias CheckBoxCallback = (() -> Void)
+
 class CheckboxButton: UIButton {
+    var callback: CheckBoxCallback?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setImage(R.image.selectedCheckBox(), for: .selected)
@@ -23,5 +27,6 @@ class CheckboxButton: UIButton {
     
     @objc func checkBoxPressed(_ sender: CheckboxButton) {
         sender.isSelected = !sender.isSelected
+        callback?()
     }
 }

@@ -84,7 +84,7 @@ class SettingsPresenter: NSObject, SettingsEvents {
     
     func showLegalInfoItem(at index: Int) {
         if let urlString = legalInfoDataSource[index].link,
-           let url = URL.init(string: urlString) {
+           let url = URL(string: urlString) {
            router?.goToSafariWith(url: url)
         }
     }
