@@ -11,7 +11,7 @@
 
 "Let's go" = "";
 // 1 page
-"First Page title" = "";
+"First Page title" = "超过30秒的投注（最多一小时";
 "First Page subtitle" = "";
 // 2 page
 "how?" = "";
@@ -81,13 +81,13 @@
 // Sign up screen
 
 "Create your account" = "创建您的账户";
-"First name" = "";
-"Currency" = "";
+"First name" = "* 名";
+"Currency" = "币种";
 "Click here to accept our client agreement" = "点击此处确认客户同意书";
-"Save" = "";
-"British pound" = "";
-"United states dollar" = "";
-"Euro" = "";
+"Save" = "保存";
+"British pound" = "英镑";
+"United states dollar" = "美元";
+"Euro" = "欧元";
 "Enter your password" = "";
 "Confirm password" = "";
 
@@ -96,7 +96,9 @@
 "Real balance" = "实际余额";
 
 // Home Screen
-
+"Seconds" = "%@ 秒";
+"Minutes" = "%@ 分";
+"Hours" = "%@ 小时";
 "In trade" = "In trade";
 "Investment" = "投资";
 "Leverage" = "杠杆";
@@ -106,6 +108,8 @@
 "Indices" = "指数";
 "Commodities" = "商品";
 "Sentiments" = "市场情绪";
+"min" = "最低";
+"max" = "最高";
 
 // Billing Data Screen
 
@@ -161,8 +165,7 @@
 // Profile
 
 "Profile" = "档案";
-"First name" = "名";
-"Email" = "电子邮件";
+"Email" = "* 电子邮件";
 "Password" = "密码";
 "Confirm password" = "确认密码";
 "Currency" = "币种";

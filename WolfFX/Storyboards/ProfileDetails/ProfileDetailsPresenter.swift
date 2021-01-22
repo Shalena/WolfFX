@@ -9,7 +9,6 @@
 import Foundation
 import Swinject
 
-
 enum UserDetailsTextFields {
     case name
     case email
@@ -18,17 +17,18 @@ enum UserDetailsTextFields {
     case currency
 }
 
-class ProfileDetailsPresenter: ProfileDetailsEvents {
+class ProfileDetailsPresenter: NSObject, ProfileDetailsEvents {
 
 var view: ProfileDetailsViewProtocol?
 var router: ProfileDetailsTransitions?
-var websocketManager: WebsocketAccess
+var languageObservation: NSKeyValueObservation?
 let currentUser = WSManager.shared.dataReceiver.user
-
+@objc dynamic var dataReceiver: DataReceiver?
+    
     init (with view: ProfileDetailsViewProtocol, router: ProfileDetailsTransitions) {
         self.view = view
         self.router = router
-        websocketManager = WSManager.shared
+        self.dataReceiver = WSManager.shared.dataReceiver
     }
     
     func textFor(textField: UserDetailsTextFields) -> String {
@@ -48,6 +48,14 @@ let currentUser = WSManager.shared.dataReceiver.user
     
     func saveDetails() {
         router?.saveDetails()
+    }
+    
+    func observeLanguage() {
+        languageObservation = observe(\.dataReceiver?.language, options: [.old, .new]) { object, change in
+            if (change.newValue as? String) != nil {
+                self.view?.localize()
+            }
+        }
     }
 }
 

@@ -11,14 +11,9 @@ import Networking
 typealias JSON = [String : Any]
 
 enum BaseUrl: String {
-    case prod = "https://wolffxwarrior.com"
-    case stage =  "https://eu.sunbeam-capital.com"
-   // "https://stage.sunbeam-capital.com"
-   // eu.sunbeam-capital.com
-  //  https://wf-stage.wolffxwarrior.com
-  //  "https://staging.cuboidlogic.com"
- //   stage.sunbeam-capital.com
-    
+    case prodAsia = "https://wolffxwarrior.com"
+    case prodEurope = "https://eu.sunbeam-capital.com"
+    case stageEurope = "https://stage.sunbeam-capital.com"
 }
 
 protocol NetworkAccess {
@@ -112,7 +107,7 @@ class NetwokManager: NetworkAccess {
  }()
     
     lazy var baseUrl: String = {
-        return BaseUrl.stage.rawValue
+        return BaseUrl.stageEurope.rawValue
     }()
     
     func performRequestSuccessfully(endpoint: Endpoint, success: @escaping (Bool) -> Void, failure: @escaping (WolfError?) -> Void) {

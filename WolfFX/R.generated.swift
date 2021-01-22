@@ -337,8 +337,20 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 115 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 120 localization keys.
     struct localizable {
+      /// en translation: %@ h
+      /// 
+      /// Locales: en, zh-Hans
+      static let hours = Rswift.StringResource(key: "Hours", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: %@ m
+      /// 
+      /// Locales: en, zh-Hans
+      static let minutes = Rswift.StringResource(key: "Minutes", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: %@ s
+      /// 
+      /// Locales: en, zh-Hans
+      static let seconds = Rswift.StringResource(key: "Seconds", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: * Bank name
       /// 
       /// Locales: en, zh-Hans
@@ -787,6 +799,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let how = Rswift.StringResource(key: "how?", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: max
+      /// 
+      /// Locales: en, zh-Hans
+      static let max = Rswift.StringResource(key: "max", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: min
+      /// 
+      /// Locales: en, zh-Hans
+      static let min = Rswift.StringResource(key: "min", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: or
       /// 
       /// Locales: en, zh-Hans
@@ -795,10 +815,31 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let withRedEnvelops = Rswift.StringResource(key: "with red envelops", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// zh-Hans translation: 
+      /// zh-Hans translation: 美元
       /// 
       /// Locales: zh-Hans
       static let unitedStatesDollar = Rswift.StringResource(key: "United states dollar", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      
+      /// en translation: %@ h
+      /// 
+      /// Locales: en, zh-Hans
+      static func hours(_ value1: String) -> String {
+        return String(format: NSLocalizedString("Hours", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: %@ m
+      /// 
+      /// Locales: en, zh-Hans
+      static func minutes(_ value1: String) -> String {
+        return String(format: NSLocalizedString("Minutes", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
+      /// en translation: %@ s
+      /// 
+      /// Locales: en, zh-Hans
+      static func seconds(_ value1: String) -> String {
+        return String(format: NSLocalizedString("Seconds", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
       
       /// en translation: * Bank name
       /// 
@@ -1584,6 +1625,20 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("how?", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: max
+      /// 
+      /// Locales: en, zh-Hans
+      static func max(_: Void = ()) -> String {
+        return NSLocalizedString("max", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: min
+      /// 
+      /// Locales: en, zh-Hans
+      static func min(_: Void = ()) -> String {
+        return NSLocalizedString("min", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: or
       /// 
       /// Locales: en, zh-Hans
@@ -1598,7 +1653,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("with red envelops", bundle: R.hostingBundle, comment: "")
       }
       
-      /// zh-Hans translation: 
+      /// zh-Hans translation: 美元
       /// 
       /// Locales: zh-Hans
       static func unitedStatesDollar(_: Void = ()) -> String {

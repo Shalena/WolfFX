@@ -23,8 +23,13 @@ protocol NavigationBackButtonDesign: class {
     func setupBackButton()
 }
 
-protocol LocalizableScreen: class where Self: UIViewController {
+protocol LocalizableScreen: class {
     func localize()
+}
+
+protocol LanguageObserver: class {
+    var languageObservation: NSKeyValueObservation? {get set}
+    func observeLanguage()
 }
 
 protocol HeaderDesign: class where Self: UIViewController {
@@ -150,18 +155,18 @@ protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, 
     func showHowToTradeAlert()
 }
 
-protocol HomeEvents {
+protocol HomeEvents: LanguageObserver {
     var userCanPlay: Bool {get set}
     var shouldPerformHTTPLogin: Bool {get set}
     var shouldShowHowToTrade: Bool {get set}
     var investmentDataSource: [PickerEntry] {get}
     var leverageDataSource: [PickerEntry] {get}
-    var expiryDataSource: [PickerEntry] {get}
     var selectedInvestment: PickerEntry? {get set}
     var selectedLeverage: PickerEntry? {get set}
     var selectedExpiry: PickerEntry? {get set}
     var selectedAsset: Asset? {get set}
     var tableDataSource: AssetsDataSource? {get set}
+    var expiryDataSource: [PickerEntry]? {get set}
     func homeViewIsReady()
     func textForInfoLabel() -> String?
     func update(cell: AssetCell, with text: String)
@@ -248,6 +253,7 @@ protocol SettingsEvents {
     func howToTradeTapped()
     func configure(cell: LanguageCell, at index: Int)
     func configure(cell: LegalInfoCell, at index: Int)
+    func chosenLanguage(at index: Int)
     func showLegalInfoItem(at index: Int)
     func lastSectionTapped()
 }
@@ -255,6 +261,7 @@ protocol SettingsEvents {
 protocol SettingsTransitions {
     func goToProfile()
     func showCarousel()
+    func languageChanged()
     func goToHome()
     func goToSafariWith(url: URL)
     func signIn()
@@ -267,7 +274,7 @@ protocol ProfileDetailsViewProtocol: LocalizableScreen {
     var presenter: ProfileDetailsEvents? {get set}
 }
 
-protocol ProfileDetailsEvents {
+protocol ProfileDetailsEvents: LanguageObserver {
     func textFor(textField: UserDetailsTextFields) -> String 
     func saveDetails()
 }

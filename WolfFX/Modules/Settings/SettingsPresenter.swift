@@ -72,6 +72,15 @@ class SettingsPresenter: NSObject, SettingsEvents {
         }
     }
     
+    func chosenLanguage(at index: Int) {
+        let selectedLanguage = languageDataSource[index]
+        let systemLanguageName = selectedLanguage.systemName
+        Bundle.setLanguage(lang: systemLanguageName)
+        dataReceiver?.language = systemLanguageName
+        view?.localize()
+        router?.languageChanged()
+    }
+    
     func configure(cell: LanguageCell, at index: Int) {
         let language = languageDataSource[index]
         cell.title.text = language.title

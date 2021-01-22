@@ -12,6 +12,7 @@ class BaseHeaderViewPresenter: NSObject {
     @objc dynamic var dataReceiver: DataReceiver?
     var observation: NSKeyValueObservation?
     var orderBonusObservation: NSKeyValueObservation?
+    var languageObservation: NSKeyValueObservation?
     var view: BaseHeaderView?
     
     override init() {
@@ -51,6 +52,11 @@ class BaseHeaderViewPresenter: NSObject {
                 DispatchQueue.main.async {
                     self.view?.returnSpeedometerToInitialState()
                 }
+            }
+        }
+        languageObservation = observe(\.dataReceiver?.language, options: [.old, .new]) { object, change in
+            if (change.newValue as? String) != nil {
+                self.view?.localize()
             }
         }
     }

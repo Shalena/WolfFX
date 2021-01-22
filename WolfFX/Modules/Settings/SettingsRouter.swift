@@ -11,6 +11,12 @@ import UIKit
 import SafariServices
 
 class SettingsRouter: BaseRouter, SettingsTransitions {
+    func languageChanged() {
+        if let tabBar = sourceController.tabBarController?.tabBar {
+            TabbarConfigurator().localizeForce(tabBar: tabBar)
+        }
+    }
+    
     func showCarousel() {
         guard let carousel = R.storyboard.carousel.carouselMainController() else {return}
         sourceController.present(carousel, animated: true, completion: nil)

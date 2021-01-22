@@ -19,7 +19,6 @@ let leverageMultiplier: Int64 = 100
 let investmentArray: [Int64] = [1, 5, 10, 20, 100]
 let leverageArray: [Int64] = [2, 3, 4, 5]
 let expiryTimeArray: [Int64] = [30, 60, 120, 900, 3600]
-let expiryTimeTitlesArray = ["30s", "1m", "2m", "15m", "1h"]
 
 class HomePresenter: NSObject, HomeEvents {
     var view: HomeViewProtocol?
@@ -40,7 +39,9 @@ class HomePresenter: NSObject, HomeEvents {
     var tradeStatusObservation: NSKeyValueObservation?
     var ordersObservation: NSKeyValueObservation?
     var newSnapshotObservation: NSKeyValueObservation?
+    var languageObservation: NSKeyValueObservation?
     var assets: [Asset]?
+    var expiryDataSource: [PickerEntry]?
     var tableDataSource: AssetsDataSource?
     var priceTimer: Timer?
     var assetTimer: Timer?
@@ -57,14 +58,7 @@ class HomePresenter: NSObject, HomeEvents {
     let leverageDataSource: [PickerEntry] = {
         return leverageArray.map({  PickerEntry(title: String($0) + "x", value: $0) })
     }()
-    let expiryDataSource: [PickerEntry] = {
-        var pickerEntries = [PickerEntry]()
-        for (title, value) in zip(expiryTimeTitlesArray, expiryTimeArray) {
-            let pickerEntry = PickerEntry.init(title: title, value: value)
-            pickerEntries.append(pickerEntry)
-        }
-        return pickerEntries
-    }()
+  
     var selectedInvestment: PickerEntry? {
         didSet {
              DispatchQueue.main.async {
@@ -97,6 +91,7 @@ class HomePresenter: NSObject, HomeEvents {
     }
     
     func homeViewIsReady() {
+        expiryDataSource = createExpiryDataSource() // this method should be called before setupSelectedValues, call it every time after changing the language
         setupSelectedValues()
         observeUser()
         observeAccountData()
@@ -107,7 +102,8 @@ class HomePresenter: NSObject, HomeEvents {
         observeTradeStatus()
         observeOrders()
         observeNewSnapshot()
-    
+        observeLanguage()
+        
         if shouldPerformHTTPLogin {
           performHTTPLogin()
         } else {
@@ -134,13 +130,29 @@ class HomePresenter: NSObject, HomeEvents {
     private func setupSelectedValues() {
         self.selectedInvestment = investmentDataSource.first
         self.selectedLeverage = leverageDataSource.first
-        self.selectedExpiry = expiryDataSource.first
+        self.selectedExpiry = expiryDataSource?.first
+    }
+    
+    func createExpiryDataSource() -> [PickerEntry]? {
+          var pickerEntries = [PickerEntry]()
+        //The compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+        let thirtySeconds = R.string.localizable.seconds("30").localized()
+        let oneMinute = R.string.localizable.minutes("1").localized()
+        let twoMinutes = R.string.localizable.minutes("2").localized()
+        let fifteenMinutes = R.string.localizable.minutes("15").localized()
+        let oneHour = R.string.localizable.hours("1").localized()
+        let titlesArray = [thirtySeconds, oneMinute, twoMinutes, fifteenMinutes, oneHour]
+          for (title, value) in zip(titlesArray, expiryTimeArray) {
+              let pickerEntry = PickerEntry(title: title, value: value)
+              pickerEntries.append(pickerEntry)
+          }
+          return pickerEntries
     }
     
     private func performHTTPLogin() {
         if let credentials = credentials {
             view?.showHud()
-            networkManager.login(email: credentials.loginEmail, password: credentials.password, success: { (successfully: Bool) in
+            networkManager.login(email: "stage-test@test.com", password: "q12345678!", success: { (successfully: Bool) in
                 if successfully {
                     self.performWebsocketLogin()
                 } else {
@@ -160,6 +172,15 @@ class HomePresenter: NSObject, HomeEvents {
         WSManager.shared.dataReceiver.connectionClosed = false
         WSManager.shared.connect()     
         WSManager.shared.getUserInfo()
+    }
+    
+    func observeLanguage() {
+    languageObservation = observe(\.dataReceiver?.language, options: [.old, .new]) { object, change in
+               if (change.newValue as? String) != nil {
+                   self.expiryDataSource = self.createExpiryDataSource()
+                   self.view?.localize()
+               }
+           }
     }
     
     private func observeUser() {

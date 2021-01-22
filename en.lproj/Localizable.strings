@@ -79,7 +79,7 @@
 // Sign up screen
 
 "Create your account" = "Create your account";
-"First name" = "*First name";
+"First name" = "* First name";
 "Currency" = "Currency";
 "Click here to accept our client agreement" = "Click here to accept our Client Agreement";
 "Save" = "Save";
@@ -94,7 +94,9 @@
 "Real balance" = "Real balance";
 
 // Home Screen
-
+"Seconds" = "%@ s";
+"Minutes" = "%@ m";
+"Hours" = "%@ h";
 "In trade" = "In trade";
 "Investment" = "Investment";
 "Leverage" = "Leverage";
@@ -104,6 +106,8 @@
 "Indices" = "Indices";
 "Commodities" = "Commodities";
 "Sentiments" = "Sentiments";
+"min" = "min";
+"max" = "max";
 
 // Billing Data Screen
 
@@ -158,7 +162,6 @@
 // Profile
 
 "Profile" = "Profile";
-"First name" = "* First name";
 "Email" = "* Email";
 "Password" = "* Password";
 "Confirm password" = "Confirm password";

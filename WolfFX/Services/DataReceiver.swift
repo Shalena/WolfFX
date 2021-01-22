@@ -26,4 +26,5 @@ class DataReceiver: NSObject {
     @objc dynamic var newSnapshot: Snapshot?
     @objc dynamic var currentOrderIdForSpeedometr: String?
     @objc dynamic var orderBonus: OrderBonus?
+    @objc dynamic var language: String? // language is String here because Language can't be @objc
 }

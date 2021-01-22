@@ -328,7 +328,8 @@
 				8103B184242EB161008D7D5B /* ProfileDetailsConfigurator.swift */,
 				8103B186242EB196008D7D5B /* ProfileDetailsRouter.swift */,
 			);
-			path = ProfileDetails;
+			name = ProfileDetails;
+			path = ../Storyboards/ProfileDetails;
 			sourceTree = "<group>";
 		};
 		8103B188242EC047008D7D5B /* BaseHeaderView */ = {
@@ -486,6 +487,7 @@
 				812F9386256BAE2F007E67BE /* Carousel */,
 				81A4B34E24105D62004A02CB /* SignUp */,
 				816F67EB240858010016AA95 /* Login */,
+				8103B17F242EAC8F008D7D5B /* ProfileDetails */,
 				816C18132405620500B1551A /* Settings */,
 				816C18102405607300B1551A /* Wallet */,
 				816C180D24055F4900B1551A /* BillingData */,
@@ -513,7 +515,6 @@
 				816C180824055D6F00B1551A /* Settings.storyboard */,
 				816F67EC2408585A0016AA95 /* Login.storyboard */,
 				812F9384256BA9E8007E67BE /* Carousel.storyboard */,
-				8103B17F242EAC8F008D7D5B /* ProfileDetails */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";

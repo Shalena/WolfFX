@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class ProfileDetailsViewController: UIViewController, ProfileDetailsViewProtocol, NavigationDesign, NavigationBackButtonDesign {
-     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -34,15 +33,15 @@ class ProfileDetailsViewController: UIViewController, ProfileDetailsViewProtocol
         configureTextFields()
         localize()
     }
-    
+
     func localize() {
-         profileTitle.text = R.string.localizable.profile()
-         firstNameTitle.text = R.string.localizable.firstName()
-         emailTitle.text = R.string.localizable.email()
-         passwordTitle.text = R.string.localizable.password()
-         currencyTitle.text = R.string.localizable.currency()
-         clickHereToAccept.text = R.string.localizable.clickHereToAcceptOurClientAgreement()
-     }
+        profileTitle.text = R.string.localizable.profile().localized()
+        firstNameTitle.text = NSLocalizedString("First name", comment: "")
+        emailTitle.text = R.string.localizable.email().localized()
+        passwordTitle.text = R.string.localizable.password().localized()
+        currencyTitle.text = R.string.localizable.currency().localized()
+        clickHereToAccept.text = R.string.localizable.clickHereToAcceptOurClientAgreement().localized()
+    }
      
    private func configureTextFields() {
         firstNameTextField.text = presenter?.textFor(textField: UserDetailsTextFields.name)

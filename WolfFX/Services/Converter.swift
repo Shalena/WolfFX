@@ -101,12 +101,12 @@ class Converter {
     
     func maxString(from max: Double) -> String {
         let valueString = String(max.truncate(places: 4))
-        return ["max:", valueString].joined(separator: " ")
+        return [R.string.localizable.max().localized(), valueString].joined(separator: " ")
     }
     
     func minString(from max: Double) -> String {
         let valueString = String(max.truncate(places: 4))
-        return ["min:", valueString].joined(separator: " ")
+        return [R.string.localizable.min().localized(), valueString].joined(separator: " ")
     }
     
     func shapshotsFrom(orders: [Order], initialTime: Double) -> [Snapshot] {

@@ -234,7 +234,7 @@ extension WalletViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         hideHud()
-        let substring = BaseUrl.stage.rawValue
+        let substring = BaseUrl.stageEurope.rawValue
         if let url = webView.url?.absoluteString, url.contains(substring) {
             webView.removeFromSuperview()
         }

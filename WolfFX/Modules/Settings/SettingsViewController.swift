@@ -146,15 +146,7 @@ extension SettingsViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedLanguage = presenter?.languageDataSource[indexPath.row]
-        if let systemLanguageName = selectedLanguage?.systemName {
-            Bundle.setLanguage(lang: systemLanguageName)
-            localize()
-            tableView.reloadData()
-            if let tabBar = tabBarController?.tabBar {
-                TabbarConfigurator().localizeForce(tabBar: tabBar)
-            }
-        }
+        presenter?.chosenLanguage(at: indexPath.row)
     }
 }
 

@@ -74,10 +74,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
        }()
     private let shapeLayer = CAShapeLayer()
     
-    override func viewWillAppear(_ animated: Bool) {
-         localize()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self]  (_) in
@@ -133,6 +129,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         expiryTimeLabel.text = R.string.localizable.expiryTime().localized()
         assetLabel.text = R.string.localizable.asset().localized()
         playButton.setTitle(R.string.localizable.inTrade().uppercased().localized(), for: .normal)
+        expiryPicker.reloadAllComponents()
     }
      
     func updateAssetsTable() {
@@ -510,13 +507,13 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     }
     
     private func setupProgressBar() {
-        guard let max = presenter?.expiryDataSource.count else {return}
+        guard let max = presenter?.expiryDataSource?.count else {return}
         let ratio = Float(1) / Float(max)
         progressView.setProgress(Float(ratio), animated: true)
     }
     
     private func setupWindowWidth() {
-        guard let count = presenter?.expiryDataSource.count else {return}
+        guard let count = presenter?.expiryDataSource?.count else {return}
         let width = expireTimeView.frame.size.width / CGFloat(count)
         currentWindowWidth = width
         oneDivision = width
@@ -554,7 +551,7 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         } else if pickerView == leveragePicker {
             return presenter?.leverageDataSource.count ?? 0
         } else if pickerView == expiryPicker {
-            return presenter?.expiryDataSource.count ?? 0
+            return presenter?.expiryDataSource?.count ?? 0
         } else {
             return 0
         }
@@ -566,7 +563,7 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         } else if pickerView == leveragePicker {
             return presenter?.leverageDataSource[row].title
         } else if pickerView == expiryPicker {
-            return presenter?.expiryDataSource[row].title
+            return presenter?.expiryDataSource?[row].title
         } else {
            return nil
         }
@@ -582,10 +579,10 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             presenter?.selectedLeverage = selectedLeverage
             leverageTextField.text = selectedLeverage?.title
         } else if pickerView == expiryPicker {
-            let selectedExpiry = presenter?.expiryDataSource[row]
+            let selectedExpiry = presenter?.expiryDataSource?[row]
             expiryTimeTextField.text = selectedExpiry?.title
             presenter?.selectedExpiry = selectedExpiry
-            guard let count = presenter?.expiryDataSource.count else {return}
+            guard let count = presenter?.expiryDataSource?.count else {return}
             let ratio = Float(row + 1) / Float(count)
             progressView.setProgress(Float(ratio), animated: true)
             let width = expireTimeView.frame.size.width / CGFloat(count) * CGFloat(row + 1)
