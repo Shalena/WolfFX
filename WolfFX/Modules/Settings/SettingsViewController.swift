@@ -62,7 +62,7 @@ class SettingsViewController: UIViewController, NavigationDesign, SettingsViewPr
     }
     
     func localize() {
-         settingsTitle.text = R.string.localizable.settings().localized()
+         settingsTitle.text = R.string.localizable.settings().localized().uppercased()
          profileData.text = R.string.localizable.profileData().localized()
          language.text = R.string.localizable.language().localized()
          support.text = R.string.localizable.support().localized()
