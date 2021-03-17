@@ -29,7 +29,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     @IBOutlet weak var changeAssetButton: SubmitButton!
     
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! // for assets
     @IBOutlet weak var progressView: UIProgressView!
     
     @IBOutlet weak var minValueLabel: UILabel!
@@ -99,7 +99,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         super.viewDidLoad()
         setupChartDesign()
         setupProgressBar()
-        setupWindowWidth()
         dirtyFixForTopOffset()
         setupBaseNavigationDesign()
         setupTextFieldsDesign()
@@ -112,15 +111,13 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         leveragePicker.dataSource = self
         expiryPicker.delegate = self
         expiryPicker.dataSource = self
-        
         investmentTextField.inputView = investmentPicker
         leverageTextField.inputView = leveragePicker
         expiryTimeTextField.inputView = expiryPicker
-    
         tableView.delegate = self
         tableView.allowsSelection = true
-        presenter?.homeViewIsReady()
         localize()
+        presenter?.homeViewIsReady()
     }
     
     func localize() {
@@ -407,7 +404,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         let maxPt = transform.pixelForValues(x: 0, y: currentMax)
         let minPt = transform.pixelForValues(x: 0, y: currentMin)
         let currentHeigtBetweenMinMax = maxPt.distance(to: minPt)
- 
         lineChartView.data?.notifyDataChanged()
         lineChartView.notifyDataSetChanged()
     }
@@ -512,7 +508,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         progressView.setProgress(Float(ratio), animated: true)
     }
     
-    private func setupWindowWidth() {
+    func setupWindowWidth() {
         guard let count = presenter?.expiryDataSource?.count else {return}
         let width = expireTimeView.frame.size.width / CGFloat(count)
         currentWindowWidth = width
