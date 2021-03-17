@@ -93,7 +93,6 @@ class HomePresenter: NSObject, HomeEvents {
     func homeViewIsReady() {
         expiryDataSource = createExpiryDataSource() // this method should be called before setupSelectedValues, call it every time after changing the language
         setupSelectedValues()
-        view?.setupWindowWidth()
         observeUser()
         observeAccountData()
         observeAssets()

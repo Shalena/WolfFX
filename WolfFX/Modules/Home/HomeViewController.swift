@@ -16,25 +16,16 @@ let valueViewWidth = CGFloat(70.00)
 class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, ChartViewDelegate {
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var chartConteinerView: UIView!
-    @IBOutlet weak var expireTimeView: UIView!
     @IBOutlet weak var investmentLabel: UILabel!
     @IBOutlet weak var leverageLabel: UILabel!
-    @IBOutlet weak var expiryTimeLabel: UILabel!
     @IBOutlet weak var assetLabel: UILabel!
-   
     @IBOutlet weak var investmentTextField: UITextField!
     @IBOutlet weak var leverageTextField: UITextField!
-    @IBOutlet weak var expiryTimeTextField: UITextField!
-    
     @IBOutlet weak var changeAssetButton: SubmitButton!
-    
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var tableView: UITableView! // for assets
-    @IBOutlet weak var progressView: UIProgressView!
-    
     @IBOutlet weak var minValueLabel: UILabel!
     @IBOutlet weak var maxValueLabel: UILabel!
-    
     @IBOutlet weak var startDateLabel: UILabel!
     @IBOutlet weak var expireDateLabel: UILabel!
     
@@ -50,7 +41,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     
     var maskView = UIView()
     var shapshots = [Snapshot]()
-    var currentWindowWidth = CGFloat(0.0)
+    var defaultWindowWidth = CGFloat(50.0)
     var oneDivision = CGFloat(0.0)
     var expireScaleRange = CGFloat(0.0) // to check where is the right part of snapshot/rectange is
     var isBlackAndWhite = false
@@ -98,7 +89,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChartDesign()
-        setupProgressBar()
         dirtyFixForTopOffset()
         setupBaseNavigationDesign()
         setupTextFieldsDesign()
@@ -113,7 +103,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         expiryPicker.dataSource = self
         investmentTextField.inputView = investmentPicker
         leverageTextField.inputView = leveragePicker
-        expiryTimeTextField.inputView = expiryPicker
         tableView.delegate = self
         tableView.allowsSelection = true
         localize()
@@ -123,7 +112,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     func localize() {
         investmentLabel.text = R.string.localizable.investment().localized()
         leverageLabel.text = R.string.localizable.leverage().localized()
-        expiryTimeLabel.text = R.string.localizable.expiryTime().localized()
         assetLabel.text = R.string.localizable.asset().localized()
         playButton.setTitle(R.string.localizable.inTrade().uppercased().localized(), for: .normal)
         expiryPicker.reloadAllComponents()
@@ -147,7 +135,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     func updatePickersTextFields() {
         investmentTextField.text = presenter?.selectedInvestment?.title
         leverageTextField.text = presenter?.selectedLeverage?.title
-        expiryTimeTextField.text = presenter?.selectedExpiry?.title
     }
     
     func showHowToTradeAlert() {
@@ -220,7 +207,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
             infoView.trailingAnchor.constraint(equalTo: infoLabel.leadingAnchor),
         ])
         infoLabel.text = presenter?.textForInfoLabel()
-        updateInfoLabel()
         valueView.backgroundColor = UIColor.white
         chartConteinerView.addSubview(valueView)
         chartConteinerView.addSubview(valueLabel)
@@ -313,12 +299,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
             compareWithMaskAndUpdateFrame(snapshot: snapshot)
         }
     }
-    
-    private func updateInfoLabel() {
-        let infoLabelWidth = infoLabel.bounds.size.width
-        infoLabel.bounds.size.width = infoLabelWidth + 20
-    }
-    
+
     private func checkExpireScaleRange(from timeDifference: TimeInterval) {
         if timeDifference <= 30  {
             expireScaleRange = oneDivision
@@ -417,11 +398,10 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
    private func updateInfoViewFrame() {
         let frame = CGRect(x: maskView.frame.maxX,
                            y: maskView.frame.midY - defaultWindowHeight / 2,
-                               width: currentWindowWidth,
+                               width: defaultWindowWidth,
                                height: defaultWindowHeight)
         infoView.frame = frame
         infoLabel.text = presenter?.textForInfoLabel()
-        updateInfoLabel()
     }
     
     func updateMinValue(with string: String) {
@@ -465,18 +445,11 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         maskView.frame = maskFrame
         chartConteinerView.addSubview(maskView)
         maskView.backgroundColor = UIColor.clear
-        fixProgressViewFrame()
         updateInfoViewFrame()
     }
      
-    private func fixProgressViewFrame() {
-        NSLayoutConstraint.activate([
-            progressView.bottomAnchor.constraint(equalTo: maskView.bottomAnchor)
-        ])
-    }
-    
     private func setupTextFieldsDesign() {
-        let textFields = [investmentTextField, leverageTextField, expiryTimeTextField]
+        let textFields = [investmentTextField, leverageTextField]
                for textField in textFields {
                    let container = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 25))
                    let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
@@ -500,20 +473,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     private func dirtyFixForTopOffset() {
         tabBarController?.selectedIndex = 1
         tabBarController?.selectedIndex = 0
-    }
-    
-    private func setupProgressBar() {
-        guard let max = presenter?.expiryDataSource?.count else {return}
-        let ratio = Float(1) / Float(max)
-        progressView.setProgress(Float(ratio), animated: true)
-    }
-    
-    func setupWindowWidth() {
-        guard let count = presenter?.expiryDataSource?.count else {return}
-        let width = expireTimeView.frame.size.width / CGFloat(count)
-        currentWindowWidth = width
-        oneDivision = width
-        expireScaleRange = width
     }
     
     func initialXvalue() -> Double? {
@@ -574,40 +533,8 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             let selectedLeverage = presenter?.leverageDataSource[row]
             presenter?.selectedLeverage = selectedLeverage
             leverageTextField.text = selectedLeverage?.title
-        } else if pickerView == expiryPicker {
-            let selectedExpiry = presenter?.expiryDataSource?[row]
-            expiryTimeTextField.text = selectedExpiry?.title
-            presenter?.selectedExpiry = selectedExpiry
-            guard let count = presenter?.expiryDataSource?.count else {return}
-            let ratio = Float(row + 1) / Float(count)
-            progressView.setProgress(Float(ratio), animated: true)
-            let width = expireTimeView.frame.size.width / CGFloat(count) * CGFloat(row + 1)
-            currentWindowWidth = width
-            expireScaleRange = width
-            updateInfoViewFrame()
-            if let value = selectedExpiry?.value {
-                let intvalue = Int(value)
-                let outsideInfoLabelRange = 0...120
-                let insideInfoLabelRange = 121...3600
-                if outsideInfoLabelRange.contains(intvalue) {
-                    NSLayoutConstraint.activate([
-                        infoView.topAnchor.constraint(equalTo: infoLabel.topAnchor),
-                        infoView.bottomAnchor.constraint(equalTo: infoLabel.bottomAnchor),
-                        infoView.trailingAnchor.constraint(equalTo: infoLabel.leadingAnchor),
-                    ])
-                } else if insideInfoLabelRange.contains(intvalue) {
-                    NSLayoutConstraint.activate([
-                        infoView.topAnchor.constraint(equalTo: infoLabel.topAnchor),
-                        infoView.bottomAnchor.constraint(equalTo: infoLabel.bottomAnchor),
-                        infoView.trailingAnchor.constraint(equalTo: infoLabel.trailingAnchor),
-                        infoView.leadingAnchor.constraint(equalTo: infoLabel.leadingAnchor)
-                    ])
-                }
-                self.view.layoutIfNeeded()
-            }
         }
         infoLabel.text = presenter?.textForInfoLabel()
-        updateInfoLabel()
         self.view.endEditing(true)
     }
 }

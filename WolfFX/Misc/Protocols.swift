@@ -139,7 +139,6 @@ protocol SignupTransitions {
 protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, ShowErrorCapable {
     var presenter: HomeEvents? {get set}
     var shapshots: [Snapshot] {get set}
-    func setupWindowWidth()
     func setupPlayButtonDesign()
     func updateAssetsTable()
     func reloadInvestmentPicker()
