@@ -165,7 +165,7 @@ class WalletPresenter: WalletEvents {
                 bankParameter = bank.value
             }
         networkManager?.withdraw(amount: form.amaunt, beneficiaryBankAccount: form.beneficiaryBankAccount, beneficiaryName: form.beneficiaryName, accountNumber: accountNumber, broker: defaultBroker, url: withdrawUrl, billingServer: billingServer, tenantId: tenantId, currency: currency, name: name, method: method, bankName: bankParameter, success: { successfully in
-                self.view?.showAlertWith(text: "Sent successfully")
+            self.view?.showPopup(title: nil, message: "Sent successfully", time: 5 )
             }, failure: { error in
                 if let error = error {
                     self.view?.showErrorAlertWith(error: error)

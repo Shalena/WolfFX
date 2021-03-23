@@ -25,7 +25,7 @@ class ResetPasswordPresenter: ResetPasswordEvents {
             if successfully {
                 self.view?.hideHud()
                 let text = R.string.localizable.weVeSentYouEmail() + "\n" + R.string.localizable.pleaseCheckYourSpam()
-                self.view?.showAlertWith(text: text)
+                self.view?.showAlertWith(title: nil, message: text, buttonTitle: R.string.localizable.oK(), action: nil)
                 self.router?.resetWasSentSuccessfully()
             }
         }, failure: { [weak self] error in

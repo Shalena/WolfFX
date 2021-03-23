@@ -337,7 +337,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 120 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 122 localization keys.
     struct localizable {
       /// en translation: %@ h
       /// 
@@ -547,6 +547,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let euro = Rswift.StringResource(key: "Euro", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Executing your order, please be patient
+      /// 
+      /// Locales: en, zh-Hans
+      static let executingYourOrderPleaseBePatient = Rswift.StringResource(key: "Executing your order, please be patient", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Expiry time
       /// 
       /// Locales: en, zh-Hans
@@ -635,6 +639,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let nowTheTradeIsLive = Rswift.StringResource(key: "Now the trade is live", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: OK
+      /// 
+      /// Locales: en, zh-Hans
+      static let oK = Rswift.StringResource(key: "OK", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Password
       /// 
       /// Locales: en, zh-Hans
@@ -1184,6 +1192,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Euro", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Executing your order, please be patient
+      /// 
+      /// Locales: en, zh-Hans
+      static func executingYourOrderPleaseBePatient(_: Void = ()) -> String {
+        return NSLocalizedString("Executing your order, please be patient", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Expiry time
       /// 
       /// Locales: en, zh-Hans
@@ -1336,6 +1351,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func nowTheTradeIsLive(_: Void = ()) -> String {
         return NSLocalizedString("Now the trade is live", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: OK
+      /// 
+      /// Locales: en, zh-Hans
+      static func oK(_: Void = ()) -> String {
+        return NSLocalizedString("OK", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Password

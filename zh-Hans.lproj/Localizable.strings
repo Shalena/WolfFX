@@ -110,6 +110,7 @@
 "Sentiments" = "市场情绪";
 "min" = "最低";
 "max" = "最高";
+"Executing your order, please be patient" = "Executing your order, please be patient";
 
 // Billing Data Screen
 
@@ -170,3 +171,7 @@
 "Confirm password" = "确认密码";
 "Currency" = "币种";
 "Save" = "保存";
+
+// Common
+
+"OK" = "OK";

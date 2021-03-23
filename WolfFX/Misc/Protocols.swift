@@ -11,6 +11,8 @@ import UIKit
 import KRProgressHUD
 import Charts
 
+typealias AlertCallback = ((UIAlertAction) -> Void)
+
 protocol JsonAcception {
     func acceptJson(json: JSON) -> Bool
 }
@@ -78,11 +80,29 @@ protocol ShowAlertCapable: class where Self: UIViewController {
 }
 
 extension ShowAlertCapable {
-    func showAlertWith(text: String) {
-        let alert = UIAlertController(title: nil, message: text, preferredStyle: .alert)
+    func showAlertWith(title:String?, message: String?, buttonTitle: String?, action: AlertCallback? ) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.view.tintColor = UIColor.black
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        if buttonTitle != nil {
+            alert.addAction(UIAlertAction(title: buttonTitle, style: .default, handler: action))
+        }
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+protocol ShowPopupCapable: class where Self: UIViewController {
+    
+}
+
+extension ShowPopupCapable {
+    func showPopup(title: String?, message: String?, time: TimeInterval ) {
+       let alert = UIAlertController(title: title,
+                     message: message,
+                     preferredStyle: UIAlertController.Style.alert)
+                 self.present(alert, animated: true, completion: nil)
+                 _ = Timer.scheduledTimer(withTimeInterval: time, repeats: false, block: { _ in
+                     alert.dismiss(animated: true, completion: nil)
+                 })
     }
 }
 
@@ -136,7 +156,7 @@ protocol SignupTransitions {
 
 // Home Screen
 
-protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, ShowErrorCapable {
+protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, ShowErrorCapable, ShowPopupCapable {
     var presenter: HomeEvents? {get set}
     var shapshots: [Snapshot] {get set}
     func setupPlayButtonDesign()
@@ -214,7 +234,7 @@ protocol RangeButtonDelegate {
 
 // Wallet Screen
 
-protocol WalletViewProtocol: ShowErrorCapable, ShowAlertCapable, LocalizableScreen, ShowHudCapable {
+protocol WalletViewProtocol: ShowErrorCapable, ShowAlertCapable, LocalizableScreen, ShowHudCapable, ShowPopupCapable {
     var presenter: WalletEvents? {get set}
     func updateExchangeDepositLabel(with string: String)
     func updateRMBLabel(with string: String)

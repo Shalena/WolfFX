@@ -211,7 +211,7 @@ class HomePresenter: NSObject, HomeEvents {
         tradeStatusObservation = observe(\.dataReceiver?.tradeStatus, options: [.old, .new]) { object, change in
             if let tradeStatus = change.newValue, let message = tradeStatus?.message {
                 DispatchQueue.main.async {                   
-                    self.view?.showAlertWith(text: message)
+                    self.view?.showPopup(title: nil, message: message, time: 5)
                 }
             }
         }

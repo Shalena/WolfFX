@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesign  {
+class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesign {
     @IBOutlet weak var myWalletTitle: UILabel!
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var depositView: UIView!

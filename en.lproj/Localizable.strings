@@ -108,6 +108,7 @@
 "Sentiments" = "Sentiments";
 "min" = "min";
 "max" = "max";
+"Executing your order, please be patient" = "Executing your order, please be patient";
 
 // Billing Data Screen
 
@@ -167,3 +168,8 @@
 "Confirm password" = "Confirm password";
 "Currency" = "* Currency";
 "Save" = "Save";
+
+// Common
+
+"OK" = "OK";
+
