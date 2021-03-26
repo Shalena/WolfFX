@@ -9,9 +9,13 @@
 import UIKit
 import Charts
 
-let defaultWindowHeight = CGFloat(20.00)
+
 let valueViewHeight = CGFloat(30.00)
 let valueViewWidth = CGFloat(70.00)
+let defaultWindowHeight = CGFloat(100.00)
+let defaultWindowHeightHidden = CGFloat(0.00)
+
+typealias DrawCurrentPrice = (() -> Void)
 
 class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, ChartViewDelegate {
     @IBOutlet weak var lineChartView: LineChartView!
@@ -45,6 +49,8 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     var oneDivision = CGFloat(0.0)
     var expireScaleRange = CGFloat(0.0) // to check where is the right part of snapshot/rectange is
     var isBlackAndWhite = false
+    var infoViewHeight = defaultWindowHeight
+    var drawCurrentPrice: DrawCurrentPrice?
     
     private let infoLabel: UILabel = {
         let label = UILabel()
@@ -225,23 +231,83 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         if dataSet.entryCount > 200 {
             dataSet.removeFirst()
         }
-        normilize(for: price)
-        makeShift()
-        let chartFrame = lineChartView.frame
-        let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
-        let firstEntry = dataSet.entryForIndex(0)
-        let valuePt = transform.pixelForValues(x: firstEntry?.x ?? 0, y: price)
-        let valueViewFrame = CGRect(x: valuePt.x,
-                                  y: valuePt.y - valueViewHeight / 2,
-                              width: valueViewWidth,
-                             height: valueViewHeight)
-        self.valueView.frame = valueViewFrame
-        let start = CGPoint(x: valueViewFrame.maxX, y: valueViewFrame.midY)
-        let end = CGPoint(x: chartFrame.maxX, y: valueViewFrame.midY)      
-        drawDottedLine(start: start, end: end, view: self.lineChartView)
-        updateSnapshotsFrames()
+        lineChartView.data?.notifyDataChanged()
+        lineChartView.notifyDataSetChanged()
+        drawCurrentPrice = {
+            let chartFrame = self.lineChartView.frame
+            let transform = self.lineChartView.getTransformer(forAxis: dataSet.axisDependency)
+            let firstEntry = dataSet.entryForIndex(0)
+            let valuePt = transform.pixelForValues(x: firstEntry?.x ?? 0, y: price)
+            let valueViewFrame = CGRect(x: valuePt.x,
+                                      y: valuePt.y - valueViewHeight / 2,
+                                  width: valueViewWidth,
+                                 height: valueViewHeight)
+            self.valueView.frame = valueViewFrame
+            let start = CGPoint(x: valueViewFrame.maxX, y: valueViewFrame.midY)
+            let end = CGPoint(x: chartFrame.maxX, y: valueViewFrame.midY)
+            self.drawDottedLine(start: start, end: end, view: self.lineChartView)
+            self.updateSnapshotsFrames()
+        }
+        DispatchQueue.main.async {
+            self.scaling()
+        }
     }
 
+    private func scaling() {
+        guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
+        var yArray = [Double]()
+                for i in 0..<dataSet.entryCount - 1 {
+                    if let value = dataSet.entryForIndex(i)?.y {
+                        yArray.append(value)
+                    }
+                }
+        guard let max = yArray.max() else { return }
+        guard let min = yArray.min() else { return }
+        let average = (max - min) / 2
+        let maxDeviation = abs(max - average)
+        let minDeviation = abs(min - average)
+        let deviation = [maxDeviation, minDeviation].max()
+        lineChartView.leftAxis.axisMaximum = max + deviation! / 2
+        lineChartView.leftAxis.axisMinimum = min - deviation! / 2
+        lineChartView.data?.notifyDataChanged()
+        lineChartView.notifyDataSetChanged()
+        makeShift()
+    }
+    
+        internal func makeShift() {
+            guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
+            guard let currentMax = presenter?.maxForSnapshot()?.rounded() else {return}
+            guard let currentMin = presenter?.minForSnapshot()?.rounded() else {return}
+            let center = (currentMax + currentMin ) / 2
+            let average = (lineChartView.leftAxis.axisMaximum + lineChartView.leftAxis.axisMinimum) / 2
+            let difference = center - average
+                if difference > 0 {
+                    lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum + difference
+                    lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum + difference
+                } else if difference < 0 {
+                    lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum - abs(difference)
+                    lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum - abs(difference)
+                }
+            if (currentMax - currentMin) != 0 {
+                infoViewHeight = 100
+                updateInfoViewFrame()
+                let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
+                let maxPt = transform.pixelForValues(x: 0, y: currentMax)
+                let minPt = transform.pixelForValues(x: 0, y: currentMin)
+                let currentHeigtBetweenMinMax = maxPt.distance(to: minPt)
+                let currentDevision = Double(currentHeigtBetweenMinMax) / (currentMax - currentMin)
+                let desireDevision = Double(defaultWindowHeight) / (currentMax - currentMin)
+                let newY = lineChartView.leftAxis.axisMaximum / currentDevision * desireDevision
+                lineChartView.leftAxis.axisMaximum = newY
+            } else {
+                infoViewHeight = 0
+                updateInfoViewFrame()
+            }
+            lineChartView.data?.notifyDataChanged()
+            lineChartView.notifyDataSetChanged()
+            drawCurrentPrice?()
+    }
+    
     func update(snapshots: [Snapshot]) {
         self.shapshots = snapshots
         self.shapshots.forEach{chartConteinerView.addSubview($0.view!)}
@@ -340,49 +406,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         view.layer.addSublayer(shapeLayer)
     }
     
-    private func normilize(for price: Double) {
-       guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
-       var yArray = [Double]()
-            for i in 0..<dataSet.entryCount - 1 {
-                if let value = dataSet.entryForIndex(i)?.y {
-                    yArray.append(value)
-                }
-            }
-
-        let avg = yArray.reduce(0, +) / Double(yArray.count)
-        let avrLimit = abs(avg * 0.2)
-        let filtered = yArray.filter{($0 - avg) < avrLimit}
-        let max = filtered.max()
-        let min = filtered.min()
-        let rangeRate = (max! - min!) * 1.5
-        lineChartView.leftAxis.axisMaximum = max! + rangeRate
-        lineChartView.leftAxis.axisMinimum = min! - rangeRate
-        lineChartView.data?.notifyDataChanged()
-        lineChartView.notifyDataSetChanged()
-    }
-    
-     func makeShift() {
-        guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
-        guard let currentMax = presenter?.maxForSnapshot() else {return}
-        guard let currentMin = presenter?.minForSnapshot() else {return}
-        let center = (currentMax + currentMin ) / 2
-        let average = (lineChartView.leftAxis.axisMaximum + lineChartView.leftAxis.axisMinimum) / 2
-        let difference = center - average
-            if difference > 0 {
-                lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum + difference
-                lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum + difference
-            } else if difference < 0 {
-                lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum - abs(difference)
-                lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum - abs(difference)
-            }
-        let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
-        let maxPt = transform.pixelForValues(x: 0, y: currentMax)
-        let minPt = transform.pixelForValues(x: 0, y: currentMin)
-        let currentHeigtBetweenMinMax = maxPt.distance(to: minPt)
-        lineChartView.data?.notifyDataChanged()
-        lineChartView.notifyDataSetChanged()
-    }
-    
     func updateAssetButton(with title: String) {
         DispatchQueue.main.async {
             self.changeAssetButton.setTitle(title, for: .normal)
@@ -393,7 +416,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         let frame = CGRect(x: maskView.frame.maxX,
                            y: maskView.frame.midY - defaultWindowHeight / 2,
                                width: defaultWindowWidth,
-                               height: defaultWindowHeight)
+                               height: infoViewHeight)
         infoView.frame = frame
         infoLabel.text = presenter?.textForInfoLabel()
     }
