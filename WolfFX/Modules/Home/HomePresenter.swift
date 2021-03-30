@@ -258,33 +258,38 @@ class HomePresenter: NSObject, HomeEvents {
       private func observePrice() {
          priceObservation = observe(\.dataReceiver?.assetPrice, options: [.old, .new]) { object, change in
              if let assetPrice = change.newValue as? AssetPrice {
-                 DispatchQueue.main.async {
-                    self.view?.updateChartWithNewValue(assetPrice: assetPrice)
-                    self.view?.hideHud()
-                    if self.shouldShowHowToTrade {
-                        self.view?.showHowToTradeAlert()
-                        self.router?.appHadFirstLaunch()
-                        self.shouldShowHowToTrade = false
-                    }
-                 }
-             }
-         }
-     }
-    
-    private func observeRange() {
-           rangeObservation = observe(\.dataReceiver?.range, options: [.old, .new]) { object, change in
-               if let range = change.newValue as? Range {
-                   self.currentRange = range
-                   if let min = range.min, let max = range.max {
-                        let minValueString = self.converter.minString(from: min)
-                        let maxValueString = self.converter.maxString(from: max)
+                self.view?.hideHud()
+                if self.shouldShowHowToTrade {
+                    self.view?.showHowToTradeAlert()
+                    self.router?.appHadFirstLaunch()
+                    self.shouldShowHowToTrade = false
+                }
+                if let price = assetPrice.price,
+                    let time = assetPrice.priceTime {
                         DispatchQueue.main.async {
-                            self.view?.updateMinValue(with: minValueString)
-                            self.view?.updateMaxValue(with: maxValueString)
+                            self.view?.updateViewWith(price: price, time: time)
                         }
                     }
                 }
             }
+        }
+    
+    private func observeRange() {
+           rangeObservation = observe(\.dataReceiver?.range, options: [.old, .new]) { object, change in
+               if let range = change.newValue as? Range {
+                  self.currentRange = range
+                    if let min = range.min,
+                        let max = range.max {
+                        let minValueString = self.converter.minString(from: min)
+                        let maxValueString = self.converter.maxString(from: max)
+                        DispatchQueue.main.async {
+                            self.view?.updateViewWith(min: min, max: max)
+                            self.view?.updateMinValue(with: minValueString)
+                            self.view?.updateMaxValue(with: maxValueString)
+                        }
+                   }
+                }
+             }
         }
     
     private func observeOrders() {
@@ -324,7 +329,7 @@ class HomePresenter: NSObject, HomeEvents {
         }
         guard let assetId = self.selectedAsset?.id else { return }
         WSManager.shared.getAssetPrice(for: assetId)
-        self.priceTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self]  (_) in
+        self.priceTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self]  (_) in
             self?.getPrice()
         })
     }

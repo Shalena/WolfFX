@@ -165,13 +165,13 @@ protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, 
     func updatePickersTextFields()
     func updateAssetButton(with title: String)
     func updateChart(with entries: [PriceEntry])
-    func updateChartWithNewValue(assetPrice: AssetPrice)
+    func updateViewWith(price: Double, time: Int64)
+    func updateViewWith(min: Double, max: Double)
     func updateMinValue(with string: String)
     func updateMaxValue(with string: String)
     func initialXvalue() -> Double?
     func update(snapshots: [Snapshot])
     func updateSnapshots(with snapshot: Snapshot)
-    func makeShift()
     func showHowToTradeAlert()
 }
 

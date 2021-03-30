@@ -220,12 +220,9 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         valueView.layer.masksToBounds = true
     }
         
-    func updateChartWithNewValue(assetPrice: AssetPrice) {
-        guard let price = assetPrice.price else { return }
-        valueLabel.text = String(price.truncate(places: 4))
-        guard let priceTime = assetPrice.priceTime else { return }
+    func updateViewWith(price: Double, time: Int64) {
         guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
-        let newTime = Double(priceTime / 1000)
+        let newTime = Double(time / 1000)
         let chartEntry = ChartDataEntry(x: newTime, y: price)
         dataSet.addEntry(chartEntry)
         if dataSet.entryCount > 200 {
@@ -234,6 +231,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         lineChartView.data?.notifyDataChanged()
         lineChartView.notifyDataSetChanged()
         drawCurrentPrice = {
+            self.valueLabel.text = String(price.truncate(places: 4))
             let chartFrame = self.lineChartView.frame
             let transform = self.lineChartView.getTransformer(forAxis: dataSet.axisDependency)
             let firstEntry = dataSet.entryForIndex(0)
@@ -248,9 +246,11 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
             self.drawDottedLine(start: start, end: end, view: self.lineChartView)
             self.updateSnapshotsFrames()
         }
-        DispatchQueue.main.async {
-            self.scaling()
-        }
+    }
+
+    func updateViewWith(min: Double, max: Double) {
+        self.scaling()
+        self.makeShift(currentMin: min.rounded(), currentMax: max.rounded()) // rounding for better performance
     }
 
     private func scaling() {
@@ -271,13 +271,10 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         lineChartView.leftAxis.axisMinimum = min - deviation! / 2
         lineChartView.data?.notifyDataChanged()
         lineChartView.notifyDataSetChanged()
-        makeShift()
     }
     
-        internal func makeShift() {
+        private func makeShift(currentMin: Double, currentMax: Double) {
             guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
-            guard let currentMax = presenter?.maxForSnapshot()?.rounded() else {return}
-            guard let currentMin = presenter?.minForSnapshot()?.rounded() else {return}
             let center = (currentMax + currentMin ) / 2
             let average = (lineChartView.leftAxis.axisMaximum + lineChartView.leftAxis.axisMinimum) / 2
             let difference = center - average
@@ -289,7 +286,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                     lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum - abs(difference)
                 }
             if (currentMax - currentMin) != 0 {
-                infoViewHeight = 100
+                infoViewHeight = defaultWindowHeight
                 updateInfoViewFrame()
                 let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
                 let maxPt = transform.pixelForValues(x: 0, y: currentMax)
@@ -300,7 +297,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                 let newY = lineChartView.leftAxis.axisMaximum / currentDevision * desireDevision
                 lineChartView.leftAxis.axisMaximum = newY
             } else {
-                infoViewHeight = 0
+                infoViewHeight = defaultWindowHeightHidden
                 updateInfoViewFrame()
             }
             lineChartView.data?.notifyDataChanged()
