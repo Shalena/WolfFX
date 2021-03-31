@@ -96,9 +96,7 @@
 "Real balance" = "实际余额";
 
 // Home Screen
-"Seconds" = "%@ 秒";
-"Minutes" = "%@ 分";
-"Hours" = "%@ 小时";
+"30 Seconds" = "30秒";
 "In trade" = "In trade";
 "Investment" = "投资";
 "Leverage" = "杠杆";

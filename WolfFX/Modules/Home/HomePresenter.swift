@@ -19,6 +19,7 @@ let leverageMultiplier: Int64 = 100
 let investmentArray: [Int64] = [1, 5, 10, 20, 100]
 let leverageArray: [Int64] = [2, 3, 4, 5]
 let expiryTimeArray: [Int64] = [30, 60, 120, 900, 3600]
+let defaultExpiryTime = Int64(30)
 
 class HomePresenter: NSObject, HomeEvents {
     var view: HomeViewProtocol?
@@ -41,7 +42,6 @@ class HomePresenter: NSObject, HomeEvents {
     var newSnapshotObservation: NSKeyValueObservation?
     var languageObservation: NSKeyValueObservation?
     var assets: [Asset]?
-    var expiryDataSource: [PickerEntry]?
     var tableDataSource: AssetsDataSource?
     var priceTimer: Timer?
     var assetTimer: Timer?
@@ -91,7 +91,6 @@ class HomePresenter: NSObject, HomeEvents {
     }
     
     func homeViewIsReady() {
-        expiryDataSource = createExpiryDataSource() // this method should be called before setupSelectedValues, call it every time after changing the language
         setupSelectedValues()
         observeUser()
         observeAccountData()
@@ -130,23 +129,6 @@ class HomePresenter: NSObject, HomeEvents {
     private func setupSelectedValues() {
         self.selectedInvestment = investmentDataSource.first
         self.selectedLeverage = leverageDataSource.first
-        self.selectedExpiry = expiryDataSource?.first
-    }
-    
-    func createExpiryDataSource() -> [PickerEntry]? {
-          var pickerEntries = [PickerEntry]()
-        //The compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
-        let thirtySeconds = R.string.localizable.seconds("30").localized()
-        let oneMinute = R.string.localizable.minutes("1").localized()
-        let twoMinutes = R.string.localizable.minutes("2").localized()
-        let fifteenMinutes = R.string.localizable.minutes("15").localized()
-        let oneHour = R.string.localizable.hours("1").localized()
-        let titlesArray = [thirtySeconds, oneMinute, twoMinutes, fifteenMinutes, oneHour]
-          for (title, value) in zip(titlesArray, expiryTimeArray) {
-              let pickerEntry = PickerEntry(title: title, value: value)
-              pickerEntries.append(pickerEntry)
-          }
-          return pickerEntries
     }
     
     private func performHTTPLogin() {
@@ -177,7 +159,6 @@ class HomePresenter: NSObject, HomeEvents {
     func observeLanguage() {
     languageObservation = observe(\.dataReceiver?.language, options: [.old, .new]) { object, change in
                if (change.newValue as? String) != nil {
-                   self.expiryDataSource = self.createExpiryDataSource()
                    self.view?.localize()
                }
            }
@@ -266,9 +247,7 @@ class HomePresenter: NSObject, HomeEvents {
                 }
                 if let price = assetPrice.price,
                     let time = assetPrice.priceTime {
-                        DispatchQueue.main.async {
-                            self.view?.updateViewWith(price: price, time: time)
-                        }
+                    self.view?.updateViewWith(price: price, time: time)
                     }
                 }
             }
@@ -281,12 +260,8 @@ class HomePresenter: NSObject, HomeEvents {
                     if let min = range.min,
                         let max = range.max {
                         let minValueString = self.converter.minString(from: min)
-                        let maxValueString = self.converter.maxString(from: max)
-                        DispatchQueue.main.async {
-                            self.view?.updateViewWith(min: min, max: max)
-                            self.view?.updateMinValue(with: minValueString)
-                            self.view?.updateMaxValue(with: maxValueString)
-                        }
+                        let maxValueString = self.converter.maxString(from: max)                    
+                        self.view?.updateViewWith(min: min, max: max, minString: minValueString, maxString: maxValueString)
                    }
                 }
              }
@@ -343,13 +318,13 @@ class HomePresenter: NSObject, HomeEvents {
             self.assetTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self]  (_) in
             guard let leverageValue = self?.selectedLeverage?.value else {return}
             let leverageParameter = leverageValue * leverageMultiplier
-            guard let timeDuration = self?.selectedExpiry?.value else {return}
+            let timeDuration = defaultExpiryTime
             let type = currentType
             guard let assedId = self?.selectedAsset?.id else {return}
             guard let stake = self?.selectedInvestment?.value else {return}
             WSManager.shared.getAssetRange(leverage: leverageParameter, timeDuration: timeDuration, type: type, assetId: assedId, stake: stake)
             })
-        }
+       }
     }
     
     private func orderExecutor() {
@@ -370,6 +345,7 @@ class HomePresenter: NSObject, HomeEvents {
         assetTimer?.invalidate()
         assetTimer = nil
     }
+    
     func textForInfoLabel() -> String? {
         if let investment = selectedInvestment, let leverage = selectedLeverage {
             let product: Double = Double(investment.value * leverage.value)

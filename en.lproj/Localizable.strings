@@ -94,9 +94,7 @@
 "Real balance" = "Real balance";
 
 // Home Screen
-"Seconds" = "%@ s";
-"Minutes" = "%@ m";
-"Hours" = "%@ h";
+"30 Seconds" = "30s";
 "In trade" = "In trade";
 "Investment" = "Investment";
 "Leverage" = "Leverage";

@@ -337,20 +337,8 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 122 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 120 localization keys.
     struct localizable {
-      /// en translation: %@ h
-      /// 
-      /// Locales: en, zh-Hans
-      static let hours = Rswift.StringResource(key: "Hours", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: %@ m
-      /// 
-      /// Locales: en, zh-Hans
-      static let minutes = Rswift.StringResource(key: "Minutes", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: %@ s
-      /// 
-      /// Locales: en, zh-Hans
-      static let seconds = Rswift.StringResource(key: "Seconds", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: * Bank name
       /// 
       /// Locales: en, zh-Hans
@@ -415,6 +403,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, zh-Hans
       static let howFast = Rswift.StringResource(key: "How fast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: 30s
+      /// 
+      /// Locales: en, zh-Hans
+      static let seconds = Rswift.StringResource(key: "30 Seconds", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: 4)
       /// 
       /// Locales: en, zh-Hans
@@ -828,27 +820,6 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       static let unitedStatesDollar = Rswift.StringResource(key: "United states dollar", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       
-      /// en translation: %@ h
-      /// 
-      /// Locales: en, zh-Hans
-      static func hours(_ value1: String) -> String {
-        return String(format: NSLocalizedString("Hours", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: %@ m
-      /// 
-      /// Locales: en, zh-Hans
-      static func minutes(_ value1: String) -> String {
-        return String(format: NSLocalizedString("Minutes", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
-      /// en translation: %@ s
-      /// 
-      /// Locales: en, zh-Hans
-      static func seconds(_ value1: String) -> String {
-        return String(format: NSLocalizedString("Seconds", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
-      }
-      
       /// en translation: * Bank name
       /// 
       /// Locales: en, zh-Hans
@@ -959,6 +930,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, zh-Hans
       static func howFast(_: Void = ()) -> String {
         return NSLocalizedString("How fast", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: 30s
+      /// 
+      /// Locales: en, zh-Hans
+      static func seconds(_: Void = ()) -> String {
+        return NSLocalizedString("30 Seconds", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: 4)

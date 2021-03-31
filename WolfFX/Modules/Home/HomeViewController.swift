@@ -16,9 +16,14 @@ let defaultWindowHeight = CGFloat(100.00)
 let defaultWindowHeightHidden = CGFloat(0.00)
 
 typealias DrawCurrentPrice = (() -> Void)
+typealias UpdateMinMaxLabels = (() -> Void)
 
 class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, ChartViewDelegate {
     @IBOutlet weak var lineChartView: LineChartView!
+   
+    @IBOutlet weak var thirtysecView: UIView!
+    
+    @IBOutlet weak var currentTimeOnChartLabel: UILabel!
     @IBOutlet weak var chartConteinerView: UIView!
     @IBOutlet weak var investmentLabel: UILabel!
     @IBOutlet weak var leverageLabel: UILabel!
@@ -41,21 +46,22 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     
     let investmentPicker = UIPickerView()
     let leveragePicker = UIPickerView()
-    let expiryPicker = UIPickerView()
-    
+
     var maskView = UIView()
     var shapshots = [Snapshot]()
     var defaultWindowWidth = CGFloat(50.0)
-    var oneDivision = CGFloat(0.0)
+    var oneDivision = CGFloat(50.0)
+
     var expireScaleRange = CGFloat(0.0) // to check where is the right part of snapshot/rectange is
     var isBlackAndWhite = false
     var infoViewHeight = defaultWindowHeight
     var drawCurrentPrice: DrawCurrentPrice?
+    var updateMinMaxLabels: UpdateMinMaxLabels?
     
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor.red
         label.textAlignment = .center
         return label
@@ -79,7 +85,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     }
     
     func getTime() {
-        guard let expiryValue = presenter?.selectedExpiry?.value else {return}
+        let expiryValue = defaultExpiryTime
         let calendar = Calendar.current
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"
@@ -105,8 +111,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         investmentPicker.dataSource = self
         leveragePicker.delegate = self
         leveragePicker.dataSource = self
-        expiryPicker.delegate = self
-        expiryPicker.dataSource = self
         investmentTextField.inputView = investmentPicker
         leverageTextField.inputView = leveragePicker
         tableView.delegate = self
@@ -120,7 +124,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         leverageLabel.text = R.string.localizable.leverage().localized()
         assetLabel.text = R.string.localizable.asset().localized()
         playButton.setTitle(R.string.localizable.inTrade().uppercased().localized(), for: .normal)
-        expiryPicker.reloadAllComponents()
+        currentTimeOnChartLabel.text = R.string.localizable.seconds()
     }
      
     func updateAssetsTable() {
@@ -202,9 +206,9 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         chartConteinerView.addSubview(infoView)
         chartConteinerView.addSubview(infoLabel)
         NSLayoutConstraint.activate([
-            infoView.topAnchor.constraint(equalTo: infoLabel.topAnchor),
-            infoView.bottomAnchor.constraint(equalTo: infoLabel.bottomAnchor),
-            infoView.trailingAnchor.constraint(equalTo: infoLabel.leadingAnchor),
+            infoView.bottomAnchor.constraint(equalTo: infoLabel.topAnchor, constant: -10.00),
+            infoView.leadingAnchor.constraint(equalTo: infoLabel.leadingAnchor),
+            infoView.trailingAnchor.constraint(equalTo: infoLabel.trailingAnchor)
         ])
         infoLabel.text = presenter?.textForInfoLabel()
         valueView.backgroundColor = UIColor.white
@@ -228,8 +232,12 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         if dataSet.entryCount > 200 {
             dataSet.removeFirst()
         }
-        lineChartView.data?.notifyDataChanged()
-        lineChartView.notifyDataSetChanged()
+        
+      
+        self.lineChartView.data?.notifyDataChanged()
+        scaling()
+        self.lineChartView.notifyDataSetChanged()
+     
         drawCurrentPrice = {
             self.valueLabel.text = String(price.truncate(places: 4))
             let chartFrame = self.lineChartView.frame
@@ -248,9 +256,21 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         }
     }
 
-    func updateViewWith(min: Double, max: Double) {
-        self.scaling()
-        self.makeShift(currentMin: min.rounded(), currentMax: max.rounded()) // rounding for better performance
+    func updateViewWith(min: Double, max: Double, minString: String, maxString: String) {
+
+        updateMinMaxLabels = {
+            self.minValueLabel.text = minString
+            self.maxValueLabel.text = maxString
+        }
+         DispatchQueue.main.async {
+            self.makeShift(currentMin: min.rounded(), currentMax: max.rounded()) // rounding for better performance
+        }
+         
+        if let drawCurrentPrice = self.drawCurrentPrice {
+            DispatchQueue.main.async {
+              drawCurrentPrice()
+            }
+        }
     }
 
     private func scaling() {
@@ -269,12 +289,11 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         let deviation = [maxDeviation, minDeviation].max()
         lineChartView.leftAxis.axisMaximum = max + deviation! / 2
         lineChartView.leftAxis.axisMinimum = min - deviation! / 2
-        lineChartView.data?.notifyDataChanged()
-        lineChartView.notifyDataSetChanged()
+        self.lineChartView.data?.notifyDataChanged()
+       // don't call notifyDataSetChanged() because it will be extra redrwaw
     }
     
         private func makeShift(currentMin: Double, currentMax: Double) {
-            guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
             let center = (currentMax + currentMin ) / 2
             let average = (lineChartView.leftAxis.axisMaximum + lineChartView.leftAxis.axisMinimum) / 2
             let difference = center - average
@@ -285,25 +304,24 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                     lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMaximum - abs(difference)
                     lineChartView.leftAxis.axisMinimum = lineChartView.leftAxis.axisMinimum - abs(difference)
                 }
+            self.lineChartView.data?.notifyDataChanged()
+            // don't call notifyDataSetChanged() because it will be extra redrwaw
             if (currentMax - currentMin) != 0 {
                 infoViewHeight = defaultWindowHeight
-                updateInfoViewFrame()
-                let transform = lineChartView.getTransformer(forAxis: dataSet.axisDependency)
-                let maxPt = transform.pixelForValues(x: 0, y: currentMax)
-                let minPt = transform.pixelForValues(x: 0, y: currentMin)
-                let currentHeigtBetweenMinMax = maxPt.distance(to: minPt)
-                let currentDevision = Double(currentHeigtBetweenMinMax) / (currentMax - currentMin)
+                infoLabel.isHidden = false
                 let desireDevision = Double(defaultWindowHeight) / (currentMax - currentMin)
-                let newY = lineChartView.leftAxis.axisMaximum / currentDevision * desireDevision
-                lineChartView.leftAxis.axisMaximum = newY
+                let newYdif = Double(maskView.frame.size.height) / desireDevision
+                lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMinimum + newYdif
             } else {
                 infoViewHeight = defaultWindowHeightHidden
-                updateInfoViewFrame()
+                infoLabel.isHidden = true
             }
-            lineChartView.data?.notifyDataChanged()
-            lineChartView.notifyDataSetChanged()
-            drawCurrentPrice?()
-    }
+            updateInfoViewFrame()
+            self.lineChartView.data?.notifyDataChanged()
+            self.lineChartView.notifyDataSetChanged()
+            updateMinMaxLabels?()
+        }
+    
     
     func update(snapshots: [Snapshot]) {
         self.shapshots = snapshots
@@ -316,7 +334,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
             shapshots.append(snapshot)
             chartConteinerView.addSubview(snapshot.view!)
         }
-       }
+    }
     
     private func updateSnapshotsFrames() {
         guard let dataSet = lineChartView.data?.getDataSetByIndex(0) else { return }
@@ -418,14 +436,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         infoLabel.text = presenter?.textForInfoLabel()
     }
     
-    func updateMinValue(with string: String) {
-        minValueLabel.text = string
-    }
-    
-    func updateMaxValue(with string: String) {
-        maxValueLabel.text = string
-    }
-    
     private func compareWithMaskAndUpdateFrame(snapshot: Snapshot) {
         guard let snapshotView = snapshot.view else {return}
         if snapshotView.frame.origin.x < maskView.frame.origin.x {
@@ -458,6 +468,9 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         let maskFrame = CGRect(x: leftTopPixel.x, y: 0, width: width, height: leftBottomPixel.y)
         maskView.frame = maskFrame
         chartConteinerView.addSubview(maskView)
+        NSLayoutConstraint.activate([
+        thirtysecView.bottomAnchor.constraint(equalTo: maskView.bottomAnchor)])
+        thirtysecView.frame.size.width = defaultWindowWidth
         maskView.backgroundColor = UIColor.clear
         updateInfoViewFrame()
     }
@@ -513,8 +526,6 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             return presenter?.investmentDataSource.count ?? 0
         } else if pickerView == leveragePicker {
             return presenter?.leverageDataSource.count ?? 0
-        } else if pickerView == expiryPicker {
-            return presenter?.expiryDataSource?.count ?? 0
         } else {
             return 0
         }
@@ -525,8 +536,6 @@ extension HomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             return presenter?.investmentDataSource[row].title
         } else if pickerView == leveragePicker {
             return presenter?.leverageDataSource[row].title
-        } else if pickerView == expiryPicker {
-            return presenter?.expiryDataSource?[row].title
         } else {
            return nil
         }

@@ -30,7 +30,35 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F4g-VF-38s" customClass="LineChartView" customModule="Charts">
                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="492"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmf-Xj-Shv" userLabel="30 sec View">
+                                                        <rect key="frame" x="334" y="491.5" width="50" height="0.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMP-Wa-9rL">
+                                                                <rect key="frame" x="0.0" y="0.5" width="50" height="20"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="20" id="0y6-gp-txw"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="BMP-Wa-9rL" secondAttribute="trailing" id="5cm-tF-Vp2"/>
+                                                            <constraint firstAttribute="width" constant="50" id="JNQ-PN-9aE"/>
+                                                            <constraint firstItem="BMP-Wa-9rL" firstAttribute="leading" secondItem="cmf-Xj-Shv" secondAttribute="leading" id="YME-7g-RyW"/>
+                                                            <constraint firstAttribute="bottom" secondItem="BMP-Wa-9rL" secondAttribute="top" id="dDM-YU-gP9"/>
+                                                            <constraint firstAttribute="height" constant="0.5" id="v7O-tO-isd"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="cmf-Xj-Shv" secondAttribute="bottom" id="5Ab-W7-XTr"/>
+                                                    <constraint firstItem="cmf-Xj-Shv" firstAttribute="leading" secondItem="F4g-VF-38s" secondAttribute="trailing" id="Epb-xM-B62"/>
+                                                </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="wVR-RX-2b4">
                                                 <rect key="frame" x="197" y="10" width="187" height="50"/>
@@ -250,6 +278,7 @@
                         <outlet property="assetLabel" destination="n9A-FA-sXJ" id="ieA-6k-Q6c"/>
                         <outlet property="changeAssetButton" destination="fw2-zl-giw" id="5zs-Vu-dbp"/>
                         <outlet property="chartConteinerView" destination="MAU-sA-3dY" id="MnQ-In-Sgw"/>
+                        <outlet property="currentTimeOnChartLabel" destination="BMP-Wa-9rL" id="gp0-vn-xQH"/>
                         <outlet property="expireDateLabel" destination="Jm8-if-vOc" id="kf7-wQ-jbI"/>
                         <outlet property="investmentLabel" destination="iir-ag-IP6" id="fCF-ib-VCG"/>
                         <outlet property="investmentTextField" destination="IhL-PE-tKe" id="N6w-qW-JDs"/>
@@ -261,6 +290,7 @@
                         <outlet property="playButton" destination="9FG-XJ-Olk" id="Avb-5w-TcW"/>
                         <outlet property="startDateLabel" destination="sUL-JN-vGi" id="ckb-wr-eee"/>
                         <outlet property="tableView" destination="hZ8-D9-tRn" id="rjy-cv-o4I"/>
+                        <outlet property="thirtysecView" destination="cmf-Xj-Shv" id="eFS-6W-ZDg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oA6-CE-EhZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

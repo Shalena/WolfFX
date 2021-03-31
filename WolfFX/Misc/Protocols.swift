@@ -166,9 +166,7 @@ protocol HomeViewProtocol: ShowHudCapable, LocalizableScreen, ShowAlertCapable, 
     func updateAssetButton(with title: String)
     func updateChart(with entries: [PriceEntry])
     func updateViewWith(price: Double, time: Int64)
-    func updateViewWith(min: Double, max: Double)
-    func updateMinValue(with string: String)
-    func updateMaxValue(with string: String)
+    func updateViewWith(min: Double, max: Double, minString: String, maxString: String) 
     func initialXvalue() -> Double?
     func update(snapshots: [Snapshot])
     func updateSnapshots(with snapshot: Snapshot)
@@ -183,10 +181,8 @@ protocol HomeEvents: LanguageObserver {
     var leverageDataSource: [PickerEntry] {get}
     var selectedInvestment: PickerEntry? {get set}
     var selectedLeverage: PickerEntry? {get set}
-    var selectedExpiry: PickerEntry? {get set}
     var selectedAsset: Asset? {get set}
     var tableDataSource: AssetsDataSource? {get set}
-    var expiryDataSource: [PickerEntry]? {get set}
     func homeViewIsReady()
     func textForInfoLabel() -> String?
     func update(cell: AssetCell, with text: String)
