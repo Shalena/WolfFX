@@ -13,7 +13,6 @@ import Charts
 let valueViewHeight = CGFloat(30.00)
 let valueViewWidth = CGFloat(70.00)
 let defaultWindowHeight = CGFloat(100.00)
-let defaultWindowHeightHidden = CGFloat(0.00)
 
 typealias DrawCurrentPrice = (() -> Void)
 typealias UpdateMinMaxLabels = (() -> Void)
@@ -50,8 +49,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     var maskView = UIView()
     var shapshots = [Snapshot]()
     var defaultWindowWidth = CGFloat(50.0)
-    var oneDivision = CGFloat(50.0)
-
+    
     var expireScaleRange = CGFloat(0.0) // to check where is the right part of snapshot/rectange is
     var isBlackAndWhite = false
     var infoViewHeight = defaultWindowHeight
@@ -179,7 +177,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         lineChartView.xAxis.labelTextColor = UIColor.white
         lineChartView.leftAxis.labelTextColor = UIColor.white
         lineChartView.rightAxis.enabled = false
-        lineChartView.xAxis.setLabelCount(4, force: true)
+        lineChartView.xAxis.setLabelCount(5, force: true)
         lineChartView.xAxis.labelFont = UIFont.systemFont(ofSize: 10)
         lineChartView.legend.enabled = false
         lineChartView.data = lineChartViewData
@@ -212,8 +210,9 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         ])
         infoLabel.text = presenter?.textForInfoLabel()
         valueView.backgroundColor = UIColor.white
+        valueView.addSubview(valueLabel)
         chartConteinerView.addSubview(valueView)
-        chartConteinerView.addSubview(valueLabel)
+        chartConteinerView.bringSubviewToFront(valueView)
         NSLayoutConstraint.activate([
               valueView.topAnchor.constraint(equalTo: valueLabel.topAnchor),
               valueView.bottomAnchor.constraint(equalTo: valueLabel.bottomAnchor),
@@ -236,8 +235,9 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
       
         self.lineChartView.data?.notifyDataChanged()
         scaling()
-        self.lineChartView.notifyDataSetChanged()
-     
+        DispatchQueue.main.async {
+            self.lineChartView.notifyDataSetChanged()
+        }
         drawCurrentPrice = {
             self.valueLabel.text = String(price.truncate(places: 4))
             let chartFrame = self.lineChartView.frame
@@ -257,7 +257,6 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
     }
 
     func updateViewWith(min: Double, max: Double, minString: String, maxString: String) {
-
         updateMinMaxLabels = {
             self.minValueLabel.text = minString
             self.maxValueLabel.text = maxString
@@ -306,23 +305,24 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                 }
             self.lineChartView.data?.notifyDataChanged()
             // don't call notifyDataSetChanged() because it will be extra redrwaw
+            var alpha = CGFloat(0)
             if (currentMax - currentMin) != 0 {
-                infoViewHeight = defaultWindowHeight
-                infoLabel.isHidden = false
+                alpha = CGFloat(1)
                 let desireDevision = Double(defaultWindowHeight) / (currentMax - currentMin)
                 let newYdif = Double(maskView.frame.size.height) / desireDevision
                 lineChartView.leftAxis.axisMaximum = lineChartView.leftAxis.axisMinimum + newYdif
             } else {
-                infoViewHeight = defaultWindowHeightHidden
-                infoLabel.isHidden = true
+               alpha = CGFloat(0)
             }
-            updateInfoViewFrame()
             self.lineChartView.data?.notifyDataChanged()
+            UIView.animate(withDuration: 1) {
+                self.infoView.alpha = alpha
+                self.infoLabel.alpha = alpha
+            }
             self.lineChartView.notifyDataSetChanged()
             updateMinMaxLabels?()
         }
-    
-    
+        
     func update(snapshots: [Snapshot]) {
         self.shapshots = snapshots
         self.shapshots.forEach{chartConteinerView.addSubview($0.view!)}
@@ -351,11 +351,11 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                 let endPixel = transform.pixelForValues(x: snapshot.startTime + Double(snapshot.duration), y: 0)
                 width = startPixel.distance(to: endPixel)
             } else {
+                // snapshot.duration is always 30 at version 2, needs refactor
                 let borderPixel = transform.pixelForValues(x: lastEntry.x, y: 0)
                 let chartWidthPart = borderPixel.distance(to: startPixel)
                 let chartTimeDifference = lastEntry.x - snapshot.startTime
                 let expiryTimeDifference = Double(snapshot.duration) - chartTimeDifference
-                checkExpireScaleRange(from: expiryTimeDifference)
                 let expiryPart = calculateExpiryPart(from: expiryTimeDifference)
                 width = chartWidthPart + expiryPart
             }
@@ -375,39 +375,8 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         }
     }
 
-    private func checkExpireScaleRange(from timeDifference: TimeInterval) {
-        if timeDifference <= 30  {
-            expireScaleRange = oneDivision
-        } else if timeDifference > 30 && timeDifference <= 60 {
-            expireScaleRange = oneDivision * 2
-        } else if timeDifference > 60 && timeDifference <= 120 {
-            expireScaleRange = oneDivision * 3
-        } else if timeDifference > 120 && timeDifference <= 900 {
-            expireScaleRange = oneDivision * 4
-        } else if timeDifference > 120 && timeDifference <= 3600 {
-            expireScaleRange = oneDivision * 5
-        }
-    }
-    
     private func calculateExpiryPart(from timeDifference: TimeInterval) -> CGFloat {
-        var remainder = 0.0
-        if (expireScaleRange / oneDivision) == 1 { //  30s
-            return (oneDivision / 30) * CGFloat(timeDifference)
-        } else if (expireScaleRange / oneDivision).rounded(.down) == 1 || (expireScaleRange / oneDivision).rounded() == 2 { // between 1m and 30s
-            remainder = timeDifference - 30
-            return oneDivision + (oneDivision / 30) * CGFloat(remainder)
-        } else if (expireScaleRange / oneDivision).rounded(.down) == 2 || (expireScaleRange / oneDivision).rounded() == 3 { // between 2m and 1m
-            remainder = timeDifference - 60
-            return oneDivision * 2 + (oneDivision / 60) * CGFloat(remainder)
-        } else if (expireScaleRange / oneDivision).rounded(.down) == 3 || (expireScaleRange / oneDivision).rounded() == 4 { // between 15m and 2m
-            remainder = timeDifference - 120
-            return oneDivision * 3 + (oneDivision / (13 * 60)) * CGFloat(remainder)
-        } else if (expireScaleRange / oneDivision).rounded(.down) == 5 || (expireScaleRange / oneDivision).rounded() == 5 { // between 1H and 15m
-            remainder = timeDifference - 900
-            return oneDivision * 4 + (oneDivision / (45 * 60)) * CGFloat(remainder)
-        } else {
-            return CGFloat(0.0)
-        }
+        return (defaultWindowWidth / 30) * CGFloat(timeDifference)
     }
     
     private func drawDottedLine(start p0: CGPoint, end p1: CGPoint, view: UIView) {
