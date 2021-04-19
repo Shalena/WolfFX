@@ -100,12 +100,12 @@ class Converter {
     }
     
     func maxString(from max: Double) -> String {
-        let valueString = String(max.truncate(places: 4))
+        let valueString = String(format: "%g", max)
         return [R.string.localizable.max().localized(), valueString].joined(separator: " ")
     }
     
-    func minString(from max: Double) -> String {
-        let valueString = String(max.truncate(places: 4))
+    func minString(from min: Double) -> String {
+        let valueString = String(format:"%g", min)
         return [R.string.localizable.min().localized(), valueString].joined(separator: " ")
     }
     

@@ -30,6 +30,16 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2test@test.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EvF-pY-bHN">
+                                        <rect key="frame" x="24" y="256" width="300" height="34"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="R60-Oe-98x"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRD-OE-egx">
                                         <rect key="frame" x="24" y="320" width="300" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -50,16 +60,12 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2test@test.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Upx-ET-0qR">
-                                        <rect key="frame" x="24" y="256" width="300" height="34"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="q12345678!" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fUS-J3-xM0">
                                         <rect key="frame" x="24" y="320" width="300" height="34"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="NR5-1T-myP"/>
+                                        </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -111,27 +117,27 @@
                                     <constraint firstItem="Fvw-Ew-HQO" firstAttribute="leading" secondItem="sLK-z6-WH3" secondAttribute="leading" constant="30" id="5j5-gw-rSZ"/>
                                     <constraint firstAttribute="trailing" secondItem="Kjl-2u-gOF" secondAttribute="trailing" constant="30" id="7Oe-Jf-zqw"/>
                                     <constraint firstAttribute="trailing" secondItem="fUS-J3-xM0" secondAttribute="trailing" constant="30" id="7Wl-uI-G14"/>
-                                    <constraint firstItem="Upx-ET-0qR" firstAttribute="leading" secondItem="sLK-z6-WH3" secondAttribute="leading" constant="24" id="BJu-IJ-pkN"/>
                                     <constraint firstAttribute="trailing" secondItem="5Iq-BF-xJl" secondAttribute="trailing" constant="30" id="GLx-7f-xuJ"/>
                                     <constraint firstItem="AWn-Af-THO" firstAttribute="leading" secondItem="sLK-z6-WH3" secondAttribute="leading" constant="24" id="I9B-jd-6YB"/>
                                     <constraint firstItem="MRD-OE-egx" firstAttribute="leading" secondItem="sLK-z6-WH3" secondAttribute="leading" constant="24" id="Jgl-1e-bHN"/>
                                     <constraint firstItem="AWn-Af-THO" firstAttribute="top" secondItem="fUS-J3-xM0" secondAttribute="bottom" constant="30" id="KCN-fV-wId"/>
+                                    <constraint firstAttribute="trailing" secondItem="EvF-pY-bHN" secondAttribute="trailing" constant="30" id="Ljr-Dn-gtL"/>
                                     <constraint firstItem="Kjl-2u-gOF" firstAttribute="top" secondItem="AWn-Af-THO" secondAttribute="bottom" id="ODf-Zg-7Eh"/>
                                     <constraint firstItem="5Iq-BF-xJl" firstAttribute="centerY" secondItem="lNc-uc-5OI" secondAttribute="centerY" id="OfB-LN-Vuv"/>
                                     <constraint firstAttribute="trailing" secondItem="MRD-OE-egx" secondAttribute="trailing" constant="30" id="Q3d-1L-txJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="Upx-ET-0qR" secondAttribute="trailing" constant="30" id="Rgl-5L-ZvL"/>
+                                    <constraint firstItem="mK1-f3-ogf" firstAttribute="bottom" secondItem="EvF-pY-bHN" secondAttribute="top" id="RK4-CP-zsN"/>
                                     <constraint firstAttribute="trailing" secondItem="f39-av-52g" secondAttribute="trailing" constant="30" id="Sfs-Ka-EUc"/>
                                     <constraint firstAttribute="trailing" secondItem="mK1-f3-ogf" secondAttribute="trailing" constant="30" id="Yco-ja-gDQ"/>
                                     <constraint firstItem="fUS-J3-xM0" firstAttribute="top" secondItem="MRD-OE-egx" secondAttribute="bottom" id="dGj-Ge-C1f"/>
                                     <constraint firstItem="mK1-f3-ogf" firstAttribute="leading" secondItem="sLK-z6-WH3" secondAttribute="leading" constant="24" id="hDT-Pb-Bs9"/>
                                     <constraint firstItem="Kjl-2u-gOF" firstAttribute="bottom" secondItem="lNc-uc-5OI" secondAttribute="top" id="jrQ-Hg-Swc"/>
                                     <constraint firstAttribute="trailing" secondItem="Fvw-Ew-HQO" secondAttribute="trailing" constant="30" id="lZU-CA-Ts2"/>
+                                    <constraint firstItem="EvF-pY-bHN" firstAttribute="leading" secondItem="sLK-z6-WH3" secondAttribute="leading" constant="24" id="mER-xh-ZUS"/>
                                     <constraint firstItem="fUS-J3-xM0" firstAttribute="leading" secondItem="sLK-z6-WH3" secondAttribute="leading" constant="24" id="pUK-c1-1j1"/>
                                     <constraint firstItem="Kjl-2u-gOF" firstAttribute="leading" secondItem="sLK-z6-WH3" secondAttribute="leading" constant="30" id="pa5-FX-el2"/>
-                                    <constraint firstItem="Upx-ET-0qR" firstAttribute="top" secondItem="mK1-f3-ogf" secondAttribute="bottom" id="r3x-Vq-ZpG"/>
+                                    <constraint firstItem="MRD-OE-egx" firstAttribute="top" secondItem="EvF-pY-bHN" secondAttribute="bottom" constant="30" id="qUo-Ga-biY"/>
                                     <constraint firstItem="f39-av-52g" firstAttribute="leading" secondItem="sLK-z6-WH3" secondAttribute="leading" constant="30" id="sBc-fS-Z8B"/>
                                     <constraint firstItem="f39-av-52g" firstAttribute="top" secondItem="lNc-uc-5OI" secondAttribute="bottom" constant="30" id="vBm-B7-EBU"/>
-                                    <constraint firstItem="MRD-OE-egx" firstAttribute="top" secondItem="Upx-ET-0qR" secondAttribute="bottom" constant="30" id="vYF-eq-DXM"/>
                                     <constraint firstItem="mK1-f3-ogf" firstAttribute="top" secondItem="Fvw-Ew-HQO" secondAttribute="bottom" constant="30" id="x0V-1g-7Xl"/>
                                 </constraints>
                             </view>
@@ -148,8 +154,9 @@
                     <navigationItem key="navigationItem" id="TU1-f8-Abf"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="bottomConstraint" destination="Ixg-aY-N0P" id="ZMj-iE-bnV"/>
                         <outlet property="emailLabel" destination="mK1-f3-ogf" id="Tbj-gY-vAM"/>
-                        <outlet property="emailTextfield" destination="Upx-ET-0qR" id="Pcd-ho-e2L"/>
+                        <outlet property="emailTextfield" destination="EvF-pY-bHN" id="2Nd-GY-xXi"/>
                         <outlet property="loginButton" destination="AWn-Af-THO" id="sXv-Xg-xrC"/>
                         <outlet property="loginLabel" destination="Fvw-Ew-HQO" id="fqX-gz-im9"/>
                         <outlet property="orLabel" destination="lNc-uc-5OI" id="Ese-d3-3Im"/>
@@ -450,6 +457,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
+                        <outlet property="bottomConstraint" destination="z8Q-5s-RKH" id="SuW-D1-AHk"/>
                         <outlet property="confirmPasswordTextfield" destination="TRZ-n8-P2t" id="Pw1-E7-TDB"/>
                         <outlet property="currencyTItle" destination="MA9-2w-o5p" id="eqD-rC-GOY"/>
                         <outlet property="currencyTextField" destination="NTW-cY-8kd" id="aQU-sh-x8d"/>

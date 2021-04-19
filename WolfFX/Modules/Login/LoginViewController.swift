@@ -8,7 +8,9 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, NavigationDesign, LoginViewProtocol {
+class LoginViewController: UIViewController, NavigationDesign, LoginViewProtocol, KeyboardHandler {
+    
+    
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
@@ -20,12 +22,34 @@ class LoginViewController: UIViewController, NavigationDesign, LoginViewProtocol
     @IBOutlet weak var restorePasswordButton: UIButton!
     
     var presenter: LoginEvents?
-      
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBaseNavigationDesign()
         signUpButton.setup(backColor: .clear, borderColor: .darkGray, text: R.string.localizable.signUp().localized(), textColor: .white)
         localize()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startObservingKeyboardChanges()
+    }
+    
+    func registerForKeyboardEvents() {
+           NotificationCenter.default.addObserver(self, selector: #selector(self.keyboard(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+           NotificationCenter.default.addObserver(self, selector: #selector(self.keyboard(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+       }
+    @objc func keyboard(notification:Notification) {
+        guard let keyboardReact = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else{
+            return
+        }
+        if notification.name == UIResponder.keyboardWillShowNotification ||  notification.name == UIResponder.keyboardWillChangeFrameNotification {
+            bottomConstraint.constant = keyboardReact.height
+        } else {
+            bottomConstraint.constant = 0
+        }
     }
     
     func localize() {

@@ -103,6 +103,13 @@ class WSManager: WebsocketAccess {
             send(messageString: messageString)
         }
     }
+    
+    func getSettings() {
+        let json = websocketJsonCreator.settingsJSON()
+        if let messageString = Converter().jsonToString(json: json) {
+            send(messageString: messageString)
+        }
+    }
  
     func getBalance() {
         guard let user = dataReceiver.user else { return }

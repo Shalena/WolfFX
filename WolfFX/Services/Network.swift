@@ -11,7 +11,6 @@ import Networking
 typealias JSON = [String : Any]
 
 enum BaseUrl: String {
-    case prodAsia = "https://wolffxwarrior.com"
     case prodEurope = "https://eu.sunbeam-capital.com"
     case stageEurope = "https://stage.sunbeam-capital.com"
 }

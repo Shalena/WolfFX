@@ -10,7 +10,7 @@ import UIKit
 
 let defaultTenantId = "00000000-0000-0000-0000-000000000000"
 
-class SignupViewController: UIViewController, SignupViewProtocol, NavigationBackButtonDesign, UITextFieldDelegate {
+class SignupViewController: UIViewController, SignupViewProtocol, NavigationBackButtonDesign, UITextFieldDelegate, KeyboardHandler {
    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var firstNameTitle: UILabel!
@@ -25,6 +25,8 @@ class SignupViewController: UIViewController, SignupViewProtocol, NavigationBack
     @IBOutlet weak var termsButton: CheckboxButton!
     @IBOutlet weak var termsTextView: UITextView!
     @IBOutlet weak var saveButton: SubmitButton!
+    
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var presenter: SignupEvents?
     let currencies = Currency.all
@@ -58,7 +60,25 @@ class SignupViewController: UIViewController, SignupViewProtocol, NavigationBack
         confirmPasswordTextfield.delegate = self
         confirmPasswordTextfield.addTarget(self, action: #selector(SignupViewController.textFieldDidChange(_:)), for: .editingChanged)
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+           startObservingKeyboardChanges()
+       }
+       
+       func registerForKeyboardEvents() {
+              NotificationCenter.default.addObserver(self, selector: #selector(self.keyboard(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+              NotificationCenter.default.addObserver(self, selector: #selector(self.keyboard(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+          }
+       @objc func keyboard(notification:Notification) {
+           guard let keyboardReact = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else{
+               return
+           }
+           if notification.name == UIResponder.keyboardWillShowNotification ||  notification.name == UIResponder.keyboardWillChangeFrameNotification {
+               bottomConstraint.constant = keyboardReact.height
+           } else {
+               bottomConstraint.constant = 0
+           }
+       }
     func localize() {
         titleLabel.text = R.string.localizable.createYourAccount()
         firstNameTitle.text = R.string.localizable.firstName()

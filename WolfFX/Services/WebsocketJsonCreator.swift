@@ -12,6 +12,14 @@ let priceHistoryDuration: Int64 = 200
 
 class WebsocketJsonCreator {
     
+    func settingsJSON() -> [String : Any] {
+        return ["type":"send",
+             "address": "trade.view.setting",
+             "headers": [:],
+               "body" : [:],
+        "replyAddress": ""]
+        }
+    
     func registerJSON()  -> [String : Any]? {
         guard let email = WSManager.shared.dataReceiver.user?.email else {return nil}
         let clientString = String(format: "client-%@", email)

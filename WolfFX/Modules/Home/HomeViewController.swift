@@ -231,15 +231,13 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         if dataSet.entryCount > 200 {
             dataSet.removeFirst()
         }
-        
-      
         self.lineChartView.data?.notifyDataChanged()
         scaling()
         DispatchQueue.main.async {
             self.lineChartView.notifyDataSetChanged()
         }
         drawCurrentPrice = {
-            self.valueLabel.text = String(price.truncate(places: 4))
+            self.valueLabel.text = String(price.truncate(places: 5))
             let chartFrame = self.lineChartView.frame
             let transform = self.lineChartView.getTransformer(forAxis: dataSet.axisDependency)
             let firstEntry = dataSet.entryForIndex(0)
@@ -262,13 +260,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
             self.maxValueLabel.text = maxString
         }
          DispatchQueue.main.async {
-            self.makeShift(currentMin: min.rounded(), currentMax: max.rounded()) // rounding for better performance
-        }
-         
-        if let drawCurrentPrice = self.drawCurrentPrice {
-            DispatchQueue.main.async {
-              drawCurrentPrice()
-            }
+            self.makeShift(currentMin: min, currentMax: max)
         }
     }
 
@@ -320,12 +312,16 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                 self.infoLabel.alpha = alpha
             }
             self.lineChartView.notifyDataSetChanged()
+            
+            if let drawCurrentPrice = self.drawCurrentPrice {
+                drawCurrentPrice()
+            }
             updateMinMaxLabels?()
         }
         
     func update(snapshots: [Snapshot]) {
         self.shapshots = snapshots
-        self.shapshots.forEach{chartConteinerView.addSubview($0.view!)}
+        self.shapshots.forEach{maskView.addSubview($0.view!)}
     }
     
     func updateSnapshots(with snapshot: Snapshot) {
@@ -355,6 +351,7 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
                 let borderPixel = transform.pixelForValues(x: lastEntry.x, y: 0)
                 let chartWidthPart = borderPixel.distance(to: startPixel)
                 let chartTimeDifference = lastEntry.x - snapshot.startTime
+                if chartTimeDifference < 0 {return}
                 let expiryTimeDifference = Double(snapshot.duration) - chartTimeDifference
                 let expiryPart = calculateExpiryPart(from: expiryTimeDifference)
                 width = chartWidthPart + expiryPart
@@ -410,15 +407,25 @@ class HomeViewController: UIViewController, NavigationDesign, HomeViewProtocol, 
         if snapshotView.frame.origin.x < maskView.frame.origin.x {
             let difference = maskView.frame.origin.x - snapshotView.frame.origin.x
             if difference > snapshot.width {
-                snapshot.view?.removeFromSuperview()
+                snapshotView.removeFromSuperview()
                 shapshots.removeFirst()
                 return
             }
-            snapshot.view?.frame = CGRect(x: maskView.frame.origin.x,
+            snapshotView.frame = CGRect(x: maskView.frame.origin.x,
                                 y: snapshotView.frame.origin.y,
                             width: snapshotView.frame.width - difference,
                            height: snapshotView.frame.height)
             
+        }
+        let snapshotMaxY = snapshotView.frame.maxY
+        let maskviewMaxY = maskView.frame.maxY
+        if snapshotMaxY > maskviewMaxY {
+            let difference = snapshotMaxY - maskviewMaxY
+            let newHeight = snapshotView.frame.height - difference
+            snapshotView.frame = CGRect(x: maskView.frame.origin.x,
+                                        y: snapshotView.frame.origin.y,
+                                    width: snapshotView.frame.width - difference,
+                                   height: newHeight)
         }
     }
      

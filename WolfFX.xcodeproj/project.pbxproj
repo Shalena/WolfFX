@@ -28,6 +28,7 @@
 		811ED6C4241926410002F559 /* SignupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C3241926410002F559 /* SignupRouter.swift */; };
 		811ED6C7241935530002F559 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C6241935530002F559 /* CheckboxButton.swift */; };
 		811ED6C9241971110002F559 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811ED6C8241971110002F559 /* Validation.swift */; };
+		81220408261F6C780062DD7E /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81220407261F6C780062DD7E /* KeyboardHandler.swift */; };
 		812F9385256BA9E8007E67BE /* Carousel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 812F9384256BA9E8007E67BE /* Carousel.storyboard */; };
 		812F9388256BAE54007E67BE /* CarouselMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F9387256BAE54007E67BE /* CarouselMainController.swift */; };
 		812F938E256BB239007E67BE /* FirstPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812F938D256BB239007E67BE /* FirstPageController.swift */; };
@@ -172,6 +173,7 @@
 		811ED6C3241926410002F559 /* SignupRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRouter.swift; sourceTree = "<group>"; };
 		811ED6C6241935530002F559 /* CheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 		811ED6C8241971110002F559 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		81220407261F6C780062DD7E /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		812F9384256BA9E8007E67BE /* Carousel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Carousel.storyboard; sourceTree = "<group>"; };
 		812F9387256BAE54007E67BE /* CarouselMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselMainController.swift; sourceTree = "<group>"; };
 		812F9389256BAFF2007E67BE /* PageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageController.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 				8103B18B242EC2EE008D7D5B /* Extensions.swift */,
 				817324CA2437CFE4000DFB86 /* Currency.swift */,
 				817097B02550547800CA3CAB /* ChartXaxisFormatter.swift */,
+				81220407261F6C780062DD7E /* KeyboardHandler.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -990,6 +993,7 @@
 				811ED6C9241971110002F559 /* Validation.swift in Sources */,
 				811614DB2539D7660094DC1F /* BalanceHistoryCell.swift in Sources */,
 				816C17FF24050AE900B1551A /* TabbarConfigurator.swift in Sources */,
+				81220408261F6C780062DD7E /* KeyboardHandler.swift in Sources */,
 				816C181824056BAE00B1551A /* R.generated.swift in Sources */,
 				814D3133245C563600C092EC /* AssetsJsonAcception.swift in Sources */,
 				8103B17E242E9109008D7D5B /* SettingsRouter.swift in Sources */,
@@ -1188,17 +1192,21 @@
 			baseConfigurationReference = 3ACB8CB61A332577F58487E0 /* Pods-WolfFX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_ASSET_PATHS = "\"WolfFX/Preview Content\"";
-				DEVELOPMENT_TEAM = Q9DJ3245Y9;
+				DEVELOPMENT_TEAM = 246BCLFT9J;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WolfFX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Ostrozhynska.WolfFX;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolffxwarrior;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Provisioning distribution";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1209,17 +1217,21 @@
 			baseConfigurationReference = 811E060A07A0606C5423FA73 /* Pods-WolfFX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.0.0;
 				DEVELOPMENT_ASSET_PATHS = "\"WolfFX/Preview Content\"";
-				DEVELOPMENT_TEAM = Q9DJ3245Y9;
+				DEVELOPMENT_TEAM = 246BCLFT9J;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WolfFX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Ostrozhynska.WolfFX;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wolffxwarrior;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Provisioning distribution";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -106,7 +106,7 @@ class HomePresenter: NSObject, HomeEvents {
         if shouldPerformHTTPLogin {
           performHTTPLogin()
         } else {
-            performWebsocketLogin()
+          performWebsocketLogin()
         }
     }
     
@@ -134,7 +134,7 @@ class HomePresenter: NSObject, HomeEvents {
     private func performHTTPLogin() {
         if let credentials = credentials {
             view?.showHud()
-            networkManager.login(email: "stage-test@test.com", password: "q12345678!", success: { (successfully: Bool) in
+            networkManager.login(email: credentials.loginEmail, password: credentials.password, success: { (successfully: Bool) in
                 if successfully {
                     self.performWebsocketLogin()
                 } else {
@@ -171,6 +171,7 @@ class HomePresenter: NSObject, HomeEvents {
                  self.router?.userHadSuccessfullyLoggedIn()
                  self.view?.reloadInvestmentPicker() // because we should show currency sign in it
                  WSManager.shared.getBalance()
+                 WSManager.shared.getSettings()                
                }
            }
        }
@@ -241,7 +242,9 @@ class HomePresenter: NSObject, HomeEvents {
              if let assetPrice = change.newValue as? AssetPrice {
                 self.view?.hideHud()
                 if self.shouldShowHowToTrade {
-                    self.view?.showHowToTradeAlert()
+                    DispatchQueue.main.async {
+                        self.view?.showHowToTradeAlert()
+                    }
                     self.router?.appHadFirstLaunch()
                     self.shouldShowHowToTrade = false
                 }
