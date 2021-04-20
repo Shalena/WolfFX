@@ -234,7 +234,7 @@ protocol WalletViewProtocol: ShowErrorCapable, ShowAlertCapable, LocalizableScre
     var presenter: WalletEvents? {get set}
     func updateExchangeDepositLabel(with string: String)
     func updateRMBLabel(with string: String)
-    func loadWebView(string: String)
+    func loadWebView(urlString: String, refererUrl: String)
 }
 
 protocol WalletEvents {
@@ -242,9 +242,7 @@ protocol WalletEvents {
     var pickerBankDataSource: [BankPikerEntry]?  { get set }
     func walletViewIsReady()
     func forceLocalizeUpdatePicker()
-    func getExchangeRate()
     func textForAvailableAmount() -> String
-    func amountDepositChanged(text: String)
     func amountWithdrawChanged(text: String)
     func deposit(with amount: String)
     func withdrawRequestWith(form: WithdrawForm)

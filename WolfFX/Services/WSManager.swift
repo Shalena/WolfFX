@@ -28,7 +28,7 @@ protocol WebsocketAccess {
     func getBanks()
 }
 
-let baseUrlString = "wss://stage.sunbeam-capital.com:8100/mt1/eventbus/websocket"
+let baseUrlString = "wss://eu.sunbeam-capital.com:8100/mt1/eventbus/websocket"
 
 let sendPingJson: [String: Any] = ["type": "ping"]
 let userInfoJson: [String: Any] = ["type": "send", "address": "client.trade.userInfo", "headers": [String:String](), "body": [String:String](), "replyAddress": ""]

@@ -45,6 +45,8 @@ let goodsTitle = "C2C"
 let returnUrl = "https://api.swiftpay.solutions/payment/OnepayC2C/c2c/returnUrl.html"
 
 
+
+
 // Withdraw constants
 let defaultBroker = "KAIZEN_LOGIC_OPTIONS"
 let withdrawUrl = "https://staging.cuboidlogic.com/wolffx/wallet/withdraw"
@@ -89,30 +91,9 @@ class WalletPresenter: WalletEvents {
     }
     
     func walletViewIsReady() {
-        getExchangeRate()
-        WSManager.shared.getBanks()
+       // WSManager.shared.getBanks()
     }
        
-    func getExchangeRate() {
-        view?.showHud()
-        networkManager?.getExchangeRate(with: defaultBroker, success: { successfully in
-            self.view?.hideHud()
-            self.rate = WSManager.shared.dataReceiver.rate
-            self.withdrawRate = WSManager.shared.dataReceiver.withdrawRate
-        }, failure: { error in
-            if let error = error {
-                self.view?.showErrorAlertWith(error: error)
-            }
-        })
-    }
-    
-    func amountDepositChanged(text: String) {
-        if let value = Double(text), let rate = rate {
-            let exchangeValue = value / rate
-            updateViewWith(poundValue: exchangeValue)
-        }
-    }
-    
     func amountWithdrawChanged(text: String) {
         if let value = Double(text), let withdrawRate = withdrawRate {
             let exchangeValue = withdrawRate * value
@@ -142,10 +123,12 @@ class WalletPresenter: WalletEvents {
     
     func deposit(with amount: String) {
         guard let user = WSManager.shared.dataReceiver.user else {return}
-        if let amountValue = Double(amount),let currency = user.currency, let accountNumber = user.email, let rate = rate {
-            networkManager?.deposit(with: amountValue, currency: currency, accountNumber: accountNumber, exchangeRate: rate, success: { string in
-                DispatchQueue.main.async {
-                     self.view?.loadWebView(string: string)
+        if let amountValue = Double(amount),let currency = user.currency, let accountNumber = user.email {
+            networkManager?.deposit(with: amountValue, currency: currency, accountNumber: accountNumber, success: { string in
+                if let webviewLink = string, let refererUrl = self.networkManager?.baseUrl {
+                    DispatchQueue.main.async {
+                        self.view?.loadWebView(urlString: webviewLink, refererUrl: refererUrl)
+                    }
                 }
             }, failure: { error in
                 if let error = error {

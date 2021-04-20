@@ -6,8 +6,7 @@
 //  Copyright © 2020 Елена Острожинская. All rights reserved.
 //
 
-let depositRedirectUrl = "https://staging.cuboidlogic.com/wolffx/wallet/deposit"
-let chinaUnionPaydefault = "CNY"
+let depositRedirectUrl = "https://eu.sunbeam-capital.com/wolffx/wallet/deposit"
 
 typealias Parameters = [String: Any]
 typealias Headers = [String: String]
@@ -24,8 +23,6 @@ enum Endpoint {
     case restorePassword(email: String)
     case signup(firstname: String, currency: String, emails: [String], password: String, tenantId: String, username: String)
     case billingHistory
-    case exchangeRate (broker: String)
-    case deposit(amount: Double, currency: String, accountNumber: String, exchangeRate: Double)
     case withdraw (amount: Double, bankName: String, beneficiaryBankAccount: String, beneficiaryName: String, accountNumber: String, broker: String, url: String, billingServer: String, currency: String, name: String, tenantId: String, method: String)
     case logout
     
@@ -43,16 +40,12 @@ enum Endpoint {
         return "/wolffx/billingHistory"
     case .withdraw:
         return "/payapi/v1/withdrawal"
-    case .exchangeRate:
-        return "/payapi/v1/payins/GBP/exchangeRate"
-    case .deposit:
-        return "/payapi/v1/swiftpay/payins"
         }
     }
-        
+    
     var headers: Headers? {
     switch self {
-    case .login, .restorePassword, .signup, .billingHistory, .exchangeRate, .deposit, .logout:
+    case .login, .restorePassword, .signup, .billingHistory, .logout:
         return nil
     case .withdraw:
         let username = "withdrawuser"
@@ -79,8 +72,6 @@ enum Endpoint {
             "username":username,
             "emails": emails,
             "tenantId":tenantId]
-    case .exchangeRate(let broker):
-        return ["broker": broker]
     case .withdraw (let amount, let bankName, let beneficiaryBankAccount, let beneficiaryName, let accountNumber, let broker, let url, let billingServer, let currency, let name, let tenantId, let method):
         return ["amount" :amount,
                 "bankName": bankName,
@@ -94,21 +85,14 @@ enum Endpoint {
                 "name": name]
     case .logout, .billingHistory:
         return nil
-    case .deposit(let amount, let currency, let accountNumber, let exchangeRate):
-        return ["a": amount,
-                "c": chinaUnionPaydefault,
-                "a_n": accountNumber,
-                "r_u": depositRedirectUrl,
-                "e_r": exchangeRate,
-                "a_c": currency]
-        }
     }
+}
         
     var method: httpMethod {
     switch self {
-    case .login, .restorePassword, .signup, .deposit, .withdraw, .logout:
+    case .login, .restorePassword, .signup, .withdraw, .logout:
         return .post
-    case .billingHistory,  .exchangeRate:
+    case .billingHistory:
         return .get
         }
     }

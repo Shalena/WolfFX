@@ -42,12 +42,15 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     
     var presenter: WalletEvents?
     
-    func loadWebView(string: String) {
+    func loadWebView(urlString: String, refererUrl: String) {
+        guard let url = URL(string: urlString) else { return }
         webView = WKWebView(frame: view.frame)
         webView.navigationDelegate = self
         view.addSubview(webView)
         showHud()
-        webView.loadHTMLString(string, baseURL: nil)
+        let request = NSMutableURLRequest(url: url)
+        request.setValue(refererUrl, forHTTPHeaderField: "Referer")
+        webView.load(request as URLRequest)
         webView.allowsBackForwardNavigationGestures = true
     }
     
@@ -115,7 +118,7 @@ class WalletViewController: UIViewController, WalletViewProtocol, NavigationDesi
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard let text = textField.text else {return}
         if textField == amountDepositTextField {
-            presenter?.amountDepositChanged(text: text)
+           return
         } else if textField == amountWithdrawTextField {
             presenter?.amountWithdrawChanged(text: text)
         }
@@ -238,5 +241,16 @@ extension WalletViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         if let url = webView.url?.absoluteString, url.contains(substring) {
             webView.removeFromSuperview()
         }
+    }
+}
+
+
+class CustomWebView: WKWebView {
+    override func load(_ request: URLRequest) -> WKNavigation? {
+        guard let mutableRequest: NSMutableURLRequest = request as? NSMutableURLRequest else {
+            return super.load(request)
+        }
+        mutableRequest.setValue("custom value", forHTTPHeaderField: "custom field")
+        return super.load(mutableRequest as URLRequest)
     }
 }
